@@ -80,6 +80,11 @@ test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用�
     const workerMe = await workerClient('/api/v1/me');
     assert.equal(workerMe.data.actor.role, 'worker');
     assert.deepEqual(workerMe.data.scopes.find((s: { action: string }) => s.action === 'read').objectIds, [objectId]);
+    const privacyAlert=(await pool.query("INSERT INTO alerts(object_id,correlation_key,kind,title,severity,opened_at) VALUES($1,'synthetic-privacy','measurement','合成隐私验证','warning',now()) RETURNING id",[objectId])).rows[0].id;
+    for(const [recipient,key] of [[worker.data.id,'worker-call'],[me.data.actor.id,'admin-call']])await pool.query("INSERT INTO notification_intents(alert_id,recipient_id,channel,phase,request_key,text,state) VALUES($1,$2,'voice','escalation',$3,'合成通话记录，未实际拨打','accepted')",[privacyAlert,recipient,key]);
+    const ownNotices=await workerClient('/api/v1/alerts/'+privacyAlert+'/notifications');assert.equal(ownNotices.response.status,200);assert.equal(ownNotices.data.length,1);assert.equal(ownNotices.data[0].recipient_name,'HTTP验收工人');
+    await admin('/api/v1/identity/grants','POST',{userId:me.data.actor.id,objectId,action:'read'});
+    assert.equal((await admin('/api/v1/alerts/'+privacyAlert+'/notifications')).data.length,2);
     await admin('/api/v1/identity/grants','DELETE',{grantId:grant.data.id});
     assert.deepEqual((await workerClient('/api/v1/me')).data.scopes.find((s: { action: string }) => s.action === 'read').objectIds, []);
     await admin('/api/v1/identity/users','DELETE',{userId:worker.data.id});

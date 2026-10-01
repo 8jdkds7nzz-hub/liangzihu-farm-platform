@@ -26,6 +26,7 @@ export function readDatabaseConfig(env: Environment = process.env): PoolConfig {
     connectionString: env.DATABASE_URL,
     max: positiveInteger(env.DB_POOL_MAX, 5),
     connectionTimeoutMillis: positiveInteger(env.DB_CONNECTION_TIMEOUT_MS, 3000),
+    statement_timeout: positiveInteger(env.DB_STATEMENT_TIMEOUT_MS, 10000),
     idleTimeoutMillis: 10000,
     application_name: 'liangzihu-farm-platform',
   };

@@ -15,7 +15,11 @@ export default function LoginForm() {
   const [busy, setBusy] = useState(false);
   const [needsEnrollment, setNeedsEnrollment] = useState(false);
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get('step') === 'mfa') setStep('mfa');
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('step') === 'mfa') {
+      setStep('mfa');
+      if (query.get('enroll') === '1') { setNeedsEnrollment(true); void setup(); }
+    }
   }, []);
   async function setup() {
     try { const data = await post('mfa/enroll'); setSecret(data.secret); setNeedsEnrollment(false); }

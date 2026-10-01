@@ -1,0 +1,2 @@
+import DataList from '@/components/platform/data-list';
+export default function AlertsPage() { return <section className="workspace"><h1>告警与核查</h1><p className="hint">认领后再记录核查。监测恢复仍须有核查和处置依据才能关闭。</p><DataList path="/api/v1/alerts?limit=200" linkPrefix="/alerts/" columns={[{ key: 'title', label: '事件' }, { key: 'object_name', label: '对象' }, { key: 'kind', label: '类别' }, { key: 'severity', label: '级别' }, { key: 'state', label: '处理状态' }, { key: 'data_quality', label: '测值依据' }, { key: 'opened_at', label: '发现时间' }]}/></section>; }

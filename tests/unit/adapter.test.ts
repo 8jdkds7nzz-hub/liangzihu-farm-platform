@@ -10,4 +10,6 @@ test('契约控制字段与状态；有效零、离线零、缺少时间分开�
   assert.equal(normalizeRenke(raw,contract,at,'synthetic')[0].value,0);
   raw.合成列表[0].合成状态='合成离线';const offline=normalizeRenke(raw,contract,at,'synthetic')[0];assert.equal(offline.rawValue,0);assert.equal(offline.value,null);assert.equal(offline.quality,'invalid');
   raw.合成列表[0].合成时间='未提供';assert.equal(normalizeRenke(raw,contract,at,'synthetic')[0].sampledAt,null);
+  assert.throws(()=>normalizeRenke(raw,{...contract,offlineStatuses:[...contract.validStatuses]},at,'synthetic'),{code:'AMBIGUOUS_STATUS_MAPPING'});
+  assert.throws(()=>normalizeRenke(raw,{...contract,mappings:[...contract.mappings,...contract.mappings]},at,'synthetic'),{code:'UNMAPPED_DEVICE'});
 });

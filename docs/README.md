@@ -12,11 +12,23 @@
 - [功能总清单](baseline/智慧农业平台功能总清单.md)
 - [开源项目产品经验](baseline/开源项目产品经验与智慧农业一期实施借鉴.md)
 
-`baseline/`是当前开发基线快照，A01后同步实施进度；A00原快照保留在Git历史。原设计和计划仍保存在外层工作区的`docs/superpowers/`，问题清单等过程资料仍在原讨论目录。快照内相互引用已改为本地路径；未随代码复制的资料标明外层位置。来源路径、原件哈希及快照哈希登记在[来源校验清单](baseline/来源校验清单.json)，更新时整体核对，避免两份版本混用。
+`baseline/`是当前开发基线快照，A11本地验证后同步实施进度；早期快照保留在Git历史。原设计和计划仍保存在外层工作区的`docs/superpowers/`，问题清单等过程资料仍在原讨论目录。快照内相互引用已改为本地路径；未随代码复制的资料标明外层位置。来源路径、原件哈希及快照哈希登记在[来源校验清单](baseline/来源校验清单.json)，更新时整体核对，避免两份版本混用。
 
 ## 执行记录
 
 - [A00验收](acceptance/1a/A00.md)
 - [A01验收及首次登录](acceptance/1a/A01.md)
+- [A02对象与台账](acceptance/1a/A02.md)
+- [A03采集与冲突](acceptance/1a/A03.md)
+- [A04质量与历史](acceptance/1a/A04.md)
+- [A05任务与恢复](acceptance/1a/A05.md)
+- [A06告警与认领](acceptance/1a/A06.md)
+- [A07通知与升级](acceptance/1a/A07.md)
+- [A08页面](acceptance/1a/A08.md)
+- [A09维护与导出](acceptance/1a/A09.md)
+- [A10健康与恢复](acceptance/1a/A10.md)
+- [A11总记录](acceptance/1a/A11.md)
+- [1a发布与限制](releases/1a.md)
+- [真实联调清单](contracts/真实联调交接清单.md)
 
 后续验收记录保存在`acceptance/1a/`、`1b/`、`1c/`。只在命令或实测确实通过后登记完成，样例测试与真实接入分别记录。

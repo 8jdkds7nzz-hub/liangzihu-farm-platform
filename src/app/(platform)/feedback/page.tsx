@@ -1,0 +1,2 @@
+import FeedbackPanel from './feedback-panel';
+export default async function FeedbackPage({searchParams}:{searchParams:Promise<{from?:string}>}){const {from}=await searchParams;return <section className="workspace"><h1>问题反馈与处理</h1><p className="hint">关联你有权访问的对象，写清页面和操作步骤。不要粘贴密码、密钥、手机号或其他个人敏感信息。这里不会自动向外部人员发送消息。</p><FeedbackPanel pagePath={from&&/^\/[a-zA-Z0-9/_-]*$/.test(from)?from:'/feedback'}/></section>;}

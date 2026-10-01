@@ -9,9 +9,9 @@ export default function Home() {
     <main>
       <header><span className="brand">梁子湖 · 智慧农业</span><span className="badge">一期建设中</span></header>
       <section className="intro">
-        <p className="eyebrow">账号与权限已开放本地验证</p>
+        <p className="eyebrow">一期1a · 本地验证版</p>
         <h1>让现场数据<br />成为可核查的行动依据。</h1>
-        <p className="lead">使用已开通的账号登录。地块、设备台账与监测告警将按一期计划逐步接入。</p>
+        <p className="lead">使用已开通的账号管理台账、查看告警、记录核查与维护。真实设备、通知渠道和生产恢复链仍待联调验收。</p>
         <a className="health-link" href="/login">进入平台 <span aria-hidden="true">↗</span></a>
       </section>
       <section aria-label="一期实施路径" className="stages">
@@ -19,7 +19,7 @@ export default function Home() {
           <span className="number">{stage.number}</span><h2>{stage.title}</h2><p>{stage.text}</p>
         </article>)}
       </section>
-      <footer><strong>当前范围</strong><span>账号登录与对象权限基础。企业微信、现场设备与生产告警尚未完成接入。</span></footer>
+      <footer><strong>当前范围</strong><span>1a程序与本地验证。真实企业微信、电话和设备接入尚未验收；继续保留现场值守。</span></footer>
     </main>
   );
 }

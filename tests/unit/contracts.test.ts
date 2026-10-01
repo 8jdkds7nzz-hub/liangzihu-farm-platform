@@ -28,4 +28,5 @@ test('连接池预算与超时从当前项目配置读取', () => {
   const result = readDatabaseConfig({ DATABASE_URL: 'postgresql://localhost/agri_dev', DB_POOL_MAX: '3', DB_CONNECTION_TIMEOUT_MS: '1200' });
   assert.equal(result.max, 3);
   assert.equal(result.connectionTimeoutMillis, 1200);
+  assert.equal(result.statement_timeout, 10000);
 });

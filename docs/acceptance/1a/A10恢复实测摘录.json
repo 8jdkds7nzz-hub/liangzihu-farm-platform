@@ -1,0 +1,34 @@
+{
+  "验证环境": "local_synthetic",
+  "恢复比对通过": true,
+  "表数": 56,
+  "时间证据": {
+    "failureAt": "2026-10-01T15:29:44.272Z",
+    "latestRecoverableAt": "2026-10-01T15:29:43.695862+00:00",
+    "coreReadyAt": "2026-10-01T15:29:44.849Z"
+  },
+  "已验证范围": [
+    "login",
+    "permissions",
+    "ingest",
+    "maintenance_read_write"
+  ],
+  "恢复判定": {
+    "pass": false,
+    "fullScope": false,
+    "productionReady": false,
+    "reasons": [
+      "业务校验未通过",
+      "本次要求的功能未全部通过"
+    ],
+    "rpoMs": 577,
+    "rtoMs": 577
+  },
+  "限制": [
+    "只恢复自身随机测试schema",
+    "未使用NAS或连续WAL生产备份链",
+    "真实通知与夜间电话未联调",
+    "1b农事与附件未实现，不能签全核心恢复达标"
+  ],
+  "私有原件": ".local/恢复演练/20261001_152943207_6f8ed398/恢复实测记录.json"
+}

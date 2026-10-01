@@ -8,6 +8,7 @@ const unavailableCodes = new Set(['ECONNREFUSED', 'ECONNRESET', 'ETIMEDOUT', 'EN
 function databaseError(error: unknown): unknown {
   if (error instanceof AppError) return error;
   const value = error as { code?: string; message?: string };
+  if (value?.code === '57014') return new AppError(503, 'QUERY_TIMEOUT', '查询超时，请缩小范围或稍后重试');
   if (unavailableCodes.has(value?.code ?? '') || /connection timeout|timeout exceeded|Connection terminated/i.test(value?.message ?? '')) {
     return new AppError(503, 'DATABASE_UNAVAILABLE', '数据库暂时不可用，请稍后重试');
   }

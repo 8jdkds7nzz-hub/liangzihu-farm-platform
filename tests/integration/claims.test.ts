@@ -45,3 +45,19 @@ test('规则必须先审核；新有效样本开警、重复消费不重开；�
   assert.equal(Number((await pool.query("SELECT count(*) FROM alerts WHERE kind='monitoring_gap' AND state='open'")).rows[0].count),1);
   assert.equal(rule.version,1);
 }));
+
+test('新样本任务先领取也按新鲜样本时间顺序处理；中间无效样本不能被跳过累计',async()=>{
+  for(const invalidMiddle of [false,true])await withDb(async pool=>{
+    const f=await telemetryFixture(pool);
+    await transaction(async c=>{
+      const batch=await saveBatch(c,f.actor,{objectId:f.objectId,code:'ORDER-TEST',species:'合成',stage:'合成',source:'测试',verified:true,startedAt:'2026-09-01T00:00:00Z'});
+      const rule=await createRule(c,f.actor,{objectId:f.objectId,pointId:f.point.id,batchId:batch.id,name:'顺序测试',comparison:'lt',threshold:5,durationMs:30_000,maxGapMs:20_000,maxAgeMs:60_000,severity:'severe',source:'合成测试',effectiveFrom:'2026-09-01T00:00:00Z'},f.at);
+      await approveRule(c,f.actor,rule.id,'测试',f.at);await enableRule(c,f.actor,rule.id,true,f.at);
+      const at=new Date(f.at.getTime()+30_000),rawRef=await archiveReceipt(c,f.source.id,Buffer.from('{}'),at.toISOString(),true);let lastId='';
+      for(const seconds of [0,15,30]){const bad=invalidMiddle&&seconds===15;lastId=(await ingest(c,{...f.reading,rawRef,sourceRecordId:'order'+seconds,sampledAt:new Date(f.at.getTime()+seconds*1000).toISOString(),receivedAt:at.toISOString(),value:bad?null:1,rawValue:1,quality:bad?'invalid':'valid'},at)).observationId!;}
+      const event=(await c.query("SELECT id FROM domain_events WHERE event_type='reading.recorded' AND payload->>'observationId'=$1",[lastId])).rows[0];
+      await evaluateObservation(c,event.id,lastId,at);
+      assert.equal(Number((await c.query("SELECT count(*) FROM alerts WHERE kind='measurement'")).rows[0].count),invalidMiddle?0:1);
+    },pool);
+  });
+});

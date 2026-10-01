@@ -13,7 +13,7 @@ export function appOrigin(value = process.env.APP_ORIGIN): string {
 export function assertOrigin(request: Request, configured?: string) {
   if (request.headers.get('origin') !== appOrigin(configured)) throw new AppError(403, 'INVALID_ORIGIN', '请求来源不匹配，请从平台页面重试');
 }
-export async function readJson(request: Request): Promise<Record<string, unknown>> {
+export async function readJson(request: Request, maxBytes = 8192): Promise<Record<string, unknown>> {
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) throw new AppError(415, 'JSON_REQUIRED', '请使用JSON请求');
   const reader = request.body?.getReader();
   if (!reader) throw new AppError(400, 'INVALID_JSON', '请求内容不完整');
@@ -24,7 +24,7 @@ export async function readJson(request: Request): Promise<Record<string, unknown
       const { done, value } = await reader.read();
       if (done) break;
       total += value.length;
-      if (total > 8192) { await reader.cancel(); throw new AppError(413, 'BODY_TOO_LARGE', '请求内容过长'); }
+      if (total > maxBytes) { await reader.cancel(); throw new AppError(413, 'BODY_TOO_LARGE', '请求内容过长，请缩小本次提交范围'); }
       chunks.push(value);
     }
     const body = JSON.parse(Buffer.concat(chunks).toString('utf8'));

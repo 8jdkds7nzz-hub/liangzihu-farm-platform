@@ -1,0 +1,7 @@
+{
+  "生成时间UTC": "2026-10-01T15:34:01.277417+00:00",
+  "代码文件数": 176,
+  "代码SHA256": "00e97b8c5199c337adb2ae4eaf6aa7b1576f6ebac8130a6ddc246e99ec934dcf",
+  "构建ID": "47nDD3B3py8iXqbDJ4LAx",
+  "说明": "按路径排序，对src/db/workers/ops/tools/tests内代码与SQL，加package.json、锁文件和Next/TS配置计算SHA256；路径及内容间用NUL分隔。排除私有环境、备份和派生截图。"
+}

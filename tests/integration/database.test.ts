@@ -39,6 +39,14 @@ test('失败事务完整回滚并释放连接', async () => withDb(async pool =>
   assert.equal(pool.waitingCount, 0);
 }));
 
+test('查询时限触发503并回滚，连接可继续处理下一次请求', async () => withDb(async pool => {
+  await assert.rejects(() => transaction(async client => {
+    await client.query("SET LOCAL statement_timeout = '20ms'");
+    await client.query('SELECT pg_sleep(0.1)');
+  }, pool), { code: 'QUERY_TIMEOUT', status: 503 });
+  assert.equal((await pool.query('SELECT 1 AS value')).rows[0].value, 1);
+}));
+
 test('有错误的迁移不遗留DDL或迁移标记', async () => withDb(async pool => {
   const base = await loadMigrations();
   const sql = 'CREATE TABLE failed_migration_probe(id integer); SELECT * FROM table_that_does_not_exist;';

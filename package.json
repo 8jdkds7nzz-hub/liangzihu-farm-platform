@@ -20,6 +20,14 @@
     "registry:setup": "node --env-file=.env.local --import tsx tools/setup-registry.ts",
     "worker:ingest": "node --env-file=.env.local --import tsx workers/ingest.ts",
     "worker:alarms": "node --env-file=.env.local --import tsx workers/alarms.ts",
+    "worker:notifications": "node --env-file=.env.local --import tsx workers/notifications.ts",
+    "ops:setup": "node tools/setup-operations.mjs",
+    "ops:health": "node --env-file=.env.health.local ops/external-health.mjs",
+    "test:monitor": "node --test tests/acceptance/external-health.test.mjs",
+    "ops:restore-drill": "node --env-file=.env.test.local --import tsx ops/restore-check.ts",
+    "test:compat": "node --env-file=.env.test.local --import tsx --test tests/acceptance/migration-compat.test.ts",
+    "test:browser": "node --env-file=.env.test.local --import tsx --test tests/acceptance/platform-browser.test.ts",
+    "test:health": "node --env-file=.env.test.local --import tsx --test tests/acceptance/health-http.test.ts",
     "db:setup": "node tools/setup-local-db.mjs",
     "db:migrate": "node --env-file=.env.local --import tsx src/db/migrate.ts",
     "db:status": "node --env-file=.env.local --import tsx src/db/migrate.ts --status"
@@ -36,6 +44,7 @@
     "@types/pg": "^8",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "playwright": "1.62.1",
     "tsx": "4.23.15",
     "typescript": "5.9.3"
   }
