@@ -18,6 +18,8 @@
     "test:http": "node --env-file=.env.test.local --import tsx --test tests/acceptance/identity-http.test.ts",
     "identity:setup": "node --import tsx tools/setup-identity.ts",
     "registry:setup": "node --env-file=.env.local --import tsx tools/setup-registry.ts",
+    "worker:ingest": "node --env-file=.env.local --import tsx workers/ingest.ts",
+    "worker:alarms": "node --env-file=.env.local --import tsx workers/alarms.ts",
     "db:setup": "node tools/setup-local-db.mjs",
     "db:migrate": "node --env-file=.env.local --import tsx src/db/migrate.ts",
     "db:status": "node --env-file=.env.local --import tsx src/db/migrate.ts --status"

@@ -22,6 +22,8 @@ export async function bindPoint(c:PoolClient,actor:Actor,input:Record<string,unk
   const from=time(input.validFrom),to=input.validTo?time(input.validTo):null;
   if(to&&to<=from)throw new AppError(422,'INVALID_PERIOD','绑定结束时间须晚于开始时间');
   if(input.endPrevious===true){
+    if((await c.query('SELECT 1 FROM rule_bindings WHERE point_id=$1 AND object_id<>$2 AND enabled',[input.pointId,input.objectId])).rowCount)throw new AppError(409,'ACTIVE_RULE_BINDING','换塘前须停用旧对象的规则并完成配置核对');
+    if((await c.query('SELECT 1 FROM observations WHERE point_id=$1 AND sampled_at>=$2 LIMIT 1',[input.pointId,from])).rowCount)throw new AppError(409,'HISTORICAL_BINDING','该时间之后已有测值，不能改写历史绑定区间');
     const old=(await c.query('SELECT * FROM point_bindings WHERE point_id=$1 AND valid_to IS NULL FOR UPDATE',[input.pointId])).rows;
     for(const row of old){await assertAccess(c,actor,{objectId:row.object_id,action:'configure',at:from});if(row.valid_from.toISOString()>=from)throw new AppError(409,'BINDING_CONFLICT','新绑定不能早于现有绑定');}
     await c.query('UPDATE point_bindings SET valid_to=$2 WHERE point_id=$1 AND valid_to IS NULL',[input.pointId,from]);
