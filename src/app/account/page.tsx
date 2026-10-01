@@ -27,6 +27,7 @@ export default async function AccountPage() {
       <dl><dt>角色</dt><dd>{roles[actor.role]}</dd><dt>二次验证</dt><dd>{actor.mfaVerified ? '已完成' : '当前账号未要求'}</dd><dt>可查看的业务对象</dt><dd>{profile.count} 个</dd></dl>
       {profile.count === 0 && <p className="hint">当前没有业务对象的查看授权。人员权限与地块、设备台账将在后续配置中关联。</p>}
       <LogoutButton />
+      <a className="health-link" href="/objects">进入对象台账</a>
     </section>
   </main>;
 }

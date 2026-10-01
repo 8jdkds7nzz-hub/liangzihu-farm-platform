@@ -1,0 +1,20 @@
+'use client';
+import { useRef,useState,type FormEvent,type ReactNode } from 'react';
+export default function ActionForm({path,children,method='POST',numbers=[],times=[],booleans=[],jsonFields=[],onSaved,stableKey=false,label='保存'}:{path:string;children:ReactNode;method?:string;numbers?:string[];times?:string[];booleans?:string[];jsonFields?:string[];onSaved?:()=>void;stableKey?:boolean;label?:string}){
+  const [busy,setBusy]=useState(false),[message,setMessage]=useState(''),[error,setError]=useState('');const key=useRef<string|null>(null);
+  async function submit(e:FormEvent<HTMLFormElement>){e.preventDefault();setBusy(true);setError('');setMessage('');const form=e.currentTarget;
+    try{
+      const data:Record<string,unknown>=Object.fromEntries(new FormData(form));
+      for(const name of numbers){if(data[name]==='')delete data[name];else data[name]=Number(data[name]);}
+      for(const name of times){if(data[name]==='')delete data[name];else data[name]=new Date(String(data[name])).toISOString();}
+      for(const name of booleans)data[name]=data[name]==='on';
+      for(const name of jsonFields)data[name]=JSON.parse(String(data[name]));
+      if(stableKey){key.current??=crypto.randomUUID();data.requestKey=key.current;}
+      const response=await fetch(path,{method,headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const result=await response.json();
+      if(!response.ok)throw new Error(result.message??'操作未完成');
+      if(Array.isArray(result.rows)){const failures=result.rows.filter((r:{ok:boolean})=>!r.ok);setMessage(`已导入${result.rows.length-failures.length}行；${failures.length}行未导入。`+failures.map((r:{row:number;message:string})=>`第${r.row}行：${r.message}`).join('；'));}
+      else setMessage('已保存');key.current=null;form.reset();onSaved?.();
+    }catch(e){setError(e instanceof Error?e.message:'网络不可用，未确认保存，请重试');}finally{setBusy(false);}
+  }
+  return <form className="business-form" onSubmit={submit}>{children}<button disabled={busy}>{busy?'正在提交…':label}</button>{error&&<p className="form-error" role="alert">{error}</p>}{message&&<p role="status">{message}</p>}</form>;
+}

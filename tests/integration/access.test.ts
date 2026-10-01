@@ -7,6 +7,7 @@ import { assertAccess, listAccessibleObjects, assertIntegrationAccess, roleActio
 import { grantAccess, revokeGrant, issueIntegrationToken, disableUser } from '../../src/modules/identity/management';
 import type { Actor, Action } from '../../src/platform/types';
 import type { Pool } from 'pg';
+import { objectFixture } from '../support/fixtures';
 
 export async function user(pool: Pool, role: Actor['role'] = 'expert'): Promise<Actor> {
   const id = randomUUID();
@@ -17,7 +18,7 @@ const scope = (objectId: string, action: Action = 'read') => ({ objectId, action
 
 test('同角色仍按对象和动作授权；管理员不自动读取全部业务', async () => withDb(async pool => {
   const admin = await user(pool, 'admin'), a = await user(pool), b = await user(pool);
-  const pondA = randomUUID(), pondB = randomUUID();
+  const pondA = await objectFixture(pool,admin.id), pondB = randomUUID();
   await transaction(async c => {
     await grantAccess(c, admin, { userId: a.id, objectId: pondA, action: 'read' });
     await assertAccess(c, a, scope(pondA));
@@ -32,7 +33,7 @@ test('同角色仍按对象和动作授权；管理员不自动读取全部业�
 }));
 
 test('到期、撤回、停用立即生效，历史at不能绕过当前授权', async () => withDb(async pool => {
-  const admin = await user(pool, 'admin'), actor = await user(pool), objectId = randomUUID();
+  const admin = await user(pool, 'admin'), actor = await user(pool), objectId = await objectFixture(pool,admin.id);
   await transaction(async c => {
     const id = await grantAccess(c, admin, { userId: actor.id, objectId, action: 'read' });
     await assertAccess(c, actor, scope(objectId));
@@ -48,7 +49,7 @@ test('到期、撤回、停用立即生效，历史at不能绕过当前授权', 
 }));
 
 test('机器凭据只存散列、限定对象动作，撤回及签发人停用后拒绝', async () => withDb(async pool => {
-  const admin = await user(pool, 'admin'), pond = randomUUID();
+  const admin = await user(pool, 'admin'), pond = await objectFixture(pool,admin.id);
   await transaction(async c => {
     const issued = await issueIntegrationToken(c, admin, { label: '只读接入测试', objectId: pond, action: 'read', expiresAt: new Date(Date.now() + 60_000).toISOString() });
     const stored = (await c.query('SELECT token_hash FROM integration_tokens WHERE id=$1', [issued.id])).rows[0].token_hash;

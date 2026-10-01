@@ -26,6 +26,7 @@ export async function createUser(client: PoolClient, actor: Actor, input: { user
 export async function grantAccess(client: PoolClient, actor: Actor, input: { userId: string; objectId: string; action: Action; expiresAt?: string }) {
   await requireAdmin(client, actor);
   uuid(input.userId); uuid(input.objectId);
+  if (!(await client.query('SELECT 1 FROM objects WHERE id=$1',[input.objectId])).rowCount) throw new AppError(422,'OBJECT_REQUIRED','请先登记对象');
   const user = (await client.query('SELECT role,enabled FROM users WHERE id=$1', [input.userId])).rows[0];
   if (!user?.enabled || !roleActions[user.role as Role]?.includes(input.action)) throw denied();
   const expiry = input.expiresAt === undefined ? null : new Date(input.expiresAt);
@@ -51,6 +52,7 @@ export async function disableUser(client: PoolClient, actor: Actor, userId: stri
 }
 export async function issueIntegrationToken(client: PoolClient, actor: Actor, input: { label: string; objectId: string; action: 'read' | 'record'; expiresAt: string }) {
   await requireAdmin(client, actor); uuid(input.objectId);
+  if (!(await client.query('SELECT 1 FROM objects WHERE id=$1',[input.objectId])).rowCount) throw new AppError(422,'OBJECT_REQUIRED','请先登记对象');
   const expires = new Date(input.expiresAt);
   if (!['read','record'].includes(input.action) || typeof input.label !== 'string' || !input.label.trim() || input.label.length > 80 || !Number.isFinite(expires.getTime()) || expires.getTime() <= Date.now()) {
     throw new AppError(400, 'INVALID_TOKEN_SCOPE', '接入凭据需要名称、对象、只读或记录权限及未来到期时间');

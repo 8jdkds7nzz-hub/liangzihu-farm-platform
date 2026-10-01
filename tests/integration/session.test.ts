@@ -8,6 +8,7 @@ import { hashPassword } from '../../src/modules/identity/password';
 import { login, enrollment, finishMfa, resolveSession, logout } from '../../src/modules/identity/session';
 import { digest } from '../../src/modules/identity/common';
 import { completeWecom, startWecom, type WecomProvider } from '../../src/modules/identity/wecom';
+import { objectFixture } from '../support/fixtures';
 
 const password = 'test-only-password-1234';
 async function fixture(pool: Pool, role = 'admin') {
@@ -105,7 +106,7 @@ test('停用再启用、角色变更、退出和过期均使旧会话失效', as
 test('增加配置权限后，已有普通会话失效并强制二次验证；挑战过期拒绝', async () => withDb(async pool => {
   const f = await fixture(pool, 'technician');
   const session = await login(f.username, password, f.options);
-  await pool.query("INSERT INTO grants(user_id,object_id,action,created_by) VALUES($1,$2,'configure',$1)", [f.user.id, randomUUID()]);
+  await pool.query("INSERT INTO grants(user_id,object_id,action,created_by) VALUES($1,$2,'configure',$1)", [f.user.id, await objectFixture(pool,f.user.id)]);
   await assert.rejects(() => resolveSession(session.token, f.options), { status: 401 });
   const challenge = await login(f.username, password, f.options);
   assert.equal(challenge.kind, 'mfa');

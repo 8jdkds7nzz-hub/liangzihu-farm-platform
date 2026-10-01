@@ -8,6 +8,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { generate } from 'otplib';
 import { withDb, requireTestDatabaseUrl } from '../support/db';
 import { hashPassword } from '../../src/modules/identity/password';
+import { objectFixture } from '../support/fixtures';
 
 test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用、Origin及无秘密响应', { timeout: 60_000 }, async () => withDb(async pool => {
   const password = randomBytes(24).toString('hex');
@@ -69,7 +70,7 @@ test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用�
     assert.equal((await admin('/account')).response.status, 200);
     const worker = await admin('/api/v1/identity/users','POST',{username:'http-worker',displayName:'HTTP验收工人',password,role:'worker'});
     assert.equal(worker.response.status, 201);
-    const objectId = randomUUID();
+    const objectId = await objectFixture(pool,me.data.actor.id);
     const grant = await admin('/api/v1/identity/grants','POST',{userId:worker.data.id,objectId,action:'read'});
     assert.equal(grant.response.status, 201);
     const workerJar = new Map<string,string>(), workerClient = client(workerJar);
