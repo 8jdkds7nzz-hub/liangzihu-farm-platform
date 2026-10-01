@@ -15,12 +15,15 @@
     "test:unit": "node --import tsx --test tests/unit/*.test.ts",
     "test:db": "node --env-file=.env.test.local --import tsx --test --test-concurrency=1 tests/integration/*.test.ts",
     "test": "pnpm test:unit && pnpm test:db",
+    "test:http": "node --env-file=.env.test.local --import tsx --test tests/acceptance/identity-http.test.ts",
+    "identity:setup": "node --import tsx tools/setup-identity.ts",
     "db:setup": "node tools/setup-local-db.mjs",
     "db:migrate": "node --env-file=.env.local --import tsx src/db/migrate.ts",
     "db:status": "node --env-file=.env.local --import tsx src/db/migrate.ts --status"
   },
   "dependencies": {
     "next": "16.3.8",
+    "otplib": "13.5.0",
     "pg": "8.23.0",
     "react": "19.2.4",
     "react-dom": "19.2.4"

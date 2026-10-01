@@ -14,15 +14,15 @@ test('PostGIS在隔离测试库可用', async () => withDb(async pool => {
 
 test('迁移两次只应用一次', async () => withDb(async pool => {
   const migrations = await loadMigrations();
-  assert.deepEqual(await runMigrations(pool, migrations), ['000_platform.sql']);
+  assert.deepEqual(await runMigrations(pool, migrations), migrations.map(m => m.name));
   assert.deepEqual(await runMigrations(pool, migrations), []);
-  assert.equal(Number((await pool.query('SELECT count(*) FROM schema_migrations')).rows[0].count), 1);
+  assert.equal(Number((await pool.query('SELECT count(*) FROM schema_migrations')).rows[0].count), migrations.length);
 }, { migrate: false }));
 
 test('两个执行者并发迁移不重复应用', async () => withDb(async pool => {
   const migrations = await loadMigrations();
   const results = await Promise.all([runMigrations(pool, migrations), runMigrations(pool, migrations)]);
-  assert.equal(results.flat().length, 1);
+  assert.equal(results.flat().length, migrations.length);
   assert.equal(Number((await pool.query('SELECT count(*) FROM platform_metadata')).rows[0].count), 1);
 }, { migrate: false }));
 
@@ -42,10 +42,11 @@ test('失败事务完整回滚并释放连接', async () => withDb(async pool =>
 test('有错误的迁移不遗留DDL或迁移标记', async () => withDb(async pool => {
   const base = await loadMigrations();
   const sql = 'CREATE TABLE failed_migration_probe(id integer); SELECT * FROM table_that_does_not_exist;';
-  const broken: Migration = { version: 1, name: '001_failure.sql', sql, checksum: createHash('sha256').update(sql).digest('hex') };
+  const version = base.at(-1)!.version + 1;
+  const broken: Migration = { version, name: String(version).padStart(3, '0') + '_failure.sql', sql, checksum: createHash('sha256').update(sql).digest('hex') };
   await assert.rejects(() => runMigrations(pool, [...base, broken]), { code: '42P01' });
   assert.equal((await pool.query("SELECT to_regclass('failed_migration_probe') AS name")).rows[0].name, null);
-  assert.equal(Number((await pool.query('SELECT count(*) FROM schema_migrations')).rows[0].count), 1);
+  assert.equal(Number((await pool.query('SELECT count(*) FROM schema_migrations')).rows[0].count), base.length);
 }));
 
 test('已应用迁移修改后拒绝继续执行', async () => withDb(async pool => {
