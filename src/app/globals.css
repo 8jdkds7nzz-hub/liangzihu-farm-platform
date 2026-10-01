@@ -65,3 +65,4 @@ footer strong { white-space: nowrap; font-weight: 600; }
   footer { display: block; }
   footer strong { display: block; margin-bottom: 4px; }
 }
+.map-window{overflow:hidden;border:1px solid var(--line);border-radius:10px}.farm-map{width:100%;max-height:600px}.import-result{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}.media-image{max-width:100%;max-height:480px}.item-state{font-size:13px;color:var(--muted)}

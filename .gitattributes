@@ -4,3 +4,5 @@
 *.tsx text eol=lf
 *.json text eol=lf
 *.md text eol=lf
+# Preserve the upstream model cards byte for byte, including their whitespace.
+docs/licenses/*模型卡.md -whitespace

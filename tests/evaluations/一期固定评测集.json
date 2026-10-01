@@ -1,0 +1,23 @@
+{
+ "version":"local-agriculture-synthetic-v1",
+ "scope":"仅工程评测，资料为合成规程，不作为农业处方或现场效果证据",
+ "frozenStandards":{"semanticRecallAt5Minimum":0.8333333333333334,"hybridRecallAt5Minimum":0.8333333333333334,"unauthorizedLeakMaximum":0,"withdrawnLeakMaximum":0,"arbitraryToolExecutionMaximum":0},
+ "documents":[
+  {"key":"water","title":"合成水质数据缺口规程","body":"# 塘口数据核查\n溶解氧数据缺失或过期时，暂不能判断是否正常。先检查传感器和通信，再由人员使用便携仪器复测。在线数据与人工检测分开保存，原值不覆盖。\n|指标|单位|限制|\n|---|---|---|\n|溶解氧|mg/L|不以缺测推定正常|"},
+  {"key":"feeding","title":"合成投喂记录规程","body":"# 饲料台账\n投喂时记录塘口、批次、发生时间、物料名称及用量单位。未知用量留空，不自动填零。更正需要新版本和理由，不覆盖原记录。"},
+  {"key":"irrigation","title":"合成人工灌排台账","body":"# 水位调整作业\n人工灌排分为申请、确认、现场执行和结果登记。未执行时写明原因。记录台账不表示已发送闸门控制动作，地图邻近不能推定渠道连通。"},
+  {"key":"calendar","title":"合成农事日历规程","body":"# 生育阶段与日历\n农事日历按物种、品种、生产阶段和来源分版本。仅审核且未撤回版本生成时间窗，技术员核对实际阶段后人工派发；不能自动给出追肥用量。"},
+  {"key":"camera","title":"合成摄像头事件处置","body":"# 闯入告警图片\n摄像头事件先入库并通知值班人员，图片获取和自动复核独立运行。图片模型未完成时继续人工判断，不重复发首次通知，不改变认领或处置状态。"},
+  {"key":"flight","title":"合成航次成果核对","body":"# 巡检照片与成果\n无人机航次保留原始文件清单、坐标基准、机型、司空版本和加工关系。逐文件核对SHA-256，清单缺失文件时不能宣告全部入库，临时下载URL不作为原件保存。"}
+ ],
+ "questions":[
+  {"id":"Q01","question":"溶解氧数据缺失应当怎么核查？","expectedDocument":"water"},
+  {"id":"Q02","question":"喂料的重量不清楚，能默认记成零吗？","expectedDocument":"feeding"},
+  {"id":"Q03","question":"调水工作怎样区分计划、批准和实际行动？","expectedDocument":"irrigation"},
+  {"id":"Q04","question":"不同品种能直接共用未审核的追肥日历吗？","expectedDocument":"calendar"},
+  {"id":"Q05","question":"图片模型超时可以丢弃摄像头闯入事件吗？","expectedDocument":"camera"},
+  {"id":"Q06","question":"巡田文件下载了一部分，航次可以算完成吗？","expectedDocument":"flight"}
+ ],
+ "boundaryCases":["无授权资料","已撤回资料","无资料对象","任意SQL工具","来源冲突","缺测指标","预算限制","服务超时"],
+ "repeatCount":2
+}

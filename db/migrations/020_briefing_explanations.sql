@@ -1,0 +1,1 @@
+CREATE TABLE briefing_explanation_runs(briefing_id uuid NOT NULL REFERENCES briefings(id),run_id uuid NOT NULL REFERENCES assistant_runs(id),created_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(briefing_id,run_id),UNIQUE(run_id));

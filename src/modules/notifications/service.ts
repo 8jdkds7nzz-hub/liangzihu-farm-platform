@@ -34,7 +34,7 @@ export async function planNotifications(c: PoolClient, alertId: string, eventId:
     const roster = await currentRoster(c, alert.object_id, at);
     if (!roster)
         throw new AppError(503, 'ROSTER_NOT_READY', '当前对象没有已核实的值班安排');
-    const people = alert.kind === 'measurement' ? [roster.onsite_id, roster.technician_id] : [roster.onsite_id, roster.maintainer_id];
+    const people = ['measurement','camera'].includes(alert.kind) ? [roster.onsite_id, roster.technician_id] : [roster.onsite_id, roster.maintainer_id];
     for (const recipientId of new Set<string>(people)) {
         if (!await recipientAllowed(c, recipientId, alert.object_id))
             continue;

@@ -1,0 +1,657 @@
+{
+  "runId": "2026-10-01T16-34-09-803Z_a2bd6f",
+  "checkedAt": "2026-10-01T16:34:13.548Z",
+  "datasetVersion": "local-agriculture-synthetic-v1",
+  "datasetHash": "e7d71895cf2d38a307c2d713974b57c00249e36a8ab51bbc861561e7d31b6930",
+  "embeddingVersion": "Xenova/bge-small-zh-v1.5@75c43b069aac4d136ba6bc1122f995fedcfd2781:q8:cls",
+  "promptVersion": "farm-evidence-json-v1",
+  "retrievalVersion": "zh-bigram-rrf-v1",
+  "standards": {
+    "semanticRecallAt5Minimum": 0.8333333333333334,
+    "hybridRecallAt5Minimum": 0.8333333333333334,
+    "unauthorizedLeakMaximum": 0,
+    "withdrawnLeakMaximum": 0,
+    "arbitraryToolExecutionMaximum": 0
+  },
+  "rows": [
+    {
+      "questionId": "Q01",
+      "repeat": 1,
+      "mode": "keyword",
+      "expectedDocumentKey": "water",
+      "returnedDocumentKeys": [
+        "water",
+        "flight"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 12.98329200000012,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q01",
+      "repeat": 1,
+      "mode": "vector",
+      "expectedDocumentKey": "water",
+      "returnedDocumentKeys": [
+        "water",
+        "camera",
+        "flight",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 165.31895800000007,
+      "retrievalMs": 1.8239169999999376,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q01",
+      "repeat": 1,
+      "mode": "hybrid",
+      "expectedDocumentKey": "water",
+      "returnedDocumentKeys": [
+        "water",
+        "flight",
+        "camera",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 165.31895800000007,
+      "retrievalMs": 1.7180410000000848,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q02",
+      "repeat": 1,
+      "mode": "keyword",
+      "expectedDocumentKey": "feeding",
+      "returnedDocumentKeys": [],
+      "recallAt5": false,
+      "recallAt1": false,
+      "embeddingMs": 0,
+      "retrievalMs": 3.591957999999977,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q02",
+      "repeat": 1,
+      "mode": "vector",
+      "expectedDocumentKey": "feeding",
+      "returnedDocumentKeys": [
+        "feeding",
+        "water",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 166.4217500000002,
+      "retrievalMs": 2.9732920000001286,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q02",
+      "repeat": 1,
+      "mode": "hybrid",
+      "expectedDocumentKey": "feeding",
+      "returnedDocumentKeys": [
+        "feeding",
+        "water",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 166.4217500000002,
+      "retrievalMs": 4.009999999999991,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q03",
+      "repeat": 1,
+      "mode": "keyword",
+      "expectedDocumentKey": "irrigation",
+      "returnedDocumentKeys": [
+        "calendar"
+      ],
+      "recallAt5": false,
+      "recallAt1": false,
+      "embeddingMs": 0,
+      "retrievalMs": 4.4718749999999545,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q03",
+      "repeat": 1,
+      "mode": "vector",
+      "expectedDocumentKey": "irrigation",
+      "returnedDocumentKeys": [
+        "irrigation",
+        "feeding",
+        "calendar"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 157.7627500000001,
+      "retrievalMs": 2.804542000000083,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q03",
+      "repeat": 1,
+      "mode": "hybrid",
+      "expectedDocumentKey": "irrigation",
+      "returnedDocumentKeys": [
+        "calendar",
+        "irrigation",
+        "feeding"
+      ],
+      "recallAt5": true,
+      "recallAt1": false,
+      "embeddingMs": 157.7627500000001,
+      "retrievalMs": 4.250916999999845,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q04",
+      "repeat": 1,
+      "mode": "keyword",
+      "expectedDocumentKey": "calendar",
+      "returnedDocumentKeys": [
+        "calendar"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 3.8638750000000073,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q04",
+      "repeat": 1,
+      "mode": "vector",
+      "expectedDocumentKey": "calendar",
+      "returnedDocumentKeys": [
+        "calendar",
+        "feeding",
+        "flight",
+        "water"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 156.66995799999995,
+      "retrievalMs": 2.9070839999999407,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q04",
+      "repeat": 1,
+      "mode": "hybrid",
+      "expectedDocumentKey": "calendar",
+      "returnedDocumentKeys": [
+        "calendar",
+        "feeding",
+        "flight",
+        "water"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 156.66995799999995,
+      "retrievalMs": 4.450417000000016,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q05",
+      "repeat": 1,
+      "mode": "keyword",
+      "expectedDocumentKey": "camera",
+      "returnedDocumentKeys": [
+        "camera"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 4.098833000000013,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q05",
+      "repeat": 1,
+      "mode": "vector",
+      "expectedDocumentKey": "camera",
+      "returnedDocumentKeys": [
+        "camera",
+        "flight"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 160.4275419999999,
+      "retrievalMs": 2.537917000000107,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q05",
+      "repeat": 1,
+      "mode": "hybrid",
+      "expectedDocumentKey": "camera",
+      "returnedDocumentKeys": [
+        "camera",
+        "flight"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 160.4275419999999,
+      "retrievalMs": 4.1395840000000135,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q06",
+      "repeat": 1,
+      "mode": "keyword",
+      "expectedDocumentKey": "flight",
+      "returnedDocumentKeys": [
+        "flight",
+        "camera"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 3.176249999999982,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q06",
+      "repeat": 1,
+      "mode": "vector",
+      "expectedDocumentKey": "flight",
+      "returnedDocumentKeys": [
+        "flight",
+        "calendar",
+        "feeding"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 167.70570799999996,
+      "retrievalMs": 2.3568340000001626,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q06",
+      "repeat": 1,
+      "mode": "hybrid",
+      "expectedDocumentKey": "flight",
+      "returnedDocumentKeys": [
+        "flight",
+        "camera",
+        "calendar",
+        "feeding"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 167.70570799999996,
+      "retrievalMs": 6.951375000000098,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q01",
+      "repeat": 2,
+      "mode": "keyword",
+      "expectedDocumentKey": "water",
+      "returnedDocumentKeys": [
+        "water",
+        "flight"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 3.247541000000183,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q01",
+      "repeat": 2,
+      "mode": "vector",
+      "expectedDocumentKey": "water",
+      "returnedDocumentKeys": [
+        "water",
+        "camera",
+        "flight",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 168.12804099999994,
+      "retrievalMs": 2.538000000000011,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q01",
+      "repeat": 2,
+      "mode": "hybrid",
+      "expectedDocumentKey": "water",
+      "returnedDocumentKeys": [
+        "water",
+        "flight",
+        "camera",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 168.12804099999994,
+      "retrievalMs": 3.4792919999999867,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q02",
+      "repeat": 2,
+      "mode": "keyword",
+      "expectedDocumentKey": "feeding",
+      "returnedDocumentKeys": [],
+      "recallAt5": false,
+      "recallAt1": false,
+      "embeddingMs": 0,
+      "retrievalMs": 4.257750000000215,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q02",
+      "repeat": 2,
+      "mode": "vector",
+      "expectedDocumentKey": "feeding",
+      "returnedDocumentKeys": [
+        "feeding",
+        "water",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 158.38220900000033,
+      "retrievalMs": 2.541917000000012,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q02",
+      "repeat": 2,
+      "mode": "hybrid",
+      "expectedDocumentKey": "feeding",
+      "returnedDocumentKeys": [
+        "feeding",
+        "water",
+        "calendar",
+        "irrigation"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 158.38220900000033,
+      "retrievalMs": 3.35149999999976,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q03",
+      "repeat": 2,
+      "mode": "keyword",
+      "expectedDocumentKey": "irrigation",
+      "returnedDocumentKeys": [
+        "calendar"
+      ],
+      "recallAt5": false,
+      "recallAt1": false,
+      "embeddingMs": 0,
+      "retrievalMs": 3.5257919999999103,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q03",
+      "repeat": 2,
+      "mode": "vector",
+      "expectedDocumentKey": "irrigation",
+      "returnedDocumentKeys": [
+        "irrigation",
+        "feeding",
+        "calendar"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 160.86050000000023,
+      "retrievalMs": 2.7612920000001395,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q03",
+      "repeat": 2,
+      "mode": "hybrid",
+      "expectedDocumentKey": "irrigation",
+      "returnedDocumentKeys": [
+        "calendar",
+        "irrigation",
+        "feeding"
+      ],
+      "recallAt5": true,
+      "recallAt1": false,
+      "embeddingMs": 160.86050000000023,
+      "retrievalMs": 3.6191250000001673,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q04",
+      "repeat": 2,
+      "mode": "keyword",
+      "expectedDocumentKey": "calendar",
+      "returnedDocumentKeys": [
+        "calendar"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 3.720832999999857,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q04",
+      "repeat": 2,
+      "mode": "vector",
+      "expectedDocumentKey": "calendar",
+      "returnedDocumentKeys": [
+        "calendar",
+        "feeding",
+        "flight",
+        "water"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 161.44404099999974,
+      "retrievalMs": 2.9960829999999987,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q04",
+      "repeat": 2,
+      "mode": "hybrid",
+      "expectedDocumentKey": "calendar",
+      "returnedDocumentKeys": [
+        "calendar",
+        "feeding",
+        "flight",
+        "water"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 161.44404099999974,
+      "retrievalMs": 4.172708000000057,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q05",
+      "repeat": 2,
+      "mode": "keyword",
+      "expectedDocumentKey": "camera",
+      "returnedDocumentKeys": [
+        "camera"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 4.43716699999959,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q05",
+      "repeat": 2,
+      "mode": "vector",
+      "expectedDocumentKey": "camera",
+      "returnedDocumentKeys": [
+        "camera",
+        "flight"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 163.361042,
+      "retrievalMs": 2.920916000000034,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q05",
+      "repeat": 2,
+      "mode": "hybrid",
+      "expectedDocumentKey": "camera",
+      "returnedDocumentKeys": [
+        "camera",
+        "flight"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 163.361042,
+      "retrievalMs": 3.758708000000297,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q06",
+      "repeat": 2,
+      "mode": "keyword",
+      "expectedDocumentKey": "flight",
+      "returnedDocumentKeys": [
+        "flight",
+        "camera"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 0,
+      "retrievalMs": 3.6885409999999865,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q06",
+      "repeat": 2,
+      "mode": "vector",
+      "expectedDocumentKey": "flight",
+      "returnedDocumentKeys": [
+        "flight",
+        "calendar",
+        "feeding"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 157.95108400000026,
+      "retrievalMs": 2.9808329999996204,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    },
+    {
+      "questionId": "Q06",
+      "repeat": 2,
+      "mode": "hybrid",
+      "expectedDocumentKey": "flight",
+      "returnedDocumentKeys": [
+        "flight",
+        "camera",
+        "calendar",
+        "feeding"
+      ],
+      "recallAt5": true,
+      "recallAt1": true,
+      "embeddingMs": 157.95108400000026,
+      "retrievalMs": 4.119457999999668,
+      "costCny": null,
+      "costReason": "本地CPU推理，未提供真实云资源摊销或模型API账单"
+    }
+  ],
+  "summary": {
+    "modes": [
+      {
+        "mode": "keyword",
+        "total": 12,
+        "recallAt5": 0.6666666666666666,
+        "recallAt1": 0.6666666666666666,
+        "meanRetrievalMs": 4.588642249999983,
+        "meanEmbeddingMs": 0
+      },
+      {
+        "mode": "vector",
+        "total": 12,
+        "recallAt5": 1,
+        "recallAt1": 1,
+        "meanRetrievalMs": 2.6785522500000147,
+        "meanEmbeddingMs": 162.03613191666673
+      },
+      {
+        "mode": "hybrid",
+        "total": 12,
+        "recallAt5": 1,
+        "recallAt1": 0.8333333333333334,
+        "meanRetrievalMs": 4.001760416666666,
+        "meanEmbeddingMs": 162.03613191666673
+      }
+    ],
+    "unauthorizedLeaks": 0,
+    "withdrawnLeaks": 0,
+    "arbitraryToolExecutions": 0
+  },
+  "passed": true,
+  "limits": [
+    "仅6题合成检索评测，不能替代专业问题集和真实模型解释评测",
+    "实际Kimi/DeepSeek质量、费用及2至4周试运行未验证",
+    "来源冲突、缺测、预算和超时的工程行为由独立单元与集成测试验证"
+  ]
+}

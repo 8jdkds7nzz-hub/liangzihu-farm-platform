@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {seedRecovery,loseMedia,checkFieldRecovery} from './recovery-fixture';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -52,6 +53,7 @@ async function main() {
         await pool.query('UPDATE users SET password_hash=$2 WHERE id=$1', [f.actor.id, await hashPassword(password)]);
         const challenge = await login(f.actor.id, password, options), factor = await enrollment(challenge.token, options);
         const authenticated = await finishMfa(challenge.token, await generate({ secret: factor.secret }), options);
+        const field=await seedRecovery(pool,f.actor,f.objectId,directory);
         const checkpoint = (await pool.query("INSERT INTO platform_metadata(key,value) VALUES('restore_probe',jsonb_build_object('checkpoint',clock_timestamp())) RETURNING value")).rows[0].value.checkpoint;
         const before = await snapshot(pool, schema), startedAt = new Date().toISOString();
         const dump = postgres('pg_dump', ['--schema', schema, '--format', 'custom', '--no-owner', '--no-acl']);
@@ -65,6 +67,7 @@ async function main() {
         assert.equal(sha(await readFile(dumpPath)), manifest.files[0].sha256);
         const failureAt = new Date().toISOString();
         // Only the random schema created by this run is removed; agri_dev and public are never targets.
+        await loseMedia(directory);
         await pool.query('DROP SCHEMA ' + quote(schema) + ' CASCADE');
         assert.equal((await pool.query('SELECT to_regnamespace($1) AS present', [schema])).rows[0].present, null);
         postgres('pg_restore', ['--no-owner', '--no-acl', '--exit-on-error'], await readFile(dumpPath));
@@ -81,11 +84,12 @@ async function main() {
         const actor = await resolveSession(session.token, restoredOptions);
         await transaction(async (c) => { await assertAccess(c, actor, { objectId: f.objectId, action: 'read', at: new Date().toISOString() }); await assert.rejects(() => assertAccess(c, actor, { objectId: randomUUID(), action: 'read', at: new Date().toISOString() }), { status: 403 }); }, pool);
         await transaction(async (c) => { const at = new Date().toISOString(), rawRef = await archiveReceipt(c, f.source.id, Buffer.from('{"synthetic_restore_probe":true}'), at, true); const result = await ingest(c, { ...f.reading, rawRef, sourceRecordId: 'restore-after', sampledAt: at, receivedAt: at }); assert.equal(result.disposition, 'inserted'); await recordMaintenance(c, actor, { objectId: f.objectId, pointId: f.point.id, occurredAt: at, recordType: 'cleaning', description: '隔离恢复后的合成读写验证', source: '仅恢复演练', requestKey: randomUUID() }); }, pool);
+        const fieldChecks=await checkFieldRecovery(pool,actor,f.objectId,field);
         const coreReadyAt = new Date().toISOString();
         const evidence: RecoveryEvidence = { failureAt, latestRecoverableAt: checkpoint, coreReadyAt, checksumPassed: true, accessPassed: true, notificationPassed: false,
-            scope: ['login', 'permissions', 'ingest', 'maintenance_read_write'], checks: { login: true, permissions: true, ingest: true, maintenance_read_write: true, alarm_notice: false, night_phone: false, farm_record_read_write: false }, manifestRef: manifestPath, environment: 'local_synthetic' };
+            scope: ['login', 'permissions', 'ingest', 'maintenance_read_write','farm_record_read_write','media','tasks','knowledge'], checks: { login: true, permissions: true, ingest: true, maintenance_read_write: true, alarm_notice: false, night_phone: false, farm_record_read_write: true }, manifestRef: manifestPath, environment: 'local_synthetic' };
         const result = checkRecovery(evidence);
-        const report = { restoreVerified: true, environment: 'local_synthetic', database: 'agri_test', schema, tablesVerified: Object.keys(before).length, evidence, result, limits: ['只恢复自身随机测试schema', '未使用NAS或连续WAL生产备份链', '真实通知与夜间电话未联调', '1b农事与附件未实现，不能签全核心恢复达标'] };
+        const report = { restoreVerified: true, environment: 'local_synthetic', database: 'agri_test', schema, tablesVerified: Object.keys(before).length, fieldChecks, mediaManifest:[{assetId:field.assetId,checksum:field.checksum,bytes:field.bytes}],evidence, result, limits: ['只恢复自身随机测试schema', '未使用NAS或连续WAL生产备份链', '真实通知与夜间电话未联调', '本机小样本与第二目录副本不等于生产异地恢复或真实规模RPO/RTO'] };
         await writeFile(resolve(directory, '恢复实测记录.json'), JSON.stringify(report, null, 2) + '\n', { mode: 0o600 });
         return { restoreVerified: true, tablesVerified: report.tablesVerified, rpoMs: result.rpoMs, rtoMs: result.rtoMs, productionReady: result.productionReady, reportPath: resolve(directory, '恢复实测记录.json') };
     });

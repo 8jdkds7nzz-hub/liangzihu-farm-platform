@@ -84,6 +84,6 @@ export default function MaintenancePanel() {
     {w.state === 'handled' && can('review', w.object_id) && <ActionForm path="/api/v1/work-orders" method="PATCH" stableKey onSaved={saved} label="确认复核"><input type="hidden" name="id" value={w.id}/><input type="hidden" name="state" value="reviewed"/><Field name="note" label="复核结论与依据"/></ActionForm>}
   </section>)}
   <h2>受控导出</h2>{!!exportObjects.length && <ActionForm path="/api/v1/exports" times={['from', 'to']} onSaved={() => void exports.reload()} label="生成JSON导出"><Pick name="objectId" label="导出对象" options={exportObjects}/><Field name="from" label="测值开始时间" type="datetime-local"/><Field name="to" label="测值结束时间（最多31天）" type="datetime-local"/><p className="hint">保留单位、质量、绑定版本及更正关系；不含共享原报文正文。下载有效期24小时，下载时再次核验权限。</p></ActionForm>}
-  <ul className="link-list">{exports.data.map(e => <li key={e.id}><a href={'/api/v1/exports/' + e.id}>下载 {new Date(e.created_at).toLocaleString()} 生成的导出</a>（{new Date(e.expires_at).toLocaleString()} 到期）</li>)}</ul>
+  <ul className="link-list">{exports.data.map(e => <li key={e.id}><a href={'/api/v1/exports/' + e.id}>下载 {new Date(e.created_at).toLocaleString()} 生成的导出</a> · <a href={'/api/v1/exports/'+e.id+'/bundle'}>下载资料与附件原件包</a>（{new Date(e.expires_at).toLocaleString()} 到期）</li>)}</ul>
   </>;
 }

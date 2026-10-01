@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-01T17:05:42.901Z",
+  "origin": "http://127.0.0.1:3100",
+  "status": {
+    "login": 200,
+    "live": 200,
+    "ready": 503
+  },
+  "externalDelivery": false,
+  "deviceControl": false,
+  "productionAccepted": false
+}

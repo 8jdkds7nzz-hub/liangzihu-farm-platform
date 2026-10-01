@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-01T17:02:30.542Z",
+  "browser": "Chromium Playwright",
+  "environment": "agri_test随机schema与合成图片",
+  "checks": {
+    "offlinePhotoPersistence": true,
+    "reopen": true,
+    "localEditing": true,
+    "partialAttachmentNotSynced": true,
+    "lostConfirmationIdempotent": true,
+    "accountIsolation": true,
+    "encryptedLocalData": true,
+    "revocationPreservesDraft": true,
+    "noScriptErrors": true,
+    "noOverflow": true
+  },
+  "deviceSupport": "企业微信与实际手机尚未验证"
+}

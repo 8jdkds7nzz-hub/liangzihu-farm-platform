@@ -1,12 +1,13 @@
 'use client';
 import { useRef, useState, type FormEvent, type ReactNode } from 'react';
-export default function ActionForm({ path, children, method = 'POST', numbers = [], times = [], booleans = [], jsonFields = [], scales = {}, onSaved, stableKey = false, label = '保存' }: {
+export default function ActionForm({ path, children, method = 'POST', numbers = [], times = [], booleans = [], nullableBooleans = [], jsonFields = [], scales = {}, onSaved, stableKey = false, label = '保存' }: {
     path: string;
     children: ReactNode;
     method?: string;
     numbers?: string[];
     times?: string[];
     booleans?: string[];
+    nullableBooleans?: string[];
     jsonFields?: string[];
     scales?: Record<string, number>;
     onSaved?: () => void;
@@ -40,6 +41,7 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
             }
             for (const name of booleans)
                 data[name] = data[name] === 'on';
+            for(const name of nullableBooleans)data[name]=data[name]==='yes'?true:data[name]==='no'?false:null;
             for (const name of jsonFields)
                 data[name] = JSON.parse(String(data[name]));
             if (stableKey) {

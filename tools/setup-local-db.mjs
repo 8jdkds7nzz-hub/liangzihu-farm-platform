@@ -64,6 +64,7 @@ async function main() {
   await ensureEnv('.env.docker.local', { POSTGRES_PASSWORD: credentials.admin });
   await ensureEnv('.env.local', { DATABASE_URL: 'postgresql://agri_developer:' + credentials.dev + '@127.0.0.1:55432/agri_dev' });
   await ensureEnv('.env.test.local', { TEST_DATABASE_URL: 'postgresql://agri_tester:' + credentials.test + '@127.0.0.1:55432/agri_test' });
+  docker([...compose, 'build', 'db']);
   docker([...compose, 'up', '-d', '--wait', '--wait-timeout', '60', 'db']);
 
   for (const [database, role, password] of [['agri_dev', 'agri_developer', credentials.dev], ['agri_test', 'agri_tester', credentials.test]]) {
@@ -73,7 +74,7 @@ async function main() {
     if (owner && owner !== role) throw new Error(database + '已由其他角色持有，未修改。');
     if (!owner) sql('CREATE DATABASE ' + database + ' OWNER ' + role + ';');
     sql('REVOKE ALL ON DATABASE ' + database + ' FROM PUBLIC; GRANT CONNECT,TEMPORARY ON DATABASE ' + database + ' TO ' + role + ';');
-    sql('CREATE EXTENSION IF NOT EXISTS postgis;', database);
+    sql('CREATE EXTENSION IF NOT EXISTS postgis; CREATE EXTENSION IF NOT EXISTS vector SCHEMA public;', database);
   }
   const version = sql('SELECT version(); SELECT postgis_lib_version();', 'agri_dev');
   console.log('本地数据库已就绪：agri_dev与agri_test使用独立角色，端口55432。');

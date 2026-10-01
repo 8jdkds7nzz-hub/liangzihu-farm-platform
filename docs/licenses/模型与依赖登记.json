@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-01T16:36:49.129Z",
+  "embedding": {
+    "model": "Xenova/bge-small-zh-v1.5",
+    "revision": "75c43b069aac4d136ba6bc1122f995fedcfd2781",
+    "dimension": 512,
+    "dtype": "q8",
+    "pooling": "cls",
+    "upstreamLicense": "MIT"
+  },
+  "image": {
+    "model": "Xenova/yolos-tiny",
+    "revision": "e2f9c7673f0fa61849efe2b56a0d7774779ebb9d",
+    "dtype": "q8",
+    "sourceLicense": "MIT",
+    "upstreamWeightCardLicense": "Apache-2.0",
+    "convertedWeightLicenseNote": "转换模型卡指向上游，未另列许可证；保留上游模型卡和许可证，生产分发方式须再核对"
+  },
+  "runtime": {
+    "package": "@huggingface/transformers",
+    "version": "3.8.1",
+    "license": "Apache-2.0"
+  },
+  "records": [
+    {
+      "file": "YOLOS源码MIT.txt",
+      "url": "https://raw.githubusercontent.com/hustvl/YOLOS/main/LICENSE",
+      "sha256": "97acb244135bb2ed8ca578990bc91b670d61d0c5c37fc67b17bdc252d865cd9d"
+    },
+    {
+      "file": "YOLOS原权重模型卡.md",
+      "url": "https://huggingface.co/hustvl/yolos-tiny/raw/main/README.md",
+      "sha256": "3214b20fc6ec0fc9d6062714c338a56e59c117e0eb01f0c6d7ecbd077a19a189"
+    },
+    {
+      "file": "YOLOS转换权重模型卡.md",
+      "url": "https://huggingface.co/Xenova/yolos-tiny/raw/e2f9c7673f0fa61849efe2b56a0d7774779ebb9d/README.md",
+      "sha256": "c59adbed4be53a455627a6fc3c026c3a719d49f0ce993e9939348aa6f57caa9e"
+    },
+    {
+      "file": "BGE原权重模型卡.md",
+      "url": "https://huggingface.co/BAAI/bge-small-zh-v1.5/raw/main/README.md",
+      "sha256": "c48a4eeea77f6b1d38b48ec1c5b8d4f86d5550cc43fa345a0db1b2ca1d082369"
+    },
+    {
+      "file": "BGE转换权重模型卡.md",
+      "url": "https://huggingface.co/Xenova/bge-small-zh-v1.5/raw/75c43b069aac4d136ba6bc1122f995fedcfd2781/README.md",
+      "sha256": "cb22054df1a98f7ee9d5b281d023e67c27cc316e1733baf03fc994d95c3048ab"
+    }
+  ],
+  "limits": [
+    "本次只在本机运行；不表示真实农场识别效果或生产法律审阅已完成"
+  ]
+}

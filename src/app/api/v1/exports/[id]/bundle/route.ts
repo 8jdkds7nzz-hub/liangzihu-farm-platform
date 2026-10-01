@@ -1,0 +1,2 @@
+import {endpoint} from '@/modules/identity/http';import {requireActor} from '@/modules/identity/session';import {exportBundle} from '@/modules/media/bundle';
+export async function GET(r:Request,ctx:{params:Promise<{id:string}>}){return endpoint(async()=>{const a=await requireActor(r),{id}=await ctx.params,stream=await exportBundle(a,id);return new Response(stream,{headers:{'Content-Type':'application/gzip','Content-Disposition':`attachment; filename="farm-export-${id}.tar.gz"`,'Cache-Control':'no-store','Vary':'Cookie'}});});}

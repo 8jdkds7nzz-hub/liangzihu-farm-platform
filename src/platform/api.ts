@@ -2,9 +2,10 @@ import type { PoolClient } from 'pg';
 import { database, transaction } from '../db/pool';
 import { requireActor } from '../modules/identity/session';
 import { assertOrigin, endpoint, json, readJson } from '../modules/identity/http';
+import { enforceExpertApi } from '../modules/field/shares';
 import type { Actor } from './types';
 export function readApi(request: Request, work: (c: PoolClient, actor: Actor) => Promise<unknown>) {
-    return endpoint(async () => { const actor = await requireActor(request); return database(async (c) => json(await work(c, actor))); });
+    return endpoint(async () => { const actor = await requireActor(request); return database(async (c) => {await enforceExpertApi(c,actor,request);return json(await work(c, actor));}); });
 }
 export function writeApi(request: Request, work: (c: PoolClient, actor: Actor, body: Record<string, unknown>) => Promise<unknown>, status = 200, maxBytes = 32768) {
     return endpoint(async () => {

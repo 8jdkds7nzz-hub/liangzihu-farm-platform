@@ -29,7 +29,7 @@ test('受控JSON导出保留关系、哈希匹配，撤权或其他账号不能�
   const f=await telemetryFixture(pool),other=await actorFixture(pool,'expert');
   const task=await transaction(c=>createExport(c,f.actor,{objectId:f.objectId,from:'2026-09-30T00:00:00Z',to:'2026-10-02T00:00:00Z'}),pool);
   const file=await transaction(c=>downloadExport(c,f.actor,task.id),pool);assert.equal(createHash('sha256').update(file.body).digest('hex'),file.sha256);
-  const parsed=JSON.parse(file.body);assert.equal(parsed.schemaVersion,'1a-v1');assert.equal(parsed.objects[0].id,f.objectId);assert.equal(parsed.bindings[0].point_id,f.point.id);
+  const parsed=JSON.parse(file.body);assert.equal(parsed.schemaVersion,'1c-v1');assert.equal(parsed.objects[0].id,f.objectId);assert.equal(parsed.bindings[0].point_id,f.point.id);
   await assert.rejects(()=>transaction(c=>downloadExport(c,other,task.id),pool),{status:404});
   await pool.query("UPDATE grants SET revoked_at=now() WHERE user_id=$1 AND action='export'",[f.actor.id]);
   await assert.rejects(()=>transaction(c=>downloadExport(c,f.actor,task.id),pool),{status:403});

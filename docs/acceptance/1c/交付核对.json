@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-01T17:04:54.322Z",
+  "tests": {
+    "unit": 26,
+    "database": 62,
+    "acceptance": 7,
+    "total": 95
+  },
+  "typecheck": "passed",
+  "productionBuild": "passed",
+  "buildId": "SfL52GGg443uqFuamcFvD",
+  "dependencyAudit": "No known vulnerabilities found",
+  "privateDatabase": "agri_dev",
+  "developmentCounts": {
+    "users": 1,
+    "objects": 1,
+    "devices": 0,
+    "farmRecords": 0,
+    "media": 0,
+    "knowledge": 0,
+    "briefings": 0
+  },
+  "restoreTables": 90,
+  "baselineFilesVerified": 7,
+  "internalLinksBroken": 0,
+  "originalLicenseCards": "上游原始快照中的相对链接按来源URL解析，不计入本项目导航",
+  "outerArtifactCheck": {
+    "preExistingErrors": 35,
+    "preExistingWarnings": 1,
+    "touched": false
+  },
+  "productionAccepted": false
+}

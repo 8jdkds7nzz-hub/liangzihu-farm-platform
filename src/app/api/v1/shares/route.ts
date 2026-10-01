@@ -1,0 +1,1 @@
+import {writeApi} from '@/platform/api';import {shareResource,revokeResource} from '@/modules/field/shares';export const POST=(r:Request)=>writeApi(r,shareResource);export const PATCH=(r:Request)=>writeApi(r,revokeResource);
