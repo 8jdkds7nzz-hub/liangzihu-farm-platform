@@ -7,7 +7,7 @@ async function post(path: string, body?: object) {
   if (!response.ok) throw new Error(data.message ?? '操作未完成，请稍后重试');
   return data;
 }
-export default function LoginForm() {
+export default function LoginForm({ mfaRequired }: { mfaRequired: boolean }) {
   const [step, setStep] = useState<'login' | 'mfa' | 'recovery'>('login');
   const [secret, setSecret] = useState('');
   const [codes, setCodes] = useState<string[]>([]);
@@ -16,11 +16,11 @@ export default function LoginForm() {
   const [needsEnrollment, setNeedsEnrollment] = useState(false);
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    if (query.get('step') === 'mfa') {
+    if (mfaRequired && query.get('step') === 'mfa') {
       setStep('mfa');
       if (query.get('enroll') === '1') { setNeedsEnrollment(true); void setup(); }
     }
-  }, []);
+  }, [mfaRequired]);
   async function setup() {
     try { const data = await post('mfa/enroll'); setSecret(data.secret); setNeedsEnrollment(false); }
     catch (e) { setError(e instanceof Error ? e.message : '验证器绑定未完成'); }
@@ -58,7 +58,7 @@ export default function LoginForm() {
       <button type="button" onClick={() => window.location.assign('/account')}>已保存，进入平台</button>
     </> : <form onSubmit={submit}>
       {step === 'login' ? <>
-        <p className="hint">使用管理员已开通的账号。首次管理员登录需要绑定验证器。</p>
+        <p className="hint">{mfaRequired ? '使用管理员已开通的账号。首次管理员登录需要绑定验证器。' : '使用管理员已开通的账号和密码登录。'}</p>
         <label htmlFor="username">账号</label>
         <input id="username" name="username" autoComplete="username" autoCapitalize="none" spellCheck={false} maxLength={80} required />
         <label htmlFor="password">密码</label>

@@ -9,6 +9,9 @@ import { login, enrollment, finishMfa, resolveSession, logout } from '../../src/
 import { digest } from '../../src/modules/identity/common';
 import { completeWecom, startWecom, type WecomProvider } from '../../src/modules/identity/wecom';
 import { objectFixture } from '../support/fixtures';
+import { transaction } from '../../src/db/pool';
+import { assertAccess } from '../../src/modules/identity/access';
+import { requireAdmin } from '../../src/modules/identity/management';
 
 const password = 'test-only-password-1234';
 async function fixture(pool: Pool, role = 'admin') {
@@ -28,6 +31,42 @@ async function enrolled(pool: Pool) {
   const session = await finishMfa(challenge.token, code, f.options);
   return { ...f, factor, code, session, challenge };
 }
+
+test('关闭验证器后密码直接登录，管理员、已有验证器和操作授权均适用；密码及授权边界保留', async () => withDb(async pool => {
+  const admin = await enrolled(pool), technician = await fixture(pool, 'technician');
+  const objectId = await objectFixture(pool, admin.user.id);
+  await pool.query("INSERT INTO grants(user_id,object_id,action,created_by) VALUES($1,$2,'act',$3)", [technician.user.id, objectId, admin.user.id]);
+  const previous = process.env.IDENTITY_MFA_REQUIRED;
+  process.env.IDENTITY_MFA_REQUIRED = '0';
+  try {
+    await assert.rejects(() => login(admin.username, 'wrong-password', admin.options), { status: 401 });
+    const session = await login(admin.username, password, admin.options);
+    assert.equal(session.kind, 'session');
+    const actor = await resolveSession(session.token, admin.options);
+    assert.equal(actor.mfaVerified, false);
+    assert.equal((await pool.query('SELECT count(*) FROM second_factors')).rows[0].count, '1');
+    await transaction(async c => {
+      await requireAdmin(c, actor);
+      await assert.rejects(() => assertAccess(c, actor, { objectId, action: 'read', at: new Date().toISOString() }), { status: 403 });
+    }, pool);
+    const techSession = await login(technician.username, password, technician.options);
+    assert.equal(techSession.kind, 'session');
+    const techActor = await resolveSession(techSession.token, technician.options);
+    await transaction(async c => {
+      await assertAccess(c, techActor, { objectId, action: 'act', at: new Date().toISOString() });
+      await assert.rejects(() => requireAdmin(c, techActor), { status: 403 });
+    }, pool);
+    const limited = await fixture(pool);
+    for (let i = 0; i < 5; i++) await assert.rejects(() => login(limited.username, 'wrong-password', limited.options), { status: 401 });
+    await assert.rejects(() => login(limited.username, password, limited.options), { status: 429 });
+    await pool.query('UPDATE users SET enabled=false WHERE id=$1', [admin.user.id]);
+    await assert.rejects(() => resolveSession(session.token, admin.options), { status: 401 });
+    await assert.rejects(() => login(admin.username, password, admin.options), { status: 401 });
+  } finally {
+    if (previous === undefined) delete process.env.IDENTITY_MFA_REQUIRED;
+    else process.env.IDENTITY_MFA_REQUIRED = previous;
+  }
+}));
 
 test('管理员密码只产生短期挑战，验证绑定后才有完整会话；秘密不明文入库', async () => withDb(async pool => {
   const f = await fixture(pool);

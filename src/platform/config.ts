@@ -3,6 +3,10 @@ import { AppError } from './error';
 
 type Environment = Record<string, string | undefined>;
 
+export function isMfaEnabled(env: Environment = process.env): boolean {
+  return env.IDENTITY_MFA_REQUIRED !== '0';
+}
+
 function positiveInteger(value: string | undefined, fallback: number): number {
   if (value === undefined) return fallback;
   const result = Number(value);

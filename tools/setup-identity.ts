@@ -38,7 +38,7 @@ async function main() {
       try { credentials = JSON.parse(await readFile(path, 'utf8')); }
       catch (error) {
         if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
-        credentials = { username: 'farm-admin', password: randomBytes(24).toString('base64url'), note: '仅本地初始账号。首次登录须由使用者绑定自己的验证器，并保存一次性恢复码。请保存到自己的密码管理器后删除本文件。' };
+        credentials = { username: 'farm-admin', password: randomBytes(24).toString('base64url'), note: '仅本地初始账号。使用账号密码登录；如已启用二次验证，按页面提示绑定验证器并保存恢复码。请保存到自己的密码管理器后删除本文件。' };
         await writeFile(path, JSON.stringify(credentials, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
       }
       if (credentials.username !== 'farm-admin' || typeof credentials.password !== 'string' || credentials.password.length < 24) throw new Error('本地初始化凭据不符');
