@@ -14,6 +14,7 @@ export interface Receipt {
     connected?: boolean | null;
 }
 export interface NotificationProvider {
+    ready?():Promise<void>;
     send(notice: Notice): Promise<Receipt>;
     query(providerRequestId: string): Promise<Receipt>;
 }

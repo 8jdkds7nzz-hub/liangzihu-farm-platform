@@ -122,6 +122,7 @@ export async function ingest(c: PoolClient, input: ReadingInput, at = new Date()
     return { observationId: row.id, disposition: 'inserted', eligibleForCurrent: eligible };
 }
 export async function persistBatch(pool: Pool, batch: {
+    guard?: (client: PoolClient) => Promise<void>;
     contract?: ContractEvidence;
     resolveMappings?: boolean;
     sourceId: string;
@@ -136,6 +137,7 @@ export async function persistBatch(pool: Pool, batch: {
         const source = (await c.query('SELECT id FROM data_sources WHERE id=$1 FOR UPDATE', [batch.sourceId])).rows[0];
         if (!source)
             throw new AppError(422, 'SOURCE_REQUIRED', '来源未登记');
+        await batch.guard?.(c);
         const previous = (await c.query('SELECT cursor FROM ingestion_cursors WHERE source_id=$1', [batch.sourceId])).rows[0]?.cursor ?? null;
         if (previous !== batch.expectedCursor)
             throw new AppError(409, 'CURSOR_CHANGED', '采集游标已由其他进程推进');

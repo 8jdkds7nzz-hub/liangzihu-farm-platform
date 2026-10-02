@@ -3,9 +3,9 @@ import type { Clock } from '../../platform/types';
 import { systemClock } from '../../platform/clock';
 import { AppError } from '../../platform/error';
 import { claimJob, finishJob, recoverExpired, type JobLease } from './repository';
-export async function runOne(pool: Pool, workerId: string, handlers: Record<string, (job: JobLease) => Promise<void>>, clock: Clock = systemClock): Promise<boolean> {
+export async function runOne(pool: Pool, workerId: string, handlers: Record<string, (job: JobLease) => Promise<void>>, clock: Clock = systemClock,options:{noticeChannels?:string[]}={}): Promise<boolean> {
     await recoverExpired(pool, clock.now());
-    const job = await claimJob(pool, workerId, clock.now(), { kinds: Object.keys(handlers) });
+    const job = await claimJob(pool, workerId, clock.now(), { kinds: Object.keys(handlers),...options });
     if (!job)
         return false;
     try {

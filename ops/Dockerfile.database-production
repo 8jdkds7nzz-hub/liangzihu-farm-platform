@@ -1,0 +1,6 @@
+FROM liangzihu-farm-platform-db:18-3.6-vector0.8.6
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends python3 && rm -rf /var/lib/apt/lists/*
+COPY wal_archive.py pitr_restore.py /opt/agri/
+COPY postgresql-production.conf /etc/postgresql/agri-production.conf
+# The existing PostgreSQL entrypoint selects the postgres OS user before starting the server.

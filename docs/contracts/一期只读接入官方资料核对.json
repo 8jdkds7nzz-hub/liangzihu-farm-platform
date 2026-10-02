@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-10-02",
+  "sources": [
+    {
+      "title": "企业微信团队示范SDK",
+      "url": "https://github.com/sbzhu/weworkapi_python",
+      "limits": "示范SDK不保证最新版本兼容；真实G03仍待验证"
+    },
+    {
+      "title": "萤石设备抓拍",
+      "url": "https://open.ys7.com/help/687",
+      "updatedAt": "2026-09-08",
+      "limits": "需要support_capture1，海康机型可能不支持；4秒以上间隔，默认图片保存2小时"
+    },
+    {
+      "title": "萤石播放地址",
+      "url": "https://open.ys7.com/help/1414",
+      "updatedAt": "2026-07-24",
+      "limits": "回放不支持常规HLS，需已支持协议；不发送云台/加密开关动作"
+    }
+  ],
+  "rawPrivateSnapshots": [
+    {
+      "file": "CorpApi.py",
+      "sha256": "547478419856c678551c3c59db874d17301676cfdc28f1b1385fa728733e243d"
+    },
+    {
+      "file": "AbstractApi.py",
+      "sha256": "668088b7f371827910316532ece94839a0f6edff670fa8d838872f81607bf1b1"
+    },
+    {
+      "file": "MessageTest.py",
+      "sha256": "b10671b3587f5dd5818aa053a811223500edb7bfe136c14dcdaeeaa4c0301ae6"
+    },
+    {
+      "file": "萤石_687.html",
+      "sha256": "5aeb602dc1f5e71b3c50c598dddd4f58d56b9644d2f4f6b50c2e03558a2d8782"
+    },
+    {
+      "file": "萤石_1414.html",
+      "sha256": "2bfe50f2aab9caded4b129a904011d1526b65791c15fca83c3a1605675d21df3"
+    }
+  ],
+  "actualVendorCalls": false
+}

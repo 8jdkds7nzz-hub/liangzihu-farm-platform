@@ -1,0 +1,75 @@
+{
+  "restoreVerified": true,
+  "environment": "local_synthetic",
+  "tablesVerified": 119,
+  "fieldChecks": {
+    "farmRecords": true,
+    "taskRelations": true,
+    "knowledgeRelations": true,
+    "mediaHash": true,
+    "privateMediaRead": true,
+    "originalMissingDetected": true,
+    "restoredAsset": "3e23d92f-0c94-4660-97cd-a35b794a6782",
+    "checksum": "0a8ff601c24a9041ec616250d079448039edadb9ed857eba21301e251f2e3417"
+  },
+  "phase1Checks": {
+    "nonemptyTables": {
+      "media_upload_sessions": 1,
+      "media_upload_parts": 5,
+      "flight_coverages": 1,
+      "flight_rasters": 1,
+      "analysis_calculations": 2,
+      "scheduled_briefings": 1,
+      "model_attempts": 2,
+      "model_receipts": 1,
+      "identity_recoveries": 1,
+      "camera_reads": 1,
+      "camera_stream_resources": 1,
+      "expert_phones": 1,
+      "sms_challenges": 1,
+      "comparison_definitions": 1,
+      "comparison_results": 1,
+      "image_review_requests": 1
+    },
+    "allMediaCount": 3,
+    "largeOriginalVerified": true,
+    "previewRestored": true,
+    "revokedPublicationDenied": true,
+    "unknownModelNotResent": true,
+    "confirmedBillNotRecreatedAsAnswer": true,
+    "privateCameraStreamRestored": true,
+    "expertSmsChallengeRestored": true
+  },
+  "mediaManifest": [
+    {
+      "assetId": "3e23d92f-0c94-4660-97cd-a35b794a6782",
+      "checksum": "0a8ff601c24a9041ec616250d079448039edadb9ed857eba21301e251f2e3417",
+      "bytes": 137
+    },
+    {
+      "assetId": "090d6615-602d-4ef5-b422-ad676c0cfb38",
+      "checksum": "fa77096c4a7a73eb83250969421d9ab3be6cdbacea17050e31522dfca1bba33f",
+      "bytes": 22020096
+    }
+  ],
+  "result": {
+    "pass": false,
+    "fullScope": false,
+    "productionReady": false,
+    "reasons": [
+      "业务校验未通过",
+      "本次要求的功能未全部通过"
+    ],
+    "rpoMs": 467,
+    "rtoMs": 1160
+  },
+  "limits": [
+    "只恢复自身随机测试schema",
+    "未使用NAS或连续WAL生产备份链",
+    "真实通知与夜间电话未联调",
+    "本机合成样本与第二目录副本不等于生产异地恢复或真实规模RPO/RTO"
+  ],
+  "checkedAt": "2026-10-02T09:45:35.237693+00:00",
+  "method": "pg_dump custom + DROP自身随机schema + pg_restore + 全部表行数/SHA一致 + 登录/权限/业务/全部原件复核",
+  "productionReady": false
+}

@@ -28,7 +28,9 @@ export async function withLease<T>(pool:Pool,key:string,provided:JobLease|undefi
  await transaction(c=>assertLease(c,lease,key),pool);
  let renewing=false;
  const timer=setInterval(()=>{if(renewing)return;renewing=true;void pool.query("UPDATE jobs SET lease_until=clock_timestamp()+interval '60 seconds' WHERE id=$1 AND lease_token=$2 AND state='running' AND lease_until>clock_timestamp()",[lease.id,lease.leaseToken]).catch(()=>{}).finally(()=>{renewing=false;});},20000);timer.unref();
- try{const result=await work(lease);if(!provided)await finishJob(pool,lease.id,lease.leaseToken,{state:'done'});return result;}
+ try{const result=await work(lease);
+  const unknown=await database(async c=>{if(lease.kind==='assistant.generate')return !!(await c.query("SELECT 1 FROM assistant_runs WHERE id=$1 AND state='result_unknown'",[lease.payload.runId])).rowCount;if(lease.kind==='camera.read')return !!(await c.query("SELECT 1 FROM camera_reads WHERE id=$1 AND state='unknown'",[lease.payload.readId])).rowCount;if(lease.kind==='briefing.notify')return !!(await c.query("SELECT 1 FROM briefing_reminders WHERE id=$1 AND state='unknown'",[lease.payload.reminderId])).rowCount;return false;},pool);
+  if(unknown||!provided)await finishJob(pool,lease.id,lease.leaseToken,{state:unknown?'awaiting_receipt':'done'});return result;}
  catch(e){if(!provided)await finishJob(pool,lease.id,lease.leaseToken,{state:'failed',errorCode:e instanceof AppError?e.code:'HANDLER_FAILED'});throw e;}
  finally{clearInterval(timer);}
 }

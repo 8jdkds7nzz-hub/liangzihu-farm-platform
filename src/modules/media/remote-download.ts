@@ -25,7 +25,7 @@ const blocked=new BlockList();
 for(const [net,prefix]of [['0.0.0.0',8],['10.0.0.0',8],['100.64.0.0',10],['127.0.0.0',8],['169.254.0.0',16],['172.16.0.0',12],['192.0.0.0',24],['192.0.2.0',24],['192.88.99.0',24],['192.168.0.0',16],['198.18.0.0',15],['198.51.100.0',24],['203.0.113.0',24],['224.0.0.0',3]]as const)blocked.addSubnet(net,prefix,'ipv4');
 const globalV6=new BlockList();globalV6.addSubnet('2000::',3,'ipv6');
 for(const [net,prefix]of [['2001::',23],['2001:db8::',32],['2002::',16]]as const)blocked.addSubnet(net,prefix,'ipv6');
-function publicAddress(r:{address:string;family:number}){return isIP(r.address)===r.family&&(r.family===4?!blocked.check(r.address,'ipv4'):r.family===6&&globalV6.check(r.address,'ipv6')&&!blocked.check(r.address,'ipv6'));}
+export function publicAddress(r:{address:string;family:number}){return isIP(r.address)===r.family&&(r.family===4?!blocked.check(r.address,'ipv4'):r.family===6&&globalV6.check(r.address,'ipv6')&&!blocked.check(r.address,'ipv6'));}
 function read(url:URL,address:{address:string;family:number},maxBytes:number,signal:AbortSignal,requester:NonNullable<DownloadDependencies['requester']>):Promise<{bytes?:Buffer;redirect?:string}>{
  return new Promise((resolve,reject)=>{
  const req=requester(url,{agent:false,rejectUnauthorized:true,servername:url.hostname,headers:{'Accept-Encoding':'identity'},lookup:(_host,options,callback)=>{if(options.all)callback(null,[address]);else callback(null,address.address,address.family);}},res=>{

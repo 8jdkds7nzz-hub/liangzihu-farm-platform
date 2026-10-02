@@ -1,5 +1,5 @@
 import type {Evidence} from '../knowledge/service';
-export const PROMPT_VERSION='farm-evidence-json-v1';
+export const PROMPT_VERSION='farm-evidence-json-v2';
 export function redact(s:string,names:string[]=[]){
  let value=s;
  for(const name of [...names].filter(n=>n.length>=2).sort((a,b)=>b.length-a.length))value=value.split(name).join('[已去除身份或位置]');
@@ -28,7 +28,7 @@ export function validateAnswer(output:unknown,evidence:Evidence[],facts:Fact[]){
    for(const date of [f.windowStart,f.windowEnd,f.calculatedAt])for(const n of numbers(date??''))allowed.add(n);
    for(const limit of f.limitations)if(!c.limitations.includes(limit))errors.push('漏掉必需限制');
   }
-  for(const e of referencedEvidence)for(const n of numbers(e.text))allowed.add(n);
+  for(const e of referencedEvidence){for(const n of numbers(e.text))allowed.add(n);if(e.evidenceNature&&!c.limitations.includes(e.evidenceNature))errors.push('遗漏所引资料的证据性质与限制');}
   for(const n of numbers(c.text.replace(/\bO\d+\b/g,'')))if(!allowed.has(n))errors.push('数字与所引用证据不一致：'+n);
   if(referencedFacts.some(f=>f.status!=='usable')&&/正常|数据完整|可以确定/.test(c.text))errors.push('把数据不足改成确定或正常');
  }

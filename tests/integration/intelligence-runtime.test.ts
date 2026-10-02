@@ -41,7 +41,7 @@ test('T01推理期间旧租约失效，迟到答案不落库；已外发中断�
  const f=await fixture(pool);await f.policy();const run=await f.ask(),lease=await claimJob(pool,'old',new Date(),{kinds:['assistant.generate']});assert(lease);
  await assert.rejects(()=>Reflect.apply(runAssistant,null,[pool,run.id,async(ctx:any)=>{
   await pool.query("UPDATE jobs SET lease_until=clock_timestamp()-interval '1 second' WHERE id=$1",[lease.id]);await recoverExpired(pool);
-  return {output:{claims:[{text:'先人工核查',evidenceIds:[ctx.evidence[0].chunkId],metricIds:[],limitations:[]}]},model:'test',usage:{inputTokens:10,outputTokens:10},truncated:false};
+  return {output:{claims:[{text:'先人工核查',evidenceIds:[ctx.evidence[0].chunkId],metricIds:[],limitations:((ctx.evidence as any[])[0].evidenceNature?[(ctx.evidence as any[])[0].evidenceNature]:[])}]},model:'test',usage:{inputTokens:10,outputTokens:10},truncated:false};
  },vectors,lease]),{code:'LEASE_LOST'});
  assert.equal((await pool.query('SELECT result FROM assistant_runs WHERE id=$1',[run.id])).rows[0].result,null);
  await assert.rejects(()=>runAssistant(pool,run.id,undefined,vectors),{code:'RESULT_UNKNOWN'});
@@ -62,7 +62,7 @@ test('T03备用调用前刷新许可；结算使用调用时价格',()=>withDb(a
  const f=await fixture(pool);await f.policy();const run=await f.ask();let backup=0;
  await runAssistant(pool,run.id,async(ctx,isBackup)=>{if(!isBackup){await f.policy(false);throw new AppError(503,'MODEL_HTTP_FAILED','合成拒绝');}backup++;return {output:{},model:'test',usage:null,truncated:false};},vectors);
  assert.equal(backup,0);
- await f.policy(true,1000);const priced=await f.ask();await runAssistant(pool,priced.id,async(ctx)=>{await f.policy(true,100000);return {output:{claims:[{text:'先人工核查',evidenceIds:[(ctx.evidence as any[])[0].chunkId],metricIds:[],limitations:[]}]},model:'test',usage:{inputTokens:10,outputTokens:10},truncated:false};},vectors);
+ await f.policy(true,1000);const priced=await f.ask();await runAssistant(pool,priced.id,async(ctx)=>{await f.policy(true,100000);return {output:{claims:[{text:'先人工核查',evidenceIds:[(ctx.evidence as any[])[0].chunkId],metricIds:[],limitations:((ctx.evidence as any[])[0].evidenceNature?[(ctx.evidence as any[])[0].evidenceNature]:[])}]},model:'test',usage:{inputTokens:10,outputTokens:10},truncated:false};},vectors);
  assert.equal(Number((await pool.query("SELECT amount FROM usage_events WHERE business_key=$1",['model-run:'+priced.id+':'+f.objectId])).rows[0].amount),.02);
 }));
 test('T01图片排队后撤权不读取私有原件/不推理',()=>withDb(async pool=>{

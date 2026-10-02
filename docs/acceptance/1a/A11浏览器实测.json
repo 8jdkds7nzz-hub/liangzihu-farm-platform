@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-02T03:43:22.101Z",
-  "buildId": "RfqheGygZ-bqr-UMu69ZL",
+  "checkedAt": "2026-10-02T09:47:10.875Z",
+  "buildId": "o5aINfBreHeEjazsJPDPq",
   "environment": "agri_test随机schema与合成数据",
   "viewports": [
     "390x844",
@@ -22,11 +22,11 @@
     "feedbackSubmittedAndResolved": true
   },
   "recordIds": {
-    "objectId": "b95d6e73-bef0-443e-a656-bcf6a7eb4e9d",
-    "pointId": "ba20ccf9-2ad3-42a8-b469-d0bf416eb446",
-    "alertId": "f0ba7834-a5a6-4126-83b7-6b5359050afc",
-    "fieldCheckId": "762f635c-84f1-404f-9646-adad2cb31c5a",
-    "repairId": "e07355a6-fecd-46be-b9b4-1b5f2b0e436b"
+    "objectId": "f0779ee0-0244-411e-96a4-3e57b1a28882",
+    "pointId": "e59a3179-1599-447e-8c44-fb6ebcd3b726",
+    "alertId": "7217854f-bc7f-42da-aef7-0241241a1f9e",
+    "fieldCheckId": "6aa2f323-3daa-4aa1-89f8-4f07597e8f01",
+    "repairId": "e87dd0ec-cb6e-4a91-9da7-fe37a4b8907d"
   },
   "limits": [
     "未模拟真实企业微信或电话送达",

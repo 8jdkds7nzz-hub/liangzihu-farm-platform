@@ -1,3 +1,2 @@
-import { AppError } from '../../platform/error';
-import type { NotificationProvider } from './types';
-export function wecomProvider(): NotificationProvider { throw new AppError(503, 'WECOM_NOT_READY', 'G03企业微信发送与回执契约未联调，真实发送关闭'); }
+import type {Pool} from 'pg';import {database,getPool} from '../../db/pool';import {AppError} from '../../platform/error';import type {NotificationProvider} from './types';import {resolveContact} from './rosters';import {configuredWecomClient} from '../../adapters/wecom/client';
+export function wecomProvider(pool:Pool=getPool()):NotificationProvider{const client=configuredWecomClient();return {async ready(){await client.token();},async send(notice){const address=await database(c=>resolveContact(c,notice.recipientId,'wecom'),pool);const r=await client.sendText(address,notice.text,notice.requestKey);return {state:r.state,providerRequestId:r.requestId,occurredAt:new Date().toISOString(),reason:null};},async query(id){return {state:'unknown',providerRequestId:id,occurredAt:new Date().toISOString(),reason:'企业微信受理不代表成员收到或打开；未知不重发，查看平台认领或阅读记录'};}};}

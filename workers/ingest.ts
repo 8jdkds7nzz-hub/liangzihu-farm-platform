@@ -7,11 +7,15 @@ import { normalizeRenke } from '../src/adapters/renke/adapter';
 import type { RenkeContract } from '../src/adapters/renke/contract';
 import { archiveReceipt, persistBatch } from '../src/modules/telemetry/ingest';
 import { heartbeat } from '../src/modules/operations/heartbeat';
+import {runRenkePull,type PullConfiguration} from '../src/modules/telemetry/renke-pull';
+import {setTimeout as delay} from 'node:timers/promises';
+let stopped=false;for(const signal of ['SIGINT','SIGTERM'])process.on(signal,()=>{stopped=true;});
 const pool = new pg.Pool(readDatabaseConfig({ ...process.env, DB_POOL_MAX: process.env.INGEST_DB_POOL_MAX ?? '2' }));
 async function main() {
     const [mode, contractPath, payloadPath, cursor] = process.argv.slice(2);
+    if(mode==='--pull'&&contractPath){const config:PullConfiguration=JSON.parse(await readFile(contractPath,'utf8'));do{console.log(JSON.stringify(await runRenkePull(pool,config)));if(process.argv.includes('--once'))break;await delay(config.http.minIntervalMs);}while(!stopped);return;}
     if (!['--replay', '--synthetic-replay'].includes(mode) || !contractPath || !payloadPath || !cursor)
-        throw new AppError(400, 'USAGE', '用法：worker:ingest --replay 契约文件 原报文文件 下一游标；合成回放仅允许agri_test');
+        throw new AppError(400, 'USAGE', '用法：worker:ingest --pull 私有契约文件 [--once]；或 --replay 契约文件 原报文文件 下一游标；合成回放仅允许agri_test');
     const synthetic = mode === '--synthetic-replay';
     if (synthetic && (await pool.query('SELECT current_database() AS name')).rows[0].name !== 'agri_test')
         throw new AppError(403, 'SYNTHETIC_TEST_ONLY', '合成报文只能写入agri_test');

@@ -1,0 +1,1 @@
+import {endpoint,assertOrigin,readJson,json,textField} from '@/modules/identity/http';import {consumeRecovery} from '@/modules/identity/recovery';export const POST=(r:Request)=>endpoint(async()=>{assertOrigin(r);const b=await readJson(r);return json(await consumeRecovery(textField(b,'token'),textField(b,'password')));});

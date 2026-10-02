@@ -2,6 +2,7 @@ import { transaction } from '../../db/pool';
 import { AppError } from '../../platform/error';
 import { audit, digest, newToken, now, unauthenticated, type IdentityOptions } from './common';
 import { beginAuthentication } from './session';
+import {configuredWecomClient} from '../../adapters/wecom/client';
 
 // Server-only exchange boundary. A provider is enabled only after G03's real contract verification.
 export interface WecomProvider {
@@ -10,7 +11,8 @@ export interface WecomProvider {
   exchange(code: string): Promise<{ corpId: string; userId: string }>;
 }
 export function configuredWecomProvider(): WecomProvider {
-  throw new AppError(503, 'WECOM_NOT_READY', '企业微信登录尚未完成企业配置与联调，请使用账号登录');
+  const client=configuredWecomClient(),corpId=process.env.WECOM_CORP_ID!,origin=new URL(process.env.APP_ORIGIN??'');if(origin.protocol!=='https:'&&!(origin.protocol==='http:'&&origin.hostname==='127.0.0.1'))throw new AppError(503,'WECOM_REDIRECT','回调必须为已核HTTPS平台或本机测试地址');const callback=new URL('/api/v1/auth/wecom/callback',origin).toString();
+  return {corpId,authorizationUrl(state){const u=new URL('https://open.weixin.qq.com/connect/oauth2/authorize');u.searchParams.set('appid',corpId);u.searchParams.set('redirect_uri',callback);u.searchParams.set('response_type','code');u.searchParams.set('scope','snsapi_base');u.searchParams.set('agentid',process.env.WECOM_AGENT_ID!);u.searchParams.set('state',state);u.hash='wechat_redirect';return u.toString();},exchange:code=>client.member(code)};
 }
 export async function startWecom(provider: WecomProvider, options: IdentityOptions = {}) {
   const state = newToken(), browserToken = newToken();

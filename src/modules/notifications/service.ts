@@ -55,7 +55,9 @@ async function recordReceipt(c: PoolClient, intentId: string, receipt: Receipt) 
     await c.query('UPDATE notification_intents SET state=$2,provider_request_id=COALESCE($3,provider_request_id),error_code=$4 WHERE id=$1', [intentId, state, receipt.providerRequestId, known.delivered && known.failed ? 'CONFLICTING_RECEIPTS' : reason]);
     await c.query('UPDATE notification_attempts SET completed_at=$2,result=$3 WHERE intent_id=$1', [intentId, receipt.occurredAt, state]);
 }
-export async function dispatchNotice(pool: Pool, job: JobLease, provider: NotificationProvider, at = new Date()): Promise<'sent' | 'cancelled' | 'unknown' | 'blocked'> {
+export async function dispatchNotice(pool: Pool, job: JobLease, provider: NotificationProvider, requestedAt?: Date): Promise<'sent' | 'cancelled' | 'unknown' | 'blocked'> {
+    await provider.ready?.();
+    const at=requestedAt??new Date(),attemptedAt=at;
     const prepared = await transaction(async (c) => {
         const peek = (await c.query('SELECT alert_id FROM notification_intents WHERE id=$1', [job.payload.intentId])).rows[0];
         if (!peek)
@@ -102,7 +104,7 @@ export async function dispatchNotice(pool: Pool, job: JobLease, provider: Notifi
     await transaction(async c => {
         await recordReceipt(c, prepared.id, receipt);
         if (receipt.providerRequestId && ['accepted', 'unknown'].includes(receipt.state))
-            await enqueue(c, { kind: 'notice.query', businessKey: 'query:' + prepared.id, payload: { intentId: prepared.id, channel: prepared.channel }, dueAt: at.toISOString(), priority: 95 });
+            await enqueue(c, { kind: 'notice.query', businessKey: 'query:' + prepared.id, payload: { intentId: prepared.id, channel: prepared.channel }, dueAt: new Date(attemptedAt.getTime()+(prepared.channel==='voice'?300000:0)).toISOString(), priority: 95 });
     }, pool);
     return receipt.state === 'unknown' ? 'unknown' : 'sent';
 }
@@ -119,6 +121,7 @@ export async function queryReceipt(pool: Pool, intentId: string, provider: Notif
     }
     await transaction(async c => {
         await recordReceipt(c, intentId, receipt);
+        if(receipt.state==='unknown'&&row.channel==='voice'&&row.started_at&&at.getTime()-row.started_at.getTime()<86400000)await enqueue(c,{kind:'notice.query',businessKey:'query:'+intentId+':'+Math.floor(at.getTime()/300000),payload:{intentId,channel:'voice'},dueAt:new Date(at.getTime()+300000).toISOString(),priority:60});
         if (receipt.state !== 'unknown') await c.query("UPDATE jobs SET state='done',finished_at=$2,error_code=NULL WHERE business_key=$1 AND state='awaiting_receipt'", ['send:' + intentId, at]);
     }, pool);
     return { state: receipt.state, checkedAt: at.toISOString() };

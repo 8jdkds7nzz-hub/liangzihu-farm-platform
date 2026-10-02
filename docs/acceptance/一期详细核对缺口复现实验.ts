@@ -18,6 +18,7 @@ import {claimJob,recoverExpired} from '../../src/modules/jobs/repository';
 
 // 仅从应用根目录执行；withDb强制agri_test及随机schema。禁止真实文字模型外发。
 process.env.MODEL_EXTERNAL_ENABLED='0';
+throw new Error('这是旧基线的历史缺口实验，已停用。当前回归见 tests/integration/intelligence-runtime.test.ts 和本轮一期交付核对；不得在新签名上重复运行旧实验。');
 const cases:any[]=[];
 await withDb(async pool=>{
   const tech=await actorFixture(pool,'technician'),owner=await actorFixture(pool,'owner'),worker=await actorFixture(pool,'worker'),objectId=await objectFixture(pool,tech.id);
@@ -27,7 +28,7 @@ await withDb(async pool=>{
   await transaction(c=>reviewDocument(c,tech,{id:d.id}),pool);
   let resume!:()=>void,started!:()=>void;
   const gate=new Promise<void>(r=>resume=r),entered=new Promise<void>(r=>started=r);
-  const indexing=transaction(c=>indexDocument(c,d.id,async texts=>{started();await gate;return texts.map(()=>[1,...Array(511).fill(0)]);}),pool);
+  const indexing=transaction(c=>indexDocument(pool,d.id,async texts=>{started();await gate;return texts.map(()=>[1,...Array(511).fill(0)]);}),pool);
   await entered;
   let lockCode:string|null=null;
   try{await transaction(async c=>{await c.query("SET LOCAL lock_timeout='100ms'");return reviewDocument(c,tech,{id:d.id,withdraw:true});},pool);}catch(e:any){lockCode=e.code;}

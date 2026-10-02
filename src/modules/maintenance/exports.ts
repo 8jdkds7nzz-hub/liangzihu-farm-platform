@@ -31,8 +31,8 @@ export async function createExport(c: PoolClient, actor: Actor, b: Record<string
     const manualChecks = await chains(c, 'manual_checks', ids, from, to);
     const bindings = await rows(c, 'SELECT * FROM point_bindings WHERE object_id=ANY($1::uuid[]) ORDER BY valid_from,id', [ids]);
     const pointIds = [...new Set([...observations.map(r => r.point_id), ...bindings.map(r => r.point_id), ...maintenance.map(r => r.point_id), ...manualChecks.map(r => r.point_id)].filter(Boolean))];
-    const points = await rows(c, 'SELECT * FROM points WHERE id=ANY($1::uuid[])', [pointIds]);
-    const devices = await rows(c, 'SELECT * FROM devices WHERE id=ANY($1::uuid[])', [points.map(p => p.device_id)]);
+    const points = await rows(c, 'SELECT p.* FROM points p JOIN devices d ON d.id=p.device_id WHERE p.id=ANY($1::uuid[]) AND d.object_id=ANY($2::uuid[])', [pointIds,ids]);
+    const devices = await rows(c, 'SELECT * FROM devices WHERE id=ANY($1::uuid[]) AND object_id=ANY($2::uuid[])', [points.map(p => p.device_id),ids]);
     const alerts = await rows(c, 'SELECT * FROM alerts WHERE object_id=ANY($1::uuid[]) ORDER BY opened_at,id', [ids]);
     const rules = await rows(c, 'SELECT v.* FROM rule_versions v JOIN rule_bindings b ON b.id=v.binding_id WHERE b.object_id=ANY($1::uuid[])', [ids]);
     const workOrders = await rows(c, 'SELECT * FROM work_orders WHERE object_id=ANY($1::uuid[])', [ids]);
@@ -44,7 +44,7 @@ export async function createExport(c: PoolClient, actor: Actor, b: Record<string
         alertEvents: await rows(c, 'SELECT * FROM alert_events WHERE alert_id=ANY($1::uuid[])', [alerts.map(a => a.id)]), maintenance, manualChecks, workOrders,
         workOrderEvents: await rows(c, 'SELECT * FROM work_order_events WHERE work_order_id=ANY($1::uuid[])', [workOrders.map(w => w.id)]),
         rawReferences: await rows(c, 'SELECT id,source_id,received_at,sha256,octet_length(body) AS byte_length,synthetic,contract_version,contract_ref,contract_sha256 FROM raw_receipts WHERE id=ANY($1::uuid[])', [[...new Set(observations.map(o => o.raw_ref))]]),
-        sources: await rows(c, 'SELECT id,code,name,provider,verified FROM data_sources WHERE id=ANY($1::uuid[])', [[...new Set(devices.map(d => d.source_id))]]) };
+        sources: await rows(c, 'SELECT id,code,name,provider,verified FROM data_sources WHERE id=ANY($1::uuid[]) AND object_id=ANY($2::uuid[])', [[...new Set(devices.map(d => d.source_id))],ids]) };
     const farmRecords=await rows(c,'SELECT * FROM farm_records WHERE object_id=ANY($1::uuid[])',[ids]),
       media=(await rows(c,'SELECT * FROM media_assets WHERE object_id=ANY($1::uuid[])',[ids])).map(publicAsset),
       fieldTasks=await rows(c,'SELECT * FROM field_tasks WHERE object_id=ANY($1::uuid[])',[ids]),
@@ -60,6 +60,18 @@ export async function createExport(c: PoolClient, actor: Actor, b: Record<string
       weather:await rows(c,'SELECT * FROM weather_records WHERE object_id=ANY($1::uuid[])',[ids]),weatherConnections:await rows(c,'SELECT id,object_id,source_id,version,location_evidence,evidence,enabled,configured_at FROM weather_connections WHERE object_id=ANY($1::uuid[])',[ids]),weatherRuns:await rows(c,'SELECT id,connection_id,configuration_version,object_id,state,created_at,attempted_at,completed_at,error_code,response_sha256,record_ids FROM weather_sync_runs WHERE object_id=ANY($1::uuid[])',[ids]),knowledge:await rows(c,'SELECT id,title,version,object_ids,source_ref,source_checksum,body,evidence_nature,state,approved_at,withdrawn_at FROM knowledge_documents WHERE object_ids<@$1::uuid[]',[ids]),
       briefings:await rows(c,'SELECT * FROM briefing_items WHERE object_id=ANY($1::uuid[])',[ids]),imageReviews:await rows(c,'SELECT * FROM image_reviews WHERE object_id=ANY($1::uuid[])',[ids])
     });
+    const briefings=await rows(c,"SELECT b.* FROM briefings b WHERE EXISTS(SELECT 1 FROM briefing_items i WHERE i.briefing_id=b.id AND i.object_id=ANY($1::uuid[])) AND NOT EXISTS(SELECT 1 FROM briefing_items i WHERE i.briefing_id=b.id AND NOT(i.object_id=ANY($1::uuid[])))",[ids]),bids=briefings.map(r=>r.id);
+    const samples=await rows(c,'SELECT * FROM image_field_samples WHERE object_id=ANY($1::uuid[])',[ids]);
+    Object.assign(payload,{
+      briefingHeaders:briefings,briefingSchedules:await rows(c,'SELECT * FROM briefing_schedules WHERE object_id=ANY($1::uuid[])',[ids]),
+      briefingReviews:await rows(c,'SELECT r.* FROM briefing_reviews r JOIN briefing_items i ON i.id=r.item_id WHERE i.object_id=ANY($1::uuid[])',[ids]),
+      briefingPublications:await rows(c,'SELECT * FROM briefing_publications WHERE briefing_id=ANY($1::uuid[])',[bids]),briefingReminders:await rows(c,'SELECT * FROM briefing_reminders WHERE briefing_id=ANY($1::uuid[])',[bids]),
+      calculations:await rows(c,'SELECT * FROM analysis_calculations WHERE object_id=ANY($1::uuid[])',[ids]),scheduledBriefings:await rows(c,'SELECT * FROM scheduled_briefings WHERE object_id=ANY($1::uuid[])',[ids]),
+      comparisonDefinitions:await rows(c,'SELECT * FROM comparison_definitions WHERE object_id=ANY($1::uuid[])',[ids]),comparisonResults:await rows(c,'SELECT * FROM comparison_results WHERE object_id=ANY($1::uuid[])',[ids]),
+      imageSamples:samples,imageLabels:samples.filter(s=>s.labelled_at).map(s=>({sampleId:s.id,labels:s.human_labels,labelledBy:s.labelled_by,labelledAt:s.labelled_at})),
+      cameraReads:await rows(c,'SELECT id,device_id,object_id,source_id,source_contract_ref,configuration_version,operation,parameters,state,asset_id,error_code,created_at,attempted_at,completed_at FROM camera_reads WHERE object_id=ANY($1::uuid[])',[ids])
+    });
+    payload.limits.externalReferences+='；已迁出范围的设备/测点不带当前台账；跨对象简报发布须全部对象在本次选择内';
     payload.limits.measurements+='；1b/1c关系与修订历史保留，附件原件使用另一个受控打包入口逐文件复核';
     const encoded = canonicalJson(payload);
     if (Buffer.byteLength(encoded) > 8 * 1024 * 1024)

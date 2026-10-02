@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { randomUUID,createHash } from 'node:crypto';
 import { withDb } from '../support/db';
 import { telemetryFixture } from '../support/telemetry';
-import { actorFixture,permit } from '../support/fixtures';
+import { actorFixture,permit,objectFixture } from '../support/fixtures';
 import { transaction } from '../../src/db/pool';
 import { recordMaintenance,recordManualCheck } from '../../src/modules/maintenance/records';
 import { createExport,downloadExport } from '../../src/modules/maintenance/exports';
@@ -29,7 +29,7 @@ test('受控JSON导出保留关系、哈希匹配，撤权或其他账号不能�
   const f=await telemetryFixture(pool),other=await actorFixture(pool,'expert');
   const task=await transaction(c=>createExport(c,f.actor,{objectId:f.objectId,from:'2026-09-30T00:00:00Z',to:'2026-10-02T00:00:00Z'}),pool);
   const file=await transaction(c=>downloadExport(c,f.actor,task.id),pool);assert.equal(createHash('sha256').update(file.body).digest('hex'),file.sha256);
-  const parsed=JSON.parse(file.body);assert.equal(parsed.schemaVersion,'1c-v1');assert.equal(parsed.objects[0].id,f.objectId);assert.equal(parsed.bindings[0].point_id,f.point.id);
+  const parsed=JSON.parse(file.body);assert.equal(parsed.schemaVersion,'1c-v2');assert.equal(parsed.objects[0].id,f.objectId);assert.equal(parsed.bindings[0].point_id,f.point.id);
   await assert.rejects(()=>transaction(c=>downloadExport(c,other,task.id),pool),{status:404});
   await pool.query("UPDATE grants SET revoked_at=now() WHERE user_id=$1 AND action='export'",[f.actor.id]);
   await assert.rejects(()=>transaction(c=>downloadExport(c,f.actor,task.id),pool),{status:403});
@@ -46,3 +46,6 @@ test('工单不自动派发；仅授权派单，指定人员处理，专业人�
     assert.equal(Number((await c.query('SELECT count(*) FROM work_order_events WHERE work_order_id=$1',[order.id])).rows[0].count),4);
   },pool);
 }));
+
+
+test('迁出导出范围的设备保留历史绑定ID，不泄露当前台账',()=>withDb(async pool=>{const f=await telemetryFixture(pool),outside=await objectFixture(pool,f.actor.id);await pool.query('UPDATE devices SET object_id=$2,name=$3 WHERE id=$1',[f.device.id,outside,'SENSITIVE_OUTSIDE_DEVICE']);const e=await transaction(c=>createExport(c,f.actor,{objectId:f.objectId,from:'2026-09-30T00:00:00Z',to:'2026-10-02T00:00:00Z'}),pool),payload=JSON.parse((await transaction(c=>downloadExport(c,f.actor,e.id),pool)).body);assert.equal(payload.devices.length,0);assert.equal(payload.points.length,0);assert.equal(payload.bindings[0].point_id,f.point.id);assert(!JSON.stringify(payload).includes('SENSITIVE_OUTSIDE_DEVICE'));}));
