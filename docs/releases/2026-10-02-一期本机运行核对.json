@@ -1,0 +1,79 @@
+{
+  "checkedAt": "2026-10-02T10:01:25.978764+00:00",
+  "mainCommitAtRuntime": "5ab9083ced717599a64ed1b879439d59d09c8968",
+  "codeSourceCommit": "df95cb78c0ce0af456da1073e110c14e803205e9",
+  "mainBuildId": "HYj-vAFioR6hS5Y_Q_BeY",
+  "sourceFingerprintMatches": true,
+  "database": "agri_dev",
+  "migrationApplied": [
+    "025",
+    "026",
+    "027",
+    "028",
+    "029",
+    "030",
+    "031",
+    "032",
+    "033"
+  ],
+  "originalPasswordAndAuthVersionPreserved": true,
+  "oldMigrationsUnchanged": true,
+  "assetCounts": {
+    "objects": 1,
+    "devices": 0,
+    "sources": 0
+  },
+  "appTables": 119,
+  "publicTablesIncludingPostgisSpatialRef": 120,
+  "backupBeforeMigration": ".local/一期补齐升级前备份/2026-10-02T09-52-19-263Z",
+  "privateEnvironmentBackup": true,
+  "externalFlagsOff": [
+    "MODEL_EXTERNAL_ENABLED",
+    "NOTICE_EXTERNAL_ENABLED",
+    "WECOM_ENABLED",
+    "SMS_ENABLED",
+    "VOICE_ENABLED",
+    "RENKE_HTTP_ENABLED",
+    "CAMERA_READS_ENABLED",
+    "MEDIA_REMOTE_READS_ENABLED",
+    "QWEATHER_READS_ENABLED",
+    "DJI_READS_ENABLED",
+    "EZVIZ_RECEIVE_ENABLED"
+  ],
+  "localMfaRequired": "0",
+  "workersRunning": [
+    "alarms",
+    "notifications",
+    "media",
+    "knowledge",
+    "intelligence",
+    "image-review",
+    "weather",
+    "cameras",
+    "flighthub"
+  ],
+  "ingest": "等待G02真实已核契约，不虚建来源或采集成功心跳",
+  "smoke": {
+    "checkedAt": "2026-10-02T09:58:54.102Z",
+    "passwordLoginWithoutMfa": true,
+    "meReadable": true,
+    "pageStatus": {
+      "/map": 200,
+      "/imagery": 200,
+      "/analysis": 200,
+      "/briefings": 200,
+      "/settings": 200,
+      "/recovery": 200
+    },
+    "liveStatus": 200,
+    "staticFilesScanned": 36,
+    "noPrivateValuesInStatic": true,
+    "actualExternalCalls": false
+  },
+  "productionReady": false,
+  "outerArtifactCheck": {
+    "errors": 35,
+    "warnings": 1,
+    "scope": "外层既有报告路径问题，本轮不修改无关文件"
+  }
+}
