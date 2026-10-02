@@ -2,7 +2,8 @@ export interface Notice {
     id: string;
     requestKey: string;
     recipientId: string;
-    alertId: string;
+    alertId: string | null;
+    source?: {kind:'briefing';id:string};
     text: string;
 }
 export interface Receipt {

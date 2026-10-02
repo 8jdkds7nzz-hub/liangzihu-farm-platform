@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import * as quality from '../../src/modules/image-review/service';
+test('T10分场景模型TP/FP/FN独立统计，未知和未完成不伪装通过',()=>{
+ const samples=[{scene:'night',labelled_at:'known',human_labels:['person'],model_state:'complete',model_result:{detections:[{label:'person',score:.9}]}},{scene:'night',labelled_at:'known',human_labels:[],model_state:'complete',model_result:{detections:[{label:'person',score:.8}]}},{scene:'night',labelled_at:'known',human_labels:['person','vehicle'],model_state:'complete',model_result:{detections:[]}},{scene:'night',labelled_at:'known',human_labels:null,model_state:'complete',model_result:{detections:[]}},{scene:'night',labelled_at:'known',human_labels:['vehicle'],model_state:'failed',model_result:null}];
+ const q=Reflect.get(quality,'imageSceneQuality')(samples,'night');assert.deepEqual(q.person,{tp:1,fp:1,fn:1,tn:0,precision:.5,recall:.5});assert.equal(q.unknownLabels,1);assert.equal(q.modelIncomplete,1);assert.equal(Reflect.get(quality,'imageSceneQuality')([],'day').person.precision,null);
+});
