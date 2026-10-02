@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-02T17:32:47.483Z",
+  "database": "agri_dev",
+  "passwordAndAuthVersionsPreserved": true,
+  "localMfaRequired": "0",
+  "pageStatus": {
+    "/workbench": 200,
+    "/map": 200,
+    "/terrain": 200,
+    "/analysis": 200,
+    "/imagery": 200,
+    "/settings": 200
+  },
+  "privateSceneAnonymousStatus": 401,
+  "counts": {
+    "objects": "1",
+    "devices": "0",
+    "sources": "0",
+    "media": "0",
+    "terrain": "0",
+    "surveys": "0"
+  },
+  "publicTables": 126,
+  "staticFilesScanned": 383,
+  "noPrivateValuesInStatic": true,
+  "externalFlagsOff": [
+    "MODEL_EXTERNAL_ENABLED",
+    "NOTICE_EXTERNAL_ENABLED",
+    "WECOM_ENABLED",
+    "SMS_ENABLED",
+    "VOICE_ENABLED",
+    "RENKE_HTTP_ENABLED",
+    "CAMERA_READS_ENABLED",
+    "MEDIA_REMOTE_READS_ENABLED",
+    "QWEATHER_READS_ENABLED",
+    "DJI_READS_ENABLED",
+    "EZVIZ_RECEIVE_ENABLED"
+  ],
+  "backupBeforeMigration": ".local/二期升级前备份/2026-10-02T17-28-37-994Z",
+  "actualExternalCalls": false,
+  "recordedAt": "2026-10-02T17:33:28.969677+00:00",
+  "mainCommitAtCheck": "8ddb1b0d9d0cb3f0674767ace1b2d104be274db0",
+  "codeSourceCommit": "3d5f859204ff0bff35565b2d520163063ac4ecf5",
+  "sourceFingerprintMatches": true,
+  "mainBuildId": "X7jGKkSwzUprr1ec_EirP",
+  "migrationApplied": [
+    "034_phase2_terrain.sql"
+  ],
+  "oldMigrations000to033Unchanged": true,
+  "appTables": 125,
+  "workersRunning": [
+    "alarms",
+    "notifications",
+    "media",
+    "knowledge",
+    "intelligence",
+    "image-review",
+    "weather",
+    "cameras",
+    "flighthub",
+    "terrain"
+  ],
+  "privateCesiumStaticVersion": "1.146.0",
+  "productionTerrainAccepted": false,
+  "productionDisasterRecoveryAccepted": false,
+  "outerArtifactCheck": {
+    "errors": 35,
+    "warnings": 1,
+    "scope": "外层既有报告路径问题，未修改无关文件"
+  }
+}
