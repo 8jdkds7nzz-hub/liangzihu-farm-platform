@@ -1,0 +1,18 @@
+{
+  "核对时间UTC": "2026-10-02T03:46:46.635701+00:00",
+  "说明": "官网公有云页面指向的公开规范，仅记录地址与哈希，不复制示例凭据；官方KeyCenter的CN公有云示例域名已核实",
+  "资料": [
+    {
+      "来源": "https://s.apifox.cn/5113ab93-b1c2-4f3c-bc06-c3656c5352fb/463944728e0.md",
+      "内容SHA256": "62307cbd696a465742d97413a0fe7785d9c58be3a19488b499c46f909d18c6a0"
+    },
+    {
+      "来源": "https://s.apifox.cn/5113ab93-b1c2-4f3c-bc06-c3656c5352fb/463944730e0.md",
+      "内容SHA256": "beb278bb8080c80b7be0f3a0702b4b59bbdfd3ca6782920f498f11fa88e75ce1"
+    },
+    {
+      "来源": "https://fh.dji.com/user-manual/en/custom-development/open-api/public-cloud-v2.html",
+      "内容SHA256": "6dcdf8b23795616a933bd701e2ee439d09c4ebe082b7a58e33e41c70f711f467"
+    }
+  ]
+}

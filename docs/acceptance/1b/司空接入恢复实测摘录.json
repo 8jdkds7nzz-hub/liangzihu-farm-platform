@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-02T03:50:01.672950+00:00",
+  "restoreVerified": true,
+  "environment": "local_synthetic",
+  "tablesVerified": 103,
+  "result": {
+    "pass": false,
+    "fullScope": false,
+    "productionReady": false,
+    "reasons": [
+      "业务校验未通过",
+      "本次要求的功能未全部通过"
+    ],
+    "rpoMs": 490,
+    "rtoMs": 1164
+  },
+  "fieldChecks": {
+    "farmRecords": true,
+    "taskRelations": true,
+    "knowledgeRelations": true,
+    "mediaHash": true,
+    "privateMediaRead": true,
+    "originalMissingDetected": true,
+    "restoredAsset": "6acf7194-ee7e-4432-b553-116d7bdc005a",
+    "checksum": "0a8ff601c24a9041ec616250d079448039edadb9ed857eba21301e251f2e3417"
+  },
+  "limits": [
+    "只恢复自身随机测试schema",
+    "未使用NAS或连续WAL生产备份链",
+    "真实通知与夜间电话未联调",
+    "本机小样本与第二目录副本不等于生产异地恢复或真实规模RPO/RTO"
+  ],
+  "nonemptyDjiRecovery": "另外完成真实dump/restore、原响应/URL解密、资源/媒体/航次关系回查，删除测试原件后由副本恢复并复读"
+}

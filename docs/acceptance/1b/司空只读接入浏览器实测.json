@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-02T03:42:59.166Z",
+  "environment": "agri_test随机schema，合成项目/设备与可信进程内HTTP/下载替身",
+  "checks": {
+    "disabledInitially": true,
+    "confirmedEnabled": true,
+    "realWorkerReadGate": true,
+    "lostConfirmationIdempotent": true,
+    "plannedTimesNotActual": true,
+    "fileBytesAndBackupVerified": true,
+    "actualTimesIndependentlyConfirmed": true,
+    "noCaptureTimeInvented": true,
+    "noVendorUrlsReturned": true,
+    "noBrowserErrors": true,
+    "noOverflow": true
+  },
+  "productionAccepted": false
+}

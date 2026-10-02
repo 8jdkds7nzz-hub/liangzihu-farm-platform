@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-02T03:50:01.672950+00:00",
+  "cleanBaseline": {
+    "unit": 45,
+    "database": 92,
+    "acceptance": 11,
+    "total": 148,
+    "typecheck": "passed",
+    "build": "passed",
+    "buildId": "RfqheGygZ-bqr-UMu69ZL",
+    "sourceFingerprint": "1f280a17170a6d3136b77c947d698b5e972c30d547d5b2ea6c30eef9e5c2e9af",
+    "dependencyInstall": "offline frozen lockfile; reused 143 packages, downloaded 0"
+  },
+  "newDjiTests": {
+    "unit": 5,
+    "database": 8,
+    "acceptance": 1,
+    "total": 14
+  },
+  "workspaceCompatibility": {
+    "existingChanges": "登录简化内容与本轮开始一致，不包含在本轮提交",
+    "unit": "初轮44项通过，新增15秒超时在干净基线通过",
+    "database": "初轮91项通过；最终8项司空数据库测试分别验证",
+    "acceptance": "本轮正式手机全链通过；干净基线全套11项通过",
+    "typecheck": "passed",
+    "build": "passed",
+    "buildId": "-DWBXhhM6DM5LY0uT_wN-"
+  },
+  "databaseRecovery": {
+    "tables": 103,
+    "rpoMs": 490,
+    "rtoMs": 1164,
+    "productionReady": false
+  },
+  "development": {
+    "checkedAt": "2026-10-02T03:48:11.470Z",
+    "backupVerified": true,
+    "applied": [
+      "024_flighthub.sql"
+    ],
+    "counts": {
+      "users": "1",
+      "objects": "1",
+      "devices": "0",
+      "connections": "0",
+      "runs": "0",
+      "snapshots": "0",
+      "media": "0"
+    },
+    "globalReadsEnabled": false,
+    "credentialsConfigured": false,
+    "globalFilesEnabled": false
+  },
+  "dependencyAudit": "No known vulnerabilities found",
+  "maxOriginalBytes": 20971520,
+  "maxFlightFiles": 500,
+  "vendorMediaLimit": 10000,
+  "resourceDisplayLimit": 1000,
+  "actualVendorQueries": false,
+  "actualDeviceControls": false,
+  "sourceAutoDeleteChanged": false,
+  "realNotifications": false,
+  "productionAccepted": false,
+  "outerArtifactCheck": {
+    "errors": 35,
+    "warnings": 1,
+    "newProjectPathErrors": 0
+  },
+  "internalLinksBroken": 0,
+  "independentSourceFingerprintVerified": true,
+  "existingChangesPreserved": true
+}
