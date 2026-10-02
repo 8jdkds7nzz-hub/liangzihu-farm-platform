@@ -49,7 +49,7 @@ export async function refreshBudgetAlerts(c: PoolClient, objectId: string) {
     }
 }
 async function budgetRows(c: PoolClient, ids: string[]) {
-    return (await c.query(`SELECT b.*,b.month::text AS month,COALESCE(sum(u.amount),0)::text AS known_amount,count(u.id) FILTER(WHERE u.amount IS NULL)::integer AS unknown_cost_count,
+    return (await c.query(`SELECT b.*,b.month::text AS month,COALESCE(sum(u.amount),0)::text AS known_amount,count(u.id) FILTER(WHERE u.amount IS NULL AND NOT EXISTS(SELECT 1 FROM model_receipts r WHERE u.id=ANY(r.resolved_usage_ids)))::integer AS unknown_cost_count,
   COALESCE(sum(u.amount),0)>=b.limit_amount*0.8 AS at_eighty,COALESCE(sum(u.amount),0)>=b.limit_amount AS at_limit
   FROM budgets b LEFT JOIN usage_events u ON u.object_id=b.object_id AND u.category=b.category AND date_trunc('month',u.occurred_at AT TIME ZONE 'Asia/Shanghai')::date=b.month
   WHERE b.object_id=ANY($1::uuid[]) GROUP BY b.id ORDER BY b.month DESC`, [ids])).rows;

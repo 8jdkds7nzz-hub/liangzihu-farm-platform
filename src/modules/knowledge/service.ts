@@ -1,4 +1,7 @@
-import type {PoolClient} from 'pg';
+import type {Pool,PoolClient} from 'pg';
+import {database,transaction} from '../../db/pool';
+import {assertLease,withLease} from '../jobs/execution';
+import type {JobLease} from '../jobs/repository';
 import type {Actor} from '../../platform/types';
 import {AppError} from '../../platform/error';
 import {text,choice} from '../../platform/validation';
@@ -12,8 +15,17 @@ export async function createDocument(c:PoolClient,a:Actor,b:Record<string,unknow
  const r=(await c.query('INSERT INTO knowledge_documents(title,version,object_ids,source_ref,source_url,source_checksum,body,format,evidence_nature,created_by) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id,state',[title,version,ids,source,url,hash,body,format,text(b.evidenceNature,'证据性质及限制',1000),a.id])).rows[0];for(const [i,chunk]of chunkMarkdown(body).entries())await c.query('INSERT INTO knowledge_chunks(document_id,position,heading,text,keywords) VALUES($1,$2,$3,$4,$5)',[r.id,i,chunk.heading,chunk.text,terms(chunk.text)]);return r;
 }
 export async function reviewDocument(c:PoolClient,a:Actor,b:Record<string,unknown>){uuid(b.id);const d=(await c.query('SELECT * FROM knowledge_documents WHERE id=$1 FOR UPDATE',[b.id])).rows[0];if(!d)throw new AppError(404,'DOCUMENT_NOT_FOUND','资料不存在');for(const id of d.object_ids)await scope(c,a,id,'review','knowledge',d.id);if(b.withdraw===true){await c.query("UPDATE knowledge_documents SET state='withdrawn',withdrawn_at=COALESCE(withdrawn_at,now()) WHERE id=$1",[d.id]);return {id:d.id,state:'withdrawn'};}if(d.state==='withdrawn')throw new AppError(409,'DOCUMENT_WITHDRAWN','已撤回资料须新建修订，不复活旧上下文');await c.query("UPDATE knowledge_documents SET state='approved',approved_by=$2,approved_at=COALESCE(approved_at,now()) WHERE id=$1",[d.id,a.id]);await enqueue(c,{kind:'knowledge.index',businessKey:'knowledge-index:'+d.id+':'+EMBEDDING_VERSION,payload:{documentId:d.id},dueAt:new Date().toISOString()});return {id:d.id,state:'approved'};}
-export async function indexDocument(c:PoolClient,id:string,embedding:(texts:string[])=>Promise<number[][]>=embedTexts){uuid(id);const d=(await c.query("SELECT * FROM knowledge_documents WHERE id=$1 AND state='approved' FOR SHARE",[id])).rows[0];if(!d)return {skipped:true};const chunks=(await c.query('SELECT id,text FROM knowledge_chunks WHERE document_id=$1 AND(embedding_model IS DISTINCT FROM $2 OR embedding IS NULL) ORDER BY position',[id,EMBEDDING_VERSION])).rows;
- for(let i=0;i<chunks.length;i+=8){const batch=chunks.slice(i,i+8),vectors=await embedding(batch.map(x=>x.text));for(let j=0;j<batch.length;j++){if(vectors[j]?.length!==512||vectors[j].some(v=>!Number.isFinite(v)))throw new AppError(503,'VECTOR_INVALID','向量维度或内容无效');await c.query('UPDATE knowledge_chunks SET embedding=$2::public.vector,embedding_model=$3 WHERE id=$1',[batch[j].id,JSON.stringify(vectors[j]),EMBEDDING_VERSION]);}}return {indexed:chunks.length,model:EMBEDDING_VERSION};}
+export async function indexDocument(pool:Pool,id:string,embedding:(texts:string[])=>Promise<number[][]>=embedTexts,lease?:JobLease){
+ uuid(id);return withLease(pool,'knowledge-index:'+id+':'+EMBEDDING_VERSION,lease,async current=>{
+ const snapshot=await database(async c=>{await assertLease(c,current);const d=(await c.query("SELECT id,source_checksum,state FROM knowledge_documents WHERE id=$1",[id])).rows[0];if(d?.state!=='approved')return null;const chunks=(await c.query('SELECT id,text FROM knowledge_chunks WHERE document_id=$1 AND(embedding_model IS DISTINCT FROM $2 OR embedding IS NULL) ORDER BY position',[id,EMBEDDING_VERSION])).rows;return {d,chunks};},pool);
+ if(!snapshot)return {skipped:true};let indexed=0;
+ for(let i=0;i<snapshot.chunks.length;i+=8){
+  await transaction(c=>assertLease(c,current),pool);const batch=snapshot.chunks.slice(i,i+8),vectors=await embedding(batch.map(x=>x.text));
+  if(vectors.length!==batch.length||vectors.some(v=>v.length!==512||v.some(n=>!Number.isFinite(n))))throw new AppError(503,'VECTOR_INVALID','向量维度或内容无效');
+  const saved=await transaction(async c=>{await assertLease(c,current);const d=(await c.query("SELECT id FROM knowledge_documents WHERE id=$1 AND state='approved' AND source_checksum=$2 FOR SHARE",[id,snapshot.d.source_checksum])).rows[0];if(!d)return false;for(let j=0;j<batch.length;j++)await c.query('UPDATE knowledge_chunks SET embedding=$2::public.vector,embedding_model=$3 WHERE id=$1 AND document_id=$4',[batch[j].id,JSON.stringify(vectors[j]),EMBEDDING_VERSION,id]);return true;},pool);
+  if(!saved)return {skipped:true,indexed};indexed+=batch.length;
+ }return {indexed,model:EMBEDDING_VERSION};});
+}
 export async function listDocuments(c:PoolClient,a:Actor){const v=await visible(c,a,'knowledge');return {items:(await c.query(`SELECT d.id,d.title,d.version,d.object_ids,d.source_ref,d.evidence_nature,d.state,d.approved_at,d.withdrawn_at,
  (SELECT count(*) FROM knowledge_chunks x WHERE x.document_id=d.id)::int AS chunks,(SELECT count(*) FROM knowledge_chunks x WHERE x.document_id=d.id AND x.embedding_model=$3 AND x.embedding IS NOT NULL)::int AS indexed
  FROM knowledge_documents d WHERE d.object_ids<@$1::uuid[] AND($2::uuid[] IS NULL OR d.id=ANY($2)) ORDER BY d.created_at DESC LIMIT 200`,[v.objects,v.resources,EMBEDDING_VERSION])).rows};}

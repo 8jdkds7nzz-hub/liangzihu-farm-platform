@@ -34,13 +34,14 @@ export async function enqueue(c: PoolClient, input: {
 export async function claimJob(pool: Pool, workerId: string, at: Date, options: {
     kinds?: string[];
     leaseMs?: number;
+    businessKey?: string;
 } = {}): Promise<JobLease | null> {
     const leaseMs = integer(options.leaseMs ?? 60000, '租约时限', 1000, 300000), token = randomUUID();
     return transaction(async (c) => {
         const row = (await c.query(`WITH candidate AS (SELECT id FROM jobs WHERE state IN ('queued','retry_wait') AND due_at<=$1
-      AND ($2::text[] IS NULL OR kind=ANY($2)) ORDER BY priority DESC,due_at,id FOR UPDATE SKIP LOCKED LIMIT 1)
+      AND ($2::text[] IS NULL OR kind=ANY($2)) AND ($6::text IS NULL OR business_key=$6) ORDER BY priority DESC,due_at,id FOR UPDATE SKIP LOCKED LIMIT 1)
       UPDATE jobs j SET state='running',lease_token=$3,lease_until=$4,worker_id=$5,attempts=attempts+1,external_started_at=NULL
-      FROM candidate q WHERE j.id=q.id RETURNING j.*`, [at, options.kinds ?? null, token, new Date(at.getTime() + leaseMs), workerId])).rows[0];
+      FROM candidate q WHERE j.id=q.id RETURNING j.*`, [at, options.kinds ?? null, token, new Date(at.getTime() + leaseMs), workerId, options.businessKey ?? null])).rows[0];
         if (!row)
             return null;
         await c.query('INSERT INTO job_attempts(job_id,lease_token,worker_id,started_at) VALUES($1,$2,$3,$4)', [row.id, token, workerId, at]);
