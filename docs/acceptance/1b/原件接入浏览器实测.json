@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-02T02:03:52.663Z",
+  "environment": "agri_test随机schema，合成原件/授权，可信进程内下载替身",
+  "checks": {
+    "lostConfirmationIdempotent": true,
+    "realWorkerGateBlocked": true,
+    "renewedLinkSuccess": true,
+    "originalAndBackupChecksum": true,
+    "noVendorUrlReturned": true,
+    "expertTaskListDenied": true,
+    "noBrowserErrors": true,
+    "noMobileOverflow": true,
+    "originalNoticeNotRepeated": true
+  },
+  "productionAccepted": false
+}

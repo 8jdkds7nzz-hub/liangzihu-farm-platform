@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-10-02T02:07:10.981314+00:00",
+  "environment": "local_synthetic",
+  "restoreVerified": true,
+  "tablesVerified": 95,
+  "fieldChecks": {
+    "farmRecords": true,
+    "taskRelations": true,
+    "knowledgeRelations": true,
+    "mediaHash": true,
+    "privateMediaRead": true,
+    "originalMissingDetected": true,
+    "restoredAsset": "a426c5c6-98e1-48b2-9a07-8987970af9d4",
+    "checksum": "0a8ff601c24a9041ec616250d079448039edadb9ed857eba21301e251f2e3417"
+  },
+  "result": {
+    "pass": false,
+    "fullScope": false,
+    "productionReady": false,
+    "reasons": [
+      "业务校验未通过",
+      "本次要求的功能未全部通过"
+    ],
+    "rpoMs": 2202,
+    "rtoMs": 1940
+  },
+  "limits": [
+    "只恢复自身随机测试schema",
+    "未使用NAS或连续WAL生产备份链",
+    "真实通知与夜间电话未联调",
+    "本机小样本与第二目录副本不等于生产异地恢复或真实规模RPO/RTO"
+  ],
+  "scope": [
+    "login",
+    "permissions",
+    "ingest",
+    "maintenance_read_write",
+    "farm_record_read_write",
+    "media",
+    "tasks",
+    "knowledge"
+  ],
+  "separateRemoteImportRecovery": "非空任务另在tests/integration/remote-media-restore.test.ts完成实际dump/restore、解密、原件与副本复读；此项私有文件未删除"
+}

@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-02T02:07:10.981314+00:00",
+  "tests": {
+    "unit": 35,
+    "database": 77,
+    "acceptance": 9,
+    "total": 121
+  },
+  "newTests": {
+    "unit": 5,
+    "database": 8,
+    "acceptance": 1
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "buildId": "0Y53Hror0DSe_HPnWeFz_",
+  "dependencyAudit": "No known vulnerabilities found",
+  "sourceFingerprint": "1f41b8d34feae25e3544796968ab0f6457d5dbe971dc38d8d23a886e9ad347de",
+  "sourceFiles": 253,
+  "databaseRecovery": {
+    "tables": 95,
+    "rpoMs": 2202,
+    "rtoMs": 1940,
+    "productionReady": false
+  },
+  "remoteImportRecovery": "passed: isolated actual dump/restore, per-table hashes, encrypted URL, event/asset links and original/backup read checks",
+  "developmentBackupVerified": true,
+  "developmentMigration": "022_remote_media.sql only; 000-021 checksums preserved",
+  "developmentCounts": {
+    "users": 1,
+    "objects": 1,
+    "devices": 0,
+    "records": 0,
+    "media": 0,
+    "imports": 0
+  },
+  "http": {
+    "login": 200,
+    "live": 200,
+    "ready": 503
+  },
+  "realVendorRequests": false,
+  "realNotifications": false,
+  "globalRemoteReadsEnabled": false,
+  "maxRemoteBytes": 20971520,
+  "productionAccepted": false,
+  "internalLinksBroken": 0,
+  "sourceFingerprintVerified": true,
+  "outerArtifactCheck": {
+    "status": "existing failures",
+    "errors": 35,
+    "warnings": 1,
+    "newProjectPathErrors": 0
+  }
+}
