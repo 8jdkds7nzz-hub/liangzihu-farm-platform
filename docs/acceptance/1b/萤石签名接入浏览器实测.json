@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-02T02:46:13.718Z",
+  "environment": "agri_test随机schema，厂家报文/权限/签名为工程合成",
+  "ackMs": 19,
+  "checks": {
+    "disabledInitially": true,
+    "explicitConfirmationEnabled": true,
+    "noCookieSignatureAccepted": true,
+    "duplicateMessageIdempotent": true,
+    "receiptBeforeAlarm": true,
+    "realCameraWorker": true,
+    "invalidSignatureRejected": true,
+    "oversizedRejected": true,
+    "isapiHeldForContract": true,
+    "noCredentialReturned": true,
+    "noBrowserErrors": true,
+    "noMobileOverflow": true
+  },
+  "productionAccepted": false
+}

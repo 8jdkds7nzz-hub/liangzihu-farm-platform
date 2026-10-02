@@ -1,0 +1,7 @@
+import {endpoint,json} from '@/modules/identity/http';import {transaction} from '@/db/pool';import {receiveEzvizWebhook} from '@/modules/connections/ezviz';import {AppError} from '@/platform/error';
+export async function POST(request:Request,ctx:{params:Promise<{id:string}>}){return endpoint(async()=>{
+ if(process.env.EZVIZ_WEBHOOK_ENABLED!=='1')throw new AppError(503,'EZVIZ_DISABLED','厂家消息接收全局关闭');
+ if(!/^application\/json(?:\s*;|$)/i.test(request.headers.get('Content-Type')??'')||(request.headers.get('Content-Encoding')??'identity')!=='identity')throw new AppError(415,'EZVIZ_CONTENT_TYPE','厂家消息须为未压缩的JSON正文');
+ const reader=request.body?.getReader();if(!reader)throw new AppError(400,'EZVIZ_MESSAGE','厂家消息正文为空');let timer:ReturnType<typeof setTimeout>|undefined;const timeout=new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(new AppError(408,'EZVIZ_BODY_TIMEOUT','厂家消息读取超时')),1500);});let n=0;const chunks:Uint8Array[]=[];try{while(true){const v=await Promise.race([reader.read(),timeout]);if(v.done)break;n+=v.value.length;if(n>262144)throw new AppError(413,'EZVIZ_BODY_LIMIT','厂家消息超过256KiB上限');chunks.push(v.value);}}finally{clearTimeout(timer);await reader.cancel().catch(()=>{});reader.releaseLock();}
+ const {id}=await ctx.params,raw=Buffer.concat(chunks);return transaction(async c=>{await c.query("SET LOCAL lock_timeout='500ms'");await c.query("SET LOCAL statement_timeout='1000ms'");return json(await receiveEzvizWebhook(c,id,raw,request.headers));});
+});}

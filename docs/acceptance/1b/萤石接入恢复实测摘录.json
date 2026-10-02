@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-02T02:43:47.744893+00:00",
+  "restoreVerified": true,
+  "environment": "local_synthetic",
+  "tablesVerified": 98,
+  "result": {
+    "pass": false,
+    "fullScope": false,
+    "productionReady": false,
+    "reasons": [
+      "业务校验未通过",
+      "本次要求的功能未全部通过"
+    ],
+    "rpoMs": 776,
+    "rtoMs": 1416
+  },
+  "fieldChecks": {
+    "farmRecords": true,
+    "taskRelations": true,
+    "knowledgeRelations": true,
+    "mediaHash": true,
+    "privateMediaRead": true,
+    "originalMissingDetected": true,
+    "restoredAsset": "23ce19c2-669e-4d80-a68a-5ca45109c837",
+    "checksum": "0a8ff601c24a9041ec616250d079448039edadb9ed857eba21301e251f2e3417"
+  },
+  "limits": [
+    "只恢复自身随机测试schema",
+    "未使用NAS或连续WAL生产备份链",
+    "真实通知与夜间电话未联调",
+    "本机小样本与第二目录副本不等于生产异地恢复或真实规模RPO/RTO"
+  ],
+  "nonemptyEzvizReceipt": "另外实际dump/restore、全表哈希、负载解密、配置版本/任务/告警关系回查通过"
+}

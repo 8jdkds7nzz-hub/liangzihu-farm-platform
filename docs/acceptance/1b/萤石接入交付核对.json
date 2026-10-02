@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-10-02T02:47:41.175252+00:00",
+  "cleanBaseline": {
+    "unit": 40,
+    "database": 84,
+    "acceptance": 10,
+    "total": 134,
+    "typecheck": "passed",
+    "build": "passed",
+    "buildId": "XA7r50Zhk0nG4-yCzPITL",
+    "sourceFingerprint": "e9270209a295e6e73d50a5b5c278eb35367a9912720dfbe8ad88b3f18513b758",
+    "dependencyInstall": "offline frozen lockfile; downloaded zero packages"
+  },
+  "newEzvizTests": {
+    "unit": 5,
+    "database": 7,
+    "acceptance": 1,
+    "total": 13
+  },
+  "workspaceCompatibility": {
+    "identityChanges": "仍未提交的登录简化与开始快照一致，不属于本轮提交",
+    "unit": 40,
+    "database": "84项全套通过后又验证最终7项接入数据库测试；新增原子图片任务测试通过，当前85项分别覆盖",
+    "acceptance": 11,
+    "typecheck": "passed",
+    "build": "passed",
+    "buildId": "RvVsqnafUeE4yIU4X7BYR"
+  },
+  "dependencyAudit": "No known vulnerabilities found",
+  "ackMs": 19,
+  "productionAckSlaVerified": false,
+  "databaseRecovery": {
+    "tables": 98,
+    "rpoMs": 776,
+    "rtoMs": 1416,
+    "productionReady": false
+  },
+  "development": {
+    "checkedAt": "2026-10-02T02:40:33.168Z",
+    "backupVerified": true,
+    "applied": [
+      "023_ezviz_webhook.sql"
+    ],
+    "counts": {
+      "users": "1",
+      "objects": "1",
+      "devices": "0",
+      "connections": "0",
+      "receipts": "0"
+    },
+    "globalEnabled": false,
+    "secretConfigured": false
+  },
+  "realVendorServiceEnabled": false,
+  "realNotificationsSent": false,
+  "isapiAdapter": "encrypted receipt retained; actual device payload contract pending",
+  "appReminderHandover": "official switching impact recorded; no vendor settings changed",
+  "outerArtifactCheck": {
+    "errors": 35,
+    "warnings": 1,
+    "newProjectPathErrors": 0
+  },
+  "productionAccepted": false,
+  "internalLinksBroken": 0,
+  "independentSourceFingerprintVerified": true,
+  "existingChangesPreserved": true,
+  "localHttp": {
+    "login": 200,
+    "live": 200,
+    "ready": 503,
+    "disabledEzvizIngress": 503
+  },
+  "finalAffectedChecks": "最终构建后重新通过8项接入数据库/正式浏览器验收，覆盖无图状态与专家事项隔离"
+}
