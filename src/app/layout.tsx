@@ -3,8 +3,8 @@ import type { ReactNode } from 'react';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: '智慧农业平台 · 开发基座',
-  description: '梁子湖智慧农业平台的独立开发工程',
+  title: '梁子湖 · 农场工作空间',
+  description: '现场记录、监测核查、空间资料与有依据的协作',
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import {useApi} from './use-api';
 export function formatValue(key: string, value: unknown): string {
     if (value === null || value === undefined)
         return '未登记';
@@ -21,18 +22,15 @@ export default function DataList({ path, columns, linkPrefix, emptyText = '当�
     linkPrefix?: string;
     emptyText?: string;
 }) {
-    const [rows, setRows] = useState<Record<string, unknown>[]>([]), [error, setError] = useState(''), [loaded, setLoaded] = useState(false);
-    useEffect(() => { let active = true; fetch(path).then(async (r) => { const d = await r.json(); if (!r.ok)
-        throw Error(d.message ?? '加载失败'); if (active) {
-        setRows(Array.isArray(d) ? d : d.items);
-        setLoaded(true);
-    } }).catch(e => { if (active)
-        setError(e.message); }); return () => { active = false; }; }, [path]);
+    const {data,error,loading,reload}=useApi<Record<string,unknown>[]|{items:Record<string,unknown>[];total?:number;nextCursor?:string|null}>(path),[query,setQuery]=useState(''),[sort,setSort]=useState('');
+    const rows=Array.isArray(data)?data:data?.items??[],shown=rows.filter(r=>columns.some(c=>formatValue(c.key,r[c.key]).toLowerCase().includes(query.toLowerCase())));
+    if(sort)shown.sort((a,b)=>{const av=a[sort],bv=b[sort];return typeof av==='number'&&typeof bv==='number'?av-bv:formatValue(sort,av).localeCompare(formatValue(sort,bv),'zh-CN',{numeric:true});});
     if (error)
-        return <p className="form-error" role="alert">{error}</p>;
-    if (!loaded)
-        return <p>正在加载…</p>;
+        return <div className="empty-state"><p className="form-error" role="alert">{error}</p><button className="secondary" onClick={()=>void reload()}>重试读取</button></div>;
+    if (loading)
+        return <p className="loading-state" role="status">正在加载…</p>;
+    if(data!==null&&!Array.isArray(data)&&!Array.isArray(data.items))return <p className="form-error" role="alert">服务器返回的列表格式未通过核对，请重新读取。</p>;
     if (!rows.length)
         return <p className="empty-state">{emptyText}</p>;
-    return <div className="table-wrap"><table><thead><tr>{columns.map(c => <th key={c.key}>{c.label}</th>)}</tr></thead><tbody>{rows.map((r, i) => <tr key={String(r.id ?? i)}>{columns.map((c, j) => <td key={c.key}>{linkPrefix && j === 0 ? <a href={linkPrefix + encodeURIComponent(String(r.id))}>{formatValue(c.key, r[c.key])}</a> : formatValue(c.key, r[c.key])}</td>)}</tr>)}</tbody></table></div>;
+    return <div className="data-list"><div className="list-toolbar"><label>筛选当前列表<input value={query} onChange={e=>setQuery(e.target.value)} type="search" placeholder="按名称、编号或状态查找"/></label><label>排序字段<select value={sort} onChange={e=>setSort(e.target.value)}><option value="">原始顺序</option>{columns.map(c=><option key={c.key} value={c.key}>{c.label}</option>)}</select></label><span>{shown.length} / 已载入{rows.length}条</span></div>{!shown.length?<p className="empty-state">当前列表没有匹配记录。</p>:<div className="table-wrap"><table><thead><tr>{columns.map(c => <th key={c.key} scope="col">{c.label}</th>)}</tr></thead><tbody>{shown.map((r, i) => <tr key={String(r.id ?? i)}>{columns.map((c, j) => <td key={c.key} data-label={c.label}>{linkPrefix && j === 0 ? <a href={linkPrefix + encodeURIComponent(String(r.id))}>{formatValue(c.key, r[c.key])}</a> : formatValue(c.key, r[c.key])}</td>)}</tr>)}</tbody></table></div>}{!Array.isArray(data)&&data&&(data.nextCursor||typeof data.total==='number'&&data.total>rows.length)&&<p className="hint">此处显示当前加载的记录，筛选与排序不代表全部历史。</p>}</div>;
 }

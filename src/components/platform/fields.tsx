@@ -1,3 +1,5 @@
+'use client';
+import ReferenceField from './reference-field';
 export type Option = {
     id: string;
     name?: string;
@@ -11,7 +13,7 @@ export function Field({ name, label, type = 'text', required = true }: {
     label: string;
     type?: string;
     required?: boolean;
-}) { return <label>{label}<input name={name} type={type} step={type === 'number' ? 'any' : undefined} required={required} maxLength={type === 'text' ? 2000 : undefined}/></label>; }
+}) { const kind=({objectId:'object',fromObjectId:'object',toObjectId:'object',deviceId:'device',pointId:'point',assigneeId:'person',recipientId:'person',userId:'person'} as Record<string,string>)[name];if(type==='text'&&kind)return <ReferenceField name={name} label={label} kind={kind} required={required}/>;return <label>{label}<input name={name} type={type} step={type === 'number' ? 'any' : undefined} required={required} maxLength={type === 'text' ? 2000 : undefined}/></label>; }
 export function Pick({ name, label, options, required = true }: {
     name: string;
     label: string;
