@@ -1,0 +1,1 @@
+import TerrainPanel from './panel';export default function Page(){return <section className="workspace"><p className="eyebrow">空间资料 / 三维与测绘</p><h1>看清地形，也看清依据</h1><p className="hint">展示效果、测绘精度与灌排用途分别核验；手机默认保留二维，三维按需打开。</p><TerrainPanel/></section>;}

@@ -1,0 +1,1 @@
+import {writeApi} from '@/platform/api';import {saveHydraulicLink,withdrawLink} from '@/modules/terrain/links';export const POST=(r:Request)=>writeApi(r,saveHydraulicLink);export const PATCH=(r:Request)=>writeApi(r,withdrawLink);

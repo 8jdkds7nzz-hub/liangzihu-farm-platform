@@ -2,7 +2,7 @@
 import {useState,useEffect,type ReactNode} from 'react';import {usePathname} from 'next/navigation';import Link from 'next/link';import FeedbackLink from './feedback-link';
 const groups=[
   {name:'日常工作',links:[['/workbench','工作台','◫'],['/alerts','告警与核查','!'],['/tasks','任务与日历','✓'],['/records','农事与照片','▤']]},
-  {name:'空间与资料',links:[['/map','二维地图','⌖'],['/imagery','监控与航次','▣'],['/devices','设备与测点','⊙'],['/objects','对象台账','▦']]},
+  {name:'空间与资料',links:[['/map','二维地图','⌖'],['/terrain','三维与地形','△'],['/imagery','监控与航次','▣'],['/devices','设备与测点','⊙'],['/objects','对象台账','▦']]},
   {name:'分析与协作',links:[['/analysis','分析复盘','↗'],['/briefings','简报审阅','≡'],['/knowledge','知识资料','▥'],['/assistant','权限内问答','◇'],['/maintenance','维护与复测','＋']]},
   {name:'管理',links:[['/rules','规则审核','§'],['/duty','值班安排','◷'],['/settings','配置管理','⚙'],['/operations','运行与费用','⋯']]},
 ];

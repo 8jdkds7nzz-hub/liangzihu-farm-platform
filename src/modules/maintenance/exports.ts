@@ -71,7 +71,14 @@ export async function createExport(c: PoolClient, actor: Actor, b: Record<string
       imageSamples:samples,imageLabels:samples.filter(s=>s.labelled_at).map(s=>({sampleId:s.id,labels:s.human_labels,labelledBy:s.labelled_by,labelledAt:s.labelled_at})),
       cameraReads:await rows(c,'SELECT id,device_id,object_id,source_id,source_contract_ref,configuration_version,operation,parameters,state,asset_id,error_code,created_at,attempted_at,completed_at FROM camera_reads WHERE object_id=ANY($1::uuid[])',[ids])
     });
-    payload.limits.externalReferences+='；已迁出范围的设备/测点不带当前台账；跨对象简报发布须全部对象在本次选择内';
+    const terrainScenes=await rows(c,'SELECT id,object_id,flight_id,name,version,supersedes_id,root_path,captured_at,source_crs,survey_crs,vertical_datum,conversion_ref,source_ref,surface_state,patches,repairs_declared,state,validation,error_code,created_at,completed_at,withdrawn_at,withdraw_reason FROM terrain_scenes WHERE object_id=ANY($1::uuid[])',[ids]),sceneIds=terrainScenes.map(s=>s.id);
+    Object.assign(payload,{terrainSchemaVersion:'2c-v1',terrainScenes,
+      terrainResources:await rows(c,'SELECT * FROM terrain_resources WHERE scene_id=ANY($1::uuid[])',[sceneIds]),
+      terrainSurveys:await rows(c,'SELECT s.*,ST_AsGeoJSON(position)::jsonb AS location FROM terrain_surveys s WHERE object_id=ANY($1::uuid[])',[ids]),
+      terrainReviews:await rows(c,'SELECT * FROM terrain_reviews WHERE object_id=ANY($1::uuid[])',[ids]),
+      deviceElevations:await rows(c,'SELECT * FROM device_elevations WHERE object_id=ANY($1::uuid[])',[ids]),
+      hydraulicLinks:await rows(c,'SELECT * FROM hydraulic_links WHERE object_id=ANY($1::uuid[]) AND to_object_id=ANY($1::uuid[])',[ids])});
+    payload.limits.externalReferences+='；已迁出范围的设备/测点不带当前台账；跨对象简报发布须全部对象在本次选择内；连通关系两端都在导出范围才包含';
     payload.limits.measurements+='；1b/1c关系与修订历史保留，附件原件使用另一个受控打包入口逐文件复核';
     const encoded = canonicalJson(payload);
     if (Buffer.byteLength(encoded) > 8 * 1024 * 1024)

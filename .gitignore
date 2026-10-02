@@ -9,3 +9,6 @@ coverage/
 .DS_Store
 *.log
 next-env.d.ts
+
+# Generated from the pinned Cesium dependency; private models never go here.
+/public/vendor/cesium/

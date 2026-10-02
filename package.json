@@ -45,7 +45,11 @@
     "worker:cameras": "node --env-file=.env.local --import tsx workers/cameras.ts",
     "worker:flighthub": "node --env-file=.env.local --import tsx workers/flighthub.ts",
     "evaluate:assistant": "node --env-file=.env.test.local --import tsx tools/evaluate-assistant.ts",
-    "identity:recover": "node --env-file=.env.local --import tsx tools/recover-identity.ts"
+    "identity:recover": "node --env-file=.env.local --import tsx tools/recover-identity.ts",
+    "prebuild": "node tools/copy-cesium.mjs",
+    "predev": "node tools/copy-cesium.mjs",
+    "worker:terrain": "node --env-file=.env.local --import tsx workers/terrain.ts",
+    "ops:phase2-restore": "node --env-file=.env.test.local --import tsx ops/phase2-restore.ts"
   },
   "dependencies": {
     "@alicloud/dysmsapi20170525": "4.6.0",
@@ -54,6 +58,7 @@
     "@aws-sdk/client-s3": "3.1144.0",
     "@darabonba/typescript": "1.0.5",
     "@huggingface/transformers": "3.8.1",
+    "cesium": "1.146.0",
     "hls.js": "1.7.3",
     "next": "16.3.8",
     "otplib": "13.5.0",
