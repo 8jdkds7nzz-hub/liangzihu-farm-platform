@@ -10,7 +10,7 @@ import { withDb, requireTestDatabaseUrl } from '../support/db';
 import { hashPassword } from '../../src/modules/identity/password';
 import { objectFixture } from '../support/fixtures';
 
-test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用、Origin及无秘密响应', { timeout: 60_000 }, async () => withDb(async pool => {
+for (const mfaRequired of ['1', '0']) test(`生产构建HTTP：二次验证${mfaRequired === '1' ? '开启' : '关闭'}、管理员边界、撤权、停用、Origin及无秘密响应`, { timeout: 60_000 }, async () => withDb(async pool => {
   const password = randomBytes(24).toString('hex');
   await pool.query("INSERT INTO users(username,display_name,password_hash,role) VALUES('http-admin','HTTP验收管理员',$1,'admin')", [await hashPassword(password)]);
   const schema = (await pool.query('SELECT current_schema() AS name')).rows[0].name;
@@ -21,7 +21,7 @@ test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用�
   await new Promise<void>(resolve => reserve.close(() => resolve()));
   const origin = 'http://127.0.0.1:' + port;
   const server = spawn(process.execPath, ['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)], {
-    env: { ...process.env, DATABASE_URL: databaseUrl.toString(), APP_ORIGIN: origin, IDENTITY_ENCRYPTION_KEY: randomBytes(32).toString('hex') }, stdio: 'ignore',
+    env: { ...process.env, DATABASE_URL: databaseUrl.toString(), APP_ORIGIN: origin, IDENTITY_ENCRYPTION_KEY: randomBytes(32).toString('hex'), IDENTITY_MFA_REQUIRED: mfaRequired }, stdio: 'ignore',
   });
   const closed = once(server, 'exit');
   const adminJar = new Map<string, string>();
@@ -49,24 +49,36 @@ test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用�
     assert.equal((await admin('/api/v1/auth/login','POST',{username:'http-admin',password},{Origin:'https://evil.example'})).response.status, 403);
     assert.equal((await admin('/api/v1/auth/login','POST',{username:'x',password:'a'.repeat(9000)})).response.status, 413);
     const first = await admin('/api/v1/auth/login','POST',{username:'http-admin',password,role:'owner'});
-    assert.equal(first.data.next, 'mfa');
+    assert.equal(first.data.next, mfaRequired === '1' ? 'mfa' : 'account');
     assert.equal(first.data.token, undefined);
     assert.equal(first.response.headers.get('cache-control'), 'no-store');
     assert(first.response.headers.getSetCookie().every(v => v.includes('HttpOnly') && v.includes('SameSite=Lax')));
-    assert.equal(adminJar.has('agri_session'), false);
-    assert.equal((await admin('/api/v1/identity/users')).response.status, 401);
-    const factor = await admin('/api/v1/auth/mfa/enroll','POST');
-    assert.equal(factor.response.status, 200);
-    const code = await generate({ secret: factor.data.secret });
-    const verified = await admin('/api/v1/auth/mfa/verify','POST',{code});
-    assert.equal(verified.response.status, 200);
-    assert.equal(verified.data.recoveryCodes.length, 8);
+    let factorSecret = '', code = '';
+    if (mfaRequired === '1') {
+      assert.equal(adminJar.has('agri_session'), false);
+      assert.equal((await admin('/api/v1/identity/users')).response.status, 401);
+      const factor = await admin('/api/v1/auth/mfa/enroll','POST');
+      assert.equal(factor.response.status, 200);
+      factorSecret = factor.data.secret;
+      code = await generate({ secret: factorSecret });
+      const verified = await admin('/api/v1/auth/mfa/verify','POST',{code});
+      assert.equal(verified.response.status, 200);
+      assert.equal(verified.data.recoveryCodes.length, 8);
+    } else {
+      assert.equal(adminJar.has('agri_session'), true);
+      assert.equal(first.data.recoveryCodes, undefined);
+      assert.equal((await pool.query('SELECT count(*) FROM auth_challenges')).rows[0].count, '0');
+      assert.equal((await pool.query('SELECT count(*) FROM second_factors')).rows[0].count, '0');
+      const loginPage = await anonymous('/login?step=mfa&enroll=1');
+      assert.equal(loginPage.data.includes('首次管理员登录需要绑定验证器'), false);
+      assert(loginPage.data.includes('使用管理员已开通的账号和密码登录。'));
+    }
     assert.equal(adminJar.has('agri_challenge'), false);
     const me = await admin('/api/v1/me');
-    assert.equal(me.data.actor.role, 'admin'); assert.equal(me.data.actor.mfaVerified, true);
+    assert.equal(me.data.actor.role, 'admin'); assert.equal(me.data.actor.mfaVerified, mfaRequired === '1');
     assert(me.data.scopes.every((s: { objectIds: string[] }) => s.objectIds.length === 0));
     assert.equal(JSON.stringify(me.data).includes(password), false);
-    assert.equal(JSON.stringify(me.data).includes(factor.data.secret), false);
+    if (factorSecret) assert.equal(JSON.stringify(me.data).includes(factorSecret), false);
     assert.equal((await admin('/account')).response.status, 200);
     const worker = await admin('/api/v1/identity/users','POST',{username:'http-worker',displayName:'HTTP验收工人',password,role:'worker'});
     assert.equal(worker.response.status, 201);
@@ -94,7 +106,9 @@ test('生产构建HTTP：完整登录与MFA、管理员边界、撤权、停用�
     assert.equal((await admin('/api/v1/auth/logout','POST')).response.status, 200);
     assert.equal((await anonymous('/api/v1/me','GET',undefined,{Cookie:'agri_session='+rawCookie})).response.status, 401);
     const audit = JSON.stringify((await pool.query('SELECT * FROM audit_events')).rows);
-    assert.equal(audit.includes(password), false); assert.equal(audit.includes(code), false); assert.equal(audit.includes(factor.data.secret), false);
+    assert.equal(audit.includes(password), false);
+    if (code) assert.equal(audit.includes(code), false);
+    if (factorSecret) assert.equal(audit.includes(factorSecret), false);
   } finally {
     server.kill('SIGTERM');
     const kill = setTimeout(() => server.kill('SIGKILL'), 5000);

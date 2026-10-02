@@ -26,7 +26,7 @@ test('手机/电脑真实页面闭环、断网不假保存、重试防重、关�
   const at=new Date();
   await transaction(async c=>{const batch=await saveBatch(c,f.actor,{objectId:f.objectId,code:'BROWSER-SYNTH',species:'合成物种',stage:'合成阶段',source:'浏览器演练，非现场数据',verified:true,startedAt:'2026-09-01T00:00:00Z'});const rule=await createRule(c,f.actor,{objectId:f.objectId,pointId:f.point.id,batchId:batch.id,name:'合成持续告警',comparison:'lt',threshold:5,durationMs:15_000,maxGapMs:30_000,maxAgeMs:60_000,severity:'severe',source:'浏览器合成测试，绝不作为农场阈值',effectiveFrom:'2026-09-01T00:00:00Z'},at);await approveRule(c,f.actor,rule.id,'合成测试审核',at);await enableRule(c,f.actor,rule.id,true,at);},pool);
   const schema=(await pool.query('SELECT current_schema() AS name')).rows[0].name,url=new URL(requireTestDatabaseUrl());url.searchParams.set('options','-c search_path='+schema+',public');
-  const env={...process.env,DATABASE_URL:url.toString(),IDENTITY_ENCRYPTION_KEY:key};
+  const env={...process.env,DATABASE_URL:url.toString(),IDENTITY_ENCRYPTION_KEY:key,IDENTITY_MFA_REQUIRED:'1'};
   const readings=[40,20].map(seconds=>({...f.reading,sourceRecordId:'browser-'+seconds,sampledAt:new Date(at.getTime()-seconds*1000).toISOString(),receivedAt:at.toISOString(),value:1,rawValue:1}));
   await persistBatch(pool,{sourceId:f.source.id,raw:Buffer.from('{"synthetic_browser_samples":true}'),receivedAt:at.toISOString(),synthetic:true,expectedCursor:null,nextCursor:'browser1',readings},at);
   const runAlarms=()=>execFileSync(process.execPath,['--import','tsx','workers/alarms.ts','--once'],{env,stdio:'pipe',timeout:20_000});runAlarms();runAlarms();

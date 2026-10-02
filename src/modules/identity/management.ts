@@ -2,13 +2,14 @@ import type { PoolClient } from 'pg';
 import type { Action, Actor, Role } from '../../platform/types';
 import { AppError } from '../../platform/error';
 import { audit, denied, digest, newToken, uuid } from './common';
-import { roleActions } from './access';
+import { requiresMfa, roleActions } from './access';
 import { hashPassword } from './password';
 
 export async function requireAdmin(client: PoolClient, actor: Actor) {
   uuid(actor.id);
   const user = (await client.query('SELECT enabled,role FROM users WHERE id=$1', [actor.id])).rows[0];
-  if (!actor.enabled || actor.role !== 'admin' || !actor.mfaVerified || !user?.enabled || user.role !== 'admin') throw denied();
+  if (!actor.enabled || actor.role !== 'admin' || !user?.enabled || user.role !== 'admin') throw denied();
+  if (!actor.mfaVerified && await requiresMfa(client, actor.id)) throw denied();
 }
 export async function createUser(client: PoolClient, actor: Actor, input: { username: string; displayName: string; password: string; role: Role }) {
   await requireAdmin(client, actor);

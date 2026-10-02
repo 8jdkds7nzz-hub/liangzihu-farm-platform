@@ -1,6 +1,7 @@
 import type { PoolClient } from 'pg';
 import type { Action, Actor, Role, Scope } from '../../platform/types';
 import { denied, digest, uuid } from './common';
+import { isMfaEnabled } from '../../platform/config';
 
 export const roleActions: Record<Role, readonly Action[]> = {
   admin: ['read', 'configure', 'share', 'export'],
@@ -11,6 +12,7 @@ export const roleActions: Record<Role, readonly Action[]> = {
   expert: ['read', 'review', 'export'],
 };
 export async function requiresMfa(client: PoolClient, userId: string): Promise<boolean> {
+  if (!isMfaEnabled()) return false;
   return (await client.query(`SELECT (u.role='admin' OR EXISTS(SELECT 1 FROM second_factors f WHERE f.user_id=u.id)
     OR EXISTS(SELECT 1 FROM grants g WHERE g.user_id=u.id AND g.action IN ('configure','act')
       AND g.revoked_at IS NULL AND (g.expires_at IS NULL OR g.expires_at>clock_timestamp()))) AS needed
