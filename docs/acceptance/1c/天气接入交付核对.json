@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-02T01:48:12.643Z",
+  "tests": {
+    "unit": 30,
+    "database": 69,
+    "acceptance": 8,
+    "total": 107
+  },
+  "typecheck": "passed",
+  "build": "passed",
+  "buildId": "rtpCJx3c4YgszbV_GjbAf",
+  "dependencyAudit": "No known vulnerabilities found",
+  "sourceFingerprintVerified": true,
+  "databaseRecovery": {
+    "tables": 94,
+    "rpoMs": 396,
+    "rtoMs": 672,
+    "productionReady": false
+  },
+  "weatherRecovery": "独立实际dump/restore、逐表哈希、业务关联及原响应解密通过",
+  "sourceCredentials": "没有启用真实天气账户",
+  "productionAccepted": false,
+  "internalLinksBroken": 0
+}

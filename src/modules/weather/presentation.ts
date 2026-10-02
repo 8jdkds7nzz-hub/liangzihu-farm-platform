@@ -1,0 +1,4 @@
+import type {Daily} from '../../adapters/qweather/client';
+export interface ForecastContent extends Daily{schema:'qweather-daily-v1';tag:string;attributions:string[];limitations:string[]}
+export function forecastContent(v:unknown):ForecastContent|null{if(!v||typeof v!=='object'||Array.isArray(v)||(v as Record<string,unknown>).schema!=='qweather-daily-v1')return null;return v as ForecastContent;}
+export function describeWeather(v:unknown){const d=forecastContent(v);if(!d)return JSON.stringify(v);const qty=(n:{value:number;unit:string}|null)=>n?n.value+' '+n.unit:'未知';return ['外部预报','最高 '+qty(d.temperatureMax),'最低 '+qty(d.temperatureMin),'白天 '+(d.daytime.condition??'现象未知')+'，降水 '+qty(d.daytime.precipitation?.amount??null),'夜间 '+(d.nighttime.condition??'现象未知')+'，降水 '+qty(d.nighttime.precipitation?.amount??null),'来源：和风天气；归因 '+d.attributions.join('；')].join('；');}

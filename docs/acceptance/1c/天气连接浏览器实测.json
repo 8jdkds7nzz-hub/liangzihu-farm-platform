@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-02T01:47:03.450Z",
+  "database": "agri_test随机schema",
+  "http": "可信进程内替身，不连接真实账户",
+  "checks": {
+    "disabledInitially": true,
+    "confirmedEnabled": true,
+    "queuedAndResultVisible": true,
+    "unknownPublicationPreserved": true,
+    "zeroPreserved": true,
+    "attributionVisible": true,
+    "noBrowserErrors": true,
+    "noOverflow": true
+  },
+  "productionAccepted": false
+}

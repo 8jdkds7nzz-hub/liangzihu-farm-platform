@@ -1,0 +1,1001 @@
+{
+  "checkedAt": "2026-10-02T01:48:12.643Z",
+  "baseCommit": "789668fac6760f8110e768663301825abeba2ed2",
+  "buildId": "rtpCJx3c4YgszbV_GjbAf",
+  "sourceFiles": 248,
+  "fingerprint": "d8931bb3304417f297df5a732f0fe1d7c787b82479b73d899279d6b900808b43",
+  "files": [
+    {
+      "path": "db/migrations/000_platform.sql",
+      "sha256": "2242e4d8c42d4a13c94f3a4dd19e2eba7ef12a73ae044d5b531d0b1aa8f18e5a"
+    },
+    {
+      "path": "db/migrations/001_identity.sql",
+      "sha256": "b778af05c1fabafdc9dac36351fdc6f5eff7d4053db6197be7067425ab63d25d"
+    },
+    {
+      "path": "db/migrations/002_registry.sql",
+      "sha256": "90235bdef1c3b823c9f156f05ed8b244e116bf4060d9ca539d268f199651afbf"
+    },
+    {
+      "path": "db/migrations/003_telemetry.sql",
+      "sha256": "31ef4a3ac8c65a9ee19f1e62d5a4f2acc02351960e3c3b1391f82059793db30a"
+    },
+    {
+      "path": "db/migrations/004_jobs.sql",
+      "sha256": "0d7398130fdaddcae2bbf355e9a19d6ea1d946d386865b71232d28d458af175b"
+    },
+    {
+      "path": "db/migrations/005_alerts.sql",
+      "sha256": "f2d10b9ebad620535510e843d6434714816a6b857bd364522aa53d515e06dfdf"
+    },
+    {
+      "path": "db/migrations/006_notifications.sql",
+      "sha256": "0d13456141c46587d76e2b310c2aa51e2121a229285760980dfd1389126b8fa1"
+    },
+    {
+      "path": "db/migrations/007_operations.sql",
+      "sha256": "ee7140550585b24e7968d25814880f3116a84cf1011630ec4849016bb82cc383"
+    },
+    {
+      "path": "db/migrations/008_validation_indexes.sql",
+      "sha256": "7cee06a6e06f9e60b41cd32f430962fed72a8738c8a2f10e284c269aa220fbe2"
+    },
+    {
+      "path": "db/migrations/009_ingest_contract_evidence.sql",
+      "sha256": "c89a1e93440b40fa33d41e442ad3876dec63261d11256de360114302350b16c6"
+    },
+    {
+      "path": "db/migrations/010_feedback.sql",
+      "sha256": "28c90cdba93cf12f7df359fc126cca778afee4c290a2d92c173593fa87a870f2"
+    },
+    {
+      "path": "db/migrations/011_map.sql",
+      "sha256": "9435fef4d5ac6089805374b68082b3b3232df2d520ae30bd77e04b023cdf650a"
+    },
+    {
+      "path": "db/migrations/012_records.sql",
+      "sha256": "39227a2dbc6c25ebcb725d6d42e41bf7e9e25ca3f68701d7b289d66ad870c758"
+    },
+    {
+      "path": "db/migrations/013_field_operations.sql",
+      "sha256": "61b939fc702d150fae386803b2be88812f77c04ee2f0cc734567fc7ad320af3e"
+    },
+    {
+      "path": "db/migrations/014_imagery.sql",
+      "sha256": "d2ab2d2a71c1b094e8f13d55926291adc37ade489567af0f1d7a8b03ffc274fc"
+    },
+    {
+      "path": "db/migrations/015_analysis.sql",
+      "sha256": "302a0c0ef8587957606ffacea38c789ffa897a265f964f9c0335d5cf2b66613c"
+    },
+    {
+      "path": "db/migrations/016_knowledge.sql",
+      "sha256": "2dbb8bfd3cabaa60269479b5ea3e8faaf84f0c3f389f9023776d3ecf969a376c"
+    },
+    {
+      "path": "db/migrations/017_assistant.sql",
+      "sha256": "53669b9f04eb20550856aa1baaba6c8c44e4bd494bfaf6a8c0e22fb9cc13a8fa"
+    },
+    {
+      "path": "db/migrations/018_image_reviews.sql",
+      "sha256": "a1ecd04769f2c4540139187546b3d341b835975f76ba7f442bb6e78f5bee424e"
+    },
+    {
+      "path": "db/migrations/019_schedules.sql",
+      "sha256": "5c58e5befe84524a8e8f344881b590062ad3696f34d9f36e88f5b213d7dd4882"
+    },
+    {
+      "path": "db/migrations/020_briefing_explanations.sql",
+      "sha256": "c601112f74e6b278043ed7ce8e051090dc535176ebdae046bad438324587a3b6"
+    },
+    {
+      "path": "db/migrations/021_weather_connections.sql",
+      "sha256": "244d97543bcef4248a30f960eea8729d5b0b7bf3a3a50ef58459798b2e876e27"
+    },
+    {
+      "path": "next.config.ts",
+      "sha256": "001b849da7e0faed773e46d9aaea0a7af50aae325a741f4b70bc9bdee60db650"
+    },
+    {
+      "path": "ops/Dockerfile.database",
+      "sha256": "8ceca5e9fcda4f71cdedd1f642790c7644f0a7dac91bb249f0747428b8a8426b"
+    },
+    {
+      "path": "ops/compose.yaml",
+      "sha256": "3f5470980f1ad2aea8b0424a79298fd4961a631a749d017bd3f8e6a2df8ff55d"
+    },
+    {
+      "path": "ops/external-health.mjs",
+      "sha256": "1695cdaae1a6e4eeffb3a626008b45bbcf1d9d905ef9eb947824f4d6585b9537"
+    },
+    {
+      "path": "ops/recovery-fixture.ts",
+      "sha256": "b2b8d2a27107c37e1178c0d4606c8cd82e6f9efac01f0974398eeeb9dac9084c"
+    },
+    {
+      "path": "ops/restore-check.ts",
+      "sha256": "79cdca6d63118181708b50aeb28b119c6c3a5d8917a452b4d4a62eb1e87b22d5"
+    },
+    {
+      "path": "package.json",
+      "sha256": "d7165f6cdda9ef6880da7323ae61b671ba299bf21bc5e3292e37bac82ee39a50"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "386823853e2ce602d5585fb5a587cb85870432cb6b273f9a76b6d1c8a08badc5"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "4d762d49293c1279052c5e4d9416011dee56472ec6fdb06d7953dd302206cfe6"
+    },
+    {
+      "path": "public/field-sw.js",
+      "sha256": "8f7ebf83c2ab2c4e6f097006e4c908974a34eaae1554a63cc6be0e68cc6b5520"
+    },
+    {
+      "path": "public/field.css",
+      "sha256": "c4a6f34da74f3d72e5a3dc38ce68d2d9f76328c3e80ea5bbb20218d0502f9b88"
+    },
+    {
+      "path": "public/field.html",
+      "sha256": "95ad7ab4fef17123c2dc15dc56c05992544f7f48581f1d0a7c2f3f7eb12d3e86"
+    },
+    {
+      "path": "public/field.js",
+      "sha256": "829525c2c6db5b7a6e3cc059e7fe933061c4845b67891db1725777eafaea03eb"
+    },
+    {
+      "path": "src/adapters/qweather/client.ts",
+      "sha256": "d3fbd8d00fb35ec7ec00211b01c1592a0fa1720b3004d7e4a3375157a9939b4b"
+    },
+    {
+      "path": "src/adapters/renke/adapter.ts",
+      "sha256": "f5a9d4fabdb48583d99a169523e28c3c8b50948fc52c0c7edf3194d8f38e2edd"
+    },
+    {
+      "path": "src/adapters/renke/contract.ts",
+      "sha256": "821713000c78fa105879d2509843d3e26fd15f9976d882c0454fc67414cb5a89"
+    },
+    {
+      "path": "src/app/(platform)/alerts/[id]/alert-detail.tsx",
+      "sha256": "3cc62f877703c2d192a69833edb8783efdae2026bb7645feb7a637330ad26d8f"
+    },
+    {
+      "path": "src/app/(platform)/alerts/[id]/page.tsx",
+      "sha256": "41a363e66deda1a84bb7c0e122a7108cfd3779712bca096241db26d6b63b2683"
+    },
+    {
+      "path": "src/app/(platform)/alerts/page.tsx",
+      "sha256": "05cad7da41ff7f3b93f6f098903cc141aa31a19690a8039d4345661b4a5cc9d4"
+    },
+    {
+      "path": "src/app/(platform)/analysis/page.tsx",
+      "sha256": "bdfa381368fdadaa3726473fbfd447dfd27474c52b797f027e746fb5ea1a0e04"
+    },
+    {
+      "path": "src/app/(platform)/analysis/panel.tsx",
+      "sha256": "0ac32f6e84830c1a05e7422cb0fee64921ffe4b0efdc4f4d96ed0bc98806e257"
+    },
+    {
+      "path": "src/app/(platform)/analysis/weather-connections.tsx",
+      "sha256": "741dedbfb91eb9e5ebd4461a111fc80e1e0c1f3afcbcfc178019c5cdbec8930a"
+    },
+    {
+      "path": "src/app/(platform)/assistant/page.tsx",
+      "sha256": "2076189eb5b2a50ecb000bdb185377fce9f378ed01c4e2002ac281850253ea13"
+    },
+    {
+      "path": "src/app/(platform)/assistant/panel.tsx",
+      "sha256": "528022323fdbde353565633437c2cf3c756b42a58db4f6e9de96493b5d82a308"
+    },
+    {
+      "path": "src/app/(platform)/briefings/page.tsx",
+      "sha256": "448338590ed4d8190a6d78b1c48628795ccb381e270bf71f78324a867c85c0fd"
+    },
+    {
+      "path": "src/app/(platform)/briefings/panel.tsx",
+      "sha256": "7fe82e5348a2622cc916b8f2a534f2ba2aeeb09137bcdce91af1e29fab15598d"
+    },
+    {
+      "path": "src/app/(platform)/devices/page.tsx",
+      "sha256": "a4a7b5e08558862703ccf39eb7c6193eafac7aba0ee3e2362d9aeae5359a2c00"
+    },
+    {
+      "path": "src/app/(platform)/duty/duty-panel.tsx",
+      "sha256": "c5f72122c95582c76c3d48da87fd45b798a3d963fb8d5af4d0441872051bc8b7"
+    },
+    {
+      "path": "src/app/(platform)/duty/page.tsx",
+      "sha256": "0cce963fd10704a553eb7de2f8377fd36a0b54d42aa2d390f821e0748cf40d06"
+    },
+    {
+      "path": "src/app/(platform)/feedback/feedback-panel.tsx",
+      "sha256": "53ec544acd9364dd815d7c4b445df2c19585707d95f5f080442894e17df33f20"
+    },
+    {
+      "path": "src/app/(platform)/feedback/page.tsx",
+      "sha256": "470aef00e94d0fe6690a4019ac6b8c010b3edfd23faa8c30e76a7fdb01377266"
+    },
+    {
+      "path": "src/app/(platform)/help/page.tsx",
+      "sha256": "2e8bac3248346d3aa702153efc288d1ad777c712ccdd1ef1117072c21bffb52f"
+    },
+    {
+      "path": "src/app/(platform)/image-review/page.tsx",
+      "sha256": "77cbe75d64783ee3067183b1f9e90734b3d63a4d913241d9bba03bcd48a36109"
+    },
+    {
+      "path": "src/app/(platform)/image-review/panel.tsx",
+      "sha256": "124c1a9234502342e0d0d7871ac095bec7885b81cc07f4dd004db574dca08991"
+    },
+    {
+      "path": "src/app/(platform)/imagery/page.tsx",
+      "sha256": "85bdb79dfd853ab66c65aa929bef2cce8606ef2934ebb9021dfa6dc84fd6b52a"
+    },
+    {
+      "path": "src/app/(platform)/imagery/panel.tsx",
+      "sha256": "147902e208e267ec9de5a49dab2f696b7944e41fd2cf8a7be4ff673a330b35b6"
+    },
+    {
+      "path": "src/app/(platform)/knowledge/page.tsx",
+      "sha256": "13477b65e4f7851a18e9f3916ca3c42ba9d9be0665e51a05667593e8e9021563"
+    },
+    {
+      "path": "src/app/(platform)/knowledge/panel.tsx",
+      "sha256": "e4bd1c8371ad798596f67cd651769f2371cac93587c7f3f79f23e989061e8c28"
+    },
+    {
+      "path": "src/app/(platform)/layout.tsx",
+      "sha256": "a76d869256cdef4a5b57547a50c717176fa035d314d3df53737cb32946680e21"
+    },
+    {
+      "path": "src/app/(platform)/maintenance/maintenance-panel.tsx",
+      "sha256": "03f5cdbd7df41dd1a287557ffb8df83dca17155f266bd37d89e20df410c55456"
+    },
+    {
+      "path": "src/app/(platform)/maintenance/page.tsx",
+      "sha256": "ccd7d582367493b512a5f65f7e70ecf9d57de0788f11d1d3cc2e5902ab2e34b3"
+    },
+    {
+      "path": "src/app/(platform)/map/page.tsx",
+      "sha256": "2d34400a5a72f7c0ce63ea34c71808c944be5a0f6e2c5af45103277aaf49eba5"
+    },
+    {
+      "path": "src/app/(platform)/map/panel.tsx",
+      "sha256": "28c0b8d00a493a4d8945c37fcea759aed3f2f35eddb75d79182e1b7b4c84057a"
+    },
+    {
+      "path": "src/app/(platform)/objects/[id]/object-detail.tsx",
+      "sha256": "86480d8c36852e86d83ea3a595061959b04fd932342b0240ab3a204a24ea8a71"
+    },
+    {
+      "path": "src/app/(platform)/objects/[id]/page.tsx",
+      "sha256": "f20a273734fa0349bd6780a7777f806f3cbbbb0f26846c2a7efaa13d0729c9de"
+    },
+    {
+      "path": "src/app/(platform)/objects/page.tsx",
+      "sha256": "cda57de3af7459a38942a8d7d5e02d4ccda00579bb7dd93ef6f817230b65ba81"
+    },
+    {
+      "path": "src/app/(platform)/operations/operations-panel.tsx",
+      "sha256": "901ec709017e9ca318109cbaa0c489c3780bd481ae27f8b67fc974a7f9370406"
+    },
+    {
+      "path": "src/app/(platform)/operations/page.tsx",
+      "sha256": "7e0387b0021537ad5c14eddf4ccb5415207506399c97eed9bdc1fa26e5fc9ad6"
+    },
+    {
+      "path": "src/app/(platform)/points/[id]/page.tsx",
+      "sha256": "4d89a981f96048d44ff16a2801d27aa7d30f6ff46aa4d93526a3a28d4ba02391"
+    },
+    {
+      "path": "src/app/(platform)/points/[id]/point-history.tsx",
+      "sha256": "4ade7da5e003321ecb611b22afd943b6b1ea2e5a658cc38761a920181de4ef6c"
+    },
+    {
+      "path": "src/app/(platform)/records/page.tsx",
+      "sha256": "2233bbd615d1c139a0f40566dd4ed4fdc4f774a2b32c33d340315e743b9133e0"
+    },
+    {
+      "path": "src/app/(platform)/records/panel.tsx",
+      "sha256": "2a504ce081d04043010fc8ef5e2df618cadfb3ffe79d99a873093634a0644bf0"
+    },
+    {
+      "path": "src/app/(platform)/rules/page.tsx",
+      "sha256": "ec8e031d1d95f7a9b4df96394611c105d0dedf0f894f940726260b2e9089caa7"
+    },
+    {
+      "path": "src/app/(platform)/rules/rules-panel.tsx",
+      "sha256": "be8bc5be4db9778446f362776747c303ac37a8e5e45d87b47f250cf7b8fc776f"
+    },
+    {
+      "path": "src/app/(platform)/settings/page.tsx",
+      "sha256": "73c9caf55e7c0a584b548db6f6cb5672cbe9850027dbb1fc6d4517d3c6c1615d"
+    },
+    {
+      "path": "src/app/(platform)/settings/registry-settings.tsx",
+      "sha256": "89e36d8bee19b2e1b7580af05ee0a8ee539c86980a64d05fa503e5dfd1bef1d2"
+    },
+    {
+      "path": "src/app/(platform)/tasks/page.tsx",
+      "sha256": "01f3e5076046f488d30712314bc4c89bdb11d501589e0d61e6e2bd2bfffecdfe"
+    },
+    {
+      "path": "src/app/(platform)/tasks/panel.tsx",
+      "sha256": "dcf799f35ff179c3f842c071e005a988de997d02335f5720cac62e7f6fd08096"
+    },
+    {
+      "path": "src/app/account/logout-button.tsx",
+      "sha256": "089e7f20aaf9722f2094acc97d88849070177c1d0ff6a87fa1a4c2246490021e"
+    },
+    {
+      "path": "src/app/account/page.tsx",
+      "sha256": "e88879910c209e9c74193d0d97addd15a5782843b71c603684ec92b344057599"
+    },
+    {
+      "path": "src/app/api/v1/alerts/[id]/claim/route.ts",
+      "sha256": "a514a17191f1ccddddd9eb60fb7f31f12d23c414b7f82a20e7962f63a4818b01"
+    },
+    {
+      "path": "src/app/api/v1/alerts/[id]/close/route.ts",
+      "sha256": "966519b5bc182dd1324188faa10cd924607c1d04d54069b56ec48316a00e5912"
+    },
+    {
+      "path": "src/app/api/v1/alerts/[id]/events/route.ts",
+      "sha256": "e5b7dca20be5a7b0c344cc3246e8d2ad672f5b3139c757a9bd1cca98499acaa9"
+    },
+    {
+      "path": "src/app/api/v1/alerts/[id]/notifications/route.ts",
+      "sha256": "4fe2958c35cce1e05c275f3b1f3ed397bdb0d5e2eadf09391e77cd899f89fbd8"
+    },
+    {
+      "path": "src/app/api/v1/alerts/[id]/release/route.ts",
+      "sha256": "619b6e1fde61eb64936ef54bff68eb9133528989802a88683cfed8c2d678085c"
+    },
+    {
+      "path": "src/app/api/v1/alerts/[id]/route.ts",
+      "sha256": "de9f76f60fdf6034bb98cf2ae32064b796329d61566f4877a0c3881e01f8c7bc"
+    },
+    {
+      "path": "src/app/api/v1/alerts/route.ts",
+      "sha256": "7467fd36e2cd7369827a17efe70306eb5a818b05c73d5d0f615409a4916a10c0"
+    },
+    {
+      "path": "src/app/api/v1/analysis/calculate/route.ts",
+      "sha256": "ce6ee7d48ff9cbbf4dd56b5ddd2786da6d24028c8092b4472a812616059636ec"
+    },
+    {
+      "path": "src/app/api/v1/analysis/route.ts",
+      "sha256": "e0c961d21ae6c8460103a4e7aa93af7452f54594faa9797e0d35669e7e318480"
+    },
+    {
+      "path": "src/app/api/v1/assistant/policies/route.ts",
+      "sha256": "4f0997cc765d3093c026e2676649bd993fc7efc2038a0dd90c6aed59312d21a9"
+    },
+    {
+      "path": "src/app/api/v1/assistant/route.ts",
+      "sha256": "b490e563e639d9ff3505c9dedf6ab1d3513307f74cc4352d089dba4cfc8c58c0"
+    },
+    {
+      "path": "src/app/api/v1/assistant/tools/route.ts",
+      "sha256": "4dfe415849f06d88a515b2394b1185b20216f46ec65157015bb6960d4f21b2ba"
+    },
+    {
+      "path": "src/app/api/v1/auth/login/route.ts",
+      "sha256": "f8b341a76d8488c15f0071137c5470847efeb43c893b4fa13944b5976da8daff"
+    },
+    {
+      "path": "src/app/api/v1/auth/logout/route.ts",
+      "sha256": "6094721a4bf32f99e04be5eed45e18ae7142e05f291f0499c20f9de7851dc355"
+    },
+    {
+      "path": "src/app/api/v1/auth/mfa/enroll/route.ts",
+      "sha256": "129304f932f3cb2be7cf5ad6e9d765360780806e3f48b84dd6c9bab5b2761d0c"
+    },
+    {
+      "path": "src/app/api/v1/auth/mfa/verify/route.ts",
+      "sha256": "da41051a9b6a72c0f28e8df3765168fc6aeaf7df9d7837056de41fd28c72ca86"
+    },
+    {
+      "path": "src/app/api/v1/auth/wecom/callback/route.ts",
+      "sha256": "58ade0a23692361c7e3787becab4b135e91b52d52907fb35a9bf9fce0f706e36"
+    },
+    {
+      "path": "src/app/api/v1/auth/wecom/start/route.ts",
+      "sha256": "1e9bb5323dbda0c04a5c9accd21b1cf60b44d2590325d342c0d6c1d5a902a3b9"
+    },
+    {
+      "path": "src/app/api/v1/batches/route.ts",
+      "sha256": "9bf835c0708315f8940ce1acc56c182cf748da9c0c009470dbfe41334fa33974"
+    },
+    {
+      "path": "src/app/api/v1/briefings/explanations/route.ts",
+      "sha256": "d2a75019eb8ba0ab0568203c858d17e9dd0ddc45744c72704ae8b6267422aae5"
+    },
+    {
+      "path": "src/app/api/v1/briefings/publications/[id]/route.ts",
+      "sha256": "abf72922b536a721dd8699ab758ff95a8c8b16a60631656e75a469a26e24b9b7"
+    },
+    {
+      "path": "src/app/api/v1/briefings/publications/route.ts",
+      "sha256": "5628e389fe9c911bc4b06e3bdef9305d9ac3f9d448337e57c8aab390c2b10eb3"
+    },
+    {
+      "path": "src/app/api/v1/briefings/route.ts",
+      "sha256": "6e56d8cd7ee977b04ffb7e88b581228e9c41327e4176f9f432ed5c56e78567f5"
+    },
+    {
+      "path": "src/app/api/v1/briefings/schedules/route.ts",
+      "sha256": "7d785ba5a12b77bab8ac5499f45c2adce3d4893cc8551b6dafefcd14b5ab34f9"
+    },
+    {
+      "path": "src/app/api/v1/briefings/tasks/route.ts",
+      "sha256": "cf8516ba4f4da99fb191e7a1fc0acbb66130342c04c72075d83711281e986e44"
+    },
+    {
+      "path": "src/app/api/v1/budgets/route.ts",
+      "sha256": "940a5f6207a888d6687cce335fd013c1f183c764ffd78cd8001c52513b4dea3e"
+    },
+    {
+      "path": "src/app/api/v1/calendars/route.ts",
+      "sha256": "3c881da49ef7769d3881f993fef029dc031fb0694110412f5769d9618999843f"
+    },
+    {
+      "path": "src/app/api/v1/cameras/route.ts",
+      "sha256": "0342aebf535d2fe9985d53c84238d94c0bea8f8f27a9ad02bd0c2557b3074f1f"
+    },
+    {
+      "path": "src/app/api/v1/connections/weather/route.ts",
+      "sha256": "e23c1459d78d6b652406da18aa41702410df06a00bfbfff98c02fbfd0f9434ef"
+    },
+    {
+      "path": "src/app/api/v1/connections/weather/sync/route.ts",
+      "sha256": "de39ea3d301c705e3b23a03ed96b62a37509f41854cbcd891aabee9a629d14e4"
+    },
+    {
+      "path": "src/app/api/v1/devices/import/route.ts",
+      "sha256": "92615ef561477c539efbdaec4902dd1177dbf4544bb01466e9a253ded85f3e6a"
+    },
+    {
+      "path": "src/app/api/v1/devices/route.ts",
+      "sha256": "bd083952ba4f4eec3ca0baeaf92a3959c9e4e134ba404c2020f2c8b93d903b4b"
+    },
+    {
+      "path": "src/app/api/v1/duty/contacts/route.ts",
+      "sha256": "b92a804c503783baa8c19a98e3ffd418011c760197e45e714c8a70d0d8fe1ed3"
+    },
+    {
+      "path": "src/app/api/v1/duty/people/route.ts",
+      "sha256": "42cc6a091d68b5c2a8c7b0de9d99143f328fab191ddab0b62cce3f05e11e1905"
+    },
+    {
+      "path": "src/app/api/v1/duty/route.ts",
+      "sha256": "1d47ae02b453f6786807128862abdbc1c49964cc4aa1b975ed67ea061b83cc57"
+    },
+    {
+      "path": "src/app/api/v1/exports/[id]/bundle/route.ts",
+      "sha256": "17fd19fb4751884b9ca324310d040ff0e273d4a0132b877c8faa4801f1d7378e"
+    },
+    {
+      "path": "src/app/api/v1/exports/[id]/route.ts",
+      "sha256": "c8fd2261ba4816d82745ad507a5dc8f308b85257d49e907aaf24f9a8a22edbcd"
+    },
+    {
+      "path": "src/app/api/v1/exports/route.ts",
+      "sha256": "199c016de59371345d5bd6cc86b44c964a817ffa0927b6d71388381e6f67d267"
+    },
+    {
+      "path": "src/app/api/v1/feedback/route.ts",
+      "sha256": "a3aca5e71f171e50f0bbbf82143b90513572b0dc373ab629e0cdb318d8787746"
+    },
+    {
+      "path": "src/app/api/v1/flights/annotations/route.ts",
+      "sha256": "5dd6b202242d7792e26f871abc83f126af21b7d40209f010703a2f0db5a0d565"
+    },
+    {
+      "path": "src/app/api/v1/flights/route.ts",
+      "sha256": "4862c34d0f01f9ab815064145dbb87087d2f9a696beccc264441bf9deba76282"
+    },
+    {
+      "path": "src/app/api/v1/health/live/route.ts",
+      "sha256": "04624c8712da964f6743f631ee859bdd5b2d21bdc12661c2a78caeef275d8238"
+    },
+    {
+      "path": "src/app/api/v1/health/ready/route.ts",
+      "sha256": "5d9b36cfc635fe106cdeeb0f3cfd6e6e00c3b7dece70b8e2fae6b2f1a7b00dbe"
+    },
+    {
+      "path": "src/app/api/v1/identity/grants/route.ts",
+      "sha256": "8ec2ff9996345402baee28f465050d9b6ba0ef3bdab532bbcddd6a9f137dccc8"
+    },
+    {
+      "path": "src/app/api/v1/identity/tokens/route.ts",
+      "sha256": "7171ab04395f89b32b69641287ded922e8ed2a4c8945ae93021c82056c6e3e23"
+    },
+    {
+      "path": "src/app/api/v1/identity/users/route.ts",
+      "sha256": "f4a3ba255759ce8cb435db481503fd57b9217f9e4b57b026ab3771915df8a94b"
+    },
+    {
+      "path": "src/app/api/v1/image-review/route.ts",
+      "sha256": "675dea4c52db118fa45f99100819a4b61e4e0e4672491f2e189e5d54f4db5d95"
+    },
+    {
+      "path": "src/app/api/v1/image-review/samples/route.ts",
+      "sha256": "7882bc7283aaa4d4efc0c79fff2176794f1d92e7efeedabd8ce2c8ae3e2a5547"
+    },
+    {
+      "path": "src/app/api/v1/irrigation/route.ts",
+      "sha256": "1824d1e3bb262667ce401d65549e4451cd105eeeb15a7a28f2b88ce88b5a3c6b"
+    },
+    {
+      "path": "src/app/api/v1/knowledge/chunks/[id]/route.ts",
+      "sha256": "157ef3b3211d349a2882746d899b59defb5f19f68b4151153aa5aa6970e4abeb"
+    },
+    {
+      "path": "src/app/api/v1/knowledge/route.ts",
+      "sha256": "dfa37bc89d0e96933826f802ca20f2410bc4175d41cfc1085ad5d0d12fd53efb"
+    },
+    {
+      "path": "src/app/api/v1/knowledge/search/route.ts",
+      "sha256": "d0544306d7953d59705c6592601a15de36e8517177d39fa4aedea700a5ae3ec7"
+    },
+    {
+      "path": "src/app/api/v1/maintenance/route.ts",
+      "sha256": "60a5fd3287ee68a3f22b00052387473e1d84fc99ca6f8ecc13264265803cfbe3"
+    },
+    {
+      "path": "src/app/api/v1/map/route.ts",
+      "sha256": "89ebc1ce731b98a7ba49ee2a182e0aaeca5fa7dfd9f31b54f11c97e4f66956b0"
+    },
+    {
+      "path": "src/app/api/v1/me/route.ts",
+      "sha256": "0bc0bf90154d3f91ae81dba560399aa5b5d17defcae420d4179fcb402b9b1694"
+    },
+    {
+      "path": "src/app/api/v1/media/[id]/route.ts",
+      "sha256": "67879b2706b91ae57be2cd244e8dc9a9b0b572bf191e6c133d3e3e7256191cfb"
+    },
+    {
+      "path": "src/app/api/v1/media/route.ts",
+      "sha256": "d46b7cb72aec620faab85776015cd9f7d96204583df43aa62d37aa01599600dd"
+    },
+    {
+      "path": "src/app/api/v1/objects/[id]/route.ts",
+      "sha256": "72516713378c6967f9343e718d8b904f236f7c4c57af4a80293f0d6b60d25bca"
+    },
+    {
+      "path": "src/app/api/v1/objects/route.ts",
+      "sha256": "ea44058752d347a8aae7dd46fd2dd49188a3f09ba8839d476041746b55f8ffc8"
+    },
+    {
+      "path": "src/app/api/v1/operations/route.ts",
+      "sha256": "66a5d8e09be246596f9bc034354b6b0f2f0d3a356184751f42a4bdb7f4846f9e"
+    },
+    {
+      "path": "src/app/api/v1/points/[id]/readings/route.ts",
+      "sha256": "07d4c904a971bd2e03f6ab2b0c031cf05cfb160970766cc6d14d3723c4cd96f9"
+    },
+    {
+      "path": "src/app/api/v1/points/bindings/route.ts",
+      "sha256": "b6016b2da6f69ea36ac655d57e0792d9b35ca4087f2c9bf7686a5773991723e8"
+    },
+    {
+      "path": "src/app/api/v1/points/route.ts",
+      "sha256": "a5bec4a88a516271dd245351e91c0c496bf033960448175eb67e803974df6bd9"
+    },
+    {
+      "path": "src/app/api/v1/records/import/route.ts",
+      "sha256": "65b8b20434d41b17487398caa783fbdc1ab21747cf980eb429a164b917c4e48e"
+    },
+    {
+      "path": "src/app/api/v1/records/route.ts",
+      "sha256": "b525b2b459b1175105ec5e32c7f4f168f9614f726d2214d387960e0036dfd145"
+    },
+    {
+      "path": "src/app/api/v1/rules/route.ts",
+      "sha256": "27a63fba9b7b60afe88c07ba20ab9657e6a50864c358ae8689b36b9d5c40c355"
+    },
+    {
+      "path": "src/app/api/v1/shares/route.ts",
+      "sha256": "d5dc0c62891b98cf636cb55db16f1d071bda37b4880458106921f3b565ad6a36"
+    },
+    {
+      "path": "src/app/api/v1/sources/route.ts",
+      "sha256": "552fdcdc94efb28a085665edfc886f58b892fbb20c5e59bf9236697593bc24e0"
+    },
+    {
+      "path": "src/app/api/v1/tasks/route.ts",
+      "sha256": "c2e1b7ac125f37305d7828af3f0e6a57f5fd2649744d4e816dcfa15df14d937a"
+    },
+    {
+      "path": "src/app/api/v1/weather/route.ts",
+      "sha256": "d4ba3c878fe7158cb882ec24cb26588fec4fe0565ff1723bdfac23274eb51c7a"
+    },
+    {
+      "path": "src/app/api/v1/work-orders/route.ts",
+      "sha256": "fb8fe93951de65d3517b6cb8222335d046dbd57d2fcea69e07dd2ed3f65bdfed"
+    },
+    {
+      "path": "src/app/field/route.ts",
+      "sha256": "265b2e409d7f5a8c501b22dd5601913c22a22eaae6cf284fe7a0fb0c060c84f7"
+    },
+    {
+      "path": "src/app/globals.css",
+      "sha256": "05a713abf5c279a364d5619b2461115b814625f53b89ef281e4acf31efc22f1d"
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "sha256": "980e01d0aa9e4c3dc4fdc5965678c92e58660b5c76f0bd6891f932a81773a328"
+    },
+    {
+      "path": "src/app/login/login-form.tsx",
+      "sha256": "c3c00d414601554184e178c145a449553014af6601959a472536241548b99218"
+    },
+    {
+      "path": "src/app/login/page.tsx",
+      "sha256": "c4bc9d54271f1c5a8b3aaf56ca4f3edca1edc96d26053fb2e90b617cc7679eba"
+    },
+    {
+      "path": "src/app/page.tsx",
+      "sha256": "a52836d5b0c402b943a9880bb0745ab4fa4fae82c9391d7d083bbfc12ba35526"
+    },
+    {
+      "path": "src/components/platform/action-form.tsx",
+      "sha256": "47ff818c1080f3e53addcec480dd8c9fb75db75b597552f9b9faee8f43183f8d"
+    },
+    {
+      "path": "src/components/platform/data-list.tsx",
+      "sha256": "bf3736fde6dc345627dc50d9ef20a9758098959ad0db927e1aae07f09a3c6427"
+    },
+    {
+      "path": "src/components/platform/feedback-link.tsx",
+      "sha256": "0dd89f71825b73c675aacf5cf70350d8cc0bf7aba624781b8f060fa924203f11"
+    },
+    {
+      "path": "src/components/platform/fields.tsx",
+      "sha256": "d87119b901d5852d0e4d843e96c989cdaaff1089973f3ceea44caef091c4f55b"
+    },
+    {
+      "path": "src/components/platform/use-api.ts",
+      "sha256": "88df59752c2fcc9d79f98bc29ad5ca25e8d2b20fa4a02395b36900f4dcdcf55e"
+    },
+    {
+      "path": "src/db/migrate.ts",
+      "sha256": "82696868544baa5f80dd177b8d4035f651ad5b8fcc7caa5aa3abbca08d688a84"
+    },
+    {
+      "path": "src/db/pool.ts",
+      "sha256": "dd9c5a6e67d2c64bc257366c9a4b3f9515a506fe85e7a4e9491e85ea8055a5dc"
+    },
+    {
+      "path": "src/modules/alerts/claim-validity.ts",
+      "sha256": "5dccc68b6ba54b119043f5a4439ec827193da4fcccf2edcd1aebc06381825a87"
+    },
+    {
+      "path": "src/modules/alerts/claims.ts",
+      "sha256": "a415ec54aea861d53f9222ba5e5181e6ea73f337c4f0cb733e4b4991535e76bf"
+    },
+    {
+      "path": "src/modules/alerts/evaluate.ts",
+      "sha256": "fcb03973121f08822da303b18114b2095ea68d2800667fbc2c90f2529a0ea006"
+    },
+    {
+      "path": "src/modules/alerts/rules.ts",
+      "sha256": "40be776a465d4485b96c953a58e8063639f191a8c42b470aa58ae7d8eb868ee4"
+    },
+    {
+      "path": "src/modules/alerts/service.ts",
+      "sha256": "52bfb0d0c170265f07fd5e982408443a6c62519782c30fec448870f94d71f445"
+    },
+    {
+      "path": "src/modules/analysis/calculate.ts",
+      "sha256": "527694a457c5b20a4fb7cd05a07f8a56be078388521614e0d2ebd6d980269e59"
+    },
+    {
+      "path": "src/modules/analysis/service.ts",
+      "sha256": "e96fdec41b5c3a18301576fded8276ec91c32c5728e57174e97faf71383a4407"
+    },
+    {
+      "path": "src/modules/assistant/provider.ts",
+      "sha256": "80843fd6774f98834ad8345e434de8736e7512003951612aa160341da2c10d86"
+    },
+    {
+      "path": "src/modules/assistant/service.ts",
+      "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+    },
+    {
+      "path": "src/modules/assistant/validate.ts",
+      "sha256": "60e4f19ce3e65a6114fb0eed31aed1868d9e3a012e3de41bbd1e21084a807a02"
+    },
+    {
+      "path": "src/modules/briefings/schedule.ts",
+      "sha256": "1252b40bd5ff4cef1741311678799457805bc040a6f4370e417297108ae60e47"
+    },
+    {
+      "path": "src/modules/briefings/service.ts",
+      "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+    },
+    {
+      "path": "src/modules/calendars/service.ts",
+      "sha256": "674d1b0e9bb9b2abd05d7cb78f2424b8408168eff84a324ffd78a41510c5c459"
+    },
+    {
+      "path": "src/modules/cameras/service.ts",
+      "sha256": "bcee8bc31832c1d32d7881ac2b3bb669a4663eba8bcce138239916b107f93334"
+    },
+    {
+      "path": "src/modules/connections/weather.ts",
+      "sha256": "aa039f49205dd0b1270c68d4c59fdccc2d9486c2f1719504ad5c47ac665db1f4"
+    },
+    {
+      "path": "src/modules/field/common.ts",
+      "sha256": "2362821e1d4926b2eb7f071d9d11262fde62c3083afd21639ee03e107686d08a"
+    },
+    {
+      "path": "src/modules/field/shares.ts",
+      "sha256": "666438af6f89d31a33f2e848a0252856292646be671d3e9875ffe01226da192f"
+    },
+    {
+      "path": "src/modules/flights/service.ts",
+      "sha256": "e7d097fa945b0ffc782017cfb974933d7cc054cf2ae4adf2832d78bb68dfcefd"
+    },
+    {
+      "path": "src/modules/identity/access.ts",
+      "sha256": "ec44c6ddc399b52cffa12a5e0fbec369477cb96312a82cdcd996777cab61de2b"
+    },
+    {
+      "path": "src/modules/identity/common.ts",
+      "sha256": "1ce1f9404ac37769a243e23eb012439e7ab0d16e2abb97110a265f981aa4a439"
+    },
+    {
+      "path": "src/modules/identity/http.ts",
+      "sha256": "95fc108aa0131616b1e7bbf410a18a0ef078d2a352493785a781431f0719e4ee"
+    },
+    {
+      "path": "src/modules/identity/management.ts",
+      "sha256": "e01b3018b0bd792063f47e314371dbcfde8cb2794d300d899c2f485cd65c0aaa"
+    },
+    {
+      "path": "src/modules/identity/mfa.ts",
+      "sha256": "f4ea6a329265ca44f19f5c3aa9cc8c0b53d30c743ef2d5b2f970d54f9e3856fc"
+    },
+    {
+      "path": "src/modules/identity/password.ts",
+      "sha256": "0a2cc2110fd42f46958a85d7aadd705a3dcc089208b6e26ee825fb284065b3f7"
+    },
+    {
+      "path": "src/modules/identity/session.ts",
+      "sha256": "3325768483584555f18074441dab0b2894aff129bb2b49f63bc2332915365fc3"
+    },
+    {
+      "path": "src/modules/identity/wecom.ts",
+      "sha256": "87bdef0347fe011efe9cec5d42751ece36199e99f065a4b6aaadec7e4b1aefa6"
+    },
+    {
+      "path": "src/modules/image-review/service.ts",
+      "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+    },
+    {
+      "path": "src/modules/jobs/repository.ts",
+      "sha256": "dd99a3591430edef3e337e6e853ab585ddcfdeb8ce129234e504799ee74cda63"
+    },
+    {
+      "path": "src/modules/jobs/runner.ts",
+      "sha256": "2270a2ae8a047d465ebe299754deb2730d90c89c0209f50126f08356bd296739"
+    },
+    {
+      "path": "src/modules/knowledge/chunks.ts",
+      "sha256": "533cf32ba0828e3747e7a83aaa869876e96e2150f82d2efff548fe37efad7f8e"
+    },
+    {
+      "path": "src/modules/knowledge/service.ts",
+      "sha256": "38a821a909268d5293ccecbe0c06ac001454e0080c21a0f783caa3e652ddc291"
+    },
+    {
+      "path": "src/modules/maintenance/exports.ts",
+      "sha256": "d9f0c283bce855426b7d5a80c5b67a1c710d9e4e81bcbe2297023ba16d7de287"
+    },
+    {
+      "path": "src/modules/maintenance/records.ts",
+      "sha256": "577101ae6a10bd9b16b5c4f5aaaa76dad1868172f3e765410f4c14196ac83404"
+    },
+    {
+      "path": "src/modules/maintenance/work-orders.ts",
+      "sha256": "ea7b7881295af09930d5ac213288420dc8f084bd13113ac10eb8347a0528e222"
+    },
+    {
+      "path": "src/modules/map/service.ts",
+      "sha256": "a14de6c184831f7ae274c55591a8455c413284f4796b0a6b543c71a7c062565c"
+    },
+    {
+      "path": "src/modules/media/bundle.ts",
+      "sha256": "620b5d76d332fa654da486e0133ec31750a168edfcf02a4ee1e8edc8eb840b85"
+    },
+    {
+      "path": "src/modules/media/service.ts",
+      "sha256": "d001196c60b30a108c8204210f7a880a8671c27e748536aba29fafec5c36990a"
+    },
+    {
+      "path": "src/modules/media/storage.ts",
+      "sha256": "34af4b4925b6526c4527716f1043676bb62f0ecbed2df5836aca1a90eff1c311"
+    },
+    {
+      "path": "src/modules/models/process.ts",
+      "sha256": "7cd16230083bbd5da8fb5907049ed9fa7d5220ab2a3c53023442e5fe1840fd6e"
+    },
+    {
+      "path": "src/modules/notifications/escalation.ts",
+      "sha256": "761d5e7c9e67d2c2db89eb6eedca78c93fdd556e39ab0b7cd525e8115ad0b960"
+    },
+    {
+      "path": "src/modules/notifications/rosters.ts",
+      "sha256": "d1eb4aeea23e50d7abf3b7350be46aa5830d842e0e4b71040cf95af1c7a9f9b7"
+    },
+    {
+      "path": "src/modules/notifications/runner.ts",
+      "sha256": "decb96022984160928e732a3120aca7f5095536423258aed3b8ddb3842940b40"
+    },
+    {
+      "path": "src/modules/notifications/service.ts",
+      "sha256": "89d42bd993d15248525847f1d1f157af925ac2cf7dae23978087c28aa6a9f7f0"
+    },
+    {
+      "path": "src/modules/notifications/types.ts",
+      "sha256": "e3dc28932374dc65cd63904caa44f5309a6907c4a35ef5971bfd72c07e353c4e"
+    },
+    {
+      "path": "src/modules/notifications/voice.ts",
+      "sha256": "54e3482f0bce4f05911d5a87fcbd319375bf0fec970687b806a71e117f224c54"
+    },
+    {
+      "path": "src/modules/notifications/wecom.ts",
+      "sha256": "d2a8684ad7c0b3ae7a18835a880d4483f8556ba4ff6b8b3cdc5e19b341bd993d"
+    },
+    {
+      "path": "src/modules/operations/budget.ts",
+      "sha256": "880d673b11508e17323404db3f7585398a04e1a9ab6d0cd4aeec83429e83cb7f"
+    },
+    {
+      "path": "src/modules/operations/feedback.ts",
+      "sha256": "d0b565740bb81d73b2b452c2ac211374a1409287c2f875dcfac36c5ae49919e5"
+    },
+    {
+      "path": "src/modules/operations/heartbeat.ts",
+      "sha256": "db00471bdf5db73d254b87c3430eefef473d6488052bc2f36521845ded9a0b16"
+    },
+    {
+      "path": "src/modules/operations/recovery.ts",
+      "sha256": "512dd5549a74dcf5491803697efc38b744878094daf2653ddd3b382770343383"
+    },
+    {
+      "path": "src/modules/records/service.ts",
+      "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+    },
+    {
+      "path": "src/modules/registry/batches.ts",
+      "sha256": "4628298fe65b1e8b3ea453911b4e564bcdae7f4d89bfe7c77df7e083cfcde70a"
+    },
+    {
+      "path": "src/modules/registry/devices.ts",
+      "sha256": "849ed0d8a4e28d2ebf3aef873daf375fdc42269cb03fde91a3e023712f5ea2e1"
+    },
+    {
+      "path": "src/modules/registry/import.ts",
+      "sha256": "892bdf25d2074ab80b52e4a9163e7910846dec25684e4f08fc0c468b8e988de6"
+    },
+    {
+      "path": "src/modules/registry/objects.ts",
+      "sha256": "26a687f5f82011150f266058e4326efd78a6ec3a5803344a2f668f618291fb2f"
+    },
+    {
+      "path": "src/modules/registry/points.ts",
+      "sha256": "ef3a36b9c80cfffff9405a78391caabc12f330985ac7889403b1e55ba56627b1"
+    },
+    {
+      "path": "src/modules/tasks/service.ts",
+      "sha256": "c6b86c85e5f64e1d75cb2ce9fb228a12de18c430d3963b7065cb875e0187b15e"
+    },
+    {
+      "path": "src/modules/telemetry/identity.ts",
+      "sha256": "b92bece1789923152fcc98973c678a2c04512437b7ee2b7bea3c6993041534c8"
+    },
+    {
+      "path": "src/modules/telemetry/ingest.ts",
+      "sha256": "e6331b609db3c94e9453abaebcb4d36bfb0d42b24fb6cbefcb11bf8482375e3b"
+    },
+    {
+      "path": "src/modules/telemetry/normalize.ts",
+      "sha256": "6fa5d1c32bdc38e04cbfa86f9f93b08cfd7ae21b5497788af1307214cf38561d"
+    },
+    {
+      "path": "src/modules/telemetry/quality.ts",
+      "sha256": "b02aa59e7bbd1b6ec709a7bfc9ce04388c02e445f69c33e3dacb83301868ab23"
+    },
+    {
+      "path": "src/modules/telemetry/queries.ts",
+      "sha256": "cd47a6d5562aa92519166f8a89d88e86867b6dc3db3319eb6e6f417655260b53"
+    },
+    {
+      "path": "src/modules/telemetry/types.ts",
+      "sha256": "d724779f3fcefab74f1657c0bf2e9ed733ede933995d063836a201cca85baae9"
+    },
+    {
+      "path": "src/modules/weather/presentation.ts",
+      "sha256": "fa7522538ff69491a3574ea9f63ada02442ac6230b426bfba3a7461bfe6a5f79"
+    },
+    {
+      "path": "src/modules/weather/service.ts",
+      "sha256": "2765c3cf7ff1155bf3bbad641edb4cc66c0aeaa2ce2074ad17482ec2e2bbdec1"
+    },
+    {
+      "path": "src/platform/api.ts",
+      "sha256": "781f87f8ec5561c501859b0bbd4e7dc47ec01efa267d74acebf30c7a0c5d0036"
+    },
+    {
+      "path": "src/platform/clock.ts",
+      "sha256": "0e6130609f8b2fcfc42033d7d03639a6341fafd29af58d788b99f8ecb4442327"
+    },
+    {
+      "path": "src/platform/config.ts",
+      "sha256": "d81950edd9f750ef53fa68016a7c3ee246e3d34b5a4dfbe7e06dd3c3e849b5c2"
+    },
+    {
+      "path": "src/platform/error.ts",
+      "sha256": "dd50738ba3ad67225fedf09097958312548dde814e6ca131f9ed86f3b1bab301"
+    },
+    {
+      "path": "src/platform/json.ts",
+      "sha256": "258379333913bc7bf59c83ceffed03783d70a74ab1abeee9934bde4a0d29b865"
+    },
+    {
+      "path": "src/platform/types.ts",
+      "sha256": "ad24fdf415c2586952cad1feb68c8d1bc1dd29c5b1498c256a981f00c70c12d7"
+    },
+    {
+      "path": "src/platform/validation.ts",
+      "sha256": "f65411174ac6481252d0692750df00a659601a18b17764b7375cda499caf579c"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "53180372a38c1d48620aa6154c77d385ea88cd2c7e91c367dfb09f206d45a203"
+    },
+    {
+      "path": "workers/alarms.ts",
+      "sha256": "d80f7d2cfff0e8f929cf8eca13dda5c3326f2f14ec0e73dbeec447cb8648bdcd"
+    },
+    {
+      "path": "workers/image-review.ts",
+      "sha256": "f72c907b609795c07229eb5e594972ef2fc3a2b0678c678974c51b73aa73cc6e"
+    },
+    {
+      "path": "workers/inference.mjs",
+      "sha256": "90c626f9dee4caa09dc9b0ede9fbf71dd6c9b776c88506ac23514e8c5b9aa705"
+    },
+    {
+      "path": "workers/ingest.ts",
+      "sha256": "850f1abc6d4d6a70e2cf14505b761df17f79416be0fc77078412b67150946671"
+    },
+    {
+      "path": "workers/intelligence.ts",
+      "sha256": "e20e2cd04e1c3286913f05fdd28f6ea1a4acb59b461099599ce786064d6010d8"
+    },
+    {
+      "path": "workers/knowledge.ts",
+      "sha256": "2d5a4138689e24902fe206ee525900ac293fe71d141ea6adc54cda1dd23feaf0"
+    },
+    {
+      "path": "workers/media.ts",
+      "sha256": "39a33456d8dcc5fbaa10668a18c751d26c74e392cbf0697c54f02ccf2f4b58d0"
+    },
+    {
+      "path": "workers/notifications.ts",
+      "sha256": "80eb5851a104bd740ee1dfbbbeb662a92e7a8ec1b4c5106e02c2444394286561"
+    },
+    {
+      "path": "workers/weather.ts",
+      "sha256": "605bbf1ac02b28977157157e2c103a3e607eb24f65783ec68aa73f23c214beef"
+    }
+  ]
+}
