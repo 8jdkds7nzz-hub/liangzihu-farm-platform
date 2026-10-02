@@ -1,0 +1,1798 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-02T05:10:22.973756+00:00",
+  "baselineCommit": "d26720bd5a19af7184c9c0a8a53307bfad077ac5",
+  "kind": "post_implementation_design_audit",
+  "sourceChanged": false,
+  "productionAccepted": false,
+  "historicalTestEvidence": "docs/acceptance/1b/司空接入交付核对.json",
+  "requirements": [
+    {
+      "id": "B01-01",
+      "title": "边界来源、坐标转换与版本",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/map/service.ts",
+          "symbol": "saveBoundary",
+          "sha256": "a14de6c184831f7ae274c55591a8455c413284f4796b0a6b543c71a7c062565c"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "边界版本、错误坐标与权限；未覆盖图层/航次叠加",
+      "gapIds": [],
+      "externalAcceptance": "G01真实坐标/图纸确认",
+      "originalRequirements": [
+        "R19",
+        "R27"
+      ]
+    },
+    {
+      "id": "B01-02",
+      "title": "空间查询、缩放、对象点击",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/map/service.ts",
+          "symbol": "listMap",
+          "sha256": "a14de6c184831f7ae274c55591a8455c413284f4796b0a6b543c71a7c062565c"
+        },
+        {
+          "path": "src/app/(platform)/map/panel.tsx",
+          "symbol": null,
+          "sha256": "28c0b8d00a493a4d8945c37fcea759aed3f2f35eddb75d79182e1b7b4c84057a"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts",
+        "tests/acceptance/field-browser.test.ts"
+      ],
+      "verifiedCoverage": "权限内空间结果，现有SVG/缩放；图层、平移另缺",
+      "gapIds": [
+        "B-G01"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R19",
+        "R27"
+      ]
+    },
+    {
+      "id": "B01-03",
+      "title": "图层、航次覆盖和成果比较",
+      "implementationStatus": "待补代码",
+      "code": [
+        {
+          "path": "src/modules/map/service.ts",
+          "symbol": "listMap",
+          "sha256": "a14de6c184831f7ae274c55591a8455c413284f4796b0a6b543c71a7c062565c"
+        },
+        {
+          "path": "src/modules/flights/service.ts",
+          "symbol": "importFlight",
+          "sha256": "e7d097fa945b0ffc782017cfb974933d7cc054cf2ae4adf2832d78bb68dfcefd"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "现有测试不验证这些行为",
+      "gapIds": [
+        "B-G01"
+      ],
+      "externalAcceptance": "G01/G08覆盖和栅格基准",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "B01-04",
+      "title": "设备点位及专家地图上下文",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/map/service.ts",
+          "symbol": "savePosition",
+          "sha256": "a14de6c184831f7ae274c55591a8455c413284f4796b0a6b543c71a7c062565c"
+        },
+        {
+          "path": "src/modules/field/shares.ts",
+          "symbol": "shareResource",
+          "sha256": "666438af6f89d31a33f2e848a0252856292646be671d3e9875ffe01226da192f"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts",
+        "tests/integration/field-security.test.ts"
+      ],
+      "verifiedCoverage": "点位API存在；没有完整点位UI和map事项分享验收",
+      "gapIds": [
+        "B-G01",
+        "B-G06"
+      ],
+      "externalAcceptance": "G01逐台位置确认",
+      "originalRequirements": [
+        "R19",
+        "R31"
+      ]
+    },
+    {
+      "id": "B02-01",
+      "title": "正式记录与未知用量",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/records/service.ts",
+          "symbol": "submitRecord",
+          "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+        },
+        {
+          "path": "src/modules/records/service.ts",
+          "symbol": "recordContent",
+          "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "完整附件确认、null与0、稳定提交及冲突",
+      "gapIds": [],
+      "externalAcceptance": "实际人员填报核对",
+      "originalRequirements": [
+        "R05",
+        "R21",
+        "R22"
+      ]
+    },
+    {
+      "id": "B02-02",
+      "title": "原件/预览、私有读取和校验",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/media/service.ts",
+          "symbol": "prepareMedia",
+          "sha256": "d001196c60b30a108c8204210f7a880a8671c27e748536aba29fafec5c36990a"
+        },
+        {
+          "path": "src/modules/media/service.ts",
+          "symbol": "uploadMedia",
+          "sha256": "d001196c60b30a108c8204210f7a880a8671c27e748536aba29fafec5c36990a"
+        },
+        {
+          "path": "src/modules/media/service.ts",
+          "symbol": "readMedia",
+          "sha256": "d001196c60b30a108c8204210f7a880a8671c27e748536aba29fafec5c36990a"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts",
+        "tests/acceptance/field-browser.test.ts"
+      ],
+      "verifiedCoverage": "原件/预览、字节/SHA、缺文件、权限与整次确认；仅限现有小文件",
+      "gapIds": [],
+      "externalAcceptance": "真实私有桶/手机格式",
+      "originalRequirements": [
+        "R05",
+        "R19",
+        "R24"
+      ]
+    },
+    {
+      "id": "B02-03",
+      "title": "更正与技术员审核",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/records/service.ts",
+          "symbol": "submitRecord",
+          "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+        },
+        {
+          "path": "src/modules/records/service.ts",
+          "symbol": "reviewRecord",
+          "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "追加更正、原链保留，review记录",
+      "gapIds": [],
+      "externalAcceptance": "实际审核流程",
+      "originalRequirements": [
+        "R13",
+        "R27"
+      ]
+    },
+    {
+      "id": "B02-04",
+      "title": "逐行表格导入及重试",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/records/service.ts",
+          "symbol": "importRecords",
+          "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "原行号、失败行、重复成功行防重",
+      "gapIds": [],
+      "externalAcceptance": "真实表格样本",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "B02-05",
+      "title": "副本复制、复读和恢复",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/media/service.ts",
+          "symbol": "backupAsset",
+          "sha256": "d001196c60b30a108c8204210f7a880a8671c27e748536aba29fafec5c36990a"
+        },
+        {
+          "path": "src/modules/media/storage.ts",
+          "symbol": "localStore",
+          "sha256": "34af4b4925b6526c4527716f1043676bb62f0ecbed2df5836aca1a90eff1c311"
+        },
+        {
+          "path": "ops/restore-check.ts",
+          "symbol": null,
+          "sha256": "79cdca6d63118181708b50aeb28b119c6c3a5d8917a452b4d4a62eb1e87b22d5"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field-security.test.ts",
+        "tests/integration/remote-media-restore.test.ts"
+      ],
+      "verifiedCoverage": "本机隔离schema/目录复读，不证明异地/WAL/RPO/RTO",
+      "gapIds": [],
+      "externalAcceptance": "生产NAS/独立账号/容量与恢复演练",
+      "originalRequirements": [
+        "R09",
+        "R24"
+      ]
+    },
+    {
+      "id": "B02-06",
+      "title": "大型视频/栅格、续传和Range",
+      "implementationStatus": "待补代码",
+      "code": [
+        {
+          "path": "src/modules/media/service.ts",
+          "symbol": "uploadMedia",
+          "sha256": "d001196c60b30a108c8204210f7a880a8671c27e748536aba29fafec5c36990a"
+        },
+        {
+          "path": "src/modules/media/remote-download.ts",
+          "symbol": "REMOTE_MEDIA_MAX_BYTES",
+          "sha256": "77dcfe4a21ad650a839fac4dfdf2cab5a55519a1dee718a16ef534d066452004"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/remote-media.test.ts"
+      ],
+      "verifiedCoverage": "现有上限拒绝测试，不是大文件处理通过",
+      "gapIds": [
+        "B-G03"
+      ],
+      "externalAcceptance": "真实大小/带宽/存储额度",
+      "originalRequirements": [
+        "R24",
+        "R27"
+      ]
+    },
+    {
+      "id": "B03-01",
+      "title": "账号PIN加密草稿与离线重开",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "public/field.js",
+          "symbol": null,
+          "sha256": "829525c2c6db5b7a6e3cc059e7fe933061c4845b67891db1725777eafaea03eb"
+        },
+        {
+          "path": "public/field-sw.js",
+          "symbol": null,
+          "sha256": "8f7ebf83c2ab2c4e6f097006e4c908974a34eaae1554a63cc6be0e68cc6b5520"
+        }
+      ],
+      "existingTests": [
+        "tests/acceptance/field-browser.test.ts"
+      ],
+      "verifiedCoverage": "真实本机浏览器断网、关页、重开；未验真手机",
+      "gapIds": [],
+      "externalAcceptance": "iOS/Android/企业微信型号与版本",
+      "originalRequirements": [
+        "R21",
+        "R23",
+        "R34"
+      ]
+    },
+    {
+      "id": "B03-02",
+      "title": "附件中断、确认丢失与稳定重试",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "public/field.js",
+          "symbol": null,
+          "sha256": "829525c2c6db5b7a6e3cc059e7fe933061c4845b67891db1725777eafaea03eb"
+        },
+        {
+          "path": "src/modules/records/service.ts",
+          "symbol": "submitRecord",
+          "sha256": "2142502c4ccb97609b9ff5232da500cb9367a8c2c2d1eb23cc1542944980822b"
+        }
+      ],
+      "existingTests": [
+        "tests/acceptance/field-browser.test.ts",
+        "tests/integration/field-security.test.ts"
+      ],
+      "verifiedCoverage": "部分附件失败、已确认老记录重试原ID、对象改版",
+      "gapIds": [],
+      "externalAcceptance": "弱网真机/本机空间不足",
+      "originalRequirements": [
+        "R05",
+        "R22"
+      ]
+    },
+    {
+      "id": "B03-03",
+      "title": "账号切换、撤权与定位同意",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "public/field.js",
+          "symbol": null,
+          "sha256": "829525c2c6db5b7a6e3cc059e7fe933061c4845b67891db1725777eafaea03eb"
+        },
+        {
+          "path": "src/modules/field/common.ts",
+          "symbol": "existingObject",
+          "sha256": "2362821e1d4926b2eb7f071d9d11262fde62c3083afd21639ee03e107686d08a"
+        }
+      ],
+      "existingTests": [
+        "tests/acceptance/field-browser.test.ts",
+        "tests/integration/field-security.test.ts"
+      ],
+      "verifiedCoverage": "账号隔离与撤权保留；位置由主动同意收集",
+      "gapIds": [],
+      "externalAcceptance": "员工告知、保留期限与终端遗失流程",
+      "originalRequirements": [
+        "R19",
+        "R22",
+        "R34"
+      ]
+    },
+    {
+      "id": "B04-01",
+      "title": "监控事件幂等与先排通知",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/cameras/service.ts",
+          "symbol": "receiveCameraEvent",
+          "sha256": "f478c8899dc206fc5afc3b252a065b550fcb7f17e4613de259077018132961d5"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts",
+        "tests/integration/ezviz-webhook.test.ts"
+      ],
+      "verifiedCoverage": "同事务告警/通知任务，重复防重；不等于真实送达",
+      "gapIds": [],
+      "externalAcceptance": "G07真实订阅/人员接收",
+      "originalRequirements": [
+        "R04",
+        "R25"
+      ]
+    },
+    {
+      "id": "B04-02",
+      "title": "萤石签名/事务确认/独立处理",
+      "implementationStatus": "已实现限定契约",
+      "code": [
+        {
+          "path": "src/modules/connections/ezviz.ts",
+          "symbol": "receiveEzvizWebhook",
+          "sha256": "7a55a514a8a79790e51ec18c409bc44809be4757db34f8ce6b6fad01da31bd61"
+        },
+        {
+          "path": "src/modules/connections/ezviz.ts",
+          "symbol": "runEzvizReceipt",
+          "sha256": "7a55a514a8a79790e51ec18c409bc44809be4757db34f8ce6b6fad01da31bd61"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/ezviz-webhook.test.ts",
+        "tests/integration/ezviz-webhook.test.ts",
+        "tests/acceptance/ezviz-webhook-browser.test.ts"
+      ],
+      "verifiedCoverage": "签名、冲突、版本/权限/租约、消息独立任务",
+      "gapIds": [],
+      "externalAcceptance": "G07真实权益/ISAPI负载/APP提醒影响",
+      "originalRequirements": [
+        "R02",
+        "R04",
+        "R19",
+        "R25"
+      ]
+    },
+    {
+      "id": "B04-03",
+      "title": "图片私有导入/备份/后补",
+      "implementationStatus": "已实现限定契约",
+      "code": [
+        {
+          "path": "src/modules/connections/ezviz.ts",
+          "symbol": "runEzvizImage",
+          "sha256": "7a55a514a8a79790e51ec18c409bc44809be4757db34f8ce6b6fad01da31bd61"
+        },
+        {
+          "path": "src/modules/media/remote-import.ts",
+          "symbol": "runRemoteImport",
+          "sha256": "219c2669ce6f793f01ea8a5fdd274e68b68aa2f1854b4446fb34efdec37ed3fe"
+        },
+        {
+          "path": "src/modules/cameras/service.ts",
+          "symbol": "attachCameraImage",
+          "sha256": "f478c8899dc206fc5afc3b252a065b550fcb7f17e4613de259077018132961d5"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/remote-media.test.ts",
+        "tests/integration/ezviz-webhook.test.ts"
+      ],
+      "verifiedCoverage": "20MiB以内明文链接，SSRF/撤权/租约/关联/复制；尚未自动图片复核",
+      "gapIds": [
+        "C-G09"
+      ],
+      "externalAcceptance": "G07真实图片与加密契约",
+      "originalRequirements": [
+        "R04",
+        "R24"
+      ]
+    },
+    {
+      "id": "B04-04",
+      "title": "直播、回放、抓拍及预置位",
+      "implementationStatus": "待补代码与厂商条件",
+      "code": [
+        {
+          "path": "src/modules/cameras/service.ts",
+          "symbol": "getCameraCapability",
+          "sha256": "f478c8899dc206fc5afc3b252a065b550fcb7f17e4613de259077018132961d5"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "能力校验存在；函数仍adapter_not_connected，无实际播放通过",
+      "gapIds": [
+        "B-G05"
+      ],
+      "externalAcceptance": "G07机型/固件/权益/播放和动作授权",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "B05-01",
+      "title": "航次清单、版本及加工父链",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/flights/service.ts",
+          "symbol": "importFlight",
+          "sha256": "e7d097fa945b0ffc782017cfb974933d7cc054cf2ae4adf2832d78bb68dfcefd"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "文件清单防重、父链/缺失文件，不做指数分析",
+      "gapIds": [],
+      "externalAcceptance": "G08真实航次与坐标/垂直基准",
+      "originalRequirements": [
+        "R24",
+        "R27"
+      ]
+    },
+    {
+      "id": "B05-02",
+      "title": "司空只GET任务/清单/原件",
+      "implementationStatus": "已实现限定契约",
+      "code": [
+        {
+          "path": "src/modules/connections/flighthub.ts",
+          "symbol": "runDjiJob",
+          "sha256": "75c2c1474ce6552fe229571b21bf76bd74c26fb82c952121d4a8043b7af8addf"
+        },
+        {
+          "path": "src/modules/connections/flighthub.ts",
+          "symbol": "confirmDjiFlight",
+          "sha256": "75c2c1474ce6552fe229571b21bf76bd74c26fb82c952121d4a8043b7af8addf"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/flighthub.test.ts",
+        "tests/integration/flighthub.test.ts",
+        "tests/acceptance/flighthub-browser.test.ts"
+      ],
+      "verifiedCoverage": "受控HTTP替身及浏览器，未知/权限/配额/计划实际分离",
+      "gapIds": [],
+      "externalAcceptance": "G08区域/版本/供货/组织项目许可",
+      "originalRequirements": [
+        "R19",
+        "R24",
+        "R25",
+        "R27"
+      ]
+    },
+    {
+      "id": "B05-03",
+      "title": "文件关联、完整/备份状态与恢复",
+      "implementationStatus": "已实现限定契约",
+      "code": [
+        {
+          "path": "src/modules/flights/service.ts",
+          "symbol": "linkFlightAsset",
+          "sha256": "e7d097fa945b0ffc782017cfb974933d7cc054cf2ae4adf2832d78bb68dfcefd"
+        },
+        {
+          "path": "src/modules/flights/service.ts",
+          "symbol": "listFlights",
+          "sha256": "e7d097fa945b0ffc782017cfb974933d7cc054cf2ae4adf2832d78bb68dfcefd"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/flighthub.test.ts",
+        "tests/integration/flighthub-restore.test.ts"
+      ],
+      "verifiedCoverage": "逐文件SHA及非空快照/原件恢复；有20MiB与500文件上限",
+      "gapIds": [
+        "B-G03"
+      ],
+      "externalAcceptance": "G08真实全清单和大文件",
+      "originalRequirements": [
+        "R09",
+        "R24"
+      ]
+    },
+    {
+      "id": "B05-04",
+      "title": "定位疑点与跨期成果呈现",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/flights/service.ts",
+          "symbol": "annotateFlight",
+          "sha256": "e7d097fa945b0ffc782017cfb974933d7cc054cf2ae4adf2832d78bb68dfcefd"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "仅文字注记；不覆盖asset/location/geometries或影像比较",
+      "gapIds": [
+        "B-G01",
+        "B-G02"
+      ],
+      "externalAcceptance": "G08可比成果/空间条件",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "B06-01",
+      "title": "物种/品种/阶段日历版本审核",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/calendars/service.ts",
+          "symbol": "saveCalendar",
+          "sha256": "674d1b0e9bb9b2abd05d7cb78f2424b8408168eff84a324ffd78a41510c5c459"
+        },
+        {
+          "path": "src/modules/calendars/service.ts",
+          "symbol": "reviewCalendar",
+          "sha256": "674d1b0e9bb9b2abd05d7cb78f2424b8408168eff84a324ffd78a41510c5c459"
+        },
+        {
+          "path": "src/modules/calendars/service.ts",
+          "symbol": "calendarWindows",
+          "sha256": "674d1b0e9bb9b2abd05d7cb78f2424b8408168eff84a324ffd78a41510c5c459"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "审核/撤回/匹配窗口；variety已有，不是缺字段",
+      "gapIds": [],
+      "externalAcceptance": "G09专业起点/日龄/规程",
+      "originalRequirements": [
+        "R32"
+      ]
+    },
+    {
+      "id": "B06-02",
+      "title": "派单确认、竞争领取和分项反馈",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/tasks/service.ts",
+          "symbol": "createTask",
+          "sha256": "c6b86c85e5f64e1d75cb2ce9fb228a12de18c430d3963b7065cb875e0187b15e"
+        },
+        {
+          "path": "src/modules/tasks/service.ts",
+          "symbol": "transitionTask",
+          "sha256": "c6b86c85e5f64e1d75cb2ce9fb228a12de18c430d3963b7065cb875e0187b15e"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "人工派单/竞争/观察判断动作；模型不执行",
+      "gapIds": [],
+      "externalAcceptance": "实际工人任务链",
+      "originalRequirements": [
+        "R06",
+        "R27",
+        "R32"
+      ]
+    },
+    {
+      "id": "B06-03",
+      "title": "跨人交班未完成任务",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/tasks/service.ts",
+          "symbol": "transitionTask",
+          "sha256": "c6b86c85e5f64e1d75cb2ce9fb228a12de18c430d3963b7065cb875e0187b15e"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "既有handover只解除claim且不换assignee，不能视作跨人交班通过",
+      "gapIds": [
+        "B-G04"
+      ],
+      "externalAcceptance": "实际替班安排",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "B06-04",
+      "title": "人工灌排分步骤台账",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/tasks/service.ts",
+          "symbol": "irrigationStep",
+          "sha256": "c6b86c85e5f64e1d75cb2ce9fb228a12de18c430d3963b7065cb875e0187b15e"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field.test.ts"
+      ],
+      "verifiedCoverage": "申请/确认/执行/结果/未执行及权限，不发控制",
+      "gapIds": [],
+      "externalAcceptance": "29套闸门现场作业签认",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "B07-01",
+      "title": "导出、关系保留和权限恢复",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/media/bundle.ts",
+          "symbol": "exportBundle",
+          "sha256": "620b5d76d332fa654da486e0133ec31750a168edfcf02a4ee1e8edc8eb840b85"
+        },
+        {
+          "path": "ops/restore-check.ts",
+          "symbol": null,
+          "sha256": "79cdca6d63118181708b50aeb28b119c6c3a5d8917a452b4d4a62eb1e87b22d5"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field-security.test.ts",
+        "tests/integration/flighthub-restore.test.ts"
+      ],
+      "verifiedCoverage": "本机隔离导出/数据库媒体恢复，不是生产灾备",
+      "gapIds": [],
+      "externalAcceptance": "NAS/WAL/真实通知电话/规模恢复",
+      "originalRequirements": [
+        "R09",
+        "R24",
+        "R27",
+        "R28"
+      ]
+    },
+    {
+      "id": "B07-02",
+      "title": "真机/人员/设备推广",
+      "implementationStatus": "待现场验收",
+      "code": [
+        {
+          "path": "docs/help/现场人员农事与离线操作卡.md",
+          "symbol": null,
+          "sha256": "4d62218a2d66e70c1148fc7c795d435d10c3ea8ce90dba14131de06ef70497ce"
+        }
+      ],
+      "existingTests": [
+        "tests/acceptance/field-browser.test.ts"
+      ],
+      "verifiedCoverage": "已有操作卡和本机浏览器证据；培训与真机未发生",
+      "gapIds": [],
+      "externalAcceptance": "G01/G07/G08/G09、企业微信/人员培训",
+      "originalRequirements": [
+        "R23",
+        "R36"
+      ]
+    },
+    {
+      "id": "C01-01",
+      "title": "审核公式、单位及可复算版本",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/analysis/service.ts",
+          "symbol": "saveDefinition",
+          "sha256": "e96fdec41b5c3a18301576fded8276ec91c32c5728e57174e97faf71383a4407"
+        },
+        {
+          "path": "src/modules/analysis/service.ts",
+          "symbol": "calculateMetric",
+          "sha256": "e96fdec41b5c3a18301576fded8276ec91c32c5728e57174e97faf71383a4407"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "有效样本、版本和补传追加；专业参数未签",
+      "gapIds": [],
+      "externalAcceptance": "G09真实阈值/公式",
+      "originalRequirements": [
+        "R13",
+        "R17"
+      ]
+    },
+    {
+      "id": "C01-02",
+      "title": "完整率、时长、缺测与积温",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/analysis/calculate.ts",
+          "symbol": "compute",
+          "sha256": "527694a457c5b20a4fb7cd05a07f8a56be078388521614e0d2ebd6d980269e59"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/intelligence.test.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "槽完整率、样本间隔/极值/坏值/日窗等工程口径",
+      "gapIds": [],
+      "externalAcceptance": "G09现场采样和积温定义",
+      "originalRequirements": [
+        "R17",
+        "R18"
+      ]
+    },
+    {
+      "id": "C01-03",
+      "title": "小时/日指标与补传调度",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/briefings/schedule.ts",
+          "symbol": "generateDue",
+          "sha256": "1252b40bd5ff4cef1741311678799457805bc040a6f4370e417297108ae60e47"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "只验证清晨每日生成；没有小时调度或全面补传重算",
+      "gapIds": [
+        "C-G06"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R13",
+        "R32"
+      ]
+    },
+    {
+      "id": "C01-04",
+      "title": "往年可比与提前推后天数",
+      "implementationStatus": "待补代码与专业数据",
+      "code": [
+        {
+          "path": "src/modules/weather/service.ts",
+          "symbol": "comparisonAllowed",
+          "sha256": "2765c3cf7ff1155bf3bbad641edb4cc66c0aeaa2ce2074ad17482ec2e2bbdec1"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "比较条件拒绝；没有可比样本天数产品链",
+      "gapIds": [
+        "C-G11"
+      ],
+      "externalAcceptance": "G09站点/物种/品种/阶段/往年数据",
+      "originalRequirements": [
+        "R18"
+      ]
+    },
+    {
+      "id": "C01-05",
+      "title": "天气分类与日预报只读",
+      "implementationStatus": "已实现限定契约",
+      "code": [
+        {
+          "path": "src/modules/weather/service.ts",
+          "symbol": "importWeather",
+          "sha256": "2765c3cf7ff1155bf3bbad641edb4cc66c0aeaa2ce2074ad17482ec2e2bbdec1"
+        },
+        {
+          "path": "src/modules/connections/weather.ts",
+          "symbol": "runSync",
+          "sha256": "aa039f49205dd0b1270c68d4c59fdccc2d9486c2f1719504ad5c47ac665db1f4"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/qweather.test.ts",
+        "tests/integration/weather-connection.test.ts",
+        "tests/acceptance/weather-connection-browser.test.ts"
+      ],
+      "verifiedCoverage": "日预报HTTP替身/配额/租约/未知发布时间；未接真实实况/预警/历史",
+      "gapIds": [],
+      "externalAcceptance": "G10天气账号/站点/数据许可",
+      "originalRequirements": [
+        "R17",
+        "R18",
+        "R25"
+      ]
+    },
+    {
+      "id": "C02-01",
+      "title": "文本资料来源/范围/审核/撤回",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/knowledge/service.ts",
+          "symbol": "createDocument",
+          "sha256": "38a821a909268d5293ccecbe0c06ac001454e0080c21a0f783caa3e652ddc291"
+        },
+        {
+          "path": "src/modules/knowledge/service.ts",
+          "symbol": "reviewDocument",
+          "sha256": "38a821a909268d5293ccecbe0c06ac001454e0080c21a0f783caa3e652ddc291"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "text/markdown范围/同版冲突/撤回，不是PDF或OCR处理",
+      "gapIds": [],
+      "externalAcceptance": "G09/G10专业来源与使用许可",
+      "originalRequirements": [
+        "R07",
+        "R20",
+        "R35"
+      ]
+    },
+    {
+      "id": "C02-02",
+      "title": "中文分块与BGE512实际向量",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/knowledge/chunks.ts",
+          "symbol": "chunkMarkdown",
+          "sha256": "533cf32ba0828e3747e7a83aaa869876e96e2150f82d2efff548fe37efad7f8e"
+        },
+        {
+          "path": "src/modules/knowledge/service.ts",
+          "symbol": "indexDocument",
+          "sha256": "38a821a909268d5293ccecbe0c06ac001454e0080c21a0f783caa3e652ddc291"
+        }
+      ],
+      "existingTests": [
+        "tests/unit/intelligence.test.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "实际BGE、标题/表头、版本隔离；长事务阻撤回",
+      "gapIds": [
+        "C-G03"
+      ],
+      "externalAcceptance": "实际资料规模/索引延迟",
+      "originalRequirements": [
+        "R07",
+        "R15",
+        "R20"
+      ]
+    },
+    {
+      "id": "C02-03",
+      "title": "权限先过滤的关键词/向量/混合",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/knowledge/service.ts",
+          "symbol": "searchKnowledge",
+          "sha256": "38a821a909268d5293ccecbe0c06ac001454e0080c21a0f783caa3e652ddc291"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "权限/审核/撤回/模型版本、精确距离、关键词降级",
+      "gapIds": [],
+      "externalAcceptance": "专业召回阈值签认",
+      "originalRequirements": [
+        "R07",
+        "R19",
+        "R35"
+      ]
+    },
+    {
+      "id": "C02-04",
+      "title": "引用和旧回答再次核有效性",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/knowledge/service.ts",
+          "symbol": "getCitation",
+          "sha256": "38a821a909268d5293ccecbe0c06ac001454e0080c21a0f783caa3e652ddc291"
+        },
+        {
+          "path": "src/modules/assistant/service.ts",
+          "symbol": "listAssistant",
+          "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "知识撤回/对象撤权已测；指标定义撤回未闭环",
+      "gapIds": [
+        "C-G05"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R20"
+      ]
+    },
+    {
+      "id": "C03-01",
+      "title": "稳定请求、对象范围与只读工具",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/assistant/service.ts",
+          "symbol": "requestAssistant",
+          "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+        },
+        {
+          "path": "src/modules/assistant/service.ts",
+          "symbol": "runReadTool",
+          "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "原请求防重、专家事项、拒任意SQL/工具",
+      "gapIds": [],
+      "externalAcceptance": "专家真实事项签认",
+      "originalRequirements": [
+        "R11",
+        "R19",
+        "R31"
+      ]
+    },
+    {
+      "id": "C03-02",
+      "title": "输入脱敏与外发默认关闭",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/assistant/validate.ts",
+          "symbol": "redact",
+          "sha256": "60e4f19ce3e65a6114fb0eed31aed1868d9e3a012e3de41bbd1e21084a807a02"
+        },
+        {
+          "path": "src/modules/assistant/provider.ts",
+          "symbol": "httpModel",
+          "sha256": "80843fd6774f98834ad8345e434de8736e7512003951612aa160341da2c10d86"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "脱敏、对象别名、默认关闭；没有真实外发",
+      "gapIds": [],
+      "externalAcceptance": "G10数据使用许可/型号",
+      "originalRequirements": [
+        "R30",
+        "R34"
+      ]
+    },
+    {
+      "id": "C03-03",
+      "title": "Kimi/DeepSeek状态与结构校验",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/assistant/service.ts",
+          "symbol": "runAssistant",
+          "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+        },
+        {
+          "path": "src/modules/assistant/validate.ts",
+          "symbol": "validateAnswer",
+          "sha256": "60e4f19ce3e65a6114fb0eed31aed1868d9e3a012e3de41bbd1e21084a807a02"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "替身验证超时/非法引用/备用/截断，不证明真实语义",
+      "gapIds": [
+        "C-G04",
+        "C-G13"
+      ],
+      "externalAcceptance": "真实主备账号/参数/许可",
+      "originalRequirements": [
+        "R06",
+        "R35"
+      ]
+    },
+    {
+      "id": "C03-04",
+      "title": "租约、重启和未知结果持久化",
+      "implementationStatus": "待修复代码",
+      "code": [
+        {
+          "path": "src/modules/assistant/service.ts",
+          "symbol": "runAssistant",
+          "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+        },
+        {
+          "path": "workers/intelligence.ts",
+          "symbol": null,
+          "sha256": "e20e2cd04e1c3286913f05fdd28f6ea1a4acb59b461099599ce786064d6010d8"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "已有队列租约测试不覆盖助手业务写回；本轮C-G01复现确认",
+      "gapIds": [
+        "C-G01"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R15",
+        "R25"
+      ]
+    },
+    {
+      "id": "C03-05",
+      "title": "限额、未知价格和独立电话预算",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/assistant/service.ts",
+          "symbol": "saveModelPolicy",
+          "sha256": "42cfe1b9ffa14686374b912f61efd8453dfd4d4b662d4529e420888546f5e519"
+        },
+        {
+          "path": "src/modules/operations/budget.ts",
+          "symbol": "recordUsage",
+          "sha256": "880d673b11508e17323404db3f7585398a04e1a9ab6d0cd4aeec83429e83cb7f"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "保守预留、80%/上限、未知价格和独立电话已测；价格快照/未知对账未齐",
+      "gapIds": [
+        "C-G01",
+        "C-G04"
+      ],
+      "externalAcceptance": "G10真实单价账单",
+      "originalRequirements": [
+        "R33"
+      ]
+    },
+    {
+      "id": "C04-01",
+      "title": "完整程序事项和模型独立解释",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "createBriefing",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        },
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "requestBriefingExplanation",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/acceptance/intelligence-browser.test.ts"
+      ],
+      "verifiedCoverage": "缺口保留/模型不删事项；撤回/跨期指标筛选尚缺",
+      "gapIds": [
+        "C-G05"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R06",
+        "R13",
+        "R17"
+      ]
+    },
+    {
+      "id": "C04-02",
+      "title": "日/周/月周期口径与故障隔离",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/briefings/schedule.ts",
+          "symbol": "generateDue",
+          "sha256": "1252b40bd5ff4cef1741311678799457805bc040a6f4370e417297108ae60e47"
+        },
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "createBriefing",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "手工三周期、自动仅日报；一个坏定义可影响整事务",
+      "gapIds": [
+        "C-G06"
+      ],
+      "externalAcceptance": "专业周期起止签认",
+      "originalRequirements": [
+        "R32"
+      ]
+    },
+    {
+      "id": "C04-03",
+      "title": "农事、维护及人工干预并列复盘",
+      "implementationStatus": "待补代码",
+      "code": [
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "createBriefing",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "现有只取指标/告警/天气/日历/未结任务",
+      "gapIds": [
+        "C-G08"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R27"
+      ]
+    },
+    {
+      "id": "C04-04",
+      "title": "逐项审阅与草稿任务边界",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "reviewItem",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        },
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "toTaskDraft",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/acceptance/intelligence-browser.test.ts"
+      ],
+      "verifiedCoverage": "审阅/修改/驳回、task仍draft；重试真实state与全部审阅状态尚缺",
+      "gapIds": [
+        "C-G07"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R06"
+      ]
+    },
+    {
+      "id": "C04-05",
+      "title": "老板/技术员/工人分版",
+      "implementationStatus": "待补代码",
+      "code": [
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "publishBriefing",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "现有roleVersion标签，没有独立内容；本轮同事项快照相同已复现",
+      "gapIds": [
+        "C-G07"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R06",
+        "R31"
+      ]
+    },
+    {
+      "id": "C04-06",
+      "title": "受控发布、期限、明确撤回",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "publishBriefing",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        },
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "readPublication",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "当前范围和expiry已测；publication撤回API/UI不存在",
+      "gapIds": [
+        "C-G07"
+      ],
+      "externalAcceptance": "专家消息渠道/真实接收",
+      "originalRequirements": [
+        "R20",
+        "R31"
+      ]
+    },
+    {
+      "id": "C04-07",
+      "title": "逾期审阅和替班人员提醒",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/briefings/service.ts",
+          "symbol": "remindOverdue",
+          "sha256": "ac9190b37065d02a59b58d679d32660638afdd20d25f53b159a9dcf3403b6327"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "只落pending/standby；没有发送完成证据",
+      "gapIds": [
+        "C-G06",
+        "C-G07"
+      ],
+      "externalAcceptance": "真实企业微信/短信通知许可",
+      "originalRequirements": [
+        "R32"
+      ]
+    },
+    {
+      "id": "C05-01",
+      "title": "YOLOS本地推理追加不改处置",
+      "implementationStatus": "已实现并有局部工程证据",
+      "code": [
+        {
+          "path": "src/modules/image-review/service.ts",
+          "symbol": "runImageReview",
+          "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+        },
+        {
+          "path": "workers/inference.mjs",
+          "symbol": null,
+          "sha256": "90c626f9dee4caa09dc9b0ede9fbf71dd6c9b776c88506ac23514e8c5b9aa705"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "实际CPU模型/格式/失败及不改alert，非现场效果",
+      "gapIds": [],
+      "externalAcceptance": "G10现场样本/许可",
+      "originalRequirements": [
+        "R08",
+        "R15"
+      ]
+    },
+    {
+      "id": "C05-02",
+      "title": "图片完整保存后自动排复核",
+      "implementationStatus": "待补代码",
+      "code": [
+        {
+          "path": "src/modules/cameras/service.ts",
+          "symbol": "attachCameraImage",
+          "sha256": "f478c8899dc206fc5afc3b252a065b550fcb7f17e4613de259077018132961d5"
+        },
+        {
+          "path": "src/modules/image-review/service.ts",
+          "symbol": "queueReview",
+          "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "现有测试手工queue；本轮自动任务数0确认",
+      "gapIds": [
+        "C-G09"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R04"
+      ]
+    },
+    {
+      "id": "C05-03",
+      "title": "执行前后当前权限与租约",
+      "implementationStatus": "待修复代码",
+      "code": [
+        {
+          "path": "src/modules/image-review/service.ts",
+          "symbol": "runImageReview",
+          "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+        },
+        {
+          "path": "workers/image-review.ts",
+          "symbol": null,
+          "sha256": "f72c907b609795c07229eb5e594972ef2fc3a2b0678c678974c51b73aa73cc6e"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "本轮已复现撤权后仍处理；现有模型测试未覆盖",
+      "gapIds": [
+        "C-G01",
+        "C-G02"
+      ],
+      "externalAcceptance": "",
+      "originalRequirements": [
+        "R19",
+        "R20",
+        "R25"
+      ]
+    },
+    {
+      "id": "C05-04",
+      "title": "独立样本、幂等一致和标注",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/image-review/service.ts",
+          "symbol": "recordFieldSample",
+          "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+        },
+        {
+          "path": "src/modules/image-review/service.ts",
+          "symbol": "labelSample",
+          "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "场景/未知阶段已有；异内容重复/自标本轮已复现",
+      "gapIds": [
+        "C-G10"
+      ],
+      "externalAcceptance": "G10独立标注录像/现场抽查",
+      "originalRequirements": [
+        "R16",
+        "R35"
+      ]
+    },
+    {
+      "id": "C05-05",
+      "title": "分环节误报漏报、积压隔离",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/image-review/service.ts",
+          "symbol": "listImageReviews",
+          "sha256": "d693bf8613bd75b879abdd1d88d472809a233744982bdf75f82203c6aebeb6ff"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "只有链路数量；没有基于标签TP/FP/FN或真实负载演练",
+      "gapIds": [
+        "C-G10"
+      ],
+      "externalAcceptance": "G10白天/夜间/雨雾及实时电话负载",
+      "originalRequirements": [
+        "R15",
+        "R16"
+      ]
+    },
+    {
+      "id": "C06-01",
+      "title": "冻结集、多轮检索和版本报告",
+      "implementationStatus": "已实现限定评测",
+      "code": [
+        {
+          "path": "tools/evaluate.ts",
+          "symbol": null,
+          "sha256": "6535026cadc35c6c4901993bcd70fe247ad246b8187f7a07e19f6a837dbc3999"
+        },
+        {
+          "path": "tests/evaluations/一期固定评测集.json",
+          "symbol": null,
+          "sha256": "d546762512a652c98d6ab708ef9cd33801d7c3f5f704e097f2e9e8c5d70289e4"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "6题2轮检索；boundaryCases不能冒充全部脚本执行",
+      "gapIds": [],
+      "externalAcceptance": "专业题集/阈值签认",
+      "originalRequirements": [
+        "R35"
+      ]
+    },
+    {
+      "id": "C06-02",
+      "title": "真实模型证据支持/限制/费用比较",
+      "implementationStatus": "待补评测与外部数据",
+      "code": [
+        {
+          "path": "tools/evaluate.ts",
+          "symbol": null,
+          "sha256": "6535026cadc35c6c4901993bcd70fe247ad246b8187f7a07e19f6a837dbc3999"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/intelligence.test.ts"
+      ],
+      "verifiedCoverage": "替身程序校验，不是主备真实语义评测",
+      "gapIds": [
+        "C-G12"
+      ],
+      "externalAcceptance": "G10专业问题/真实账单",
+      "originalRequirements": [
+        "R33",
+        "R35"
+      ]
+    },
+    {
+      "id": "C07-01",
+      "title": "权限、关系导出与新增表恢复",
+      "implementationStatus": "已实现局部",
+      "code": [
+        {
+          "path": "src/modules/media/bundle.ts",
+          "symbol": "exportBundle",
+          "sha256": "620b5d76d332fa654da486e0133ec31750a168edfcf02a4ee1e8edc8eb840b85"
+        },
+        {
+          "path": "ops/restore-check.ts",
+          "symbol": null,
+          "sha256": "79cdca6d63118181708b50aeb28b119c6c3a5d8917a452b4d4a62eb1e87b22d5"
+        }
+      ],
+      "existingTests": [
+        "tests/integration/field-security.test.ts",
+        "tests/integration/weather-connection-restore.test.ts",
+        "tests/integration/flighthub-restore.test.ts"
+      ],
+      "verifiedCoverage": "历史隔离103表/媒体实测，productionReady=false",
+      "gapIds": [],
+      "externalAcceptance": "生产NAS/WAL/规模/渠道恢复",
+      "originalRequirements": [
+        "R09",
+        "R24",
+        "R27"
+      ]
+    },
+    {
+      "id": "C07-02",
+      "title": "2—4周试运行、培训与外审",
+      "implementationStatus": "待现场验收",
+      "code": [
+        {
+          "path": "docs/help/技术员分析与简报操作卡.md",
+          "symbol": null,
+          "sha256": "e03b781d7bb3197ad39402cd892364269776dc92d54a713ed4f5a31eadd94e66"
+        }
+      ],
+      "existingTests": [
+        "tests/acceptance/intelligence-browser.test.ts"
+      ],
+      "verifiedCoverage": "已有本机页面/操作卡；未发生试运行与外审",
+      "gapIds": [],
+      "externalAcceptance": "真实人员、专业负责人、工程师外审",
+      "originalRequirements": [
+        "R10",
+        "R36"
+      ]
+    }
+  ],
+  "openGaps": [
+    {
+      "id": "B-G01",
+      "priority": "P1",
+      "title": "图层、平移、覆盖、点位UI与二维成果呈现",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/map/service.ts",
+        "src/app/(platform)/map/panel.tsx",
+        "src/modules/flights/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "B-G02",
+      "priority": "P1",
+      "title": "疑点只有note，缺文件/几何位置",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/flights/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "B-G03",
+      "priority": "P1",
+      "title": "20MiB上限，缺大文件流式/续传/Range",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/media/service.ts",
+        "src/modules/media/remote-download.ts",
+        "db/migrations/012_records.sql"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "B-G04",
+      "priority": "P1",
+      "title": "handover不换assignee，跨人交班未实现",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/tasks/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "B-G05",
+      "priority": "P1+外部",
+      "title": "播放/抓拍能力未接实际调用，预置位保持关闭",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/cameras/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "B-G06",
+      "priority": "P1",
+      "title": "专家地图无合法share类型，时段需逐类核实",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/field/shares.ts",
+        "src/modules/field/common.ts",
+        "src/modules/map/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G01",
+      "priority": "P0",
+      "title": "助手/图片缺业务租约检查与中断恢复，预留待核",
+      "confirmationMethod": "reproduction_and_source_inspection",
+      "paths": [
+        "src/modules/assistant/service.ts",
+        "src/modules/image-review/service.ts",
+        "workers/intelligence.ts",
+        "workers/image-review.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": "docs/acceptance/一期1b与1c详细核对实测.json"
+    },
+    {
+      "id": "C-G02",
+      "priority": "P0",
+      "title": "图片排队后未重核执行主体和当前授权",
+      "confirmationMethod": "reproduction_and_source_inspection",
+      "paths": [
+        "src/modules/image-review/service.ts",
+        "db/migrations/018_image_reviews.sql"
+      ],
+      "status": "open",
+      "reproductionEvidence": "docs/acceptance/一期1b与1c详细核对实测.json"
+    },
+    {
+      "id": "C-G03",
+      "priority": "P0",
+      "title": "知识推理在事务持共享锁，撤回阻塞",
+      "confirmationMethod": "reproduction_and_source_inspection",
+      "paths": [
+        "src/modules/knowledge/service.ts",
+        "workers/knowledge.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": "docs/acceptance/一期1b与1c详细核对实测.json"
+    },
+    {
+      "id": "C-G04",
+      "priority": "P0",
+      "title": "备发未刷新授权/许可，价格不是调用快照",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/assistant/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G05",
+      "priority": "P0",
+      "title": "新简报/旧答案未完整重核指标定义和周期",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/briefings/service.ts",
+        "src/modules/assistant/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G06",
+      "priority": "P1",
+      "title": "小时/周月调度与分对象故障隔离、提醒投递未闭环",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/briefings/schedule.ts",
+        "workers/intelligence.ts",
+        "src/modules/briefings/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G07",
+      "priority": "P0/P1",
+      "title": "发布撤回缺入口；分版/审阅汇总/草稿真实状态未齐",
+      "confirmationMethod": "reproduction_and_source_inspection",
+      "paths": [
+        "src/modules/briefings/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": "docs/acceptance/一期1b与1c详细核对实测.json"
+    },
+    {
+      "id": "C-G08",
+      "priority": "P1",
+      "title": "简报未并列农事、维护和人工干预",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/briefings/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G09",
+      "priority": "P1",
+      "title": "图片关联完成没有自动排模型任务",
+      "confirmationMethod": "reproduction_and_source_inspection",
+      "paths": [
+        "src/modules/cameras/service.ts",
+        "src/modules/media/remote-import.ts",
+        "src/modules/image-review/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": "docs/acceptance/一期1b与1c详细核对实测.json"
+    },
+    {
+      "id": "C-G10",
+      "priority": "P1",
+      "title": "样本幂等无异内容冲突、允许自标、无模型精确率召回",
+      "confirmationMethod": "reproduction_and_source_inspection",
+      "paths": [
+        "src/modules/image-review/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": "docs/acceptance/一期1b与1c详细核对实测.json"
+    },
+    {
+      "id": "C-G11",
+      "priority": "P1+外部",
+      "title": "往年可比和物候天数缺完整计算链",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/weather/service.ts",
+        "src/modules/analysis/service.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G12",
+      "priority": "P1+外部",
+      "title": "专业问题与真实主备语义质量评测入口未齐",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "tools/evaluate.ts",
+        "tests/evaluations/一期固定评测集.json"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    },
+    {
+      "id": "C-G13",
+      "priority": "P0",
+      "title": "文字模型正文无流式上限，头后超时归类未齐",
+      "confirmationMethod": "source_inspection",
+      "paths": [
+        "src/modules/assistant/provider.ts"
+      ],
+      "status": "open",
+      "reproductionEvidence": null
+    }
+  ]
+}

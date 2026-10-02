@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-02T05:13:38.980Z",
+  "baselineCommit": "d26720bd5a19af7184c9c0a8a53307bfad077ac5",
+  "kind": "post_implementation_audit",
+  "database": "agri_test",
+  "isolation": "random schema dropped in finally",
+  "productionDataWritten": false,
+  "actualVendorCalls": false,
+  "externalMessagesSent": false,
+  "cases": [
+    {
+      "id": "C-G03",
+      "method": "isolated_database_reproduction",
+      "confirmed": true,
+      "observation": "知识索引推理期间，撤回事务100ms锁等待超时",
+      "postgresCode": "55P03",
+      "localModelCalled": false
+    },
+    {
+      "id": "C-G07",
+      "method": "isolated_database_reproduction",
+      "confirmed": true,
+      "observation": "老板与工人版角色标签不同，但同事项发布内容完全相同",
+      "externalMessagesSent": 0
+    },
+    {
+      "id": "C-G09",
+      "method": "isolated_database_reproduction",
+      "confirmed": true,
+      "observation": "图片入库并关联事件后，没有自动生成图片复核任务",
+      "imageReviewJobs": 0
+    },
+    {
+      "id": "C-G02",
+      "method": "isolated_database_reproduction",
+      "confirmed": true,
+      "observation": "提交者record权限撤回后，已排队图片复核仍读取原件并完成写回",
+      "imageInferenceStubCalled": true,
+      "state": "complete",
+      "externalModelCalled": false
+    },
+    {
+      "id": "C-G10",
+      "method": "isolated_database_reproduction",
+      "confirmed": true,
+      "observation": "同样本标识异内容未报冲突；创建者可标注自己的样本",
+      "changedResponse": "already_recorded",
+      "sameCreatorAndLabeler": true
+    },
+    {
+      "id": "C-G01",
+      "method": "isolated_database_reproduction",
+      "confirmed": true,
+      "observation": "助手任务租约已过期回收，旧处理函数仍能写入业务结果",
+      "assistantState": "program_only",
+      "jobState": "retry_wait",
+      "externalModelCalled": false
+    }
+  ],
+  "limits": [
+    "为发现缺口而执行的合成复现，不是产品验收通过",
+    "图片推理与知识索引使用受控函数替身；助手允许现有本地向量进程，但未调用真实文字模型",
+    "本轮未修复被复现的问题"
+  ]
+}
