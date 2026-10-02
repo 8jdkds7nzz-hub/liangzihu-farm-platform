@@ -1,0 +1,333 @@
+{
+  "checkedAt": "2026-10-02T17:22:17.556887+00:00",
+  "sourceCommit": "3d5f859204ff0bff35565b2d520163063ac4ecf5",
+  "startingCommit": "5ec45896a599166042cbba3162e1bdeea4eb7665",
+  "softwareComplete": true,
+  "requirements": [
+    {
+      "id": "U01",
+      "phase": "2a",
+      "title": "桌面/手机角色导航与焦点",
+      "status": "software_verified",
+      "code": "src/components/platform/app-shell.tsx",
+      "codeSha256": "25361ded74cbb5576f4c53d144e2acd06b4612c1a98af8cb8da8aa087f1c11cd",
+      "evidence": [
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase2-experience-browser.test.ts": "862b79df3b2f33de020e2e838fb232358b2ece2520e187bbbda2d12e5baf8d56"
+      }
+    },
+    {
+      "id": "U02",
+      "phase": "2a",
+      "title": "权限内工作台及空数据",
+      "status": "software_verified",
+      "code": "src/modules/workbench/service.ts",
+      "codeSha256": "3dd648da50fc421b73ad3e0d2e153513b24ac6bcdcd5081b07b91a37bf10c0f4",
+      "evidence": [
+        "tests/integration/phase2-workbench.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-workbench.test.ts": "ef597ce91cf73dc20e9425c794a110c24337ed17bf1a2796d598bdabc44d4836"
+      }
+    },
+    {
+      "id": "U03",
+      "phase": "2a",
+      "title": "列表搜索/排序/加载/失败重试",
+      "status": "software_verified",
+      "code": "src/components/platform/data-list.tsx",
+      "codeSha256": "048b46c8b10dfafdffac8fee4f2777ca596736eb95f4d2e1db1b275363429cf9",
+      "evidence": [
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase2-experience-browser.test.ts": "862b79df3b2f33de020e2e838fb232358b2ece2520e187bbbda2d12e5baf8d56"
+      }
+    },
+    {
+      "id": "U04",
+      "phase": "2a",
+      "title": "名称选择与人员枚举范围",
+      "status": "software_verified",
+      "code": "src/modules/identity/references.ts",
+      "codeSha256": "df45057ef9842453d2b97f36afe7d45cfb4be34d49f579502f5849e8323075cd",
+      "evidence": [
+        "tests/integration/phase2-workbench.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-workbench.test.ts": "ef597ce91cf73dc20e9425c794a110c24337ed17bf1a2796d598bdabc44d4836"
+      }
+    },
+    {
+      "id": "U05",
+      "phase": "2a",
+      "title": "失败保留/成功反馈/丢确认防重",
+      "status": "software_verified",
+      "code": "src/components/platform/action-form.tsx",
+      "codeSha256": "47ff818c1080f3e53addcec480dd8c9fb75db75b597552f9b9faee8f43183f8d",
+      "evidence": [
+        "tests/acceptance/platform-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/platform-browser.test.ts": "b41400739b2bf086b116de6b47189a506142d8b909a7b766ae6db86faff3fd6c"
+      }
+    },
+    {
+      "id": "U06",
+      "phase": "2a",
+      "title": "统一视觉、移动适配与可访问状态",
+      "status": "software_verified",
+      "code": "src/app/globals.css",
+      "codeSha256": "e1c86aeac8ac15448cf9c0fa394435791d378924a6aded866149841918c07e38",
+      "evidence": [
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase2-experience-browser.test.ts": "862b79df3b2f33de020e2e838fb232358b2ece2520e187bbbda2d12e5baf8d56"
+      }
+    },
+    {
+      "id": "V01",
+      "phase": "2b",
+      "title": "地图对象搜索和聚焦",
+      "status": "software_verified",
+      "code": "src/app/(platform)/map/panel.tsx",
+      "codeSha256": "bfb29459d67245fd81828b160a487072ba986874b3e9197f294fd559ea72283c",
+      "evidence": [
+        "tests/acceptance/phase1-completion-browser.test.ts",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase1-completion-browser.test.ts": "3f5dae709a360b22e21cbb2666b3688f37b81bfe655bc20ef5d7b3d93e57cd5e",
+        "tests/acceptance/phase2-experience-browser.test.ts": "862b79df3b2f33de020e2e838fb232358b2ece2520e187bbbda2d12e5baf8d56"
+      }
+    },
+    {
+      "id": "V02",
+      "phase": "2b",
+      "title": "图层/平移/键盘/缩放和复位",
+      "status": "software_verified",
+      "code": "src/app/(platform)/map/panel.tsx",
+      "codeSha256": "bfb29459d67245fd81828b160a487072ba986874b3e9197f294fd559ea72283c",
+      "evidence": [
+        "tests/acceptance/phase1-media-browser.test.ts",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase1-media-browser.test.ts": "c5440159eff88e9a179cf7c8a01064df34d1c5de8ce75b7d077a4da5bf7c548c",
+        "tests/acceptance/phase2-experience-browser.test.ts": "862b79df3b2f33de020e2e838fb232358b2ece2520e187bbbda2d12e5baf8d56"
+      }
+    },
+    {
+      "id": "V03",
+      "phase": "2b",
+      "title": "零值、缺测和异常断线图表",
+      "status": "software_verified",
+      "code": "src/modules/analysis/chart.ts",
+      "codeSha256": "ff39e7370850817c0744e41f784b7b190ed10aae188d80c5b4c6041a1e6df30d",
+      "evidence": [
+        "tests/unit/phase2-chart.test.ts",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/unit/phase2-chart.test.ts": "9ebc07f13828d04b23712aa00d3371366d1260a9d4a8964c22676d6f762cd314",
+        "tests/acceptance/phase2-experience-browser.test.ts": "862b79df3b2f33de020e2e838fb232358b2ece2520e187bbbda2d12e5baf8d56"
+      }
+    },
+    {
+      "id": "V04",
+      "phase": "2b",
+      "title": "按定义/单位/最新窗口版本的趋势",
+      "status": "software_verified",
+      "code": "src/app/(platform)/analysis/metric-trend.tsx",
+      "codeSha256": "38b91154cc827b20a8083ad03e1cabfac9199d873e21bc1c3aa1b93548eaefcf",
+      "evidence": [
+        "tests/unit/phase2-chart.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/unit/phase2-chart.test.ts": "9ebc07f13828d04b23712aa00d3371366d1260a9d4a8964c22676d6f762cd314"
+      }
+    },
+    {
+      "id": "V05",
+      "phase": "2b",
+      "title": "原值/来源/限制及移动兼容",
+      "status": "software_verified",
+      "code": "src/components/platform/time-series.tsx",
+      "codeSha256": "c11480c459d45d42075d92396ac4d5f05e8ebbdf55ba229207423aeb3aca2c27",
+      "evidence": [
+        "tests/acceptance/platform-browser.test.ts"
+      ],
+      "limits": "真实人员及目标终端推广另验",
+      "evidenceHashes": {
+        "tests/acceptance/platform-browser.test.ts": "b41400739b2bf086b116de6b47189a506142d8b909a7b766ae6db86faff3fd6c"
+      }
+    },
+    {
+      "id": "W01",
+      "phase": "2c",
+      "title": "场景版本与三种基准分开",
+      "status": "software_verified",
+      "code": "src/modules/terrain/scenes.ts",
+      "codeSha256": "e01f47b3446c7deb686959a1735e6aee4af8d0ee2beea21ae88c5e4ef774e89f",
+      "evidence": [
+        "tests/integration/phase2-terrain.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-terrain.test.ts": "cb6a69c70407d00e755703ec69d7843c9f5d7065fa252e12e47219071f852d85"
+      }
+    },
+    {
+      "id": "W02",
+      "phase": "2c",
+      "title": "私有包完整性/路径/闭合/续传",
+      "status": "software_verified",
+      "code": "src/modules/terrain/package.ts",
+      "codeSha256": "283bf6260588f58b0876cdd68d1c0c6c098bde747514c3740e8e988a5053680b",
+      "evidence": [
+        "tests/unit/phase2-terrain-package.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/unit/phase2-terrain-package.test.ts": "7bfbb6d2a7779f9ae0a42525a947b6b817b774e6dccbc90d3fcf9b171b9ea233"
+      }
+    },
+    {
+      "id": "W03",
+      "phase": "2c",
+      "title": "实际Cesium WebGL及二维降级",
+      "status": "software_verified",
+      "code": "src/components/terrain/cesium-view.tsx",
+      "codeSha256": "9150b139744aac107dc615e8919cf116ade6b3190d2273440daac8989a0a0cad",
+      "evidence": [
+        "tests/acceptance/phase2-terrain-browser.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase2-terrain-browser.test.ts": "24a07894fccc005b50242e18a59f93cf8fea54c4bf41ba046c6744abb065c8ed"
+      }
+    },
+    {
+      "id": "W04",
+      "phase": "2c",
+      "title": "逐资源鉴权及固定版本分享撤回",
+      "status": "software_verified",
+      "code": "src/modules/terrain/scenes.ts",
+      "codeSha256": "e01f47b3446c7deb686959a1735e6aee4af8d0ee2beea21ae88c5e4ef774e89f",
+      "evidence": [
+        "tests/acceptance/phase2-terrain-forms-browser.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/acceptance/phase2-terrain-forms-browser.test.ts": "9d0c02afee3f13a3064b59cdf035b57aed9945252c069ec7d3cd5c0efc573a31"
+      }
+    },
+    {
+      "id": "W05",
+      "phase": "2c",
+      "title": "独立检查、误差/RMSE与专业标准",
+      "status": "software_verified",
+      "code": "src/modules/terrain/survey.ts",
+      "codeSha256": "57dc879347744c3b5d5fc4427120c54c62f6f7b2488cf60e88f110fedf9221e7",
+      "evidence": [
+        "tests/integration/phase2-terrain.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-terrain.test.ts": "cb6a69c70407d00e755703ec69d7843c9f5d7065fa252e12e47219071f852d85"
+      }
+    },
+    {
+      "id": "W06",
+      "phase": "2c",
+      "title": "排除区/复核时限/资料修订",
+      "status": "software_verified",
+      "code": "src/modules/terrain/review.ts",
+      "codeSha256": "ae7125f92b61770d0095b3f6ef48321bd9a193c548638bf8504b4c51d1e49205",
+      "evidence": [
+        "tests/integration/phase2-terrain-boundaries.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-terrain-boundaries.test.ts": "9a672a8e7c5b1438a6bc0d7f03807b03a35ac74e19b7db48c4e0555a0bccb830"
+      }
+    },
+    {
+      "id": "W07",
+      "phase": "2c",
+      "title": "安装参考和点位版本高程",
+      "status": "software_verified",
+      "code": "src/modules/terrain/survey.ts",
+      "codeSha256": "57dc879347744c3b5d5fc4427120c54c62f6f7b2488cf60e88f110fedf9221e7",
+      "evidence": [
+        "tests/integration/phase2-terrain-boundaries.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-terrain-boundaries.test.ts": "9a672a8e7c5b1438a6bc0d7f03807b03a35ac74e19b7db48c4e0555a0bccb830"
+      }
+    },
+    {
+      "id": "W08",
+      "phase": "2c",
+      "title": "现场上下游关系与撤回",
+      "status": "software_verified",
+      "code": "src/modules/terrain/links.ts",
+      "codeSha256": "a7c53d0476b901064d2901a2667e6c11db11308835606380615222721ec39783",
+      "evidence": [
+        "tests/integration/phase2-terrain-boundaries.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-terrain-boundaries.test.ts": "9a672a8e7c5b1438a6bc0d7f03807b03a35ac74e19b7db48c4e0555a0bccb830"
+      }
+    },
+    {
+      "id": "W09",
+      "phase": "2c",
+      "title": "受控实测点剖面而非控制建议",
+      "status": "software_verified",
+      "code": "src/modules/terrain/links.ts",
+      "codeSha256": "a7c53d0476b901064d2901a2667e6c11db11308835606380615222721ec39783",
+      "evidence": [
+        "tests/integration/phase2-terrain.test.ts"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "tests/integration/phase2-terrain.test.ts": "cb6a69c70407d00e755703ec69d7843c9f5d7065fa252e12e47219071f852d85"
+      }
+    },
+    {
+      "id": "W10",
+      "phase": "2c",
+      "title": "导出兼容、原件与全部新表恢复",
+      "status": "software_verified",
+      "code": "ops/phase2-restore.ts",
+      "codeSha256": "cb07bbd0c6b70144a76ee29ff35bee6cb835f1be8494c79fb449849b2b0bf12d",
+      "evidence": [
+        "docs/acceptance/2c/二期非空恢复实测.json"
+      ],
+      "limits": "合成工程验证；真实测绘、模型规模和终端G11/G12另验",
+      "evidenceHashes": {
+        "docs/acceptance/2c/二期非空恢复实测.json": "d1b7766bae328191fd4af51e2917c9688b654900f55bcd3126e054e623a00407"
+      }
+    }
+  ],
+  "softwareOpenItems": [],
+  "productionTerrainAccepted": false,
+  "productionDisasterRecoveryAccepted": false,
+  "externalConditions": "docs/contracts/二期G11与G12真实验收清单.md"
+}

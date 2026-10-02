@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-02T16:52:39.410Z",
+  "environment": "agri_test随机schema及合成模型",
+  "tablesVerified": 125,
+  "newNonemptyTables": {
+    "terrain_scenes": 2,
+    "terrain_resources": 4,
+    "terrain_surveys": 3,
+    "terrain_reviews": 1,
+    "device_elevations": 1,
+    "hydraulic_links": 1
+  },
+  "assetsVerified": 2,
+  "dumpSha": "d52ff174f7a4b35463c830ea5bb93d802b4d2f4a35d2fa42e93a25bdeb37c5f4",
+  "databaseAndRowHashesEqual": true,
+  "identityAndPermissionsRestored": true,
+  "revokedSceneRemainsDenied": true,
+  "approvedMeasurementsRestored": true,
+  "interruptedLocalJobSafelyResumed": true,
+  "elapsedMs": 3540,
+  "productionTerrainAccepted": false,
+  "productionDisasterRecoveryAccepted": false
+}
