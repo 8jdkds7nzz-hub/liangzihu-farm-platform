@@ -4,6 +4,10 @@ import {BlockList,isIP} from 'node:net';
 import type {IncomingMessage,ClientRequest} from 'node:http';
 import type {RequestOptions} from 'node:https';
 import {AppError} from '../../platform/error';
+import {createWriteStream} from 'node:fs';
+import {Transform} from 'node:stream';
+import {pipeline} from 'node:stream/promises';
+import {createHash} from 'node:crypto';
 export const REMOTE_MEDIA_MAX_BYTES=20*1024*1024;
 export interface DownloadSettings{allowedHosts:string[];maxBytes?:number;timeoutMs?:number}
 export interface DownloadDependencies{
@@ -44,4 +48,13 @@ export async function downloadRemoteMedia(value:string,settings:DownloadSettings
  const result=await read(url,addresses[0],max,controller.signal,deps.requester??httpsRequest);if(result.bytes)return result.bytes;if(redirects===3)throw fail('MEDIA_REMOTE_REDIRECTS');let next:string;try{next=new URL(result.redirect!,url).toString();}catch{throw fail('MEDIA_REMOTE_URL');}url=validateRemoteUrl(next,settings.allowedHosts);
  }throw fail('MEDIA_REMOTE_REDIRECTS');})();
  try{return await Promise.race([work,deadline]);}catch(e){throw e instanceof AppError?e:fail('MEDIA_REMOTE_NETWORK');}finally{clearTimeout(timer);}
+}
+export interface DownloadedFile{path:string;length:number;checksum:string}
+function readFileResponse(url:URL,address:{address:string;family:number},path:string,max:number,signal:AbortSignal,requester:NonNullable<DownloadDependencies['requester']>):Promise<{file?:DownloadedFile;redirect?:string}>{
+ return new Promise((resolve,reject)=>{const req=requester(url,{agent:false,rejectUnauthorized:true,servername:url.hostname,headers:{'Accept-Encoding':'identity'},lookup:(_h,o,cb)=>o.all?cb(null,[address]):cb(null,address.address,address.family)},res=>{const status=res.statusCode??0;if([301,302,303,307,308].includes(status)){const location=res.headers.location;res.destroy();if(location)resolve({redirect:location});else reject(fail('MEDIA_REMOTE_REDIRECTS'));return;}const declared=res.headers['content-length'];if(status!==200||res.headers['content-encoding']&&res.headers['content-encoding']!=='identity'){res.destroy();reject(fail('MEDIA_REMOTE_HTTP'));return;}if(declared!==undefined&&(!/^\d+$/.test(declared)||Number(declared)>max||Number(declared)<1)){res.destroy();reject(fail('MEDIA_REMOTE_SIZE'));return;}
+ let size=0;const sha=createHash('sha256'),meter=new Transform({transform(bytes:Buffer,_encoding,done){size+=bytes.length;if(size>max){done(fail('MEDIA_REMOTE_SIZE'));return;}sha.update(bytes);done(null,bytes);}});void pipeline(res,meter,createWriteStream(/*turbopackIgnore: true*/ path,{flags:'wx',mode:0o600})).then(()=>{if(!size||res.complete===false||declared!==undefined&&size!==Number(declared))reject(fail('MEDIA_REMOTE_TRUNCATED'));else resolve({file:{path,length:size,checksum:sha.digest('hex')}});}).catch(e=>reject(e instanceof AppError?e:fail(signal.aborted?'MEDIA_REMOTE_TIMEOUT':'MEDIA_REMOTE_NETWORK')));
+ });const abort=()=>req.destroy(fail('MEDIA_REMOTE_TIMEOUT'));signal.addEventListener('abort',abort,{once:true});if(signal.aborted)abort();req.on('error',()=>reject(fail(signal.aborted?'MEDIA_REMOTE_TIMEOUT':'MEDIA_REMOTE_NETWORK')));req.on('close',()=>signal.removeEventListener('abort',abort));req.end();});
+}
+export async function downloadRemoteFile(value:string,path:string,settings:DownloadSettings,deps:DownloadDependencies={}):Promise<DownloadedFile>{
+ const max=settings.maxBytes??2147483648,timeout=settings.timeoutMs??1200000;if(!Number.isSafeInteger(max)||max<1||max>10737418240||!Number.isInteger(timeout)||timeout<1||timeout>1200000)throw fail('MEDIA_REMOTE_LIMITS');const controller=new AbortController();let timer:ReturnType<typeof setTimeout>|undefined;const deadline=new Promise<never>((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(fail('MEDIA_REMOTE_TIMEOUT'));},timeout);});const work=(async()=>{let url=validateRemoteUrl(value,settings.allowedHosts);for(let redirects=0;redirects<=3;redirects++){const addresses=await(deps.resolver??(h=>lookup(h,{all:true})))(url.hostname);if(controller.signal.aborted)throw fail('MEDIA_REMOTE_TIMEOUT');if(!addresses.length||addresses.some(r=>!publicAddress(r)))throw fail('MEDIA_REMOTE_ADDRESS');const result=await readFileResponse(url,addresses[0],path,max,controller.signal,deps.requester??httpsRequest);if(result.file)return result.file;if(redirects===3)throw fail('MEDIA_REMOTE_REDIRECTS');url=validateRemoteUrl(new URL(result.redirect!,url).toString(),settings.allowedHosts);}throw fail('MEDIA_REMOTE_REDIRECTS');})();try{return await Promise.race([work,deadline]);}catch(e){throw e instanceof AppError?e:fail('MEDIA_REMOTE_NETWORK');}finally{clearTimeout(timer);}
 }

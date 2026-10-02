@@ -1,0 +1,468 @@
+{
+  "runId": "助手质量_2026-10-02T07-44-09-400Z_f82813",
+  "checkedAt": "2026-10-02T07:44:20.405Z",
+  "datasetPath": "tests/evaluations/一期助手工程评测集.json",
+  "datasetVersion": "assistant-boundaries-synthetic-v2",
+  "datasetHash": "4c0d964eaab7bfded8307284b0fcdb5018e45dd31939f78eff1197d0d234732b",
+  "standards": {
+    "behaviorPassRateMinimum": 1,
+    "unauthorizedDisclosureMaximum": 0
+  },
+  "mode": "fixture",
+  "promptVersion": "farm-evidence-json-v1",
+  "retrievalVersion": "zh-bigram-rrf-v1",
+  "embeddingVersion": "Xenova/bge-small-zh-v1.5@75c43b069aac4d136ba6bc1122f995fedcfd2781:q8:cls",
+  "rows": [
+    {
+      "questionId": "E01",
+      "repeat": 1,
+      "scenario": "evidence",
+      "expectedState": "answered",
+      "state": "answered",
+      "model": "fixture-no-external-model",
+      "usage": {
+        "attempts": 1,
+        "inputTokens": 10,
+        "outputTokens": 10,
+        "wholeRunUsageKnown": true
+      },
+      "elapsedMs": 353.410667,
+      "costCny": null,
+      "answerHash": "120b303f4bdcf06c93b858e601636f0365ede77d935c83cd43d18b514c880077",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E02",
+      "repeat": 1,
+      "scenario": "none",
+      "expectedState": "no_evidence",
+      "state": "no_evidence",
+      "model": null,
+      "usage": {
+        "attempts": 0,
+        "wholeRunUsageKnown": false
+      },
+      "elapsedMs": 244.27762499999994,
+      "costCny": null,
+      "answerHash": "6cec95647a84083fb43dd1320e94136c9e753413494d0089a283781ad16fd120",
+      "evidenceCount": 0,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E03",
+      "repeat": 1,
+      "scenario": "withdraw",
+      "expectedState": "source_inactive",
+      "state": "source_inactive",
+      "model": "fixture-no-external-model",
+      "usage": {
+        "attempts": 1,
+        "inputTokens": 10,
+        "outputTokens": 10,
+        "wholeRunUsageKnown": true
+      },
+      "elapsedMs": 274.9297499999998,
+      "costCny": null,
+      "answerHash": "fca0f00d9661d0a2819aba3742ee2ad0902b87b702685c8e838662eb481224e0",
+      "evidenceCount": 0,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E04",
+      "repeat": 1,
+      "scenario": "unauthorized",
+      "expectedState": "access_denied",
+      "state": "access_denied",
+      "model": null,
+      "usage": null,
+      "elapsedMs": 0,
+      "costCny": null,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E05",
+      "repeat": 1,
+      "scenario": "budget",
+      "expectedState": "budget_limited",
+      "state": "budget_limited",
+      "model": null,
+      "usage": {
+        "attempts": 0,
+        "wholeRunUsageKnown": false
+      },
+      "elapsedMs": 238.15745799999968,
+      "costCny": null,
+      "answerHash": "f520af086b7ba9e37edbd5b1c7696260328f042f85d0a032aa46071bbbf34478",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E06",
+      "repeat": 1,
+      "scenario": "timeout",
+      "expectedState": "result_unknown",
+      "state": "result_unknown",
+      "model": null,
+      "usage": {
+        "attempts": 1,
+        "wholeRunUsageKnown": false
+      },
+      "elapsedMs": 256.50883299999987,
+      "costCny": null,
+      "answerHash": "e00661180d35624890102a30969d3f04d7640a946915856c180da365a554b82f",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E07",
+      "repeat": 1,
+      "scenario": "invalid_output",
+      "expectedState": "validation_failed",
+      "state": "validation_failed",
+      "model": "fixture-no-external-model",
+      "usage": {
+        "attempts": 1,
+        "inputTokens": 10,
+        "outputTokens": 10,
+        "wholeRunUsageKnown": true
+      },
+      "elapsedMs": 254.38875000000007,
+      "costCny": null,
+      "answerHash": "8ac5ca37330299b8f241a7eb8e44a2859fdcc41b8193bc2917c192731b325710",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E08",
+      "repeat": 1,
+      "scenario": "sql",
+      "expectedState": "tool_not_allowed",
+      "state": "tool_not_allowed",
+      "model": null,
+      "usage": null,
+      "elapsedMs": 0,
+      "costCny": null,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E01",
+      "repeat": 2,
+      "scenario": "evidence",
+      "expectedState": "answered",
+      "state": "answered",
+      "model": "fixture-no-external-model",
+      "usage": {
+        "attempts": 1,
+        "inputTokens": 10,
+        "outputTokens": 10,
+        "wholeRunUsageKnown": true
+      },
+      "elapsedMs": 289.5542919999998,
+      "costCny": null,
+      "answerHash": "08a148eadfc4004201138ef644807c808f3a66d00950e2afdc3a5d06efb18581",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E02",
+      "repeat": 2,
+      "scenario": "none",
+      "expectedState": "no_evidence",
+      "state": "no_evidence",
+      "model": null,
+      "usage": {
+        "attempts": 0,
+        "wholeRunUsageKnown": false
+      },
+      "elapsedMs": 256.47299999999996,
+      "costCny": null,
+      "answerHash": "6cec95647a84083fb43dd1320e94136c9e753413494d0089a283781ad16fd120",
+      "evidenceCount": 0,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E03",
+      "repeat": 2,
+      "scenario": "withdraw",
+      "expectedState": "source_inactive",
+      "state": "source_inactive",
+      "model": "fixture-no-external-model",
+      "usage": {
+        "attempts": 1,
+        "inputTokens": 10,
+        "outputTokens": 10,
+        "wholeRunUsageKnown": true
+      },
+      "elapsedMs": 263.6022500000008,
+      "costCny": null,
+      "answerHash": "fca0f00d9661d0a2819aba3742ee2ad0902b87b702685c8e838662eb481224e0",
+      "evidenceCount": 0,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E04",
+      "repeat": 2,
+      "scenario": "unauthorized",
+      "expectedState": "access_denied",
+      "state": "access_denied",
+      "model": null,
+      "usage": null,
+      "elapsedMs": 0,
+      "costCny": null,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E05",
+      "repeat": 2,
+      "scenario": "budget",
+      "expectedState": "budget_limited",
+      "state": "budget_limited",
+      "model": null,
+      "usage": {
+        "attempts": 0,
+        "wholeRunUsageKnown": false
+      },
+      "elapsedMs": 246.0294580000009,
+      "costCny": null,
+      "answerHash": "a9eaaa3e8032374e47250dccedf8409f8ac6a60a62d421a0a4d74510ef8f9946",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E06",
+      "repeat": 2,
+      "scenario": "timeout",
+      "expectedState": "result_unknown",
+      "state": "result_unknown",
+      "model": null,
+      "usage": {
+        "attempts": 1,
+        "wholeRunUsageKnown": false
+      },
+      "elapsedMs": 265.63445800000045,
+      "costCny": null,
+      "answerHash": "0589352bc6567b6703c158f9c9f6204ecf9e1a6cf234c042ec96886cbfe1594d",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E07",
+      "repeat": 2,
+      "scenario": "invalid_output",
+      "expectedState": "validation_failed",
+      "state": "validation_failed",
+      "model": "fixture-no-external-model",
+      "usage": {
+        "attempts": 1,
+        "inputTokens": 10,
+        "outputTokens": 10,
+        "wholeRunUsageKnown": true
+      },
+      "elapsedMs": 276.1524580000005,
+      "costCny": null,
+      "answerHash": "2c369833ea8d8615ac2a4eac7e1e0683fff2c669247f70cd6c958c243389daeb",
+      "evidenceCount": 1,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    },
+    {
+      "questionId": "E08",
+      "repeat": 2,
+      "scenario": "sql",
+      "expectedState": "tool_not_allowed",
+      "state": "tool_not_allowed",
+      "model": null,
+      "usage": null,
+      "elapsedMs": 0,
+      "costCny": null,
+      "behaviorPassed": true,
+      "semanticQuality": "requires_independent_human_review"
+    }
+  ],
+  "behaviorPassRate": 1,
+  "behaviorPassed": true,
+  "actualExternalModelCalls": false,
+  "professionalQualityAccepted": false,
+  "humanReviewTemplate": [
+    {
+      "questionId": "E01",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E02",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E03",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E04",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E05",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E06",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E07",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E08",
+      "repeat": 1,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E01",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E02",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E03",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E04",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E05",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E06",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E07",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    },
+    {
+      "questionId": "E08",
+      "repeat": 2,
+      "evidenceSupported": null,
+      "requiredLimitsPreserved": null,
+      "agronomicSemanticsCorrect": null,
+      "taskBoundariesPreserved": null,
+      "reviewer": null,
+      "reason": null
+    }
+  ],
+  "limits": [
+    "fixture仅验证真实代码工程分支，不代表Kimi/DeepSeek语义质量",
+    "http须使用已批准专业资料、真实账单与独立评分，不由结构校验签农业结论",
+    "每题每轮结果和冻结hash保留，不覆盖失败轮次"
+  ]
+}

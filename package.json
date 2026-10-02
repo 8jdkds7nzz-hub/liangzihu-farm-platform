@@ -43,7 +43,8 @@
     "worker:weather": "node --env-file=.env.local --import tsx workers/weather.ts",
     "test:weather": "node --env-file=.env.test.local --import tsx --test tests/acceptance/weather-connection-browser.test.ts",
     "worker:cameras": "node --env-file=.env.local --import tsx workers/cameras.ts",
-    "worker:flighthub": "node --env-file=.env.local --import tsx workers/flighthub.ts"
+    "worker:flighthub": "node --env-file=.env.local --import tsx workers/flighthub.ts",
+    "evaluate:assistant": "node --env-file=.env.test.local --import tsx tools/evaluate-assistant.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1144.0",
