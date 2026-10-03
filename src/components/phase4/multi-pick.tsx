@@ -1,0 +1,2 @@
+import type {Option} from '../platform/fields';
+export default function MultiPick({name,label,options,required=false}:{name:string;label:string;options:Option[];required?:boolean}){return <label>{label}<select name={name} multiple required={required} size={Math.min(5,Math.max(2,options.length))}>{options.map(o=><option key={o.id} value={o.id}>{o.name??o.code??o.id}</option>)}</select><span className="hint">可选择多项。</span></label>;}

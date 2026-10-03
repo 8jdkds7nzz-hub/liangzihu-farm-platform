@@ -1,0 +1,36 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {withDb} from '../support/db';import {phase4Fixture} from '../support/phase4';import {transaction} from '../../src/db/pool';
+import {recordMachineContract,reviewMachineContract} from '../../src/modules/machinery/contracts';
+import {bindMachine,createMachineOrder,dispatchMachineOrder} from '../../src/modules/machinery/orders';
+import {recordMachineEvidence,reviewMachineOrder,assertMachineAccepted} from '../../src/modules/machinery/evidence';
+import {recordExpense,reviewExpense,recordPayment} from '../../src/modules/finance/expenses';
+import {createSubsidyClaim,subsidyEvent} from '../../src/modules/finance/subsidies';
+const key=()=>randomUUID(),iso=(offset:number)=>new Date(Date.now()+offset).toISOString();
+test('B41/B42/B43 五项接入答复、绑定冲突与四类独立证据验收',()=>withDb(async pool=>{
+ const f=await phase4Fixture(pool),tx=<T>(fn:Parameters<typeof transaction<T>>[0])=>transaction(fn,pool);
+ const contract=await tx(c=>recordMachineContract(c,f.actor,{objectId:f.objectId,provider:'合成服务方',accountRef:'合成账户授权说明',fieldsRef:'合成字段v1',exportRef:'合成标准JSON',migrationRef:'历史可导出',exitRef:'退出可取回',validUntil:iso(86400000),sourceRef:'测试五项答复',requestKey:key()}));
+ await tx(c=>reviewMachineContract(c,f.reviewer,{id:contract.id,action:'approve',evidence:'合成独立审核',requestKey:key()}));
+ const binding=await tx(c=>bindMachine(c,f.actor,{objectId:f.objectId,machineDeviceId:f.machineId,terminalDeviceId:f.terminalId,validFrom:iso(-86400000),validUntil:iso(86400000),evidence:'测试安装',requestKey:key()}));
+ await assert.rejects(()=>tx(c=>bindMachine(c,f.actor,{objectId:f.objectId,machineDeviceId:f.machineId,terminalDeviceId:f.terminalId,validFrom:iso(-1000),validUntil:iso(100000),evidence:'重叠',requestKey:key()})),{code:'MACHINE_BINDING_OVERLAP'});
+ const order=await tx(c=>createMachineOrder(c,f.actor,{objectId:f.objectId,contractId:contract.id,bindingId:binding.id,title:'合成服务单',operation:'耕整地',boundary:{type:'Polygon',coordinates:[[[114,30],[114.001,30],[114.001,30.001],[114,30.001],[114,30]]]},startsAt:iso(-3600000),endsAt:iso(3600000),quantity:'1',unit:'mu',sourceRef:'仅工程测试',requestKey:key()}));
+ await tx(c=>dispatchMachineOrder(c,f.actor,{id:order.id,evidence:'人工派单',requestKey:key()}));
+ const track=[{at:iso(-1200000),lng:114.0001,lat:30.0001},{at:iso(-600000),lng:114.0002,lat:30.0002}];
+ await tx(c=>recordMachineEvidence(c,f.actor,{orderId:order.id,kind:'track',track,passed:true,occurredAt:iso(-500000),evidence:'合成实际轨迹',assetIds:[],requestKey:key()}));
+ await assert.rejects(()=>tx(c=>reviewMachineOrder(c,f.reviewer,{orderId:order.id,action:'accept',evidence:'尚缺业务证据',requestKey:key()})),{code:'MACHINE_EVIDENCE_MISSING'});
+ for(const kind of ['work_order','arrival','spotcheck'])await tx(c=>recordMachineEvidence(c,f.actor,{orderId:order.id,kind,passed:true,occurredAt:iso(-400000),evidence:'合成独立业务凭据',assetIds:[],requestKey:key()}));
+ await assert.rejects(()=>tx(c=>reviewMachineOrder(c,f.actor,{orderId:order.id,action:'accept',evidence:'自审',requestKey:key()})),{code:'INDEPENDENT_REVIEW'});
+ await tx(c=>reviewMachineOrder(c,f.reviewer,{orderId:order.id,action:'accept',evidence:'合成独立验收',requestKey:key()}));await tx(c=>assertMachineAccepted(c,order.id));
+ await tx(c=>reviewMachineOrder(c,f.reviewer,{orderId:order.id,action:'withdraw',evidence:'依据待核',requestKey:key()}));await assert.rejects(()=>tx(c=>assertMachineAccepted(c,order.id)),{code:'MACHINE_NOT_ACCEPTED'});
+}));
+test('B44/B45 费用独立核实、并发不超付、补贴跨类别防重且审核不等于到账',()=>withDb(async pool=>{
+ const f=await phase4Fixture(pool),tx=<T>(fn:Parameters<typeof transaction<T>>[0])=>transaction(fn,pool);
+ const expense=await tx(c=>recordExpense(c,f.actor,{objectId:f.objectId,category:'material',quantity:'10',unit:'kg',unitPrice:'10',amountCny:'100',payer:'合成付款主体',payee:'合成供方',voucher:'V-100',occurredAt:iso(-10000),linkKind:'manual',evidence:'合成费用单',requestKey:key()}));
+ await tx(c=>reviewExpense(c,f.reviewer,{id:expense.id,action:'approve',evidence:'合成独立核实',requestKey:key()}));
+ const pay=(amount:string)=>tx(c=>recordPayment(c,f.actor,{expenseId:expense.id,direction:'pay',amountCny:amount,voucher:key(),occurredAt:iso(0),evidence:'人工登记的合成付款凭证',requestKey:key()}));
+ const result=await Promise.allSettled([pay('70'),pay('70')]);assert.equal(result.filter(r=>r.status==='fulfilled').length,1);
+ const claim=await tx(c=>createSubsidyClaim(c,f.actor,{objectId:f.objectId,category:'purchase',policyRef:'合成政策资料，不是实际补贴资格',policyVersion:'test-v1',beneficiary:'合成受益主体',periodFrom:iso(-86400000),periodTo:iso(86400000),expenseIds:[expense.id],amountCny:'80',evidence:'合成申请依据',requestKey:key()}));
+ await assert.rejects(()=>tx(c=>createSubsidyClaim(c,f.actor,{objectId:f.objectId,category:'service',policyRef:'另一合成政策',policyVersion:'v1',beneficiary:'合成受益主体',periodFrom:iso(-86400000),periodTo:iso(86400000),expenseIds:[expense.id],amountCny:'10',evidence:'重复使用费用',requestKey:key()})),{code:'SUBSIDY_DUPLICATE'});
+ await tx(c=>subsidyEvent(c,f.reviewer,{id:claim.id,action:'review',evidence:'合成内部复核',requestKey:key()}));
+ assert.equal((await pool.query('SELECT state FROM subsidy_claims WHERE id=$1',[claim.id])).rows[0].state,'reviewed');assert.equal((await pool.query("SELECT count(*) FROM subsidy_events WHERE action='received'")).rows[0].count,'0');
+ await tx(c=>subsidyEvent(c,f.actor,{id:claim.id,action:'submit',externalRef:'合成受理号',evidence:'人工登记的受理记录',requestKey:key()}));await tx(c=>subsidyEvent(c,f.reviewer,{id:claim.id,action:'award',amountCny:'60',externalRef:'合成审批号',evidence:'人工登记的批准依据',requestKey:key()}));
+ await tx(c=>subsidyEvent(c,f.actor,{id:claim.id,action:'received',amountCny:'40',externalRef:'合成到账凭证',evidence:'人工登记到账',requestKey:key()}));await assert.rejects(()=>tx(c=>subsidyEvent(c,f.actor,{id:claim.id,action:'received',amountCny:'30',externalRef:'第二凭证',evidence:'超额',requestKey:key()})),{code:'SUBSIDY_RECEIPT_EXCEEDS'});
+}));

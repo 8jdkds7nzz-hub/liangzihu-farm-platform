@@ -1,0 +1,27 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {withDb} from '../support/db';import {phase4Fixture} from '../support/phase4';import {transaction} from '../../src/db/pool';import {createLot} from '../../src/modules/inventory/catalog';import {createProtectionPlan} from '../../src/modules/protection/plans';import {importExecutions} from '../../src/modules/protection/imports';
+import {createLocation} from '../../src/modules/inventory/catalog';import {postMovement} from '../../src/modules/inventory/ledger';import {createExport,downloadExport} from '../../src/modules/maintenance/exports';
+import {recordExecution} from '../../src/modules/protection/executions';import {payloadHash} from '../../src/modules/field/common';
+test('R44 三期同一来源外部作业跨账号导入不能重复记实际执行',()=>withDb(async pool=>{
+ const f=await phase4Fixture(pool),plan=await transaction(async c=>{const lot=await createLot(c,f.actor,{objectId:f.objectId,code:randomUUID(),product:'合成投入品',kind:'input',unit:'L',basis:'as_is',source:'仅合成',requestKey:randomUUID()});return createProtectionPlan(c,f.actor,{objectId:f.objectId,title:'合成外部作业',crop:'测试',target:'工程',stage:'合成',inputLotId:lot.id,boundary:{type:'Polygon',coordinates:[[[114,30],[114.001,30],[114.001,30.001],[114,30.001],[114,30]]]},obstacles:'合成',sensitiveNote:'合成',conditions:'合成',source:'合成',requestKey:randomUUID()});},pool);
+ const at=new Date().toISOString(),row={externalId:'external-one',planId:plan.id,operator:'合成操作人',startedAt:at,endedAt:at,track:[],unit:'L',materialQuantity:null,evidence:'同一实际作业测试'};
+ const first=await transaction(c=>importExecutions(c,f.actor,{objectId:f.objectId,sourceRef:'同一厂家文件来源',rows:[row],requestKey:randomUUID()}),pool);
+ const second=await transaction(c=>importExecutions(c,f.reviewer,{objectId:f.objectId,sourceRef:'同一厂家文件来源',rows:[row],requestKey:randomUUID()}),pool);
+ assert.equal(first.rows[0].ok,true);assert.equal(second.rows[0].ok,true);assert.equal(second.rows[0].id,first.rows[0].id);assert.equal((await pool.query('SELECT count(*) FROM protection_executions')).rows[0].count,'1');
+ const conflict=await transaction(c=>importExecutions(c,f.reviewer,{objectId:f.objectId,sourceRef:'同一厂家文件来源',rows:[{...row,evidence:'同号异内容'}],requestKey:randomUUID()}),pool);assert.equal(conflict.rows[0].ok,false);assert.equal(conflict.rows[0].code,'REQUEST_KEY_CONFLICT');
+}));
+
+test('R45 统一关系导出包含三期库存和无测点设备，四期扩展明确范围',()=>withDb(async pool=>{
+ const f=await phase4Fixture(pool);const lot=await transaction(c=>createLot(c,f.actor,{objectId:f.objectId,code:randomUUID(),product:'合成导出批次',kind:'input',unit:'kg',basis:'as_is',source:'测试',requestKey:randomUUID()}),pool),location=await transaction(c=>createLocation(c,f.actor,{objectId:f.objectId,code:'EXPORT-W',name:'合成仓',requestKey:randomUUID()}),pool);
+ await transaction(c=>postMovement(c,f.actor,{objectId:f.objectId,lotId:lot.id,locationId:location.id,kind:'receipt',quantity:'3',occurredAt:new Date().toISOString(),evidence:'合成入库',requestKey:randomUUID()}),pool);
+ const exported=await transaction(c=>createExport(c,f.actor,{objectIds:[f.objectId],from:new Date(Date.now()-60000).toISOString(),to:new Date(Date.now()+60000).toISOString()}),pool),file=await transaction(c=>downloadExport(c,f.actor,exported.id),pool),data=JSON.parse(file.body);
+ assert.equal(data.phase3.stock_lots[0].id,lot.id);assert.equal(data.phase3.stock_entries.length,1);assert.equal(data.devices.length,2);assert.equal(data.phase4.schemaVersion,'4c-v1');assert.equal(data.phase4.financeIncluded,true);
+}));
+
+test('R44 升级前唯一导入复用旧ID，历史重复执行冲突不自动删除',()=>withDb(async pool=>{
+ const f=await phase4Fixture(pool),plan=await transaction(async c=>{const lot=await createLot(c,f.actor,{objectId:f.objectId,code:randomUUID(),product:'合成旧版投入品',kind:'input',unit:'L',basis:'as_is',source:'合成历史',requestKey:randomUUID()});return createProtectionPlan(c,f.actor,{objectId:f.objectId,title:'合成旧版计划',crop:'测试',target:'历史恢复',stage:'合成',inputLotId:lot.id,boundary:{type:'Polygon',coordinates:[[[114,30],[114.001,30],[114.001,30.001],[114,30.001],[114,30]]]},obstacles:'合成',sensitiveNote:'合成',conditions:'合成',source:'合成',requestKey:randomUUID()});},pool);
+ const at=new Date().toISOString(),row={externalId:'legacy1',planId:plan.id,operator:'合成旧操作人',startedAt:at,endedAt:at,track:[],unit:'L',materialQuantity:null,evidence:'合成升级前作业'};
+ const first=await transaction(c=>recordExecution(c,f.actor,{...row,requestKey:randomUUID()}),pool),second=await transaction(c=>recordExecution(c,f.reviewer,{...row,requestKey:randomUUID()}),pool);
+ async function legacy(source:string,id:string){await pool.query('INSERT INTO protection_imports(object_id,source_ref,input_hash,input_rows,result_rows,created_by) VALUES($1,$2,$3,$4,$5,$6)',[f.objectId,source,payloadHash([row]),JSON.stringify([row]),JSON.stringify([{row:1,ok:true,id}]),f.actor.id]);}
+ await legacy('合成旧单一来源',first.id);const reused=await transaction(c=>importExecutions(c,f.reviewer,{objectId:f.objectId,sourceRef:'合成旧单一来源',rows:[row],requestKey:randomUUID()}),pool);assert.equal(reused.rows[0].id,first.id);
+ await legacy('合成旧冲突来源',first.id);await legacy('合成旧冲突来源',second.id);const conflict=await transaction(c=>importExecutions(c,f.reviewer,{objectId:f.objectId,sourceRef:'合成旧冲突来源',rows:[row],requestKey:randomUUID()}),pool);assert.equal(conflict.rows[0].ok,false);assert.equal(conflict.rows[0].code,'LEGACY_IMPORT_CONFLICT');assert.equal((await pool.query('SELECT count(*) n FROM protection_executions')).rows[0].n,'2');
+}));

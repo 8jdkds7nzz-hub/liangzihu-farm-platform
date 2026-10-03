@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {money,pricedAmount,cents} from '../../src/modules/finance/money';
+test('B44 金额按分与数量精确相乘，不使用浮点累计',()=>{assert.equal(pricedAmount('0.1','0.20'),'0.02');assert.equal(pricedAmount('0.333333','1'),'0.33');assert.equal(pricedAmount('0.005','1'),'0.01');assert.equal(cents('123.45'),12345n);for(const v of ['1.001','-1','NaN','1e3',null])assert.throws(()=>money(v));assert.throws(()=>money('0',false));});

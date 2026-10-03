@@ -1,0 +1,4 @@
+import {readApi,writeApi} from '@/platform/api';import {AppError} from '@/platform/error';import {queueManagementReport} from '@/modules/management/calculate';import {managementOverview,managementDetail,exportManagement} from '@/modules/management/queries';
+type Ctx={params:Promise<{section:string}>};
+export async function GET(r:Request,ctx:Ctx){const{section}=await ctx.params,p=new URL(r.url).searchParams;return readApi(r,(c,a)=>{if(section==='overview')return managementOverview(c,a,p.get('objectId')??'');if(section==='report')return managementDetail(c,a,p.get('id')??'');if(section==='export')return exportManagement(c,a,p.get('objectId')??'');throw new AppError(404,'MANAGEMENT_ENDPOINT','查询入口不存在');});}
+export async function POST(r:Request,ctx:Ctx){const{section}=await ctx.params;return writeApi(r,(c,a,b)=>{if(section!=='reports')throw new AppError(404,'MANAGEMENT_ENDPOINT','操作入口不存在');return queueManagementReport(c,a,b);});}

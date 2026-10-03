@@ -50,8 +50,10 @@
     "predev": "node tools/copy-cesium.mjs",
     "worker:terrain": "node --env-file=.env.local --import tsx workers/terrain.ts",
     "ops:phase2-restore": "node --env-file=.env.test.local --import tsx ops/phase2-restore.ts",
+    "worker:management": "node --env-file=.env.local --import tsx workers/management.ts",
     "worker:agronomy": "node --env-file=.env.local --import tsx workers/agronomy.ts",
     "models:crop-prepare": "node workers/crop-inference.mjs --prepare",
+    "ops:phase4-restore": "node --env-file=.env.test.local --import tsx ops/phase4-restore.ts",
     "ops:phase3-restore": "node --env-file=.env.test.local --import tsx ops/phase3-restore.ts"
   },
   "dependencies": {

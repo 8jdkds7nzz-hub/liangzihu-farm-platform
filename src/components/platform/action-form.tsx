@@ -1,7 +1,7 @@
 'use client';
 import { useContext, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import {ActorSnapshot} from './actor-snapshot';
-export default function ActionForm({ path, children, method = 'POST', numbers = [], times = [], booleans = [], nullableBooleans = [], jsonFields = [], scales = {}, onSaved, stableKey = false, label = '保存' }: {
+export default function ActionForm({ path, children, method = 'POST', numbers = [], times = [], booleans = [], nullableBooleans = [], jsonFields = [], multiFields = [], scales = {}, onSaved, stableKey = false, label = '保存' }: {
     path: string;
     children: ReactNode;
     method?: string;
@@ -10,6 +10,7 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
     booleans?: string[];
     nullableBooleans?: string[];
     jsonFields?: string[];
+    multiFields?: string[];
     scales?: Record<string, number>;
     onSaved?: () => void;
     stableKey?: boolean;
@@ -26,6 +27,7 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
         const form = e.currentTarget;
         try {
             const data: Record<string, unknown> = Object.fromEntries(new FormData(form));
+            for(const name of multiFields)data[name]=new FormData(form).getAll(name);
             if(actorAtOpen.current&&/^\/api\/v1\/(inventory|traceability|protection|agronomy|control-records)\//.test(path))data.expectedActorId=actorAtOpen.current;
             for (const name of numbers) {
                 if (data[name] === '')

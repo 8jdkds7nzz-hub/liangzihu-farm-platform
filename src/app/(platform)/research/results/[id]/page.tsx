@@ -1,0 +1,1 @@
+import ResearchDetail from '@/components/phase4/research-detail';export default async function Page({params}:{params:Promise<{id:string}>}){const{id}=await params;return <><h1>试验结果授权资料</h1><ResearchDetail kind="result" id={id}/></>;}

@@ -6,6 +6,8 @@ import { assertAccess } from '../identity/access';
 import { audit, digest, uuid } from '../identity/common';
 import { publicAsset } from '../media/service';
 import { canonicalJson } from '../../platform/json';
+import {exportBusinessRelations} from './business-export';
+import {financialRole} from '../finance/access';
 async function rows(c: PoolClient, sql: string, params: unknown[]) { const r = (await c.query(sql + ' LIMIT 5001', params)).rows; if (r.length > 5000)
     throw new AppError(422, 'EXPORT_TOO_LARGE', '该范围超过单次导出上限，请缩小对象或时间范围'); return r; }
 async function chains(c: PoolClient, table: 'maintenance_records' | 'manual_checks', ids: unknown[], from: string, to: string) {
@@ -30,9 +32,8 @@ export async function createExport(c: PoolClient, actor: Actor, b: Record<string
     const maintenance = await chains(c, 'maintenance_records', ids, from, to);
     const manualChecks = await chains(c, 'manual_checks', ids, from, to);
     const bindings = await rows(c, 'SELECT * FROM point_bindings WHERE object_id=ANY($1::uuid[]) ORDER BY valid_from,id', [ids]);
-    const pointIds = [...new Set([...observations.map(r => r.point_id), ...bindings.map(r => r.point_id), ...maintenance.map(r => r.point_id), ...manualChecks.map(r => r.point_id)].filter(Boolean))];
-    const points = await rows(c, 'SELECT p.* FROM points p JOIN devices d ON d.id=p.device_id WHERE p.id=ANY($1::uuid[]) AND d.object_id=ANY($2::uuid[])', [pointIds,ids]);
-    const devices = await rows(c, 'SELECT * FROM devices WHERE id=ANY($1::uuid[]) AND object_id=ANY($2::uuid[])', [points.map(p => p.device_id),ids]);
+    const points = await rows(c, 'SELECT p.* FROM points p JOIN devices d ON d.id=p.device_id WHERE d.object_id=ANY($1::uuid[]) ORDER BY p.id', [ids]);
+    const devices = await rows(c, 'SELECT * FROM devices WHERE object_id=ANY($1::uuid[]) ORDER BY id', [ids]);
     const alerts = await rows(c, 'SELECT * FROM alerts WHERE object_id=ANY($1::uuid[]) ORDER BY opened_at,id', [ids]);
     const rules = await rows(c, 'SELECT v.* FROM rule_versions v JOIN rule_bindings b ON b.id=v.binding_id WHERE b.object_id=ANY($1::uuid[])', [ids]);
     const workOrders = await rows(c, 'SELECT * FROM work_orders WHERE object_id=ANY($1::uuid[])', [ids]);
@@ -80,6 +81,8 @@ export async function createExport(c: PoolClient, actor: Actor, b: Record<string
       hydraulicLinks:await rows(c,'SELECT * FROM hydraulic_links WHERE object_id=ANY($1::uuid[]) AND to_object_id=ANY($1::uuid[])',[ids])});
     payload.limits.externalReferences+='；已迁出范围的设备/测点不带当前台账；跨对象简报发布须全部对象在本次选择内；连通关系两端都在导出范围才包含';
     payload.limits.measurements+='；1b/1c关系与修订历史保留，附件原件使用另一个受控打包入口逐文件复核';
+    Object.assign(payload,await exportBusinessRelations(c,actor,ids as string[]));
+    payload.limits.measurements+='；三四期业务按所选对象保留关系与版本，角色和跨对象排除项见businessScopeNotices';
     const encoded = canonicalJson(payload);
     if (Buffer.byteLength(encoded) > 8 * 1024 * 1024)
         throw new AppError(422, 'EXPORT_TOO_LARGE', '导出超过8MB，请缩小范围');
@@ -92,6 +95,7 @@ export async function downloadExport(c: PoolClient, actor: Actor, id: string) {
     const row = (await c.query('SELECT * FROM export_tasks WHERE id=$1 AND created_by=$2 AND expires_at>clock_timestamp()', [id, actor.id])).rows[0];
     if (!row)
         throw new AppError(404, 'EXPORT_NOT_FOUND', '导出不存在、已过期或不属于此账号');
+    if(row.payload.phase4?.financeIncluded)financialRole(actor);
     for (const objectId of row.object_ids)
         {await assertAccess(c, actor, { objectId, action: 'export', at: new Date().toISOString() });await assertAccess(c,actor,{objectId,action:'read',at:new Date().toISOString()});}
     const body = canonicalJson(row.payload);
