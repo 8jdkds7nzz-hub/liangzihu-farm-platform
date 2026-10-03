@@ -4,4 +4,5 @@ RUN DEBIAN_MIRROR="$DEBIAN_MIRROR" node -e 'const fs=require("fs"),mode=process.
     && printf 'Acquire::Retries "2";\nAcquire::http::Timeout "30";\nAcquire::https::Timeout "30";\nAcquire::http::Pipeline-Depth "0";\n' > /etc/apt/apt.conf.d/99quality-network \
     && apt-get update && apt-get install -y --no-install-recommends docker.io python3 procps git ca-certificates && rm -rf /var/lib/apt/lists/*
 RUN npm install --global pnpm@10.33.0
+ENV ONNXRUNTIME_NODE_INSTALL_CUDA=skip
 WORKDIR /workspace

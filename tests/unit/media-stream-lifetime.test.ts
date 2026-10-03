@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {mkdtemp,writeFile,rm} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import {Readable} from 'node:stream';import {randomUUID} from 'node:crypto';
+import {stageOriginalFile} from '../../src/modules/media/uploads';import {checksum,type PrivateStore} from '../../src/modules/media/storage';
+test('原件目标在消费前拒绝时，调用方仍关闭文件流',async()=>{const folder=await mkdtemp(join(tmpdir(),'media-close-')),path=join(folder,'source.pdf'),bytes=Buffer.from('%PDF-1.7\nsynthetic');let captured:Readable|undefined;await writeFile(path,bytes);
+ const store:PrivateStore={kind:'fixture',independentBackup:false,put:async()=>{},get:async()=>bytes,open:async()=>Readable.from([bytes]),putStream:async(_key,source)=>{captured=source;throw Error('DESTINATION_UNAVAILABLE');}};
+ try{await assert.rejects(()=>stageOriginalFile({path,length:bytes.length,checksum:checksum(bytes)},randomUUID(),'application/pdf',store),/DESTINATION_UNAVAILABLE/);assert(captured);assert.equal(captured.closed,true);}finally{captured?.destroy();await rm(folder,{recursive:true,force:true});}
+});
+test('成功写入的原件仍通过长度校验并关闭输入',async()=>{const folder=await mkdtemp(join(tmpdir(),'media-close-')),path=join(folder,'source.pdf'),bytes=Buffer.from('%PDF-1.7\nsynthetic');let captured:Readable|undefined,stored=Buffer.alloc(0);await writeFile(path,bytes);
+ const store:PrivateStore={kind:'fixture',independentBackup:false,put:async()=>{},get:async()=>stored,open:async()=>Readable.from([stored]),putStream:async(_key,source)=>{captured=source;const parts:Buffer[]=[];for await(const b of source)parts.push(Buffer.from(b));stored=Buffer.concat(parts);}};
+ try{const result=await stageOriginalFile({path,length:bytes.length,checksum:checksum(bytes)},randomUUID(),'application/pdf',store);assert.equal(result.length,bytes.length);assert.deepEqual(stored,bytes);assert(captured);assert.equal(captured.closed,true);}finally{captured?.destroy();await rm(folder,{recursive:true,force:true});}
+});

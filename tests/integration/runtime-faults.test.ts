@@ -1,4 +1,4 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {spawn} from 'node:child_process';import {once} from 'node:events';import {randomUUID} from 'node:crypto';import {mkdtemp,rm} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import pg from 'pg';
+import test from 'node:test';import assert from 'node:assert/strict';import {spawn} from 'node:child_process';import {once} from 'node:events';import {randomUUID} from 'node:crypto';import {mkdtemp,rm} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';import type {Readable} from 'node:stream';import pg from 'pg';
 import {withDb,requireTestDatabaseUrl} from '../support/db';import {actorFixture,objectFixture,permit} from '../support/fixtures';import {syntheticAsset} from '../support/agronomy';import {transaction} from '../../src/db/pool';import {enqueue,recoverExpired,finishJob} from '../../src/modules/jobs/repository';import {runOne} from '../../src/modules/jobs/runner';import {localStore,checksum,type PrivateStore} from '../../src/modules/media/storage';import {backupMedia} from '../../src/modules/media/uploads';
 test('Q11真实终止测试worker后恢复租约，四并发消费100任务不重复',{timeout:30000},()=>withDb(async pool=>{
  const schema=(await pool.query('SELECT current_schema() s')).rows[0].s,key='crash-'+randomUUID();
@@ -18,8 +18,9 @@ test('Q11仅中断自建连接，事务回滚后可重新读写',()=>withDb(asyn
 }));
 test('Q11备份写入失败不伪装已备份，重试后原件与副本一致',{timeout:15000},()=>withDb(async pool=>{
  const dir=await mkdtemp(join(tmpdir(),'backup-fault-'));try{const store=localStore(join(dir,'original'),join(dir,'backup')),actor=await actorFixture(pool,'technician'),objectId=await objectFixture(pool,actor.id);await permit(pool,actor.id,objectId,['read','record']);const asset=await syntheticAsset(pool,actor,objectId,store,'rgb');
-  const bad:PrivateStore={...store,async putStream(){throw Error('controlled backup failure');}};
+  let captured:Readable|undefined;const bad:PrivateStore={...store,async putStream(_key,body){captured=body;throw Error('controlled backup failure');}};
   assert.equal(await runOne(pool,'backup-failing',{'media.backup':async lease=>{await backupMedia(pool,asset.id,lease,bad);}}),true);
+  assert(captured);assert.equal(captured.closed,true,'失败的目标仍必须释放已打开的原件流');
   assert.notEqual((await pool.query('SELECT backup_state FROM media_assets WHERE id=$1',[asset.id])).rows[0].backup_state,'verified');assert.equal((await pool.query("SELECT state FROM jobs WHERE business_key=$1",['media-backup:'+asset.id])).rows[0].state,'retry_wait');
   await new Promise(r=>setTimeout(r,2100));assert.equal(await runOne(pool,'backup-retry',{'media.backup':async lease=>{await backupMedia(pool,asset.id,lease,store);}}),true);
   const row=(await pool.query('SELECT * FROM media_assets WHERE id=$1',[asset.id])).rows[0];assert.equal(row.backup_state,'verified');assert.equal(checksum(await store.get(row.storage_key,true)),checksum(asset.bytes));assert.equal(checksum(await store.get(row.storage_key)),checksum(asset.bytes));
