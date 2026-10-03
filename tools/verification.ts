@@ -63,7 +63,7 @@ export async function runVerification(options:{profile:string;steps:CheckStep[];
   const env:NodeJS.ProcessEnv={...process.env,...options.env,AGRI_CHECK_RUN_DIR:runDirectory};delete env.NODE_TEST_CONTEXT;
   const historyDirs=options.historyDirs??['docs/acceptance','docs/evaluations'].map(p=>join(PROJECT_ROOT,p));
   const result={schemaVersion:'project-check-v2',profile:options.profile,runDirectory,startedAt:new Date().toISOString(),finishedAt:null as string|null,durationMs:0,
-    state:'running' as 'running'|'finished',passed:false,source:{commit:git(['rev-parse','HEAD']),dirty:!!git(['status','--porcelain','--untracked-files=normal']),sha256:'',afterSha256:'',files:0,unchanged:false},
+    state:'running' as 'running'|'finished',passed:false,buildId:null as string|null,source:{commit:git(['rev-parse','HEAD']),dirty:!!git(['status','--porcelain','--untracked-files=normal']),sha256:'',afterSha256:'',files:0,unchanged:false},
     environment:{node:process.version,platform:process.platform,arch:process.arch,testInstance:env.TEST_ENVIRONMENT_ID??null,databasePolicy:'agri_test only',productionAcceptance:false},
     steps:[] as StepResult[],history:{files:0,beforeSha256:'',afterSha256:'',unchanged:false,changes:[] as string[]},
     files:[] as {path:string;bytes:number;sha256:string}[],errors:[] as string[],
@@ -98,6 +98,7 @@ export async function runVerification(options:{profile:string;steps:CheckStep[];
             item.failedCases=[...run.text.matchAll(/^not ok \d+ - (.+)$/gm)].map(m=>m[1]);
             item.status=run.reason==='INTERRUPTED'?'interrupted':run.exitCode===0&&!run.reason?'passed':'failed';
             if(item.status==='passed'&&step.format&&(!item.tests||!item.tests.total||item.tests.failed||item.tests.skipped||item.tests.cancelled||item.tests.todo)){item.status='incomplete';item.reason='TESTS_NOT_FULLY_EXECUTED';}
+            if(item.status==='passed'&&step.id==='build')result.buildId=(await readFile(join(PROJECT_ROOT,'.next/BUILD_ID'),'utf8')).trim();
           }
         }
       }catch{item.status='failed';item.reason='STEP_EXECUTION_FAILED';}

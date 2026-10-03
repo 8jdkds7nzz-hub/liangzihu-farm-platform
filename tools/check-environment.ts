@@ -14,9 +14,11 @@ export function testUrl(value:string|undefined):URL {
 }
 export function testContainer(env:NodeJS.ProcessEnv, requireOwned=true):string {
  const u=testUrl(env.TEST_DATABASE_URL),name=env.TEST_DB_CONTAINER??'liangzihu-farm-db';
- if(!/^[a-zA-Z0-9_-]+$/.test(name)||!['localhost','127.0.0.1'].includes(u.hostname))throw Error('TEST_CONTAINER_IDENTITY_REQUIRED');
+ if(!/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(name)||!['localhost','127.0.0.1'].includes(u.hostname))throw Error('TEST_CONTAINER_IDENTITY_REQUIRED');
  const info=JSON.parse(execFileSync('docker',['inspect',name],{encoding:'utf8',stdio:['ignore','pipe','ignore'],timeout:5000}))[0];
- if(!info.State.Running||!info.NetworkSettings.Ports['5432/tcp']?.some((p:any)=>p.HostIp==='127.0.0.1'&&p.HostPort===u.port))throw Error('TEST_CONTAINER_PORT_MISMATCH');
+ let sameNamespace=false;
+ if(env.TEST_RUNNER_CONTAINER){if(!/^[a-zA-Z0-9][a-zA-Z0-9_-]*$/.test(env.TEST_RUNNER_CONTAINER))throw Error('TEST_CONTAINER_IDENTITY_REQUIRED');const runner=JSON.parse(execFileSync('docker',['inspect',env.TEST_RUNNER_CONTAINER],{encoding:'utf8',stdio:['ignore','pipe','ignore'],timeout:5000}))[0];sameNamespace=runner.State.Running&&runner.Config.Labels?.['agri.quality.instance']===env.TEST_ENVIRONMENT_ID&&['container:'+info.Id,'container:'+name].includes(runner.HostConfig.NetworkMode)&&u.port==='5432';}
+ if(!info.State.Running||!sameNamespace&&!info.NetworkSettings.Ports['5432/tcp']?.some((p:any)=>p.HostIp==='127.0.0.1'&&p.HostPort===u.port))throw Error('TEST_CONTAINER_PORT_MISMATCH');
  if(requireOwned&&(!env.TEST_ENVIRONMENT_ID||info.Config.Labels?.['agri.quality.instance']!==env.TEST_ENVIRONMENT_ID))throw Error('TEST_INSTANCE_MISMATCH');
  return name;
 }

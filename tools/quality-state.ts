@@ -23,7 +23,11 @@ export async function snapshot(directories:string[],root=PROJECT_ROOT) {
 }
 export async function sourceSnapshot(root=PROJECT_ROOT, directories?:string[]) {
   const rows=await snapshot(directories??['src','db','workers','tools','tests','ops','.github'].map(p=>join(root,p)),root);
-  if(!directories)for(const name of ['package.json','pnpm-lock.yaml','next.config.ts','tsconfig.json'])rows[name]=await fileHash(join(root,name));
+  if(!directories){
+    for(const name of ['package.json','pnpm-lock.yaml','next.config.ts','tsconfig.json'])rows[name]=await fileHash(join(root,name));
+    for(const name of ['.gitignore','.npmrc','.node-version']){try{rows[name]=await fileHash(join(root,name));}catch(e){if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}}
+    for(const entry of await readdir(join(root,'public'),{withFileTypes:true}).catch(()=>[])){if(entry.name==='vendor')continue;const path=join(root,'public',entry.name);if(entry.isSymbolicLink())throw new Error('SYMLINK_IN_SOURCE');if(entry.isDirectory())Object.assign(rows,await snapshot([path],root));else if(entry.isFile())rows['public/'+entry.name]=await fileHash(path);}
+  }
   return Object.fromEntries(Object.entries(rows).sort(([a],[b])=>a.localeCompare(b)));
 }
 export async function atomicJson(path:string,value:unknown) {

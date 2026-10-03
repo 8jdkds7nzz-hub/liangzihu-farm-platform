@@ -1,0 +1,30 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {randomBytes,randomUUID,createHash} from 'node:crypto';import {existsSync} from 'node:fs';import {mkdir,readFile,writeFile} from 'node:fs/promises';import {join} from 'node:path';
+import {withDb} from '../support/db';import {withApp} from '../support/app';import {actorFixture,objectFixture,permit} from '../support/fixtures';import {artifactDirectory,artifactPath,PROJECT_ROOT} from '../support/artifacts';import {postgresTest} from '../support/postgres';import {syntheticAsset} from '../support/agronomy';
+import {loadMigrations,runMigrations} from '../../src/db/migrate';import {transaction} from '../../src/db/pool';import {createLocation,createLot} from '../../src/modules/inventory/catalog';import {postMovement,balance} from '../../src/modules/inventory/ledger';import {recordExpense} from '../../src/modules/finance/expenses';import {localStore,checksum} from '../../src/modules/media/storage';
+
+test('Q04旧版到新迁移、失败升级回滚和旧应用兼容回退保留身份与非空业务',{timeout:180000},async()=>{
+ const old=join(PROJECT_ROOT,'.local/发布旧版');assert(existsSync(join(old,'准备记录.json')),'先执行pnpm release:prepare');
+ const build=JSON.parse(await readFile(join(old,'准备记录.json'),'utf8'));assert.equal(build.commit,'1c3c5d0cab9d1e5351d811e91faa0c11302aeac8');
+ const result=await withDb(async pool=>{
+  const migrations=await loadMigrations(),oldMigrations=await loadMigrations(join(old,'db/migrations'));assert.equal(oldMigrations.at(-1)!.version,38);await runMigrations(pool,oldMigrations);
+  const actor=await actorFixture(pool,'technician'),objectId=await objectFixture(pool,actor.id);await permit(pool,actor.id,objectId,['read','record','review','export']);
+  const directory=artifactDirectory('发布/非空业务'),store=localStore(join(directory,'source'),join(directory,'backup')),asset=await syntheticAsset(pool,actor,objectId,store,'rgb'),key=randomBytes(32).toString('hex');
+  const location=await transaction(c=>createLocation(c,actor,{objectId,code:'RELEASE',name:'合成升级仓',requestKey:randomUUID()}),pool),lot=await transaction(c=>createLot(c,actor,{objectId,code:'RELEASE-LOT',product:'合成升级原料',kind:'input',unit:'kg',basis:'as_is',source:'仅升级验证',requestKey:randomUUID()}),pool);
+  await transaction(c=>postMovement(c,actor,{objectId,lotId:lot.id,locationId:location.id,kind:'receipt',quantity:'12',occurredAt:new Date().toISOString(),evidence:'合成入库',requestKey:randomUUID()}),pool);
+  let token='';const checks:Record<string,boolean>={};
+  const read=async(app:any,quantity:string)=>{const headers={Cookie:'agri_session='+token};const me=await fetch(app.origin+'/api/v1/me',{headers});assert.equal(me.status,200);const response=await fetch(app.origin+'/api/v1/inventory/lot?id='+lot.id,{headers});assert.equal(response.status,200);assert.equal((await response.json()).lot.id,lot.id);assert.equal(await transaction(c=>balance(c,lot.id,location.id),pool),quantity);const media=await fetch(app.origin+'/api/v1/media/'+asset.id,{headers});assert.equal(media.status,200);assert.equal(checksum(new Uint8Array(await media.arrayBuffer())),checksum(asset.bytes));};
+  await withApp(pool,async app=>{token=await app.authenticate(actor);await read(app,'12');checks.oldHttp=true;},{appDirectory:old,mediaRoot:directory,encryptionKey:key});
+  const identity=(await pool.query('SELECT password_hash,auth_version,role FROM users WHERE id=$1',[actor.id])).rows[0],schema=(await pool.query('SELECT current_schema() name')).rows[0].name;
+  const dump=postgresTest('pg_dump',['--schema',schema,'--format','custom','--no-owner','--no-acl']);await writeFile(artifactPath('发布/升级前隔离库.dump'),dump,{mode:0o600});
+  const sql='CREATE TABLE failed_release_probe(id integer); SELECT * FROM missing_release_probe;',bad={version:44,name:'044_test_failure.sql',sql,checksum:createHash('sha256').update(sql).digest('hex')};
+  await assert.rejects(()=>runMigrations(pool,[...migrations,bad]),{code:'42P01'});assert.equal((await pool.query('SELECT max(version) v FROM schema_migrations')).rows[0].v,38);assert.equal((await pool.query("SELECT to_regclass('energy_meters') name")).rows[0].name,null);checks.failedMigrationRolledBack=true;
+  await withApp(pool,app=>read(app,'12'),{appDirectory:old,mediaRoot:directory,encryptionKey:key});
+  await runMigrations(pool,migrations);assert.deepEqual((await pool.query('SELECT password_hash,auth_version,role FROM users WHERE id=$1',[actor.id])).rows[0],identity);
+  await transaction(c=>postMovement(c,actor,{objectId,lotId:lot.id,locationId:location.id,kind:'receipt',quantity:'3',occurredAt:new Date().toISOString(),evidence:'升级后继续入库',requestKey:randomUUID()}),pool);
+  const expense=await transaction(c=>recordExpense(c,actor,{objectId,category:'other',amountCny:'5',payer:'合成主体',payee:'合成收款者',voucher:'RELEASE-EXPENSE',occurredAt:new Date().toISOString(),linkKind:'manual',evidence:'仅新表兼容验证',requestKey:randomUUID()}),pool);
+  await withApp(pool,app=>read(app,'15'),{mediaRoot:directory,encryptionKey:key});checks.newHttpAndWrites=true;
+  await withApp(pool,async app=>{await read(app,'15');await pool.query("UPDATE grants SET revoked_at=now() WHERE user_id=$1 AND action='read'",[actor.id]);assert.equal((await fetch(app.origin+'/api/v1/inventory/lot?id='+lot.id,{headers:{Cookie:'agri_session='+token}})).status,403);},{appDirectory:old,mediaRoot:directory,encryptionKey:key});checks.oldBinaryReadsNewSchema=true;checks.revocationAfterRollback=true;
+  assert.equal((await pool.query('SELECT count(*) n FROM business_expenses WHERE id=$1',[expense.id])).rows[0].n,'1');assert.equal((await pool.query('SELECT max(version) v FROM schema_migrations')).rows[0].v,43);checks.newDataPreserved=true;checks.identityPreserved=true;checks.attachmentsReadBack=true;
+  return {checkedAt:new Date().toISOString(),oldCommit:build.commit,oldBuildId:build.buildId,newBuildId:(await readFile(join(PROJECT_ROOT,'.next/BUILD_ID'),'utf8')).trim(),checks,productionUpgradeAccepted:false};
+ },{migrate:false});await writeFile(artifactPath('发布/升级回退实测.json'),JSON.stringify(result,null,2)+'\n');
+});

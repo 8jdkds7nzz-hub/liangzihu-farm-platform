@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,basename} from 'node:path';
 import {runVerification as actualRun, type CheckStep} from '../../tools/verification';
 
 async function runVerification(options:Parameters<typeof actualRun>[0]) {
@@ -73,4 +73,13 @@ test('Q01超时和取消保留未完成状态', async () => {
   const cancelled=await runVerification({profile:'runner-test',historyDirs:[],signal:controller.signal,steps:[step('never',['-e','process.exit(9)'])]});
   try {assert.equal(timeout.passed,false);assert.equal(timeout.steps[0].reason,'TIMEOUT');assert.equal(cancelled.steps[0].status,'interrupted');assert.equal(cancelled.passed,false);}
   finally {await rm(timeout.runDirectory,{recursive:true,force:true});await rm(cancelled.runDirectory,{recursive:true,force:true});}
+});
+
+test('S3同版本重跑成功保留首次失败并登记不稳定线索',async()=>{
+ const folder=await mkdtemp(join(tmpdir(),'rerun-probe-')),flag=join(folder,'condition');await writeFile(flag,'1');
+ const command=step('probe',['-e',"process.exit(Number(require('node:fs').readFileSync(process.argv[1],'utf8')))",flag]);
+ const first=await runVerification({profile:'runner-test',historyDirs:[],steps:[command]});await writeFile(flag,'0');
+ const second=await runVerification({profile:'runner-test',historyDirs:[],steps:[command],retryOf:basename(first.runDirectory)});
+ try{assert.equal(first.passed,false);assert.equal(second.passed,true);assert.equal(second.rerun.comparable,true);assert.deepEqual(second.rerun.recoveredSteps,['probe']);assert.equal(JSON.parse(await readFile(join(first.runDirectory,'运行记录.json'),'utf8')).passed,false);}
+ finally{await rm(folder,{recursive:true,force:true});for(const r of [first,second])await rm(r.runDirectory,{recursive:true,force:true});}
 });
