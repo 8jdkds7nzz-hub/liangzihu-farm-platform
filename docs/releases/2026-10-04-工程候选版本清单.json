@@ -1,0 +1,259 @@
+{
+  "createdAt": "2026-10-03T17:49:27.478Z",
+  "commit": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+  "sourceSha256": "3316867329ba1d49b8e5c63be6ac22754737113a3aad385cd42684407d9ab879",
+  "lockSha256": "4555b69d8df0bfd5eb3de5867bd150ec3aedf80f987a05d0adbbd79fa60a8a80",
+  "buildId": "ajK-CDhY1BnXdNP5RKIer",
+  "node": "v25.9.0",
+  "platform": "darwin",
+  "checkReportSha256": "13534cee60fd2a3220f8b1b4bc0442b1265f19f2ea912f7b73725563e2111ee6",
+  "migrations": [
+    {
+      "version": 0,
+      "name": "000_platform.sql",
+      "sha256": "2242e4d8c42d4a13c94f3a4dd19e2eba7ef12a73ae044d5b531d0b1aa8f18e5a"
+    },
+    {
+      "version": 1,
+      "name": "001_identity.sql",
+      "sha256": "b778af05c1fabafdc9dac36351fdc6f5eff7d4053db6197be7067425ab63d25d"
+    },
+    {
+      "version": 2,
+      "name": "002_registry.sql",
+      "sha256": "90235bdef1c3b823c9f156f05ed8b244e116bf4060d9ca539d268f199651afbf"
+    },
+    {
+      "version": 3,
+      "name": "003_telemetry.sql",
+      "sha256": "31ef4a3ac8c65a9ee19f1e62d5a4f2acc02351960e3c3b1391f82059793db30a"
+    },
+    {
+      "version": 4,
+      "name": "004_jobs.sql",
+      "sha256": "0d7398130fdaddcae2bbf355e9a19d6ea1d946d386865b71232d28d458af175b"
+    },
+    {
+      "version": 5,
+      "name": "005_alerts.sql",
+      "sha256": "f2d10b9ebad620535510e843d6434714816a6b857bd364522aa53d515e06dfdf"
+    },
+    {
+      "version": 6,
+      "name": "006_notifications.sql",
+      "sha256": "0d13456141c46587d76e2b310c2aa51e2121a229285760980dfd1389126b8fa1"
+    },
+    {
+      "version": 7,
+      "name": "007_operations.sql",
+      "sha256": "ee7140550585b24e7968d25814880f3116a84cf1011630ec4849016bb82cc383"
+    },
+    {
+      "version": 8,
+      "name": "008_validation_indexes.sql",
+      "sha256": "7cee06a6e06f9e60b41cd32f430962fed72a8738c8a2f10e284c269aa220fbe2"
+    },
+    {
+      "version": 9,
+      "name": "009_ingest_contract_evidence.sql",
+      "sha256": "c89a1e93440b40fa33d41e442ad3876dec63261d11256de360114302350b16c6"
+    },
+    {
+      "version": 10,
+      "name": "010_feedback.sql",
+      "sha256": "28c90cdba93cf12f7df359fc126cca778afee4c290a2d92c173593fa87a870f2"
+    },
+    {
+      "version": 11,
+      "name": "011_map.sql",
+      "sha256": "9435fef4d5ac6089805374b68082b3b3232df2d520ae30bd77e04b023cdf650a"
+    },
+    {
+      "version": 12,
+      "name": "012_records.sql",
+      "sha256": "39227a2dbc6c25ebcb725d6d42e41bf7e9e25ca3f68701d7b289d66ad870c758"
+    },
+    {
+      "version": 13,
+      "name": "013_field_operations.sql",
+      "sha256": "61b939fc702d150fae386803b2be88812f77c04ee2f0cc734567fc7ad320af3e"
+    },
+    {
+      "version": 14,
+      "name": "014_imagery.sql",
+      "sha256": "d2ab2d2a71c1b094e8f13d55926291adc37ade489567af0f1d7a8b03ffc274fc"
+    },
+    {
+      "version": 15,
+      "name": "015_analysis.sql",
+      "sha256": "302a0c0ef8587957606ffacea38c789ffa897a265f964f9c0335d5cf2b66613c"
+    },
+    {
+      "version": 16,
+      "name": "016_knowledge.sql",
+      "sha256": "2dbb8bfd3cabaa60269479b5ea3e8faaf84f0c3f389f9023776d3ecf969a376c"
+    },
+    {
+      "version": 17,
+      "name": "017_assistant.sql",
+      "sha256": "53669b9f04eb20550856aa1baaba6c8c44e4bd494bfaf6a8c0e22fb9cc13a8fa"
+    },
+    {
+      "version": 18,
+      "name": "018_image_reviews.sql",
+      "sha256": "a1ecd04769f2c4540139187546b3d341b835975f76ba7f442bb6e78f5bee424e"
+    },
+    {
+      "version": 19,
+      "name": "019_schedules.sql",
+      "sha256": "5c58e5befe84524a8e8f344881b590062ad3696f34d9f36e88f5b213d7dd4882"
+    },
+    {
+      "version": 20,
+      "name": "020_briefing_explanations.sql",
+      "sha256": "c601112f74e6b278043ed7ce8e051090dc535176ebdae046bad438324587a3b6"
+    },
+    {
+      "version": 21,
+      "name": "021_weather_connections.sql",
+      "sha256": "244d97543bcef4248a30f960eea8729d5b0b7bf3a3a50ef58459798b2e876e27"
+    },
+    {
+      "version": 22,
+      "name": "022_remote_media.sql",
+      "sha256": "a86b5cae2681e8199fd822992f19cb1e67e8faeff992dac37779c27619cad466"
+    },
+    {
+      "version": 23,
+      "name": "023_ezviz_webhook.sql",
+      "sha256": "70a78993d9e656b32cf48c1df7d10479af4c69e87a59773c91c86cfb1f4b4387"
+    },
+    {
+      "version": 24,
+      "name": "024_flighthub.sql",
+      "sha256": "5897d20030078f95aa9b174951050de9bc1d17d87fcfeacce87f5da951deb65e"
+    },
+    {
+      "version": 25,
+      "name": "025_intelligence_runtime.sql",
+      "sha256": "1431a55ebdacdb8cf65c4a2ee83d449356a4bdc2aa8a51badcf434c54da749fc"
+    },
+    {
+      "version": 26,
+      "name": "026_large_media.sql",
+      "sha256": "34e1a1b009861e9dc525bacb1a760227a39a944725f3945d9b311feb2166aff6"
+    },
+    {
+      "version": 27,
+      "name": "027_spatial_evidence.sql",
+      "sha256": "b0021b0a75a34e6b23b965fbfbf1d3a53f538fc8d224a5a7d3763b43f8c8c1a4"
+    },
+    {
+      "version": 28,
+      "name": "028_analysis_schedules.sql",
+      "sha256": "dd9fc85abf682bdce3bb439db5e0d2594b398245532d3735c1a5523b527867fc"
+    },
+    {
+      "version": 29,
+      "name": "029_image_quality.sql",
+      "sha256": "94f389bca876b66638d6edbe0ce8edbcdbe962b87779cf911db3f703fb560be2"
+    },
+    {
+      "version": 30,
+      "name": "030_analysis_comparison.sql",
+      "sha256": "6e92f568b5e9625a965badc38af05d56e11235eac351b61772046910f7e7df48"
+    },
+    {
+      "version": 31,
+      "name": "031_camera_reads.sql",
+      "sha256": "d226001082b4195c32026382049baa0e9a9a666d1770fc910ffa83bea4a17c13"
+    },
+    {
+      "version": 32,
+      "name": "032_identity_recovery.sql",
+      "sha256": "993ba2167a6021d502d50575b0399eb8890dc4ec5d129cf7e739c2d3ddb74b56"
+    },
+    {
+      "version": 33,
+      "name": "033_expert_sms.sql",
+      "sha256": "9bb6193263cb837de1ed9f4a843ee1460e7f28e183fedd9330ffff1b16dccf88"
+    },
+    {
+      "version": 34,
+      "name": "034_phase2_terrain.sql",
+      "sha256": "55dd615cba308e072b0548efac22b4750992f5554752d25ae3063f73a4dc4e58"
+    },
+    {
+      "version": 35,
+      "name": "035_stock.sql",
+      "sha256": "cced36b626080d51db7e34a511accf4086eed2aa7aee4c72ec2230a53b0cfd23"
+    },
+    {
+      "version": 36,
+      "name": "036_quality_trace.sql",
+      "sha256": "b7e671d90144d3addba7435da74c715007b4b09575f4147e12da435a8b7f6287"
+    },
+    {
+      "version": 37,
+      "name": "037_protection.sql",
+      "sha256": "1be7a9be171f8e44a0fc19a3168c08d6767fa17281711948d728fe3f5ecb7bf3"
+    },
+    {
+      "version": 38,
+      "name": "038_agronomy.sql",
+      "sha256": "739193ff4c1a5573c3ef5a06fcb35e5f956403854a0c0f2495fb84adaa8af506"
+    },
+    {
+      "version": 39,
+      "name": "039_resources.sql",
+      "sha256": "58d1c7cee917e3056cc369309fc5dcdc6a15e4a01dfa6c7b892d732af90d9847"
+    },
+    {
+      "version": 40,
+      "name": "040_services_finance.sql",
+      "sha256": "5c249a550c5614f604f9a4d16d801daa55dd2c4635b04565bf67db82365ad577"
+    },
+    {
+      "version": 41,
+      "name": "041_research_management.sql",
+      "sha256": "8d075eac4d2ebeef2c130bbd2c2235de3d10132b7b0d8d8cc84bd03fe0909527"
+    },
+    {
+      "version": 42,
+      "name": "042_import_identity.sql",
+      "sha256": "6e9c50d82f3dfc2958404967eb4ee24fee0adb699c9acfde02aad24bf8de614e"
+    },
+    {
+      "version": 43,
+      "name": "043_subsidy_event_time.sql",
+      "sha256": "e6c092b5ae98a56b1b53eadcb1d0349f6b8301a64ab75e686a72ab00b508fdc7"
+    }
+  ],
+  "configurationKeys": [
+    "DATABASE_URL",
+    "DB_POOL_MAX",
+    "DB_CONNECTION_TIMEOUT_MS",
+    "DB_STATEMENT_TIMEOUT_MS",
+    "APP_ORIGIN",
+    "IDENTITY_MFA_REQUIRED",
+    "MEDIA_DRIVER",
+    "MODEL_EXTERNAL_ENABLED",
+    "QWEATHER_READS_ENABLED",
+    "MEDIA_REMOTE_READS_ENABLED",
+    "WECOM_ENABLED",
+    "WECOM_CONTRACT_VERIFIED",
+    "NOTICE_EXTERNAL_ENABLED",
+    "VOICE_ENABLED",
+    "VOICE_CONTRACT_VERIFIED",
+    "SMS_ENABLED",
+    "SMS_CONTRACT_VERIFIED",
+    "SMS_DAILY_LIMIT",
+    "RENKE_HTTP_ENABLED",
+    "CAMERA_READS_ENABLED",
+    "MEDIA_MAX_UPLOAD_BYTES",
+    "CROP_MODEL_EVALUATION_ENABLED",
+    "AGRONOMY_DB_POOL_MAX"
+  ],
+  "engineeringReady": true,
+  "productionAccepted": false
+}

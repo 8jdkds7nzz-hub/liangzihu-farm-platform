@@ -1,0 +1,828 @@
+{
+  "checkedAt": "2026-10-03T17:53:13.400556+00:00",
+  "codeCommit": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+  "baselineCommit": "51007188d1415825917269321f5b7fceec9d4b8e",
+  "completedScope": [
+    "Q01加固",
+    "Q02本地和远端工程验证",
+    "失败诊断/需求引用/公开摘要",
+    "Q04工程升级回退",
+    "Q11工程容量与故障"
+  ],
+  "local": {
+    "runId": "20261003T173132203Z-CibYkQ",
+    "reportSha256": "13534cee60fd2a3220f8b1b4bc0442b1265f19f2ea912f7b73725563e2111ee6",
+    "passed": true,
+    "steps": [
+      {
+        "id": "typecheck",
+        "status": "passed",
+        "durationMs": 1406,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "unit",
+        "status": "passed",
+        "durationMs": 24120,
+        "exitCode": 0,
+        "tests": {
+          "total": 87,
+          "passed": 87,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      {
+        "id": "environment",
+        "status": "passed",
+        "durationMs": 144,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "build",
+        "status": "passed",
+        "durationMs": 8291,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "release-prepare",
+        "status": "passed",
+        "durationMs": 103,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "database",
+        "status": "passed",
+        "durationMs": 216376,
+        "exitCode": 0,
+        "tests": {
+          "total": 154,
+          "passed": 154,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      {
+        "id": "browser-http",
+        "status": "passed",
+        "durationMs": 134690,
+        "exitCode": 0,
+        "tests": {
+          "total": 27,
+          "passed": 27,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      {
+        "id": "monitor",
+        "status": "passed",
+        "durationMs": 297,
+        "exitCode": 0,
+        "tests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      {
+        "id": "archive",
+        "status": "passed",
+        "durationMs": 93,
+        "exitCode": 0,
+        "tests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        }
+      },
+      {
+        "id": "coverage",
+        "status": "passed",
+        "durationMs": 197,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "retrieval",
+        "status": "passed",
+        "durationMs": 6531,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "assistant",
+        "status": "passed",
+        "durationMs": 20927,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "restore-phase1",
+        "status": "passed",
+        "durationMs": 5872,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "restore-phase2",
+        "status": "passed",
+        "durationMs": 5446,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "restore-phase3",
+        "status": "passed",
+        "durationMs": 6303,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "restore-phase4",
+        "status": "passed",
+        "durationMs": 6945,
+        "exitCode": 0,
+        "tests": null
+      },
+      {
+        "id": "stability",
+        "status": "passed",
+        "durationMs": 601804,
+        "exitCode": 0,
+        "tests": null
+      }
+    ],
+    "source": {
+      "commit": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+      "dirty": false,
+      "sha256": "3316867329ba1d49b8e5c63be6ac22754737113a3aad385cd42684407d9ab879",
+      "afterSha256": "3316867329ba1d49b8e5c63be6ac22754737113a3aad385cd42684407d9ab879",
+      "files": 636,
+      "unchanged": true
+    },
+    "history": {
+      "files": 260,
+      "beforeSha256": "4002c4f243a854d102b4638af34f54402a659d25e53d9259ec92c68586523117",
+      "afterSha256": "4002c4f243a854d102b4638af34f54402a659d25e53d9259ec92c68586523117",
+      "unchanged": true,
+      "changes": []
+    }
+  },
+  "testCounts": {
+    "unit": 87,
+    "database": 154,
+    "browser-http": 27,
+    "monitor": 1,
+    "archive": 1
+  },
+  "uniqueTestCount": 270,
+  "countingRule": "本机一次完整套件的独立用例；不累加Linux/CI/定向重跑、评测题数或恢复次数",
+  "linuxColdInstall": {
+    "commit": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+    "passed": true,
+    "platform": "linux/amd64",
+    "node": "22.15.0",
+    "freshNodeModules": true,
+    "remoteCI": true,
+    "source": "GitHub全新Ubuntu24.04执行器"
+  },
+  "retiredLocalLinuxFallback": {
+    "reason": "远端既有授权解除阻塞，正式Linux冷安装已实际成功；移除重复封装",
+    "attempts": [
+      {
+        "commit": "440037c0dfa88f568eca142d8b18a2c409085ad7",
+        "passed": false,
+        "exitCode": null
+      },
+      {
+        "commit": "9810f717c9cd5026988d3113a97134fa7ed0670d",
+        "passed": false,
+        "exitCode": 137
+      },
+      {
+        "commit": "841ea0eef0f348ecb66c7662914beac19caea31f",
+        "passed": false,
+        "exitCode": 137
+      }
+    ],
+    "countedAsSuccess": false
+  },
+  "github": {
+    "core": {
+      "conclusion": "success",
+      "databaseId": 37140833576,
+      "headBranch": "quality-automation-release",
+      "headSha": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+      "status": "completed",
+      "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform/actions/runs/37140833576",
+      "summary": {
+        "schemaVersion": "public-check-summary-v1",
+        "profile": "core",
+        "passed": true,
+        "finished": true,
+        "runtime": {
+          "node": "v22.15.0",
+          "platform": "linux",
+          "arch": "x64"
+        },
+        "sourceCommit": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+        "sourceSha256": "3316867329ba1d49b8e5c63be6ac22754737113a3aad385cd42684407d9ab879",
+        "sourceDirty": false,
+        "sourceUnchanged": true,
+        "historyUnchanged": true,
+        "errors": [],
+        "steps": [
+          {
+            "id": "typecheck",
+            "status": "passed",
+            "durationMs": 10549,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "unit",
+            "status": "passed",
+            "durationMs": 33584,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 87,
+              "passed": 87,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "environment",
+            "status": "passed",
+            "durationMs": 61,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "build",
+            "status": "passed",
+            "durationMs": 23763,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "database",
+            "status": "passed",
+            "durationMs": 49752,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 40,
+              "passed": 40,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "browser-http",
+            "status": "passed",
+            "durationMs": 30920,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 8,
+              "passed": 8,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "monitor",
+            "status": "passed",
+            "durationMs": 299,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "archive",
+            "status": "passed",
+            "durationMs": 100,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "coverage",
+            "status": "passed",
+            "durationMs": 263,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          }
+        ],
+        "possibleFlakySteps": [],
+        "productionAccepted": false
+      },
+      "downloadedSummarySha256": "56e522760d2c1fe99c62eeea377f4d8e167c21066079872cf7a31b6e941b8758"
+    },
+    "delivery": {
+      "conclusion": "success",
+      "databaseId": 37140833577,
+      "headBranch": "quality-delivery-20261004",
+      "headSha": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+      "status": "completed",
+      "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform/actions/runs/37140833577",
+      "summary": {
+        "schemaVersion": "public-check-summary-v1",
+        "profile": "delivery",
+        "passed": true,
+        "finished": true,
+        "runtime": {
+          "node": "v22.15.0",
+          "platform": "linux",
+          "arch": "x64"
+        },
+        "sourceCommit": "752a36e6ee1199854cbad59be5fa9db0e56678d7",
+        "sourceSha256": "3316867329ba1d49b8e5c63be6ac22754737113a3aad385cd42684407d9ab879",
+        "sourceDirty": false,
+        "sourceUnchanged": true,
+        "historyUnchanged": true,
+        "errors": [],
+        "steps": [
+          {
+            "id": "typecheck",
+            "status": "passed",
+            "durationMs": 10777,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "unit",
+            "status": "passed",
+            "durationMs": 33908,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 87,
+              "passed": 87,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "environment",
+            "status": "passed",
+            "durationMs": 67,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "build",
+            "status": "passed",
+            "durationMs": 24846,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "release-prepare",
+            "status": "passed",
+            "durationMs": 25286,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "database",
+            "status": "passed",
+            "durationMs": 221649,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 154,
+              "passed": 154,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "browser-http",
+            "status": "passed",
+            "durationMs": 169379,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 27,
+              "passed": 27,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "monitor",
+            "status": "passed",
+            "durationMs": 307,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "archive",
+            "status": "passed",
+            "durationMs": 74,
+            "exitCode": 0,
+            "reason": null,
+            "tests": {
+              "total": 1,
+              "passed": 1,
+              "failed": 0,
+              "skipped": 0,
+              "cancelled": 0,
+              "todo": 0
+            }
+          },
+          {
+            "id": "coverage",
+            "status": "passed",
+            "durationMs": 271,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "retrieval",
+            "status": "passed",
+            "durationMs": 8981,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "assistant",
+            "status": "passed",
+            "durationMs": 20824,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "restore-phase1",
+            "status": "passed",
+            "durationMs": 5824,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "restore-phase2",
+            "status": "passed",
+            "durationMs": 5682,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "restore-phase3",
+            "status": "passed",
+            "durationMs": 7744,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "restore-phase4",
+            "status": "passed",
+            "durationMs": 8226,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          },
+          {
+            "id": "stability",
+            "status": "passed",
+            "durationMs": 601714,
+            "exitCode": 0,
+            "reason": null,
+            "tests": null
+          }
+        ],
+        "possibleFlakySteps": [],
+        "productionAccepted": false
+      },
+      "downloadedSummarySha256": "88a8abede10d6ca7ab34b0a6cc1fcb7ed05e8aa6ef47367bed9429b4e8f41a7d"
+    }
+  },
+  "auth": {
+    "pushAccount": "NANBFTOP5",
+    "existingPermission": "WRITE and workflow scope",
+    "defaultLoginChanged": false,
+    "newScopeGranted": false
+  },
+  "coverage": {
+    "requirements": 131,
+    "allMappedFilesExecuted": 107,
+    "documents": {
+      "files": 243,
+      "links": 2029,
+      "errors": [],
+      "archivedThirdParty": [
+        "docs/licenses/BGE原权重模型卡.md",
+        "docs/licenses/BGE转换权重模型卡.md",
+        "docs/licenses/YOLOS原权重模型卡.md",
+        "docs/licenses/YOLOS转换权重模型卡.md",
+        "docs/licenses/说明.md"
+      ],
+      "limits": "原样保存的第三方模型卡内部相对链接属于上游仓库，不按本项目相对路径判断"
+    },
+    "assertionCoverageCertified": false,
+    "fieldAccepted": false
+  },
+  "upgrade": {
+    "checkedAt": "2026-10-03T17:37:47.542Z",
+    "oldCommit": "1c3c5d0cab9d1e5351d811e91faa0c11302aeac8",
+    "oldBuildId": "_mzN-vyupfttXtSlM_xXH",
+    "newBuildId": "ajK-CDhY1BnXdNP5RKIer",
+    "checks": {
+      "oldHttp": true,
+      "failedMigrationRolledBack": true,
+      "newHttpAndWrites": true,
+      "oldBinaryReadsNewSchema": true,
+      "revocationAfterRollback": true,
+      "newDataPreserved": true,
+      "identityPreserved": true,
+      "attachmentsReadBack": true
+    },
+    "productionUpgradeAccepted": false
+  },
+  "stability": {
+    "durationMs": 600054,
+    "thresholds": {
+      "durationMs": 600000,
+      "minimumSamples": 30,
+      "maximumOperationMs": 30000,
+      "expectedInitialJobs": 100
+    },
+    "checks": {
+      "initial100JobsOnce": true,
+      "export5000": true,
+      "export5001Rejected": true,
+      "duplicateSubmissionsOnce": true,
+      "queueDrained": true
+    },
+    "summary": {
+      "samples": 60,
+      "p50Ms": 25.032875000033528,
+      "p95Ms": 100.77145900001051,
+      "maxOperationMs": 418,
+      "maxConnections": 6,
+      "memoryMeasurements": 60
+    },
+    "hardware": {
+      "platform": "darwin",
+      "arch": "arm64",
+      "node": "v25.9.0",
+      "logicalCpus": 10,
+      "totalMemoryBytes": 17179869184
+    },
+    "passed": true,
+    "productionAccepted": false,
+    "limits": [
+      "仅10分钟、250与5001条合成记录；不证明全场或长期稳定性",
+      "列表200上限仍按Q09待改善；5000/5001是既有导出边界",
+      "ps CPU为进程累计口径，不能当瞬时整机利用率；内存缺失会显式记录"
+    ]
+  },
+  "releaseManifestSha256": "e3e5e38f6e105034aae1528d799c7f527ef4951f12cb088d9083ada75207f6c3",
+  "runtimeBugFix": {
+    "file": "src/modules/media/uploads.ts",
+    "behavior": "关闭备份、组装、下载原件流，即使目标在消费前拒绝",
+    "redLogSha256": "f9915a62b218bc1f3c7a4a253c7bc1991ec04a6f5d2e7337a7876b07ad7ae5ac",
+    "deterministicRegression": true
+  },
+  "retainedRuns": [
+    {
+      "runId": "20261003T164818547Z-yYDdqX",
+      "commit": "841ea0eef0f348ecb66c7662914beac19caea31f",
+      "profile": "delivery",
+      "passed": false,
+      "errors": []
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "f05f78d3d5ddb0c669af1751974428e2a1f8546923b500f0a25d87f54eceb3b8"
+    },
+    {
+      "path": "ops/phase2-restore.ts",
+      "sha256": "7627463044534d6861ddda260029c4a650a2bb48d1a753b8422116258e7277c8"
+    },
+    {
+      "path": "ops/phase3-restore.ts",
+      "sha256": "19a7148016afe4910e144ee8ee34de40eaa467d39b060ca3b2441b8b68e111c6"
+    },
+    {
+      "path": "ops/phase4-restore.ts",
+      "sha256": "f3e63fc41a62daba6b03501bb22f013e938a8e02e6b9ff6e0f484a50fc3c98c7"
+    },
+    {
+      "path": "ops/restore-check.ts",
+      "sha256": "71c5aaabf3598a7eb5be87ad3c404672abd5f62feecf61af663375bbd9e94aef"
+    },
+    {
+      "path": "package.json",
+      "sha256": "62b14c86df3be6361bec166394531f7b1786f9a1a1aedd7ba18fc09df758153a"
+    },
+    {
+      "path": "src/modules/media/uploads.ts",
+      "sha256": "29e44fb51ac946faaa7c5357d743086d3aa17e2bb0bcd3380678e08548770f6c"
+    },
+    {
+      "path": "tests/acceptance/release-upgrade.test.ts",
+      "sha256": "c245ceb5722e83aff13c0da7a4c9457fe69354f69de05c2bdfc1a9a924826009"
+    },
+    {
+      "path": "tests/integration/database.test.ts",
+      "sha256": "b53d2d10d8ee95db2297a6e43d1ccc1f1509ce95a7a75027a2c75bf85ee3a81d"
+    },
+    {
+      "path": "tests/integration/ezviz-webhook-restore.test.ts",
+      "sha256": "30584ebb15067dfde6343ee7cb0e3ec091a3532611d073a5b24fc13fb8d45efe"
+    },
+    {
+      "path": "tests/integration/flighthub-restore.test.ts",
+      "sha256": "bbb5232b79c73883386d40ce0dc198f68c3fa699fea6d4a2b9b470d286a1efe7"
+    },
+    {
+      "path": "tests/integration/remote-media-restore.test.ts",
+      "sha256": "e4e3a47e782cd54366bb0d213f7d519f326ee2ff11f5fd70ef79faf8721e1b5e"
+    },
+    {
+      "path": "tests/integration/runtime-faults.test.ts",
+      "sha256": "6ecf7cbc2326896800af61a3f4b5b274ad83b7f813b868d20af160bc80108c8e"
+    },
+    {
+      "path": "tests/integration/weather-connection-restore.test.ts",
+      "sha256": "6581643522d077012413b65583b885e86fc0831db52653108312cee47acd57f6"
+    },
+    {
+      "path": "tests/support/app.ts",
+      "sha256": "35986b1da2a96bf7c55325eac5b7c1eeacf660c8d32edca2d4e12452a8f2c900"
+    },
+    {
+      "path": "tests/support/crash-worker.ts",
+      "sha256": "f031fda4231305fd506a72027ff5e6e4626c96801aa53e4cd8016e16f7a17352"
+    },
+    {
+      "path": "tests/support/postgres.ts",
+      "sha256": "08bd3f3e1fe3ae7780cc02d614a891bb5a5d5ea26aa06400cc7c0f2873180abc"
+    },
+    {
+      "path": "tests/unit/check-environment.test.ts",
+      "sha256": "32e09a162ef8d37aa156b1f960b9d0eb16256f40f315cd3ae8fd056a6bf85e27"
+    },
+    {
+      "path": "tests/unit/check-suites.test.ts",
+      "sha256": "265a8a7f4ded697dd8f6c14207fd9e938b1a3e79b9460e4afd4570f742526279"
+    },
+    {
+      "path": "tests/unit/coverage-report.test.ts",
+      "sha256": "6e5c937b5b810137086c9123d9974fa1d3ccfe85e1ed5d6e1bf6bae7b2523431"
+    },
+    {
+      "path": "tests/unit/media-stream-lifetime.test.ts",
+      "sha256": "399283ad32e5792cdbd28ae3b327bc5debcfd41594728f863a0a1bd01508bf41"
+    },
+    {
+      "path": "tests/unit/quality-state.test.ts",
+      "sha256": "6e48ab1e1ccfa870d148fb0b32260778ef9fbbe8d83088ef35133e25815f3c0b"
+    },
+    {
+      "path": "tests/unit/release-manifest.test.ts",
+      "sha256": "250afa5ec2ca90c6747f97fe0e3d45961f0487c86bf8f70f1dc00fe3b754d43c"
+    },
+    {
+      "path": "tests/unit/verification-hardening.test.ts",
+      "sha256": "afa0f9f26c550fa71f79cdb4168dff844134d04bf3a87bd866ad743dabe809b4"
+    },
+    {
+      "path": "tests/unit/verification-runner.test.ts",
+      "sha256": "15fe15c38215fd286ba0e64c23c9a7227b009e136d3125239016e17f9711177b"
+    },
+    {
+      "path": "tools/check-coverage.ts",
+      "sha256": "003171d50f2808e6acd2231fb171a9929b752198fa984b5580e19556aaf6dada"
+    },
+    {
+      "path": "tools/check-environment.ts",
+      "sha256": "e98df91f7e0444dba5e90e885eb881ceafaa59ccf1efa7cd859327a08c053d41"
+    },
+    {
+      "path": "tools/check-project.ts",
+      "sha256": "1c0b9274684422a48d5376514c2412e852306d4b3c4d89413b0ac24f345631ae"
+    },
+    {
+      "path": "tools/check-report.ts",
+      "sha256": "e578206f38a941311ddfd78017b6ab09efa47f76a7be1c8ef4e2527a983e0d85"
+    },
+    {
+      "path": "tools/check-stability.ts",
+      "sha256": "b842a5d1ef86505087298bba03c5dedc3e12c2e1ba3d287dbda25fd241b082c2"
+    },
+    {
+      "path": "tools/check-suites.ts",
+      "sha256": "270d4ddec7509e2c77c5bfe00bf9d3ce3ada4aa803cfcb780396ee8d1568e7a4"
+    },
+    {
+      "path": "tools/coverage.ts",
+      "sha256": "39fb49a6eab8bfdf3db25c41e548db28329b7507802093b2969edc6485a12312"
+    },
+    {
+      "path": "tools/prepare-release.ts",
+      "sha256": "67f70121329a6c0d04da570e631be20eb5a14d803a0384cf4a02b0a705ebf785"
+    },
+    {
+      "path": "tools/quality-state.ts",
+      "sha256": "e4a13f79bcb8fe7e6414adef99be3201c3f21d24a6f0e3f71c7674b0107f7cfb"
+    },
+    {
+      "path": "tools/release-manifest.ts",
+      "sha256": "bcd285572c9cb8dbaa12d16e417dd49e22213559118b908dd67f2a3db60db0c8"
+    },
+    {
+      "path": "tools/setup-test-environment.mjs",
+      "sha256": "0ce88ba6f5f9c9b15836c7f17cb750bd3af974ca0aaeb190b3d2f1e901af01af"
+    },
+    {
+      "path": "tools/verification.ts",
+      "sha256": "d4865116f1eca392b9d79eb7810dea6b769a5f3844b24b96bb4384ead75c19c4"
+    }
+  ],
+  "productionAccepted": false,
+  "mainRuntimeAutomaticallyReplaced": false,
+  "outerArtifactCheck": {
+    "exitCode": 1,
+    "errors": 35,
+    "warnings": 1,
+    "scope": "外层既有资料路径问题，与本应用验证分开记录"
+  },
+  "documentationAfterDelivery": {
+    "linksChecked": 2072,
+    "requirements": 131,
+    "errors": [],
+    "sourceHashesChecked": 37,
+    "readmeDiagramsPreserved": true
+  }
+}
