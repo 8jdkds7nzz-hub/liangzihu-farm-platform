@@ -1,0 +1,717 @@
+{
+  "startingCommit": "6f85e1047944c4c82035c77972730cb1ec5f8acc",
+  "comparedRequirements": 100,
+  "requirements": [
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B01-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B01-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B01-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B01-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B02-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B02-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B02-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B02-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B02-05",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B02-06",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B03-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B03-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B03-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B04-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B04-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B04-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B04-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B05-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B05-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B05-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B05-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B06-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B06-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B06-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B06-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B07-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "B07-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C01-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C01-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C01-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C01-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C01-05",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C02-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C02-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C02-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C02-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C03-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C03-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C03-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C03-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C03-05",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-05",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-06",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C04-07",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C05-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C05-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C05-03",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C05-04",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C05-05",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C06-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C06-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C07-01",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "一期1b与1c设计代码测试对照.json",
+      "id": "C07-02",
+      "phase": null,
+      "priorStatus": null,
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "U01",
+      "phase": "2a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "U02",
+      "phase": "2a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "U03",
+      "phase": "2a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "U04",
+      "phase": "2a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "U05",
+      "phase": "2a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "U06",
+      "phase": "2a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "V01",
+      "phase": "2b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "V02",
+      "phase": "2b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "V03",
+      "phase": "2b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "V04",
+      "phase": "2b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "V05",
+      "phase": "2b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W01",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W02",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W03",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W04",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W05",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W06",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W07",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W08",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W09",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "二期设计代码测试对照.json",
+      "id": "W10",
+      "phase": "2c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "A31",
+      "phase": "3a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "A32",
+      "phase": "3a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "A33",
+      "phase": "3a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "A34",
+      "phase": "3a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "A35",
+      "phase": "3a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "A36",
+      "phase": "3a",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "B31",
+      "phase": "3b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "B32",
+      "phase": "3b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "B33",
+      "phase": "3b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "B34",
+      "phase": "3b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "B35",
+      "phase": "3b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "B36",
+      "phase": "3b",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C31",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C32",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C33",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C34",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C35",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C36",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C37",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C38",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C39",
+      "phase": "3c",
+      "priorStatus": "gated_software_verified",
+      "pathsPresent": true
+    },
+    {
+      "source": "三期设计代码测试对照.json",
+      "id": "C40",
+      "phase": "3c",
+      "priorStatus": "software_verified",
+      "pathsPresent": true
+    }
+  ],
+  "newBrowserCases": 2,
+  "reproducedFailures": 2,
+  "fixedBrowserCases": 2,
+  "externalControlAdapterImplemented": false,
+  "fullRegression": "pending",
+  "evidence": {
+    "遗漏复现.log": "40bb5873e099c42854eb269abbb9bfb8a57e337bc1e9aaed0bce5dec294c6307",
+    "遗漏补齐验证.log": "4fcebb9911c7a2f20400abe65c78b337a1a8f9bc04a0bff562dc36e514e066f8",
+    "补齐类型.log": "8fab47a592e57fb975e78568e9798c2f22514bccc454d45256b90bb1694d0310",
+    "补齐构建.log": "9332a13a22e1c1ce1827b473a9e73ec0b0f19a51ae5dfe426c16fe90059da414"
+  }
+}

@@ -51,14 +51,18 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
                 key.current ??= crypto.randomUUID();
                 data.requestKey = key.current;
             }
-            const response = await fetch(path, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+            const headers: Record<string,string> = { 'Content-Type': 'application/json' };
+            if(actorAtOpen.current)headers['X-Expected-Actor-Id']=actorAtOpen.current;
+            const response = await fetch(path, { method, headers, body: JSON.stringify(data) });
             const result = await response.json();
             if (!response.ok)
                 throw new Error(result.message ?? '操作未完成');
+            let partialFailure = false;
             if (Array.isArray(result.rows)) {
                 const failures = result.rows.filter((r: {
                     ok: boolean;
                 }) => !r.ok);
+                partialFailure = failures.length > 0;
                 setMessage(`已导入${result.rows.length - failures.length}行；${failures.length}行未导入。` + failures.map((r: {
                     row: number;
                     message: string;
@@ -67,7 +71,7 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
             else
                 setMessage('已保存');
             key.current = null;
-            form.reset();
+            if(!partialFailure)form.reset();
             onSaved?.();
         }
         catch (e) {

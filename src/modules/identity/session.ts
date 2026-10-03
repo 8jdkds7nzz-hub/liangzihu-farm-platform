@@ -139,7 +139,11 @@ export async function resolveSession(token: string, options: IdentityOptions = {
 export function cookieValue(request: Request, name: string): string {
   return request.headers.get('cookie')?.split(';').map(s => s.trim()).find(s => s.startsWith(name + '='))?.slice(name.length + 1) ?? '';
 }
-export const requireActor = (request: Request): Promise<Actor> => resolveSession(cookieValue(request, SESSION_COOKIE));
+export async function requireActor(request: Request): Promise<Actor> {
+  const actor=await resolveSession(cookieValue(request, SESSION_COOKIE)),expected=request.headers.get('X-Expected-Actor-Id');
+  if(expected!==null&&expected!==actor.id)throw new AppError(403,'ACCOUNT_CHANGED','当前账号已改变，请保留原草稿核对');
+  return actor;
+}
 export async function logout(token: string, options: IdentityOptions = {}, challengeToken?: string) {
   await transaction(async client => {
     const row = (await client.query('DELETE FROM sessions WHERE token_hash=$1 RETURNING user_id', [digest(token)])).rows[0];
