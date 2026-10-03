@@ -1,3 +1,4 @@
+import {artifactPath,artifactDirectory} from '../tests/support/artifacts';
 import assert from 'node:assert/strict';
 import {seedRecovery,loseMedia,checkFieldRecovery} from './recovery-fixture';
 import {seedPhase1Recovery,checkPhase1Recovery} from './phase1-recovery-fixture';
@@ -45,7 +46,7 @@ function postgres(command: 'pg_dump' | 'pg_restore', args: string[], input?: Buf
     }
 }
 async function main() {
-    const run = new Date().toISOString().replace(/[-:.]/g, '').replace('T', '_').replace('Z', '') + '_' + randomUUID().slice(0, 8), directory = resolve('.local/恢复演练', run);
+    const directory = artifactDirectory('恢复/一期');
     await mkdir(directory, { recursive: true, mode: 0o700 });
     const report = await withDb(async (pool) => {
         const f = await telemetryFixture(pool), schema = (await pool.query('SELECT current_schema() AS name')).rows[0].name;
@@ -98,4 +99,4 @@ async function main() {
     });
     console.log(JSON.stringify(report, null, 2));
 }
-main().catch(async e => { await writeFile(resolve('.local/恢复失败诊断.json'),JSON.stringify({name:e?.name,code:e?.code,message:e?.message,stack:e?.stack},null,2),{mode:0o600}); console.error('隔离恢复演练未通过；仅清理本次测试schema，私有备份与清单保留供排查。'); process.exitCode = 1; });
+main().catch(async e => { await writeFile(resolve(artifactPath('恢复/一期/失败诊断.json')),JSON.stringify({name:e?.name,code:e?.code,message:e?.message,stack:e?.stack},null,2),{mode:0o600}); console.error('隔离恢复演练未通过；仅清理本次测试schema，私有备份与清单保留供排查。'); process.exitCode = 1; });

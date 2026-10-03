@@ -1,3 +1,4 @@
+import {artifactPath} from '../support/artifacts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { chromium,type Page } from 'playwright';
@@ -36,7 +37,7 @@ test('手机/电脑真实页面闭环、断网不假保存、重试防重、关�
   let browser:Awaited<ReturnType<typeof chromium.launch>>|undefined;const scriptErrors:string[]=[],serverErrors:string[]=[];
   function observe(page:Page){page.on('pageerror',e=>scriptErrors.push(e.message));page.on('response',r=>{if(r.url().includes('/api/')&&r.status()>=500)serverErrors.push(new URL(r.url()).pathname+':'+r.status());});}
   async function login(page:Page,username:string){await page.goto(origin+'/login');await page.getByLabel('账号',{exact:true}).fill(username);await page.getByLabel('密码',{exact:true}).fill(password);await page.getByRole('button',{name:'登录',exact:true}).click();}
-  async function screenshot(page:Page,name:string){assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1),false,'页面存在横向溢出');await page.screenshot({path:'docs/acceptance/1a/'+name,fullPage:true});}
+  async function screenshot(page:Page,name:string){assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+1),false,'页面存在横向溢出');await page.screenshot({path:artifactPath('验收/1a/'+name),fullPage:true});}
   try{
     let ready=false;for(let i=0;i<100;i++){if(server.exitCode!==null)break;try{if((await fetch(origin+'/api/v1/health/live')).ok){ready=true;break;}}catch{}await delay(100);}assert(ready,'隔离浏览器服务器未启动');
     browser=await chromium.launch({headless:true});
@@ -71,6 +72,6 @@ test('手机/电脑真实页面闭环、断网不假保存、重试防重、关�
     await adminPage.goto(origin+'/feedback');await adminPage.getByLabel('处理状态',{exact:true}).selectOption('resolved');await adminPage.getByLabel('处理结果或后续安排').fill('已核对，作为合成演练记录关闭。');await adminPage.getByRole('button',{name:'登记处理进展',exact:true}).click();await adminPage.getByRole('heading',{name:'合成反馈：手机入口核对 · 已处理',exact:true}).waitFor();
     assert.deepEqual(scriptErrors,[]);assert.deepEqual(serverErrors,[]);
     const report={checkedAt:new Date().toISOString(),buildId:(await readFile('.next/BUILD_ID','utf8')).trim(),environment:'agri_test随机schema与合成数据',viewports:['390x844','1280x900'],checks:{objectToPointHistory:true,sharedAlertAcrossDevices:true,requestRetryIdempotent:true,offlineDoesNotPretendSaved:true,fieldAndRepairSeparated:true,unrecoveredCloseRejected:true,evidenceBasedClose:true,revocationImmediate:true,adminMfa:true,noPageOverflow:true,noBrowserErrors:true,noApiServerErrors:true,feedbackSubmittedAndResolved:true},recordIds:{objectId:f.objectId,pointId:f.point.id,alertId:alert.id,fieldCheckId:field.id,repairId:repairEvent.id},limits:['未模拟真实企业微信或电话送达','未验证离线草稿和照片；这些属于1b']};
-    await writeFile('docs/acceptance/1a/A11浏览器实测.json',JSON.stringify(report,null,2)+'\n');
+    await writeFile(artifactPath('验收/1a/A11浏览器实测.json'),JSON.stringify(report,null,2)+'\n');
   }finally{await browser?.close();server.kill('SIGTERM');const kill=setTimeout(()=>server.kill('SIGKILL'),5000);try{await closed;}finally{clearTimeout(kill);}}
 }));

@@ -1,4 +1,5 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {chromium} from 'playwright';import {mkdir} from 'node:fs/promises';
+import {artifactPath} from '../support/artifacts';
+import test from 'node:test';import assert from 'node:assert/strict';import {chromium} from 'playwright';
 import {withDb} from '../support/db';import {withApp} from '../support/app';import {actorFixture,objectFixture,permit} from '../support/fixtures';
 test('3A真实页面登记仓位批次入库，HTTP匿名/跨站拒绝，撤权后不保留库存',{timeout:120000},()=>withDb(async pool=>{
  const actor=await actorFixture(pool,'technician'),objectId=await objectFixture(pool,actor.id);await permit(pool,actor.id,objectId,['read','record','review','export']);
@@ -15,9 +16,9 @@ test('3A真实页面登记仓位批次入库，HTTP匿名/跨站拒绝，撤权�
  assert.equal((await pool.query('SELECT sum(delta)::text AS q FROM stock_entries')).rows[0].q,'12.500000');
  assert.equal((await context.request.post(app.origin+'/api/v1/inventory/movements',{headers:{origin:'https://outside.invalid'},data:{}})).status(),403);
  await page.setViewportSize({width:390,height:844});await page.waitForFunction(()=>document.querySelector('.app-sidebar')!.getBoundingClientRect().right<=1);await page.evaluate(()=>scrollTo(0,0));assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);
- await mkdir('docs/acceptance/3a',{recursive:true});await page.screenshot({path:'docs/acceptance/3a/库存手机合成实测.png',fullPage:true});
+ await page.screenshot({path:artifactPath('验收/3a/库存手机合成实测.png'),fullPage:true});
  await pool.query('UPDATE grants SET revoked_at=now() WHERE user_id=$1',[actor.id]);await page.reload();await page.getByText('先在配置管理登记对象并取得授权。').waitFor();
- }catch(e){console.log((await page.locator('.form-error').allTextContents()).join(';'));await page.screenshot({path:'.local/3a-failure.png',fullPage:true});throw e;}finally{await browser.close();}
+ }catch(e){console.log((await page.locator('.form-error').allTextContents()).join(';'));await page.screenshot({path:artifactPath('失败/3a.png'),fullPage:true});throw e;}finally{await browser.close();}
  });
 }));
 

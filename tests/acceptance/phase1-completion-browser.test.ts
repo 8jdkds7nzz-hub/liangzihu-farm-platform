@@ -1,7 +1,8 @@
+import {artifactPath} from '../support/artifacts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
-import {mkdir,writeFile} from 'node:fs/promises';
+import {writeFile} from 'node:fs/promises';
 import {chromium} from 'playwright';
 import {withDb} from '../support/db';
 import {withApp} from '../support/app';
@@ -33,7 +34,7 @@ test('一期新增浏览器：地图图层/平移、交班、简报预览/接收
    await page.goto(app.origin+'/briefings');await page.getByText('确认老板、工人或专家访问范围',{exact:true}).click();const pub=page.locator('form').filter({has:page.getByRole('button',{name:'预览接收版本'})});await pub.getByLabel('接收人账号ID').fill(owner.id);await pub.getByLabel('已审阅事项ID列表').fill(JSON.stringify(items.map(i=>i.id)));await pub.getByLabel('访问截止时间').fill(new Date(Date.now()+3600000+8*3600000).toISOString().slice(0,16));await pub.locator('input[name=confirm]').check();await pub.getByRole('button',{name:'预览接收版本'}).click();await pub.getByRole('heading',{name:'老板版预览'}).waitFor();assert.equal((await pool.query('SELECT count(*) FROM briefing_publications')).rows[0].count,'0');await pub.getByRole('button',{name:'记录确认范围'}).click();await pub.getByText('已登记访问范围，尚未发送消息。',{exact:true}).waitFor();const publication=(await pool.query('SELECT id FROM briefing_publications')).rows[0];
    const ownerContext=await browser.newContext({viewport:{width:390,height:844}}),ownerPage=await ownerContext.newPage();try{await ownerContext.addCookies([{name:'agri_session',value:await app.authenticate(owner),url:app.origin}]);await ownerPage.goto(app.origin+'/briefings/shared/'+publication.id);await ownerPage.getByRole('heading',{name:/已分享简报/}).waitFor();await ownerPage.getByText('合成简报浏览器事实',{exact:false}).waitFor();assert.equal(await ownerPage.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1),false);await page.getByLabel('撤回理由').fill('合成撤回浏览器核对');await page.getByRole('button',{name:'撤回本次访问'}).click();await page.getByText(/owner版 · 已撤回/).waitFor();await ownerPage.reload();await ownerPage.getByText(/撤回|失效|不存在/).first().waitFor();}finally{await ownerContext.close();}
    await context.addCookies([{name:'agri_session',value:await app.authenticate(admin),url:app.origin}]);await page.goto(app.origin+'/settings');await page.getByText('人工核验后的账号恢复',{exact:true}).click();const form=page.locator('form').filter({has:page.getByRole('button',{name:'授权一次恢复'})});await form.getByLabel('需要恢复的账号').selectOption(two.id);await form.getByLabel('核验记录编号/方式').fill('合成身份核验');await form.getByLabel('恢复理由').fill('合成密码遗失');await form.locator('input[name=confirmIdentity]').check();await form.getByRole('button',{name:'授权一次恢复'}).click();await page.getByText('仅显示本次的一次性恢复码（30分钟有效）').waitFor();await page.getByRole('button',{name:'已交付，清除本页显示'}).click();assert.equal(await page.locator('code').filter({hasText:/^[a-f0-9]{64}$/}).count(),0);
-   assert.deepEqual(errors,[]);await mkdir('.local/一期浏览器验收',{recursive:true});await writeFile('.local/一期浏览器验收/新增流程.json',JSON.stringify({checkedAt:new Date().toISOString(),environment:'agri_test随机schema、合成人员和资料',checks:{mapLayers:true,mapPan:true,taskReassignment:true,publicationPreviewNoWrite:true,recipientMobileRead:true,revokeRecipientRead:true,adminRecoveryCodeCleared:true,noScriptErrors:true},actualDevices:false},null,2));
+   assert.deepEqual(errors,[]);await writeFile(artifactPath('验收/一期补齐/新增流程.json'),JSON.stringify({checkedAt:new Date().toISOString(),environment:'agri_test随机schema、合成人员和资料',checks:{mapLayers:true,mapPan:true,taskReassignment:true,publicationPreviewNoWrite:true,recipientMobileRead:true,revokeRecipientRead:true,adminRecoveryCodeCleared:true,noScriptErrors:true},actualDevices:false},null,2));
   }finally{await browser.close();}
  });
 }));

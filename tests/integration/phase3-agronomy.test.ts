@@ -1,4 +1,5 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {mkdtemp,rm,mkdir,writeFile} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';
+import {artifactPath} from '../support/artifacts';
+import test from 'node:test';import assert from 'node:assert/strict';import {randomUUID} from 'node:crypto';import {mkdtemp,rm,writeFile} from 'node:fs/promises';import {join} from 'node:path';import {tmpdir} from 'node:os';
 import {fromArrayBuffer} from 'geotiff';import {withDb} from '../support/db';import {actorFixture,objectFixture,permit} from '../support/fixtures';import {syntheticAsset} from '../support/agronomy';import {transaction} from '../../src/db/pool';import {localStore} from '../../src/modules/media/storage';import {queueCrop,runCrop,labelCrop} from '../../src/modules/agronomy/crops';import {queueSpectral,runSpectral} from '../../src/modules/agronomy/spectral';import {localAnalysis} from '../../src/modules/agronomy/process';import {createNotice,reviewNotice} from '../../src/modules/agronomy/notices';import {recordFlow} from '../../src/modules/agronomy/flows';
 const key=()=>randomUUID(),now=()=>new Date().toISOString();
 test('3C真实RGB和GeoTIFF后台解析、数值及私有成果回读，人工与机器分开',{timeout:120000},()=>withDb(async pool=>{
@@ -19,7 +20,7 @@ test('3C固定版本SigLIP2实际本地候选推理，仅记工程链不冒称�
  const sharp=(await import('sharp')).default,bytes=await sharp({create:{width:32,height:32,channels:3,background:'#408040'}}).png().toBuffer(),old=process.env.CROP_MODEL_EVALUATION_ENABLED;
  process.env.CROP_MODEL_EVALUATION_ENABLED='1';try{const start=Date.now(),r=await localAnalysis('crop',{base64:bytes.toString('base64'),evaluationMode:true});
  assert.equal(r.candidates.length,5);assert(r.candidates.every((x:any)=>Number.isFinite(x.score)&&x.score>=0&&x.score<=1));assert.equal(r.model.revision,'ba1f3b0843f24bc5417d38e19c37b287d719b2f4');assert.equal(r.agronomicValidation,'not_validated');
- await mkdir('docs/acceptance/3c',{recursive:true});await writeFile('docs/acceptance/3c/本地作物模型工程实测.json',JSON.stringify({checkedAt:now(),input:'32x32合成纯色，不是现场样本',model:r.model,candidates:r.candidates,elapsedMs:Date.now()-start,agronomicValidation:r.agronomicValidation,remoteInference:false},null,2)+'\n');
+ await writeFile(artifactPath('验收/3c/本地作物模型工程实测.json'),JSON.stringify({checkedAt:now(),input:'32x32合成纯色，不是现场样本',model:r.model,candidates:r.candidates,elapsedMs:Date.now()-start,agronomicValidation:r.agronomicValidation,remoteInference:false},null,2)+'\n');
  }finally{if(old===undefined)delete process.env.CROP_MODEL_EVALUATION_ENABLED;else process.env.CROP_MODEL_EVALUATION_ENABLED=old;}
 });
 test('3C农情通知独立审核及流量来源、未知与率定依据',()=>withDb(async pool=>{

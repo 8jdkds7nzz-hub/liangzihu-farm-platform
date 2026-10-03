@@ -1,0 +1,434 @@
+{
+  "workItem": "Q01",
+  "completedScope": "统一检查入口、产物隔离及本机工程验收",
+  "checkedAt": "2026-10-03T12:55:49.531Z",
+  "baselineCommit": "a8154ecf7e32830e3bd3c09456f2988abcc2cc05",
+  "quickRuns": [
+    {
+      "runId": "20261003T124347963Z-0rFZBL",
+      "profile": "quick",
+      "passed": true,
+      "reportSha256": "a2030702248608f904d44790f7dd0bf694559141b332bcbca7cc8b07172ab3cb",
+      "startedAt": "2026-10-03T12:43:47.963Z",
+      "finishedAt": "2026-10-03T12:44:10.639Z",
+      "durationMs": 22676,
+      "history": {
+        "files": 258,
+        "beforeSha256": "180285e2151446f9160d934c63852e36c56d743b10b141eaa3f25ffefe9e3297",
+        "afterSha256": "180285e2151446f9160d934c63852e36c56d743b10b141eaa3f25ffefe9e3297",
+        "unchanged": true,
+        "changes": []
+      },
+      "steps": [
+        {
+          "id": "typecheck",
+          "title": "类型检查",
+          "status": "passed",
+          "exitCode": 0,
+          "reason": null,
+          "tests": null,
+          "durationMs": 1446
+        },
+        {
+          "id": "unit",
+          "title": "全部单元测试",
+          "status": "passed",
+          "exitCode": 0,
+          "reason": null,
+          "tests": {
+            "total": 70,
+            "passed": 70,
+            "failed": 0,
+            "skipped": 0,
+            "cancelled": 0,
+            "todo": 0
+          },
+          "durationMs": 20899
+        }
+      ],
+      "privateArtifactFiles": 2
+    },
+    {
+      "runId": "20261003T124411141Z-Lh3ADy",
+      "profile": "quick",
+      "passed": true,
+      "reportSha256": "49dde5591d1ca93b799fcea60a3a15354c7aa938d2577ffbb5c18a00acf68d2d",
+      "startedAt": "2026-10-03T12:44:11.141Z",
+      "finishedAt": "2026-10-03T12:44:34.148Z",
+      "durationMs": 23007,
+      "history": {
+        "files": 258,
+        "beforeSha256": "180285e2151446f9160d934c63852e36c56d743b10b141eaa3f25ffefe9e3297",
+        "afterSha256": "180285e2151446f9160d934c63852e36c56d743b10b141eaa3f25ffefe9e3297",
+        "unchanged": true,
+        "changes": []
+      },
+      "steps": [
+        {
+          "id": "typecheck",
+          "title": "类型检查",
+          "status": "passed",
+          "exitCode": 0,
+          "reason": null,
+          "tests": null,
+          "durationMs": 1597
+        },
+        {
+          "id": "unit",
+          "title": "全部单元测试",
+          "status": "passed",
+          "exitCode": 0,
+          "reason": null,
+          "tests": {
+            "total": 70,
+            "passed": 70,
+            "failed": 0,
+            "skipped": 0,
+            "cancelled": 0,
+            "todo": 0
+          },
+          "durationMs": 21179
+        }
+      ],
+      "privateArtifactFiles": 2
+    }
+  ],
+  "delivery": {
+    "runId": "20261003T124434679Z-NjHZ3C",
+    "profile": "delivery",
+    "passed": true,
+    "reportSha256": "0d938998038693b9bcac10ceb36bf05e82a0166833401b335d6f92ef8fbaeb19",
+    "startedAt": "2026-10-03T12:44:34.679Z",
+    "finishedAt": "2026-10-03T12:55:49.531Z",
+    "durationMs": 674852,
+    "history": {
+      "files": 258,
+      "beforeSha256": "180285e2151446f9160d934c63852e36c56d743b10b141eaa3f25ffefe9e3297",
+      "afterSha256": "180285e2151446f9160d934c63852e36c56d743b10b141eaa3f25ffefe9e3297",
+      "unchanged": true,
+      "changes": []
+    },
+    "steps": [
+      {
+        "id": "typecheck",
+        "title": "类型检查",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 1642
+      },
+      {
+        "id": "unit",
+        "title": "全部单元测试",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": {
+          "total": 70,
+          "passed": 70,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        },
+        "durationMs": 21229
+      },
+      {
+        "id": "build",
+        "title": "正式构建",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 13737
+      },
+      {
+        "id": "database",
+        "title": "全部隔离数据库测试",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": {
+          "total": 151,
+          "passed": 151,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        },
+        "durationMs": 395638
+      },
+      {
+        "id": "browser-http",
+        "title": "全部TS浏览器与HTTP测试",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": {
+          "total": 26,
+          "passed": 26,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        },
+        "durationMs": 173583
+      },
+      {
+        "id": "monitor",
+        "title": "独立监测",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        },
+        "durationMs": 365
+      },
+      {
+        "id": "archive",
+        "title": "Python归档检查",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0,
+          "skipped": 0,
+          "cancelled": 0,
+          "todo": 0
+        },
+        "durationMs": 170
+      },
+      {
+        "id": "retrieval",
+        "title": "固定集本地检索评测",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 6531
+      },
+      {
+        "id": "assistant",
+        "title": "助手fixture工程评测",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 27545
+      },
+      {
+        "id": "restore-phase1",
+        "title": "restore-phase1",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 8822
+      },
+      {
+        "id": "restore-phase2",
+        "title": "restore-phase2",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 6594
+      },
+      {
+        "id": "restore-phase3",
+        "title": "restore-phase3",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 8642
+      },
+      {
+        "id": "restore-phase4",
+        "title": "restore-phase4",
+        "status": "passed",
+        "exitCode": 0,
+        "reason": null,
+        "tests": null,
+        "durationMs": 10025
+      }
+    ],
+    "privateArtifactFiles": 97
+  },
+  "testCounts": {
+    "unit": 70,
+    "database": 151,
+    "browser-http": 26,
+    "monitor": 1,
+    "archive": 1
+  },
+  "uniqueTestCount": 249,
+  "newQ01Tests": 7,
+  "countingRule": "单元/数据库/HTTP浏览器/监测/Python各自套件；不累加重跑、评测题数或恢复次数",
+  "standaloneLegacyBrowser": {
+    "passed": true,
+    "testCount": 1,
+    "alreadyIncludedInUniqueCount": true,
+    "privateRunId": "20261003T124749135Z-CB1RoP",
+    "screenshotCount": 1,
+    "logSha256": "d1954276e25598168d29cdd47817b6ec5003a72a5e81fff8f4094f34b46fb82a"
+  },
+  "cliChecks": [
+    {
+      "argument": "--help",
+      "exitCode": 0,
+      "expected": 0
+    },
+    {
+      "argument": "not-a-profile",
+      "exitCode": 2,
+      "expected": 2
+    }
+  ],
+  "initialRedTestLogSha256": "6324c6888118f5678efe4ec5f699cd3152172dad8dbcc303d80e5eaef4a29a32",
+  "retainedUnsuccessfulRuns": [
+    {
+      "runId": "20261003T124251600Z-7hYVWJ",
+      "passed": false,
+      "failedSteps": [
+        "typecheck"
+      ]
+    }
+  ],
+  "buildId": "flEn835XvIlJs2DrkmThz",
+  "applicationSourceUnchanged": true,
+  "migrationsAndLockfileUnchanged": true,
+  "oldAcceptanceUnchanged": true,
+  "sourceFiles": [
+    {
+      "path": "ops/phase2-restore.ts",
+      "sha256": "44c731ebcaa09e3e317e99033f6a0a5b907d8166f8b456f6ed3514d721d192a8"
+    },
+    {
+      "path": "ops/phase3-restore.ts",
+      "sha256": "6e88bb63e614c716689ae8fed50a69e80d96df8239d3ee0157478178f7a2b849"
+    },
+    {
+      "path": "ops/phase4-restore.ts",
+      "sha256": "e84de54e60c813a074318acd57a9bd8a1da74361b23cd91241bb1ef644548822"
+    },
+    {
+      "path": "ops/restore-check.ts",
+      "sha256": "8c42ec266894955ba9dc019874e0c382a2bd057ceb6b9bff0945ea70942f8af5"
+    },
+    {
+      "path": "package.json",
+      "sha256": "648726eca3de99bab10782557efafcab096b42ead8a5e61c37f241c9a1f1905f"
+    },
+    {
+      "path": "tests/acceptance/ezviz-webhook-browser.test.ts",
+      "sha256": "731674632083bf9fe69ff248daed2b91bd48ffd37b022d909ca1c2dc1a27145e"
+    },
+    {
+      "path": "tests/acceptance/field-browser.test.ts",
+      "sha256": "8f5ede479e44065443d333abb392120e56c1601293e73e46e8a120f46c0582e4"
+    },
+    {
+      "path": "tests/acceptance/flighthub-browser.test.ts",
+      "sha256": "44dc1433ec488c8ce4e001387e6869d9a61f3dc94eea53e44e5b3fa3e4757504"
+    },
+    {
+      "path": "tests/acceptance/intelligence-browser.test.ts",
+      "sha256": "fb2c42565f461287b18edef195e441fda3582d99ae8ca69291fa1224497c0065"
+    },
+    {
+      "path": "tests/acceptance/phase1-completion-browser.test.ts",
+      "sha256": "f5d55c775d4ea00b3036d9cc471233ede4ed9cf0e0027596e6c74246dd7d820c"
+    },
+    {
+      "path": "tests/acceptance/phase1-media-browser.test.ts",
+      "sha256": "4579664d73832f5247e607af475f9568dc2290a45608484324737186482c790e"
+    },
+    {
+      "path": "tests/acceptance/phase3-agronomy-browser.test.ts",
+      "sha256": "6063766a065133865cca177f88d08c20b612a4a4b29065960798708cca2567e0"
+    },
+    {
+      "path": "tests/acceptance/phase3-inventory-browser.test.ts",
+      "sha256": "275c089bf6ddd98fa3aedd481edca4e31f7b6a2623f733c5c94dcece7bd02411"
+    },
+    {
+      "path": "tests/acceptance/phase3-trace-browser.test.ts",
+      "sha256": "130bbf779a24941add6e7919d1537df5eb5cd68f4daa578b03895631e2ce6876"
+    },
+    {
+      "path": "tests/acceptance/phase4-business-browser.test.ts",
+      "sha256": "08a95efe87b91dacf5dbb49e9834e81a9c78991cf0c9f13323d63134e44e6dc8"
+    },
+    {
+      "path": "tests/acceptance/phase4-research-browser.test.ts",
+      "sha256": "f6002c951ef21368fe846322a5915b67a15ca1db2bc12f54bd00c5a650e780b9"
+    },
+    {
+      "path": "tests/acceptance/phase4-resources-browser.test.ts",
+      "sha256": "112c1f122561c6d9b72b42e49558e93b5b4df71baaef2c351aa6bc2c195acff2"
+    },
+    {
+      "path": "tests/acceptance/platform-browser.test.ts",
+      "sha256": "5dbe6eb2270ed031eff7343ccaac1d8594e8208afb2ca06e67115116a1d6cb60"
+    },
+    {
+      "path": "tests/acceptance/remote-media-browser.test.ts",
+      "sha256": "4bacf0fb52326432313ffb01c2e68b7265adbd19beb735e37a54ba86e0856590"
+    },
+    {
+      "path": "tests/acceptance/weather-connection-browser.test.ts",
+      "sha256": "81125bb1aafdd53d4afbb89cf60ea487e48dfb2ab87832e678d7495204dd6b5f"
+    },
+    {
+      "path": "tests/integration/phase3-agronomy.test.ts",
+      "sha256": "be12d31575d7051ed792d6de6d33e1d70a0adaa5dc82f83ec6a6004c93bcd270"
+    },
+    {
+      "path": "tests/support/artifacts.ts",
+      "sha256": "d2527d06fe6d1c91e802395c110484a7841fe9d6ff0e27864c8c9aee1fd2ce54"
+    },
+    {
+      "path": "tests/unit/verification-artifacts.test.ts",
+      "sha256": "a87e25866e1265b12bcc119c3c3cd958a3374c2bf0066c086a3aaab7a71f7bcd"
+    },
+    {
+      "path": "tests/unit/verification-runner.test.ts",
+      "sha256": "12290c762241422d19f811beb58de17346312ab5af105b48a275fa3e0943e84d"
+    },
+    {
+      "path": "tools/check-project.ts",
+      "sha256": "c4f2a7f3f397ed587ebfe4090b7c684c5ec3a81e88f298d066c32a6324306799"
+    },
+    {
+      "path": "tools/evaluate-assistant.ts",
+      "sha256": "7669b26aaa00d540413b05c075329dbb55cc15b19d061413237a45809e7e7931"
+    },
+    {
+      "path": "tools/evaluate.ts",
+      "sha256": "1931bbf1d65e9fc0713360c304942754ee294a66a4f2494886be667e0568556d"
+    },
+    {
+      "path": "tools/verification.ts",
+      "sha256": "98099f1eb23f6cf4036b8bfce2e3fe224bf3e2fc017792bd3309fb0013bac634"
+    }
+  ],
+  "outerArtifactCheck": {
+    "exitCode": 1,
+    "errors": 35,
+    "warnings": 1,
+    "scope": "外层既有资料路径问题，本轮未清理"
+  },
+  "mainServiceRestarted": false,
+  "remoteCIExecuted": false,
+  "productionAccepted": false
+}
