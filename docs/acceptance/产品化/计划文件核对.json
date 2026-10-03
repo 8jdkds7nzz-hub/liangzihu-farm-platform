@@ -1,0 +1,175 @@
+{
+  "checkedAt": "2026-10-03T10:17:14.887264+00:00",
+  "baselineCommit": "2719cf1c0103d4c011da80783b5f758b40b14dbc",
+  "delivery": "后续产品化与工程完善计划，仅规划，未实施Q工作项",
+  "markdownFilesChecked": 2,
+  "relativeLinksChecked": 118,
+  "tasks": [
+    {
+      "id": "Q01",
+      "name": "统一检查与验收产物隔离",
+      "status": "planned",
+      "dependencies": []
+    },
+    {
+      "id": "Q02",
+      "name": "自动回归与干净安装",
+      "status": "planned",
+      "dependencies": [
+        "Q01"
+      ]
+    },
+    {
+      "id": "Q03",
+      "name": "可复现启动与进程监管",
+      "status": "planned",
+      "dependencies": []
+    },
+    {
+      "id": "Q04",
+      "name": "升级、迁移与回退演练",
+      "status": "planned",
+      "dependencies": [
+        "Q01",
+        "Q03"
+      ]
+    },
+    {
+      "id": "Q05",
+      "name": "运行诊断与故障定位",
+      "status": "planned",
+      "dependencies": [
+        "Q03"
+      ]
+    },
+    {
+      "id": "Q06",
+      "name": "生成资源一致性",
+      "status": "planned",
+      "dependencies": []
+    },
+    {
+      "id": "Q07",
+      "name": "首次配置与角色操作路径",
+      "status": "planned",
+      "dependencies": []
+    },
+    {
+      "id": "Q08",
+      "name": "设备资料校验与导入预览",
+      "status": "planned",
+      "dependencies": [
+        "Q07"
+      ]
+    },
+    {
+      "id": "Q09",
+      "name": "历史查询与分页",
+      "status": "planned",
+      "dependencies": [
+        "Q01"
+      ]
+    },
+    {
+      "id": "Q10",
+      "name": "手机操作与可访问性",
+      "status": "planned",
+      "dependencies": [
+        "Q07",
+        "Q09"
+      ]
+    },
+    {
+      "id": "Q11",
+      "name": "容量、长时间运行和故障恢复",
+      "status": "planned",
+      "dependencies": [
+        "Q02",
+        "Q03",
+        "Q05",
+        "Q09"
+      ]
+    },
+    {
+      "id": "Q12",
+      "name": "权限与业务一致性组合回归",
+      "status": "planned",
+      "dependencies": [
+        "Q01"
+      ]
+    },
+    {
+      "id": "Q13",
+      "name": "AI检索与专业评测准备",
+      "status": "planned",
+      "dependencies": [
+        "Q01"
+      ]
+    },
+    {
+      "id": "Q14",
+      "name": "反馈、版本与文档维护",
+      "status": "planned",
+      "dependencies": [
+        "Q01"
+      ]
+    },
+    {
+      "id": "Q15",
+      "name": "可重复演示与培训演练",
+      "status": "planned",
+      "dependencies": [
+        "Q03",
+        "Q07",
+        "Q12"
+      ]
+    }
+  ],
+  "dependencyGraphAcyclic": true,
+  "applicationSourceUnchanged": true,
+  "existingAcceptanceUnchanged": true,
+  "newImplementation": false,
+  "newRuntimeTestsExecuted": false,
+  "fieldTrialStarted": false,
+  "productionAccepted": false,
+  "sourceReview": {
+    "localEvidenceItems": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05",
+      "E06",
+      "E07",
+      "E08",
+      "E09",
+      "E10"
+    ],
+    "externalPagesRead": [
+      "https://docs.github.com/en/actions/tutorials/build-and-test-code/nodejs",
+      "https://playwright.dev/docs/ci-intro",
+      "https://github.com/wanshuiyin/auto-claude-code-research-in-sleep"
+    ],
+    "unavailablePage": "https://github.com/makeplane/plane/tree/preview/.github/workflows",
+    "unavailablePageUsedForClaims": false
+  },
+  "outerArtifactCheck": {
+    "exitCode": 1,
+    "errors": 35,
+    "warnings": 1,
+    "scope": "existing outer-workspace errors, separate from plan validation"
+  },
+  "documents": [
+    {
+      "path": "docs/plans/2026-10-03-后续产品化与工程完善详细计划.md",
+      "sha256": "4dab4f3b43aaf2407ea5bdcecf7797521d751a66dbd73f575342531db22f8ad8",
+      "lines": 272
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "8b5f900669555774facf25714eb297a17418d23796aa4b7693569006b56b75d1",
+      "lines": 127
+    }
+  ],
+  "errors": []
+}
