@@ -1,0 +1,62 @@
+{
+  "checkedAt": "2026-10-03T02:52:19.395Z",
+  "database": "agri_dev",
+  "applicationTables": 164,
+  "passwordAndAuthVersionsPreserved": true,
+  "localMfaRequired": "0",
+  "pageStatus": {
+    "/workbench": 200,
+    "/map": 200,
+    "/terrain": 200,
+    "/inventory": 200,
+    "/traceability": 200,
+    "/protection": 200,
+    "/agronomy": 200,
+    "/control-records": 200,
+    "/settings": 200
+  },
+  "privateApiStatus": {
+    "/api/v1/inventory/overview": 200,
+    "/api/v1/traceability/overview": 200,
+    "/api/v1/protection/overview": 200,
+    "/api/v1/agronomy/overview": 200,
+    "/api/v1/control-records/overview": 200
+  },
+  "anonymousPrivateApisDenied": true,
+  "counts": {
+    "objects": "1",
+    "devices": "0",
+    "sources": "0",
+    "media": "0",
+    "terrain": "0"
+  },
+  "phase3Counts": {
+    "lots": "0",
+    "stockdocuments": "0",
+    "customercards": "0",
+    "protectionplans": "0",
+    "cropanalyses": "0",
+    "controlrequests": "0"
+  },
+  "staticFilesScanned": 653,
+  "noPrivateValuesInStatic": true,
+  "externalFlagsOff": [
+    "MODEL_EXTERNAL_ENABLED",
+    "NOTICE_EXTERNAL_ENABLED",
+    "WECOM_ENABLED",
+    "SMS_ENABLED",
+    "VOICE_ENABLED",
+    "RENKE_HTTP_ENABLED",
+    "CAMERA_READS_ENABLED",
+    "MEDIA_REMOTE_READS_ENABLED",
+    "QWEATHER_READS_ENABLED",
+    "DJI_READS_ENABLED",
+    "EZVIZ_RECEIVE_ENABLED",
+    "CROP_MODEL_EVALUATION_ENABLED"
+  ],
+  "backupBeforeMigration": "/Users/hong/Desktop/智能体整体方案/智慧农业平台/.local/三期升级前备份/2026-10-03T02-15-44-124Z",
+  "mainCommitAtCheck": "15a1aff723f6c54083bbd6edc6d51d84b466838f",
+  "buildId": "mkC1lwRY2BhLMZ7ILrBs1",
+  "productionReady": false,
+  "realControlAdapterImplemented": false
+}

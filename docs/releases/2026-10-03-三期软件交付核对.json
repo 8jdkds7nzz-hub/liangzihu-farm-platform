@@ -567,5 +567,22 @@
     "workers/terrain.ts": "899cf225037148990c67ba88cdfe0ce86cfe470fb463c202903dab151f51c496",
     "workers/weather.ts": "605bbf1ac02b28977157157e2c103a3e607eb24f65783ec68aa73f23c214beef"
   },
-  "codeFingerprint": "902e49cc4e3fc3f380435c4e451d1652c1312a958f9121cf102809c804f773eb"
+  "codeFingerprint": "902e49cc4e3fc3f380435c4e451d1652c1312a958f9121cf102809c804f773eb",
+  "mainRuntimeEvidence": "docs/releases/2026-10-03-三期本机运行核对.json",
+  "mainBuildPassed": true,
+  "mainFrozenInstallPassed": true,
+  "mainMigrationApplied": [
+    "035_stock.sql",
+    "036_quality_trace.sql",
+    "037_protection.sql",
+    "038_agronomy.sql"
+  ],
+  "mainSourceFingerprintMatches": true,
+  "documentationCheck": {
+    "changedMarkdown": 83,
+    "localLinksChecked": 658,
+    "missing": [],
+    "runtimeEvidencePending": [],
+    "requirementCodeAndEvidenceHashesVerified": 22
+  }
 }
