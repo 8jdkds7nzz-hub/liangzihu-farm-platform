@@ -1,0 +1,72 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import type {PoolClient} from 'pg';
+import {releaseTestLot} from '../support/stock';
+import {withDb} from '../support/db';
+import {actorFixture,objectFixture,permit} from '../support/fixtures';
+import {transaction,database} from '../../src/db/pool';
+import {createLot,createLocation} from '../../src/modules/inventory/catalog';
+import {postMovement,balance} from '../../src/modules/inventory/ledger';
+import {recordPurchase,recordApplication} from '../../src/modules/inventory/inputs';
+import {transformStock} from '../../src/modules/inventory/transforms';
+import {packStock,handoff,dispatchStatus} from '../../src/modules/inventory/handoffs';
+const key=()=>randomUUID(),at='2026-10-03T00:00:00Z';
+async function fixture(pool:any){
+ const a=await actorFixture(pool,'technician'),objectId=await objectFixture(pool,a.id);
+ await permit(pool,a.id,objectId,['read','record','review','export','share']);
+ const tx=(fn:(c:PoolClient)=>Promise<any>)=>transaction(fn,pool);
+ const location=await tx((c:any)=>createLocation(c,a,{objectId,code:'W1',name:'合成测试仓',requestKey:key()}));
+ const lot=await tx((c:any)=>createLot(c,a,{objectId,code:key(),product:'合成投入品',kind:'input',unit:'kg',basis:'as_is',identities:{supplier:'供方原批号'},source:'软件测试',requestKey:key()}));
+ const move=(kind:string,qty:string,extra:any={})=>tx((c:any)=>postMovement(c,a,{objectId,kind,lotId:lot.id,locationId:location.id,quantity:qty,occurredAt:at,evidence:'测试单',requestKey:key(),...extra}));
+ return {a,objectId,tx,location,lot,move};
+}
+test('3A采购不入库、状态门控、幂等及并发不超领',()=>withDb(async pool=>{
+ const f=await fixture(pool);
+ await f.tx((c:any)=>recordPurchase(c,f.a,{lotId:f.lot.id,supplier:'测试供应方',voucher:'合成凭证',quantity:'10',occurredAt:at,requestKey:key()}));
+ assert.equal(await database(c=>balance(c,f.lot.id,f.location.id),pool),'0');
+ const requestKey=key();const receipt=await f.move('receipt','10',{requestKey});
+ assert.equal((await f.move('receipt','10',{requestKey})).id,receipt.id);
+ await assert.rejects(()=>f.move('receipt','11',{requestKey}),{code:'REQUEST_KEY_CONFLICT'});
+ await assert.rejects(()=>f.move('issue','1'),{code:'LOT_NOT_RELEASED'});
+ await releaseTestLot(pool,f.a,f.objectId,f.lot.id);
+ const outcomes=await Promise.allSettled([f.move('issue','8'),f.move('issue','8')]);
+ assert.equal(outcomes.filter(x=>x.status==='fulfilled').length,1);
+ assert.equal(await database(c=>balance(c,f.lot.id,f.location.id),pool),'2');
+ await assert.rejects(()=>pool.query("UPDATE stock_entries SET delta=0"));
+}));
+test('3A实际施用独立于领用，累计不超领且原单有下游不可冲销',()=>withDb(async pool=>{
+ const f=await fixture(pool);await f.move('receipt','10');await releaseTestLot(pool,f.a,f.objectId,f.lot.id);
+ const issue=await f.move('issue','6'),input={lotId:f.lot.id,issueDocumentId:issue.id,quantity:'4',occurredAt:at,evidence:'合成田间记录',requestKey:key()};
+ await f.tx((c:any)=>recordApplication(c,f.a,input));
+ await assert.rejects(()=>f.tx((c:any)=>recordApplication(c,f.a,{...input,quantity:'3',requestKey:key()})),{code:'APPLICATION_EXCEEDS_ISSUE'});
+ await assert.rejects(()=>f.move('reverse','1',{reversesId:issue.id}),{code:'STOCK_DEPENDENCIES'});
+ assert.equal((await pool.query('SELECT count(*) FROM input_applications')).rows[0].count,'1');
+}));
+test('3A加工守恒、差异、谱系循环与跨对象回滚',()=>withDb(async pool=>{
+ const f=await fixture(pool);await f.move('receipt','10');await releaseTestLot(pool,f.a,f.objectId,f.lot.id);
+ const out=await f.tx((c:any)=>createLot(c,f.a,{objectId:f.objectId,code:key(),product:'合成成品',kind:'processed',unit:'kg',basis:'as_is',source:'软件测试',requestKey:key()}));
+ const b={objectId:f.objectId,code:'PROCESS-TEST',kind:'processing',inputs:[{lotId:f.lot.id,locationId:f.location.id,quantity:'10'}],outputs:[{lotId:out.id,locationId:f.location.id,quantity:'9'}],occurredAt:at,evidence:'测试加工',requestKey:key()};
+ await assert.rejects(()=>f.tx((c:any)=>transformStock(c,f.a,b)),{code:'STOCK_DIFFERENCE_REASON'});
+ assert.equal(await database(c=>balance(c,f.lot.id,f.location.id),pool),'10');
+ const r=await f.tx((c:any)=>transformStock(c,f.a,{...b,reason:'称量损耗1kg'}));assert.equal(r.difference,'1');
+ assert.equal(await database(c=>balance(c,out.id,f.location.id),pool),'9');
+ await releaseTestLot(pool,f.a,f.objectId,out.id);
+ await pool.query("UPDATE stock_lots SET state='pending' WHERE id=$1",[f.lot.id]);
+ await assert.rejects(()=>f.tx((c:any)=>transformStock(c,f.a,{...b,inputs:[{lotId:out.id,locationId:f.location.id,quantity:'1'}],outputs:[{lotId:f.lot.id,locationId:f.location.id,quantity:'1'}],requestKey:key()})),{code:'STOCK_LINEAGE_CYCLE'});
+ const other=await objectFixture(pool,f.a.id);await permit(pool,f.a.id,other,['read','record']);
+ const w=await f.tx((c:any)=>createLocation(c,f.a,{objectId:other,code:'W',name:'另一对象仓',requestKey:key()}));
+ await assert.rejects(()=>f.move('receipt','1',{locationId:w.id}),{code:'STOCK_SCOPE'});
+}));
+test('3A包装不改库存，独立分次收货保留未收量，冲销追加分录',()=>withDb(async pool=>{
+ const f=await fixture(pool);await f.move('receipt','20');await releaseTestLot(pool,f.a,f.objectId,f.lot.id);
+ const p={objectId:f.objectId,code:'BOX1',lotId:f.lot.id,action:'add',quantity:'10',occurredAt:at,evidence:'测试包装',requestKey:key()};
+ await f.tx((c:any)=>packStock(c,f.a,p));
+ await assert.rejects(()=>f.tx((c:any)=>packStock(c,f.a,{...p,action:'remove',quantity:'11',requestKey:key()})),{code:'PACKAGE_EXCEEDS_BALANCE'});
+ assert.equal(await database(c=>balance(c,f.lot.id,f.location.id),pool),'20');
+ const send=await f.tx((c:any)=>handoff(c,f.a,{lotId:f.lot.id,locationId:f.location.id,direction:'dispatch',party:'测试发货主体',quantity:'10',occurredAt:at,evidence:'合成发货单',requestKey:key()}));
+ await f.tx((c:any)=>handoff(c,f.a,{dispatchId:send.id,direction:'receipt',party:'测试收货主体',quantity:'4',occurredAt:at,evidence:'合成签收',requestKey:key()}));
+ assert.equal((await database(c=>dispatchStatus(c,send.id),pool)).outstanding,'6');
+ const doc=await f.move('adjust','2',{direction:'in',reason:'合成盘点差异'});await f.move('reverse','1',{reversesId:doc.id});
+ assert.equal(await database(c=>balance(c,f.lot.id,f.location.id),pool),'10');
+}));
