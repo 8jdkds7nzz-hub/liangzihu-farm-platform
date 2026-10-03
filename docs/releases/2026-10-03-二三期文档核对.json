@@ -1,10 +1,10 @@
 {
   "changedMarkdown": 83,
-  "localLinksChecked": 658,
+  "localLinksChecked": 659,
   "missing": [],
   "runtimeEvidencePending": [],
   "requirementCodeAndEvidenceHashesVerified": 22,
-  "checkedAt": "2026-10-03T02:55:54.324028+00:00",
+  "checkedAt": "2026-10-03T02:58:07.173807+00:00",
   "sourceCommit": "1c3c5d0cab9d1e5351d811e91faa0c11302aeac8",
   "mainRuntimeEvidencePresent": true
 }
