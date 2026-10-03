@@ -12,6 +12,19 @@ test('3C派生成果写入失败不伪装持续运行，恢复状态后新版本
  await runSpectral(pool,second.id,undefined,store);assert.equal((await pool.query('SELECT count(*) FROM media_assets')).rows[0].count,'3');
  }finally{await rm(dir,{recursive:true,force:true});}
 }));
+
+test('3C并发排队仍严格限制每主体五个待处理任务',()=>withDb(async pool=>{
+ const dir=await mkdtemp(join(tmpdir(),'agronomy-quota-'));try{
+ const store=localStore(join(dir,'source'),join(dir,'backup')),a=await actorFixture(pool,'technician'),o=await objectFixture(pool,a.id);await permit(pool,a.id,o,['read','record']);
+ const image=await syntheticAsset(pool,a,o,store,'rgb'),queue=await import('../../src/modules/agronomy/crops');
+ const results=await Promise.allSettled(Array.from({length:8},()=>transaction(c=>queue.queueCrop(c,a,{assetId:image.id,evaluationMode:false,requestKey:key()}),pool)));
+ assert.equal(results.filter(r=>r.status==='fulfilled').length,5);assert.equal((await pool.query("SELECT count(*) FROM crop_analyses WHERE state='queued'")).rows[0].count,'5');
+ const tif=await syntheticAsset(pool,a,o,store,'spectral'),b={assetId:tif.id,rawAssetIds:[],capturedAt:new Date().toISOString(),sourceRef:'仅合成',processor:'合成v1',indexKind:'NDVI',bands:{red:0,nir:1},calibration:{state:'reflectance',scale:1,offset:0,evidence:'已知值'},breaks:[]};
+ const spectral=await Promise.allSettled(Array.from({length:8},()=>transaction(c=>queueSpectral(c,a,{...b,requestKey:key()}),pool)));
+ assert.equal(spectral.filter(r=>r.status==='fulfilled').length,5);assert.equal((await pool.query("SELECT count(*) FROM spectral_products WHERE state='queued'")).rows[0].count,'5');
+ }finally{await rm(dir,{recursive:true,force:true});}
+}));
+
 test('3C专家计划授权不扩大到处方，固定处方版本与撤权分别核验',()=>withDb(async pool=>{
  const a=await actorFixture(pool,'technician'),expert=await actorFixture(pool,'expert'),o=await objectFixture(pool,a.id);await permit(pool,a.id,o,['read','record','review','share']);await permit(pool,expert.id,o,['read']);
  const tx=(fn:any)=>transaction<any>(fn,pool),lot=await tx((c:any)=>createLot(c,a,{objectId:o,code:key(),product:'合成材料',kind:'input',unit:'L',basis:'as_is',source:'仅测试',requestKey:key()})),boundary={type:'Polygon',coordinates:[[[114,30],[114.001,30],[114.001,30.001],[114,30.001],[114,30]]]};
@@ -21,4 +34,3 @@ test('3C专家计划授权不扩大到处方，固定处方版本与撤权分别
  const grant=await tx((c:any)=>shareResource(c,a,{objectId:o,recipientId:expert.id,resourceType:'prescription_map',resourceId:map.id,expiresAt:future()}));await tx((c:any)=>prescription(c,expert,map.id));
  const newer=await tx((c:any)=>createPrescription(c,a,{...b,requestKey:key()}));await assert.rejects(()=>tx((c:any)=>prescription(c,expert,newer.id)),{status:403});await tx((c:any)=>revokeResource(c,a,{id:grant.id}));await assert.rejects(()=>tx((c:any)=>prescription(c,expert,map.id)),{status:403});
 }));
-

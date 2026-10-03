@@ -1,10 +1,11 @@
 import type {Pool,PoolClient} from 'pg';import type {Actor} from '../../platform/types';import {AppError} from '../../platform/error';import {text,time,choice} from '../../platform/validation';import {uuid} from '../identity/common';
-import {scope} from '../field/common';import {request,type Body} from '../inventory/common';import {database,transaction} from '../../db/pool';import {enqueue,type JobLease} from '../jobs/repository';import {withLease,assertLease} from '../jobs/execution';import {configuredStore,type PrivateStore,checksum} from '../media/storage';
+import {scope,lockKey} from '../field/common';import {request,type Body} from '../inventory/common';import {database,transaction} from '../../db/pool';import {enqueue,type JobLease} from '../jobs/repository';import {withLease,assertLease} from '../jobs/execution';import {configuredStore,type PrivateStore,checksum} from '../media/storage';
 import {imageAsset,analysisActor,flightScope} from './common';import {localAnalysis} from './process';
 export const CROP_VERSION='rgb-exg-v1;siglip2-ba1f3b0843f24bc5417d38e19c37b287d719b2f4:q8:tokens64:crop-taxonomy-v1';
 export async function queueCrop(c:PoolClient,a:Actor,b:Body){
  const m=await imageAsset(c,a,b.assetId);if(!['image/png','image/jpeg','image/webp'].includes(m.mime))throw new AppError(415,'CROP_RGB_REQUIRED','照片分析仅接收RGB照片格式；多光谱TIFF请使用指数入口');return request(c,a,b,'agronomy.crop',m.object_id,async()=>{
  if(b.evaluationMode===true&&process.env.CROP_MODEL_EVALUATION_ENABLED!=='1')throw new AppError(409,'CROP_EVALUATION_DISABLED','通用候选模型仍在实验阶段，部署实验开关未启用；可先计算图像特征');
+ await lockKey(c,a,'agronomy-quota','crop');
  await flightScope(c,m.object_id,b.flightId);const user=(await c.query('SELECT auth_version FROM users WHERE id=$1',[a.id])).rows[0];
  if((await c.query("SELECT 1 FROM crop_analyses WHERE created_by=$1 AND state IN('queued','running') LIMIT 5",[a.id])).rowCount!>=5)throw new AppError(429,'CROP_PENDING_LIMIT','当前最多5个待分析任务');
  const r=(await c.query('INSERT INTO crop_analyses(object_id,asset_id,flight_id,captured_at,checksum,model_version,evaluation_mode,created_by,auth_version) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *',[m.object_id,m.id,b.flightId||null,m.captured_at,m.checksum,CROP_VERSION,b.evaluationMode===true,a.id,user.auth_version])).rows[0];
@@ -27,4 +28,3 @@ export async function labelCrop(c:PoolClient,a:Actor,b:Body){
  uuid(b.analysisId);const r=(await c.query('SELECT * FROM crop_analyses WHERE id=$1',[b.analysisId])).rows[0];if(!r)throw new AppError(404,'CROP_NOT_FOUND','图像分析不存在');await scope(c,a,r.object_id,'review','crop_analysis',r.id);
  return request(c,a,b,'agronomy.crop-label',r.object_id,async()=>(await c.query('INSERT INTO crop_labels(object_id,analysis_id,label,evidence,observed_at,created_by) VALUES($1,$2,$3,$4,$5,$6) RETURNING *',[r.object_id,r.id,choice(b.label,['canopy','lodging','waterlogging','bare','unknown'] as const,'现场标签'),text(b.evidence,'独立现场依据',4000),time(b.observedAt),a.id])).rows[0]);
 }
-

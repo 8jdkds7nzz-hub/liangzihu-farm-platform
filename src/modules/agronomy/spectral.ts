@@ -1,9 +1,10 @@
 import type {Pool,PoolClient} from 'pg';import type {Actor} from '../../platform/types';import {createHash} from 'node:crypto';import {AppError} from '../../platform/error';
-import {text,time} from '../../platform/validation';import {scope,arrayIds} from '../field/common';import {request,type Body} from '../inventory/common';import {database,transaction} from '../../db/pool';import {enqueue,type JobLease} from '../jobs/repository';import {withLease,assertLease} from '../jobs/execution';
+import {text,time} from '../../platform/validation';import {scope,arrayIds,lockKey} from '../field/common';import {request,type Body} from '../inventory/common';import {database,transaction} from '../../db/pool';import {enqueue,type JobLease} from '../jobs/repository';import {withLease,assertLease} from '../jobs/execution';
 import {configuredStore,type PrivateStore,checksum} from '../media/storage';import {prepareMedia,uploadMedia} from '../media/service';import {imageAsset,analysisActor,flightScope} from './common';import {spectralConfig} from './spectral-math';import {localAnalysis} from './process';
 export async function queueSpectral(c:PoolClient,a:Actor,b:Body){
  const m=await imageAsset(c,a,b.assetId,64*1024*1024);if(m.mime!=='image/tiff')throw new AppError(415,'SPECTRAL_TIFF','加工产品须为多波段GeoTIFF');
  return request(c,a,b,'agronomy.spectral',m.object_id,async()=>{
+ await lockKey(c,a,'agronomy-quota','spectral');
  if(Number((await c.query("SELECT count(*) FROM spectral_products WHERE created_by=$1 AND state IN('queued','running')",[a.id])).rows[0].count)>=5)throw new AppError(429,'SPECTRAL_PENDING_LIMIT','当前最多5个待计算的多光谱产品');
  const config=spectralConfig(b),raw=arrayIds(b.rawAssetIds??[],100);await flightScope(c,m.object_id,b.flightId);
  for(const id of raw){const original=(await c.query('SELECT * FROM media_assets WHERE id=$1',[id])).rows[0];if(original?.object_id!==m.object_id||original.ingest_state!=='complete'||original.preview_of||original.id===m.id)throw new AppError(422,'SPECTRAL_RAW_SCOPE','原航片须在同对象完整保存');await scope(c,a,m.object_id,'read','media',id);}
@@ -28,4 +29,3 @@ export async function runSpectral(pool:Pool,id:string,lease?:JobLease,store:Priv
  },pool);
  });
 }
-
