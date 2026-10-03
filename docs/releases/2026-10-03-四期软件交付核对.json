@@ -5,7 +5,7 @@
   "genericSoftwareComplete": true,
   "fullPhase4Complete": false,
   "productionAccepted": false,
-  "localRuntimeVerified": false,
+  "localRuntimeVerified": true,
   "phases": {
     "4a": "generic_software_verified_energy_vendor_adapter_pending",
     "4b": "generic_software_verified_vendor_integration_pending",
@@ -769,5 +769,10 @@
     "workers/spectral.mjs": "517c08b8e3aa6de6220b87fa0e76eff5ebfaa8dec1992eae5aa048bcf8d83f1c",
     "workers/terrain.ts": "899cf225037148990c67ba88cdfe0ce86cfe470fb463c202903dab151f51c496",
     "workers/weather.ts": "605bbf1ac02b28977157157e2c103a3e607eb24f65783ec68aa73f23c214beef"
-  }
+  },
+  "runtimeEvidence": "docs/releases/2026-10-03-四期本机运行核对.json",
+  "mainBuildLogSha256": "5cce4557546741fea3410d41cd9d0d6850d85a106fd078256a0c0dcacbe30868",
+  "mainFrozenInstallPassed": true,
+  "mainMigrationPassed": true,
+  "userReadmeDiagramsAndScreenshotsPreserved": true
 }
