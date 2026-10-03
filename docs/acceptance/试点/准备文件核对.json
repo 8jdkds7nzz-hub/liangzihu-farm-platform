@@ -1,0 +1,163 @@
+{
+  "checkedAt": "2026-10-03T09:42:09.246575+00:00",
+  "task": "试点计划与资料模板准备",
+  "sourceCommit": "cf032f1eeff67f1f5b86505bb4e71d8199f229c5",
+  "mainHeadAtCheck": "9c3c7dfc02ce4ae7ca576f603699ffae48db87d8",
+  "concurrentReadmeChanges": "Separate README and screenshot commits retained; excluded from application source comparison.",
+  "scope": "documentation and blank private working copies only",
+  "markdownFiles": 15,
+  "relativeLinksChecked": 163,
+  "gDependencies": [
+    "G01",
+    "G02",
+    "G03",
+    "G04",
+    "G05",
+    "G06",
+    "G07",
+    "G08",
+    "G09",
+    "G10",
+    "G11",
+    "G12",
+    "G13",
+    "G14",
+    "G15",
+    "G16",
+    "G17",
+    "G18"
+  ],
+  "planTasks": [
+    "P00",
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08"
+  ],
+  "templateCount": 9,
+  "g11Subitems": 6,
+  "g12Subitems": 3,
+  "pnpmScriptsChecked": [
+    "artifact:check",
+    "build",
+    "ops:phase4-restore",
+    "typecheck"
+  ],
+  "commandContexts": {
+    "artifact:check": "outer workspace",
+    "otherScripts": "application repository"
+  },
+  "privateCopies": {
+    "path": ".local/试点接入/20261003_准备/",
+    "markdownCount": 11,
+    "gitIgnored": true,
+    "copiesMatchBlankTemplates": true,
+    "independentBackupAccepted": false
+  },
+  "verification": {
+    "typecheck": {
+      "command": "pnpm typecheck",
+      "exitCode": 0
+    },
+    "build": {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "buildId": "JR--4sgL11T0O_2TQfQzH"
+    },
+    "environment": "same-source isolated worktree; main runtime build untouched",
+    "evidence": "commands executed in current session; no database/browser rerun"
+  },
+  "applicationSourceUnchanged": true,
+  "historicalAcceptanceUnchanged": true,
+  "fieldInputsVerified": false,
+  "fieldTrialStarted": false,
+  "productionAccepted": false,
+  "outerArtifactCheck": {
+    "exitCode": 1,
+    "errors": 35,
+    "warnings": 1,
+    "scope": "pre-existing outer-workspace paths; not fixed in this delivery"
+  },
+  "documents": [
+    {
+      "path": "docs/plans/2026-10-03-试点接入与上线验收计划.md",
+      "sha256": "5243538bb357c6eee8ab7d1a89ee126933959e5234c24c5b2bbef5442ddf8583",
+      "lines": 174
+    },
+    {
+      "path": "docs/试点/README.md",
+      "sha256": "666a74a0f4c8ed40bd2727a834cb49ffeca7f206ca3beafe727c35dc167f2619",
+      "lines": 40
+    },
+    {
+      "path": "docs/试点/接入依赖与验收总表.md",
+      "sha256": "cb75e00d7160e19a2a791dee36b6afecde5818d1356f4aa8899a4fdf2a5bd525",
+      "lines": 38
+    },
+    {
+      "path": "docs/试点/资料模板/01-试点范围与责任分工.md",
+      "sha256": "ce33e137bb705ebf3aa7d12d8b33d6659b59f2af78425a6b0608275c008e0132",
+      "lines": 59
+    },
+    {
+      "path": "docs/试点/资料模板/02-设备测点与厂家接入资料.md",
+      "sha256": "57e9df641bb6b55989d6b384c8b23eb61d7476eb499a40d538bff7ab66bfaf6f",
+      "lines": 66
+    },
+    {
+      "path": "docs/试点/资料模板/03-人员权限与告警规则.md",
+      "sha256": "07d5348e597cbdd9b923981f19088107bc06fc98f861930d99a76b214342e0e9",
+      "lines": 45
+    },
+    {
+      "path": "docs/试点/资料模板/04-真实业务批次与凭证.md",
+      "sha256": "0f68184b13f2c21f5bc90760d6bcbfc6952db26d8d118e1df7972e8df85764ee",
+      "lines": 64
+    },
+    {
+      "path": "docs/试点/资料模板/05-地图三维与终端验收.md",
+      "sha256": "3be6d76f461f167ec76a4700d72f0d55629c78dc0b6a8de41ec334586cab942a",
+      "lines": 36
+    },
+    {
+      "path": "docs/试点/资料模板/06-专业规程模型科研与指标.md",
+      "sha256": "4d84b9b98e206df3bf765641b82db5a0046b79c51c2f5b30d2a7e9f8552d344a",
+      "lines": 58
+    },
+    {
+      "path": "docs/试点/资料模板/07-部署备份与恢复演练.md",
+      "sha256": "06f0ffd58dd94563915b570a8c6a1f71f0d35fd375070bfad2b20eb565104db7",
+      "lines": 60
+    },
+    {
+      "path": "docs/试点/资料模板/08-联调证据问题与签认.md",
+      "sha256": "826de15e6fbb6888dc23ca25ba1d4b666c236e91b02547b7729cc5e53459ebf1",
+      "lines": 48
+    },
+    {
+      "path": "docs/试点/资料模板/09-试运行每日记录与验收结论.md",
+      "sha256": "eaf88ccc443c3e82195ebe0b30d6079e2828eac6437a7ac354df46bb617568d7",
+      "lines": 41
+    },
+    {
+      "path": "docs/acceptance/试点/准备进度与交付物.md",
+      "sha256": "7ff17abb6c21155adf1af23650892fefac68165828a06f04e9a7cc787aa5fc3f",
+      "lines": 46
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "9052fdc988bc1bf154eb17a26f23eafa650c471c8f15eb296c6242ebef8f00db",
+      "lines": 125
+    },
+    {
+      "path": "docs/contracts/四期真实资料与接入适配交接.md",
+      "sha256": "11f3f6e177f7372ff70a04ae9bec7717de03fe0fc5e3dde8da2ef37802f3c437",
+      "lines": 45
+    }
+  ],
+  "errors": []
+}
