@@ -5,400 +5,765 @@
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B01-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/map/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B01-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/map/service.ts",
+        "src/app/(platform)/map/panel.tsx",
+        "src/modules/flights/spatial.ts",
+        "tests/integration/field.test.ts",
+        "tests/acceptance/field-browser.test.ts",
+        "tests/integration/spatial-evidence.test.ts",
+        "tests/acceptance/phase1-media-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B01-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/map/service.ts",
+        "src/modules/flights/service.ts",
+        "src/modules/flights/spatial.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/spatial-evidence.test.ts",
+        "tests/acceptance/phase1-media-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B01-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/map/service.ts",
+        "src/modules/field/shares.ts",
+        "src/modules/flights/spatial.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/field-security.test.ts",
+        "tests/integration/spatial-evidence.test.ts",
+        "tests/acceptance/phase1-media-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B02-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/records/service.ts",
+        "src/modules/records/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B02-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/media/service.ts",
+        "src/modules/media/service.ts",
+        "src/modules/media/service.ts",
+        "tests/integration/field.test.ts",
+        "tests/acceptance/field-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B02-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/records/service.ts",
+        "src/modules/records/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B02-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/records/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B02-05",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/media/service.ts",
+        "src/modules/media/storage.ts",
+        "ops/restore-check.ts",
+        "tests/integration/field-security.test.ts",
+        "tests/integration/remote-media-restore.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B02-06",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/media/service.ts",
+        "src/modules/media/remote-download.ts",
+        "src/modules/media/uploads.ts",
+        "tests/unit/remote-media.test.ts",
+        "tests/integration/large-media.test.ts",
+        "tests/integration/large-remote-media.test.ts",
+        "tests/acceptance/phase1-media-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B03-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "public/field.js",
+        "public/field-sw.js",
+        "tests/acceptance/field-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B03-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "public/field.js",
+        "src/modules/records/service.ts",
+        "tests/acceptance/field-browser.test.ts",
+        "tests/integration/field-security.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B03-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "public/field.js",
+        "src/modules/field/common.ts",
+        "tests/acceptance/field-browser.test.ts",
+        "tests/integration/field-security.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B04-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/cameras/service.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/ezviz-webhook.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B04-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/connections/ezviz.ts",
+        "src/modules/connections/ezviz.ts",
+        "tests/unit/ezviz-webhook.test.ts",
+        "tests/integration/ezviz-webhook.test.ts",
+        "tests/acceptance/ezviz-webhook-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B04-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/connections/ezviz.ts",
+        "src/modules/media/remote-import.ts",
+        "src/modules/cameras/service.ts",
+        "tests/integration/remote-media.test.ts",
+        "tests/integration/ezviz-webhook.test.ts",
+        "tests/integration/image-quality.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B04-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/cameras/service.ts",
+        "src/modules/cameras/readonly.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/camera-read.test.ts",
+        "tests/unit/camera-read.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B05-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/flights/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B05-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/connections/flighthub.ts",
+        "src/modules/connections/flighthub.ts",
+        "tests/unit/flighthub.test.ts",
+        "tests/integration/flighthub.test.ts",
+        "tests/acceptance/flighthub-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B05-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/flights/service.ts",
+        "src/modules/flights/service.ts",
+        "src/modules/media/uploads.ts",
+        "tests/integration/flighthub.test.ts",
+        "tests/integration/flighthub-restore.test.ts",
+        "tests/integration/large-media.test.ts",
+        "tests/integration/large-remote-media.test.ts",
+        "tests/acceptance/phase1-media-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B05-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/flights/service.ts",
+        "src/modules/flights/spatial.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/spatial-evidence.test.ts",
+        "tests/acceptance/phase1-media-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B06-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/calendars/service.ts",
+        "src/modules/calendars/service.ts",
+        "src/modules/calendars/service.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B06-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/tasks/service.ts",
+        "src/modules/tasks/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B06-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/tasks/service.ts",
+        "tests/integration/field.test.ts",
+        "tests/integration/task-handover.test.ts",
+        "tests/acceptance/phase1-completion-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B06-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/tasks/service.ts",
+        "tests/integration/field.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B07-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/media/bundle.ts",
+        "ops/restore-check.ts",
+        "tests/integration/field-security.test.ts",
+        "tests/integration/flighthub-restore.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "B07-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "B",
+      "priorStatus": "软件交接已具备，待真实推广验收",
+      "checkedPaths": [
+        "docs/help/现场人员农事与离线操作卡.md",
+        "tests/acceptance/field-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C01-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/analysis/service.ts",
+        "src/modules/analysis/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C01-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/analysis/calculate.ts",
+        "tests/unit/intelligence.test.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C01-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/schedule.ts",
+        "src/modules/briefings/reminders.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/analysis-schedule.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C01-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/weather/service.ts",
+        "src/modules/analysis/comparisons.ts",
+        "tests/unit/intelligence.test.ts",
+        "tests/integration/comparison.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C01-05",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/weather/service.ts",
+        "src/modules/connections/weather.ts",
+        "tests/unit/qweather.test.ts",
+        "tests/integration/weather-connection.test.ts",
+        "tests/acceptance/weather-connection-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C02-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/knowledge/service.ts",
+        "src/modules/knowledge/service.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C02-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/knowledge/chunks.ts",
+        "src/modules/knowledge/service.ts",
+        "tests/unit/intelligence.test.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/intelligence-runtime.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C02-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/knowledge/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C02-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/knowledge/service.ts",
+        "src/modules/assistant/service.ts",
+        "src/modules/analysis/evidence.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/briefing-authority.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C03-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/assistant/service.ts",
+        "src/modules/assistant/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C03-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/assistant/validate.ts",
+        "src/modules/assistant/provider.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C03-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/assistant/service.ts",
+        "src/modules/assistant/validate.ts",
+        "src/modules/assistant/provider.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts",
+        "tests/integration/intelligence-runtime.test.ts",
+        "tests/unit/model-response.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C03-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/assistant/service.ts",
+        "workers/intelligence.ts",
+        "src/modules/jobs/execution.ts",
+        "src/modules/assistant/receipts.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/intelligence-runtime.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C03-05",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/assistant/service.ts",
+        "src/modules/operations/budget.ts",
+        "src/modules/jobs/execution.ts",
+        "src/modules/assistant/receipts.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/intelligence-runtime.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/service.ts",
+        "src/modules/briefings/service.ts",
+        "src/modules/analysis/evidence.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/acceptance/intelligence-browser.test.ts",
+        "tests/integration/briefing-authority.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/schedule.ts",
+        "src/modules/briefings/service.ts",
+        "src/modules/briefings/reminders.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/analysis-schedule.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/analysis-schedule.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/service.ts",
+        "src/modules/briefings/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/acceptance/intelligence-browser.test.ts",
+        "tests/integration/briefing-authority.test.ts",
+        "tests/acceptance/phase1-completion-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-05",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/briefing-authority.test.ts",
+        "tests/acceptance/phase1-completion-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-06",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/service.ts",
+        "src/modules/briefings/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/briefing-authority.test.ts",
+        "tests/acceptance/phase1-completion-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C04-07",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/briefings/service.ts",
+        "src/modules/briefings/schedule.ts",
+        "src/modules/briefings/reminders.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/analysis-schedule.test.ts",
+        "tests/integration/briefing-authority.test.ts",
+        "tests/acceptance/phase1-completion-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C05-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/image-review/service.ts",
+        "workers/inference.mjs",
+        "tests/integration/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C05-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/cameras/service.ts",
+        "src/modules/image-review/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/image-quality.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C05-03",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/image-review/service.ts",
+        "workers/image-review.ts",
+        "src/modules/jobs/execution.ts",
+        "src/modules/assistant/receipts.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/intelligence-runtime.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C05-04",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/image-review/service.ts",
+        "src/modules/image-review/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/image-quality.test.ts",
+        "tests/unit/image-quality.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C05-05",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/image-review/service.ts",
+        "tests/integration/intelligence.test.ts",
+        "tests/integration/image-quality.test.ts",
+        "tests/unit/image-quality.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C06-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "tools/evaluate.ts",
+        "tests/evaluations/一期固定评测集.json",
+        "tests/integration/intelligence.test.ts",
+        "tests/unit/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C06-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "tools/evaluate.ts",
+        "tests/integration/intelligence.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C07-01",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件已实现并有工程验证",
+      "checkedPaths": [
+        "src/modules/media/bundle.ts",
+        "ops/restore-check.ts",
+        "tests/integration/field-security.test.ts",
+        "tests/integration/weather-connection-restore.test.ts",
+        "tests/integration/flighthub-restore.test.ts"
+      ],
       "pathsPresent": true
     },
     {
       "source": "一期1b与1c设计代码测试对照.json",
       "id": "C07-02",
-      "phase": null,
-      "priorStatus": null,
+      "phase": "C",
+      "priorStatus": "软件交接已具备，待真实推广验收",
+      "checkedPaths": [
+        "docs/help/技术员分析与简报操作卡.md",
+        "tests/acceptance/intelligence-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -406,6 +771,10 @@
       "id": "U01",
       "phase": "2a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/components/platform/app-shell.tsx",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -413,6 +782,10 @@
       "id": "U02",
       "phase": "2a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/workbench/service.ts",
+        "tests/integration/phase2-workbench.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -420,6 +793,10 @@
       "id": "U03",
       "phase": "2a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/components/platform/data-list.tsx",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -427,6 +804,10 @@
       "id": "U04",
       "phase": "2a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/identity/references.ts",
+        "tests/integration/phase2-workbench.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -434,6 +815,10 @@
       "id": "U05",
       "phase": "2a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/components/platform/action-form.tsx",
+        "tests/acceptance/platform-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -441,6 +826,10 @@
       "id": "U06",
       "phase": "2a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/app/globals.css",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -448,6 +837,11 @@
       "id": "V01",
       "phase": "2b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/app/(platform)/map/panel.tsx",
+        "tests/acceptance/phase1-completion-browser.test.ts",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -455,6 +849,11 @@
       "id": "V02",
       "phase": "2b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/app/(platform)/map/panel.tsx",
+        "tests/acceptance/phase1-media-browser.test.ts",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -462,6 +861,11 @@
       "id": "V03",
       "phase": "2b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/analysis/chart.ts",
+        "tests/unit/phase2-chart.test.ts",
+        "tests/acceptance/phase2-experience-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -469,6 +873,10 @@
       "id": "V04",
       "phase": "2b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/app/(platform)/analysis/metric-trend.tsx",
+        "tests/unit/phase2-chart.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -476,6 +884,10 @@
       "id": "V05",
       "phase": "2b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/components/platform/time-series.tsx",
+        "tests/acceptance/platform-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -483,6 +895,10 @@
       "id": "W01",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/scenes.ts",
+        "tests/integration/phase2-terrain.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -490,6 +906,10 @@
       "id": "W02",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/package.ts",
+        "tests/unit/phase2-terrain-package.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -497,6 +917,10 @@
       "id": "W03",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/components/terrain/cesium-view.tsx",
+        "tests/acceptance/phase2-terrain-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -504,6 +928,10 @@
       "id": "W04",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/scenes.ts",
+        "tests/acceptance/phase2-terrain-forms-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -511,6 +939,10 @@
       "id": "W05",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/survey.ts",
+        "tests/integration/phase2-terrain.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -518,6 +950,10 @@
       "id": "W06",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/review.ts",
+        "tests/integration/phase2-terrain-boundaries.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -525,6 +961,10 @@
       "id": "W07",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/survey.ts",
+        "tests/integration/phase2-terrain-boundaries.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -532,6 +972,10 @@
       "id": "W08",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/links.ts",
+        "tests/integration/phase2-terrain-boundaries.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -539,6 +983,10 @@
       "id": "W09",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/terrain/links.ts",
+        "tests/integration/phase2-terrain.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -546,6 +994,10 @@
       "id": "W10",
       "phase": "2c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "ops/phase2-restore.ts",
+        "docs/acceptance/2c/二期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -553,6 +1005,11 @@
       "id": "A31",
       "phase": "3a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/inventory/catalog.ts",
+        "tests/unit/phase3-quantity.test.ts",
+        "tests/integration/phase3-stock.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -560,6 +1017,10 @@
       "id": "A32",
       "phase": "3a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/inventory/inputs.ts",
+        "tests/integration/phase3-stock.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -567,6 +1028,10 @@
       "id": "A33",
       "phase": "3a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/inventory/ledger.ts",
+        "tests/integration/phase3-stock.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -574,6 +1039,11 @@
       "id": "A34",
       "phase": "3a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/inventory/transforms.ts",
+        "tests/integration/phase3-stock.test.ts",
+        "tests/integration/phase3-trace.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -581,6 +1051,11 @@
       "id": "A35",
       "phase": "3a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/inventory/handoffs.ts",
+        "tests/integration/phase3-stock.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -588,6 +1063,11 @@
       "id": "A36",
       "phase": "3a",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/app/(platform)/inventory/panel.tsx",
+        "tests/acceptance/phase3-inventory-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -595,6 +1075,11 @@
       "id": "B31",
       "phase": "3b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/traceability/quality.ts",
+        "tests/integration/phase3-quality.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -602,6 +1087,11 @@
       "id": "B32",
       "phase": "3b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/traceability/quality.ts",
+        "tests/integration/phase3-quality.test.ts",
+        "tests/integration/phase3-stock.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -609,6 +1099,11 @@
       "id": "B33",
       "phase": "3b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/traceability/trace.ts",
+        "tests/integration/phase3-trace.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -616,6 +1111,11 @@
       "id": "B34",
       "phase": "3b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/traceability/cases.ts",
+        "tests/integration/phase3-quality.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -623,6 +1123,11 @@
       "id": "B35",
       "phase": "3b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/traceability/public.ts",
+        "tests/integration/phase3-trace.test.ts",
+        "tests/acceptance/phase3-trace-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -630,6 +1135,11 @@
       "id": "B36",
       "phase": "3b",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/app/(platform)/traceability/panel.tsx",
+        "tests/acceptance/phase3-trace-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -637,6 +1147,11 @@
       "id": "C31",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/protection/plans.ts",
+        "tests/integration/phase3-protection.test.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -644,6 +1159,11 @@
       "id": "C32",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/protection/prescriptions.ts",
+        "tests/integration/phase3-protection.test.ts",
+        "tests/integration/phase3-boundaries.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -651,6 +1171,12 @@
       "id": "C33",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/protection/executions.ts",
+        "tests/unit/phase3-protection.test.ts",
+        "tests/integration/phase3-protection.test.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -658,6 +1184,11 @@
       "id": "C34",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/protection/deliveries.ts",
+        "tests/support/phase3.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -665,6 +1196,12 @@
       "id": "C35",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/agronomy/crops.ts",
+        "tests/integration/phase3-agronomy.test.ts",
+        "tests/integration/phase3-control.test.ts",
+        "docs/acceptance/3c/本地作物模型工程实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -672,6 +1209,12 @@
       "id": "C36",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/agronomy/spectral.ts",
+        "tests/unit/phase3-spectral.test.ts",
+        "tests/integration/phase3-agronomy.test.ts",
+        "tests/integration/phase3-boundaries.test.ts"
+      ],
       "pathsPresent": true
     },
     {
@@ -679,6 +1222,11 @@
       "id": "C37",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/agronomy/notices.ts",
+        "tests/integration/phase3-agronomy.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -686,6 +1234,11 @@
       "id": "C38",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "src/modules/agronomy/flows.ts",
+        "tests/integration/phase3-agronomy.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -693,6 +1246,12 @@
       "id": "C39",
       "phase": "3c",
       "priorStatus": "gated_software_verified",
+      "checkedPaths": [
+        "src/modules/control/records.ts",
+        "tests/integration/phase3-control.test.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     },
     {
@@ -700,18 +1259,35 @@
       "id": "C40",
       "phase": "3c",
       "priorStatus": "software_verified",
+      "checkedPaths": [
+        "workers/agronomy.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts",
+        "tests/acceptance/phase3-inventory-browser.test.ts",
+        "tests/acceptance/phase3-trace-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
       "pathsPresent": true
     }
   ],
   "newBrowserCases": 2,
-  "reproducedFailures": 2,
+  "reproducedFailures": 4,
   "fixedBrowserCases": 2,
   "externalControlAdapterImplemented": false,
-  "fullRegression": "pending",
+  "fullRegression": "242 unique cases verified; overlapping reruns excluded",
   "evidence": {
     "遗漏复现.log": "40bb5873e099c42854eb269abbb9bfb8a57e337bc1e9aaed0bce5dec294c6307",
     "遗漏补齐验证.log": "4fcebb9911c7a2f20400abe65c78b337a1a8f9bc04a0bff562dc36e514e066f8",
     "补齐类型.log": "8fab47a592e57fb975e78568e9798c2f22514bccc454d45256b90bb1694d0310",
-    "补齐构建.log": "9332a13a22e1c1ce1827b473a9e73ec0b0f19a51ae5dfe426c16fe90059da414"
-  }
+    "补齐构建.log": "9332a13a22e1c1ce1827b473a9e73ec0b0f19a51ae5dfe426c16fe90059da414",
+    "跨账号导入复现.log": "2e0a833e63f115bdc27e520778584ff2a6fa4e94b13c01bb45f9359d9a04a150",
+    "跨账号导入补齐.log": "0b3db314ef51cd31b194fbe7f2dfa09e5a422698d712ca38c2e5330ba996b41a",
+    "统一导出遗漏复现.log": "36f79766ffa07ec6f6bd1d95c36d3579922bbd8226642156a2cc781e70690ea8",
+    "统一导出补齐.log": "5c4ee77f6b6e69273551ac361949d68318192cec56637ae5482f8a22fcd2a57d"
+  },
+  "checkedReferences": 366,
+  "missingReferences": [],
+  "missingSymbols": [],
+  "fixedCrossPhaseSoftwareFindings": 4,
+  "documentationFindings": 1,
+  "newRegressionCases": 5
 }

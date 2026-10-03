@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-03T04:41:01.192Z",
+  "environment": "agri_test随机schema与合成规程",
+  "checks": {
+    "knowledgeReviewed": true,
+    "localVectorSearch": true,
+    "programFallback": true,
+    "noAutomaticDispatch": true,
+    "noExternalSend": true,
+    "allPagesLoad": true,
+    "noScriptErrors": true,
+    "noOverflow": true
+  },
+  "limits": [
+    "未调用真实Kimi或DeepSeek",
+    "未替代2至4周技术员试运行"
+  ]
+}

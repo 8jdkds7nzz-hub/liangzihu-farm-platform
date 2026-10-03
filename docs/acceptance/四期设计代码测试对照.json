@@ -1,0 +1,365 @@
+{
+  "sourceCommit": "8e9bbc3965a468451c467fa09db24624fabc47f3",
+  "genericSoftwareComplete": true,
+  "fullPhase4Complete": false,
+  "productionAccepted": false,
+  "requirements": [
+    {
+      "id": "A41",
+      "phase": "4a",
+      "title": "能源设备与计量档案",
+      "status": "generic_software_verified",
+      "code": "src/modules/energy/service.ts",
+      "codeSha256": "b0289bd76815f8ff6525ff88dd3755e6b300f5ed155411da6fa19d7b35c2df60",
+      "evidence": [
+        "tests/integration/phase4-4a.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4a.test.ts": "8c6381614b46c7728a85be3881419f7aba5dd383c50be87ce1cc4e2d1d740b40"
+      },
+      "executionRecord": "docs/acceptance/4a/A41.md",
+      "limits": "G16能源采购、真实协议与设备采集适配；G17真实称量/检测/去向。"
+    },
+    {
+      "id": "A42",
+      "phase": "4a",
+      "title": "能源观测与区间核算",
+      "status": "generic_software_verified",
+      "code": "src/modules/energy/service.ts",
+      "codeSha256": "b0289bd76815f8ff6525ff88dd3755e6b300f5ed155411da6fa19d7b35c2df60",
+      "evidence": [
+        "tests/unit/phase4-energy.test.ts",
+        "tests/integration/phase4-4a.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/unit/phase4-energy.test.ts": "bd606258aa6a5e77fbb7b1615c9a87f99ac2d4a48e98ebb6cfeba96bd9ddfea7",
+        "tests/integration/phase4-4a.test.ts": "8c6381614b46c7728a85be3881419f7aba5dd383c50be87ce1cc4e2d1d740b40"
+      },
+      "executionRecord": "docs/acceptance/4a/A42.md",
+      "limits": "G16能源采购、真实协议与设备采集适配；G17真实称量/检测/去向。"
+    },
+    {
+      "id": "A43",
+      "phase": "4a",
+      "title": "循环物料批次与接收称量",
+      "status": "generic_software_verified",
+      "code": "src/modules/circular/service.ts",
+      "codeSha256": "95ce4a3b7528ba97473f673332d04092da9d60a2d913ec2cdce3165cb6c3991c",
+      "evidence": [
+        "tests/integration/phase4-4a.test.ts",
+        "tests/acceptance/phase4-resources-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4a.test.ts": "8c6381614b46c7728a85be3881419f7aba5dd383c50be87ce1cc4e2d1d740b40",
+        "tests/acceptance/phase4-resources-browser.test.ts": "0e07f5c1848672fd381f952743124190e2de98386def55967d2fae0e9a1343a3"
+      },
+      "executionRecord": "docs/acceptance/4a/A43.md",
+      "limits": "G16能源采购、真实协议与设备采集适配；G17真实称量/检测/去向。"
+    },
+    {
+      "id": "A44",
+      "phase": "4a",
+      "title": "处理批与筛分返料",
+      "status": "generic_software_verified",
+      "code": "src/modules/circular/service.ts",
+      "codeSha256": "95ce4a3b7528ba97473f673332d04092da9d60a2d913ec2cdce3165cb6c3991c",
+      "evidence": [
+        "tests/integration/phase4-4a.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4a.test.ts": "8c6381614b46c7728a85be3881419f7aba5dd383c50be87ce1cc4e2d1d740b40",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4a/A44.md",
+      "limits": "G16能源采购、真实协议与设备采集适配；G17真实称量/检测/去向。"
+    },
+    {
+      "id": "A45",
+      "phase": "4a",
+      "title": "检测与去向追查",
+      "status": "generic_software_verified",
+      "code": "src/modules/circular/queries.ts",
+      "codeSha256": "20ac23dbbe7d9ffde8afacc9d9167a9b30fa6c411ab0b305ccc7480977230eee",
+      "evidence": [
+        "tests/integration/phase4-4a.test.ts",
+        "tests/integration/phase3-quality.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4a.test.ts": "8c6381614b46c7728a85be3881419f7aba5dd383c50be87ce1cc4e2d1d740b40",
+        "tests/integration/phase3-quality.test.ts": "f9bf04d0c2760ab3156c6668f09d54394dbd06ee04ea699d0d3b02b91819133e",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4a/A45.md",
+      "limits": "G16能源采购、真实协议与设备采集适配；G17真实称量/检测/去向。"
+    },
+    {
+      "id": "A46",
+      "phase": "4a",
+      "title": "4A页面与恢复",
+      "status": "generic_software_verified",
+      "code": "src/modules/energy/queries.ts",
+      "codeSha256": "90ae7bbc8d1c41f82a84c93b5f29acc5fb32fd8cd42d707c177cf13b000c8a3a",
+      "evidence": [
+        "tests/acceptance/phase4-resources-browser.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/acceptance/phase4-resources-browser.test.ts": "0e07f5c1848672fd381f952743124190e2de98386def55967d2fae0e9a1343a3",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4a/A46.md",
+      "limits": "G16能源采购、真实协议与设备采集适配；G17真实称量/检测/去向。"
+    },
+    {
+      "id": "B41",
+      "phase": "4b",
+      "title": "北斗接入资料与退出条件",
+      "status": "generic_software_verified",
+      "code": "src/modules/machinery/contracts.ts",
+      "codeSha256": "bc3a58365b1e5057a5eca6098650305f8c2b259f12f1b982cafb2872ab9e5dd9",
+      "evidence": [
+        "tests/integration/phase4-4b.test.ts",
+        "tests/acceptance/phase4-business-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4b.test.ts": "4eb6842d5750f3bfa1a9d9a8e7870d89432bc04b861edae89e3cba2d5f877ce4",
+        "tests/acceptance/phase4-business-browser.test.ts": "f84ab63570a3f801b35d4d04545510f563cd9e625123979933e707bb18b01fc8"
+      },
+      "executionRecord": "docs/acceptance/4b/B41.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "B42",
+      "phase": "4b",
+      "title": "机具终端绑定与人工派单",
+      "status": "generic_software_verified",
+      "code": "src/modules/machinery/orders.ts",
+      "codeSha256": "0565aacf2fdf866f2c18f4ffb6d104cbe1c4dc4661fb559468ee4a03dfc1e8b5",
+      "evidence": [
+        "tests/integration/phase4-4b.test.ts",
+        "tests/acceptance/phase4-business-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4b.test.ts": "4eb6842d5750f3bfa1a9d9a8e7870d89432bc04b861edae89e3cba2d5f877ce4",
+        "tests/acceptance/phase4-business-browser.test.ts": "f84ab63570a3f801b35d4d04545510f563cd9e625123979933e707bb18b01fc8"
+      },
+      "executionRecord": "docs/acceptance/4b/B42.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "B43",
+      "phase": "4b",
+      "title": "实际轨迹与双证据验收",
+      "status": "generic_software_verified",
+      "code": "src/modules/machinery/evidence.ts",
+      "codeSha256": "7f4a20754cf2104d7e256a366d761e78495ffa0423bd25da4014b0c92dd3e9f9",
+      "evidence": [
+        "tests/integration/phase4-4b.test.ts",
+        "tests/acceptance/phase4-business-browser.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4b.test.ts": "4eb6842d5750f3bfa1a9d9a8e7870d89432bc04b861edae89e3cba2d5f877ce4",
+        "tests/acceptance/phase4-business-browser.test.ts": "f84ab63570a3f801b35d4d04545510f563cd9e625123979933e707bb18b01fc8",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4b/B43.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "B44",
+      "phase": "4b",
+      "title": "费用、实付与更正",
+      "status": "generic_software_verified",
+      "code": "src/modules/finance/expenses.ts",
+      "codeSha256": "196fa1d07ab9b26c34a7474138d23f359d19890aab9ca07fd01f93053271bb16",
+      "evidence": [
+        "tests/unit/phase4-money.test.ts",
+        "tests/integration/phase4-4b.test.ts",
+        "tests/integration/phase4-boundaries.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/unit/phase4-money.test.ts": "c30556119f4d05d50a814e52f17e5790c769cf2be7b2536260a865d78ffc46a3",
+        "tests/integration/phase4-4b.test.ts": "4eb6842d5750f3bfa1a9d9a8e7870d89432bc04b861edae89e3cba2d5f877ce4",
+        "tests/integration/phase4-boundaries.test.ts": "30e05af0b787f73aa720a100423202241bedf99f0032b54f02756ac4b286008c",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4b/B44.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "B45",
+      "phase": "4b",
+      "title": "三类补贴分账与重复检查",
+      "status": "generic_software_verified",
+      "code": "src/modules/finance/subsidies.ts",
+      "codeSha256": "f24f7a5b4c8d39bb010d8bd6643cf1b2d06be4938dce1bdcae061ec313b8fc09",
+      "evidence": [
+        "tests/integration/phase4-4b.test.ts",
+        "tests/integration/phase4-subsidy-time.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4b.test.ts": "4eb6842d5750f3bfa1a9d9a8e7870d89432bc04b861edae89e3cba2d5f877ce4",
+        "tests/integration/phase4-subsidy-time.test.ts": "568d2be63ef935badd529b2927701cb41279e1ff0bd12e667919969476053cd3",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4b/B45.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "B46",
+      "phase": "4b",
+      "title": "4B页面与关系导出",
+      "status": "generic_software_verified",
+      "code": "src/modules/finance/queries.ts",
+      "codeSha256": "7f5790ba8702aeb77bc923b4b51997911197a91c000f829afc40c0bc7460c4f3",
+      "evidence": [
+        "tests/acceptance/phase4-business-browser.test.ts",
+        "tests/integration/phase4-boundaries.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/acceptance/phase4-business-browser.test.ts": "f84ab63570a3f801b35d4d04545510f563cd9e625123979933e707bb18b01fc8",
+        "tests/integration/phase4-boundaries.test.ts": "30e05af0b787f73aa720a100423202241bedf99f0032b54f02756ac4b286008c"
+      },
+      "executionRecord": "docs/acceptance/4b/B46.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "B47",
+      "phase": "4b",
+      "title": "4B恢复与交接",
+      "status": "generic_software_verified",
+      "code": "src/modules/machinery/queries.ts",
+      "codeSha256": "97017a75aacca55911d283028848c89b2020ebb314db89caf36a91cc1e6ae547",
+      "evidence": [
+        "docs/acceptance/4c/四期非空恢复实测.json",
+        "tests/integration/phase4-prior-boundaries.test.ts"
+      ],
+      "evidenceHashes": {
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713",
+        "tests/integration/phase4-prior-boundaries.test.ts": "f68a096153bbb00a9572751992ca56e348f754af82b0d2209a1c3e4e9ae89c81"
+      },
+      "executionRecord": "docs/acceptance/4b/B47.md",
+      "limits": "G17实际北斗平台接口/原始终端格式适配、真实业务凭证和政策资格。"
+    },
+    {
+      "id": "C41",
+      "phase": "4c",
+      "title": "版本化试验协议与小区",
+      "status": "generic_software_verified",
+      "code": "src/modules/research/protocols.ts",
+      "codeSha256": "4601a5e182f1726f25e4b1b326cbb06d9abbe72f685878eb0eca2bb33b028c30",
+      "evidence": [
+        "tests/integration/phase4-4c.test.ts",
+        "tests/acceptance/phase4-research-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4c.test.ts": "4c195ee93c16baef15770b2b1c5a867141c577978e2a37bf59f5cd0a0aa83600",
+        "tests/acceptance/phase4-research-browser.test.ts": "79138e8fedb3c984efdb770418a618c106ccc82b59960dfd6430a0c7409aae1d"
+      },
+      "executionRecord": "docs/acceptance/4c/C41.md",
+      "limits": "G18真实试验设计与农业效果、实际覆盖范围和专业签认。"
+    },
+    {
+      "id": "C42",
+      "phase": "4c",
+      "title": "观察记录与第三方检测",
+      "status": "generic_software_verified",
+      "code": "src/modules/research/observations.ts",
+      "codeSha256": "253e0169ea33e45c21de3e53446537d3da08fb152b8d1a4fc805cf01bef70d00",
+      "evidence": [
+        "tests/integration/phase4-4c.test.ts",
+        "tests/acceptance/phase4-research-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4c.test.ts": "4c195ee93c16baef15770b2b1c5a867141c577978e2a37bf59f5cd0a0aa83600",
+        "tests/acceptance/phase4-research-browser.test.ts": "79138e8fedb3c984efdb770418a618c106ccc82b59960dfd6430a0c7409aae1d"
+      },
+      "executionRecord": "docs/acceptance/4c/C42.md",
+      "limits": "G18真实试验设计与农业效果、实际覆盖范围和专业签认。"
+    },
+    {
+      "id": "C43",
+      "phase": "4c",
+      "title": "结果证据包与成果等级",
+      "status": "generic_software_verified",
+      "code": "src/modules/research/results.ts",
+      "codeSha256": "c16bb8d79580a033566c957f2aac70cf8035c275393421c9fbb016f1df2e7ad2",
+      "evidence": [
+        "tests/integration/phase4-4c.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4c.test.ts": "4c195ee93c16baef15770b2b1c5a867141c577978e2a37bf59f5cd0a0aa83600",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4c/C43.md",
+      "limits": "G18真实试验设计与农业效果、实际覆盖范围和专业签认。"
+    },
+    {
+      "id": "C44",
+      "phase": "4c",
+      "title": "试验经费与任务结果关联",
+      "status": "generic_software_verified",
+      "code": "src/modules/research/queries.ts",
+      "codeSha256": "610151c288337c3de183643a363c898686be5cf43d0c31f500b932ea25948c03",
+      "evidence": [
+        "tests/integration/phase4-4c.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4c.test.ts": "4c195ee93c16baef15770b2b1c5a867141c577978e2a37bf59f5cd0a0aa83600",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4c/C44.md",
+      "limits": "G18真实试验设计与农业效果、实际覆盖范围和专业签认。"
+    },
+    {
+      "id": "C45",
+      "phase": "4c",
+      "title": "七类综合指标与输入快照",
+      "status": "generic_software_verified",
+      "code": "src/modules/management/calculate.ts",
+      "codeSha256": "f3a2149631609850c09a193cc1f6e77fe665c54ddbc094f537eaa431ca150f2d",
+      "evidence": [
+        "tests/integration/phase4-4c.test.ts",
+        "tests/integration/phase4-boundaries.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase4-4c.test.ts": "4c195ee93c16baef15770b2b1c5a867141c577978e2a37bf59f5cd0a0aa83600",
+        "tests/integration/phase4-boundaries.test.ts": "30e05af0b787f73aa720a100423202241bedf99f0032b54f02756ac4b286008c",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4c/C45.md",
+      "limits": "G18真实试验设计与农业效果、实际覆盖范围和专业签认。"
+    },
+    {
+      "id": "C46",
+      "phase": "4c",
+      "title": "4C页面、导出与全期恢复",
+      "status": "generic_software_verified",
+      "code": "src/modules/management/queries.ts",
+      "codeSha256": "0ffb3111e1d51be10cd0f51d0fad0c6f5e06c644ee06a70154a82ab5ddbf5e36",
+      "evidence": [
+        "tests/acceptance/phase4-research-browser.test.ts",
+        "docs/acceptance/4c/四期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/acceptance/phase4-research-browser.test.ts": "79138e8fedb3c984efdb770418a618c106ccc82b59960dfd6430a0c7409aae1d",
+        "docs/acceptance/4c/四期非空恢复实测.json": "2ec96652c3ed4a4208e91d50978872ff805878d4d7da36fce6e184df44b40713"
+      },
+      "executionRecord": "docs/acceptance/4c/C46.md",
+      "limits": "G18真实试验设计与农业效果、实际覆盖范围和专业签认。"
+    }
+  ],
+  "openCodeDependencies": [
+    "G15真实控制执行适配器",
+    "G16采购后能源厂家采集适配",
+    "G17取得权益和格式后的北斗/农机厂家实际适配"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-03T04:44:18.632Z",
+  "buildId": "WuPZ18EDycsaJ-hq0tbdj",
+  "environment": "agri_test随机schema与合成数据",
+  "viewports": [
+    "390x844",
+    "1280x900"
+  ],
+  "checks": {
+    "objectToPointHistory": true,
+    "sharedAlertAcrossDevices": true,
+    "requestRetryIdempotent": true,
+    "offlineDoesNotPretendSaved": true,
+    "fieldAndRepairSeparated": true,
+    "unrecoveredCloseRejected": true,
+    "evidenceBasedClose": true,
+    "revocationImmediate": true,
+    "adminMfa": true,
+    "noPageOverflow": true,
+    "noBrowserErrors": true,
+    "noApiServerErrors": true,
+    "feedbackSubmittedAndResolved": true
+  },
+  "recordIds": {
+    "objectId": "03d927de-63df-48ce-b7d0-36ea7da1e50f",
+    "pointId": "54117b22-671e-448a-b81b-fb75ed56bf09",
+    "alertId": "d598e092-4d21-4520-88a2-8bb6a7489d3b",
+    "fieldCheckId": "74f909b6-c61d-4895-b580-fbd4f598942c",
+    "repairId": "98c74bb5-e824-4fb2-862e-84aca2704d5a"
+  },
+  "limits": [
+    "未模拟真实企业微信或电话送达",
+    "未验证离线草稿和照片；这些属于1b"
+  ]
+}
