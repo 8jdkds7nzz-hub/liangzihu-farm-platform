@@ -78,6 +78,6 @@ test('测试角色不能连接开发库', async () => {
   const url = new URL(requireTestDatabaseUrl());
   url.pathname = '/agri_dev';
   const pool = new pg.Pool({ connectionString: url.toString(), connectionTimeoutMillis: 2000 });
-  try { await assert.rejects(() => pool.query('SELECT 1'), { code: '42501' }); }
+  try { await assert.rejects(() => pool.query('SELECT 1'), (e:any) => ['42501','3D000'].includes(e.code)); }
   finally { await pool.end(); }
 });

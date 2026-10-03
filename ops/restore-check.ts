@@ -1,12 +1,13 @@
+import {postgresTest as postgres} from '../tests/support/postgres';
 import {artifactPath,artifactDirectory} from '../tests/support/artifacts';
 import assert from 'node:assert/strict';
 import {seedRecovery,loseMedia,checkFieldRecovery} from './recovery-fixture';
 import {seedPhase1Recovery,checkPhase1Recovery} from './phase1-recovery-fixture';
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
-import { execFileSync } from 'node:child_process';
+
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { withDb, requireTestDatabaseUrl } from '../tests/support/db';
+import {withDb} from '../tests/support/db';
 import { telemetryFixture } from '../tests/support/telemetry';
 import { canonicalJson } from '../src/platform/json';
 import { hashPassword } from '../src/modules/identity/password';
@@ -34,17 +35,7 @@ async function snapshot(pool: Pool, schema: string) {
     }
     return result;
 }
-function postgres(command: 'pg_dump' | 'pg_restore', args: string[], input?: Buffer): Buffer {
-    const url = new URL(requireTestDatabaseUrl());
-    assert.equal(url.pathname, '/agri_test');
-    assert.equal(url.username, 'agri_tester');
-    try {
-        return execFileSync('docker', ['exec', '-i', '-e', 'PGPASSWORD', 'liangzihu-farm-db', command, '--host', '127.0.0.1', '--username', 'agri_tester', '--dbname', 'agri_test', ...args], { input, env: { ...process.env, PGPASSWORD: decodeURIComponent(url.password) }, maxBuffer: 16 * 1024 * 1024, timeout: 60000, stdio: ['pipe', 'pipe', 'pipe'] });
-    }
-    catch {
-        throw new Error('隔离测试库备份或恢复命令失败；未输出凭据');
-    }
-}
+
 async function main() {
     const directory = artifactDirectory('恢复/一期');
     await mkdir(directory, { recursive: true, mode: 0o700 });

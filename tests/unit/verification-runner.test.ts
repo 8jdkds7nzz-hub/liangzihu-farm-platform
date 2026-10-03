@@ -3,7 +3,13 @@ import assert from 'node:assert/strict';
 import {mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {runVerification, type CheckStep} from '../../tools/verification';
+import {runVerification as actualRun, type CheckStep} from '../../tools/verification';
+
+async function runVerification(options:Parameters<typeof actualRun>[0]) {
+  const folder=await mkdtemp(join(tmpdir(),'q01-private-lock-'));
+  try{return await actualRun({...options,lockPath:join(folder,'lock')});}
+  finally{await rm(folder,{recursive:true,force:true});}
+}
 
 const step = (id:string, args:string[]):CheckStep => ({id, title:id, command:process.execPath, args, timeoutMs:5000});
 

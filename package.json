@@ -9,7 +9,13 @@
   },
   "scripts": {
     "check": "node --import tsx tools/check-project.ts quick",
+    "check:core": "node --import tsx tools/check-project.ts core",
     "check:delivery": "node --import tsx tools/check-project.ts delivery",
+    "check:unlock": "node --import tsx tools/check-project.ts unlock",
+    "check:coverage": "node --import tsx tools/check-coverage.ts",
+    "check:report": "node --import tsx tools/check-report.ts",
+    "test:setup": "node tools/setup-test-environment.mjs",
+    "test:stop": "node tools/setup-test-environment.mjs --stop",
     "dev": "next dev --hostname 127.0.0.1 --port 3100",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3100",
