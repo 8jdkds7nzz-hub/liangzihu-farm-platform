@@ -1,0 +1,7 @@
+%% 监测与核查：依据现有 README 中的业务步骤，不增加自动执行关系。
+flowchart LR
+ measurement(["有效测值<br/>时间与质量"]) --> alarm["生成告警<br/>规则版本"]
+ alarm --> check["人工核查<br/>认领、复测、处置"]
+ check --> resolution(["核对恢复<br/>关闭或交班"])
+ class check human
+ classDef human fill:#efeafa,stroke:#a995c1,color:#584277

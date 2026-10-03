@@ -1,0 +1,8 @@
+%% 生产与交付：依据现有 README 中的业务步骤，不增加自动执行关系。
+flowchart LR
+ work["人工确认任务<br/>实际农事记录"] --> stock["投入品与加工<br/>库存分录"]
+ stock --> quality["独立质量审核<br/>检测凭证与放行"]
+ quality --> delivery["包装与发货<br/>分次签收"]
+ delivery --> customer(["审核客户摘要<br/>公开查询或撤回"])
+ class work,quality,customer human
+ classDef human fill:#efeafa,stroke:#a995c1,color:#584277

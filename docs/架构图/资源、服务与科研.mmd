@@ -1,0 +1,7 @@
+%% 资源、服务与科研：依据现有 README 中的业务步骤，不增加自动执行关系。
+flowchart LR
+ evidence["计量、称量、作业<br/>费用与试验观测"] --> verify["核实出处与单位<br/>版本与适用范围"]
+ verify --> snapshot["差分、对账、验收<br/>结果快照"]
+ snapshot --> report(["综合指标报告<br/>受控分享"])
+ class verify human
+ classDef human fill:#efeafa,stroke:#a995c1,color:#584277

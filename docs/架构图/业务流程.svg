@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1100" viewBox="0 0 1280 1100" role="img" aria-labelledby="title desc"><title id="title">业务流程｜从输入证据到可复核结果</title><desc id="desc">四条路径分别阅读；箭头表示工作顺序与记录关联，关键节点保留人员确认。</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a3b6ad"/></marker></defs><g font-family="PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif"><rect width="1280" height="1100" rx="20" fill="#fbfdfb"/><rect x="1" y="1" width="1278" height="1098" rx="20" fill="none" stroke="#dce7e0"/><path d="M 40 37 H 96" stroke="#24775a" stroke-width="5" stroke-linecap="round"/><text x="40" y="83" font-size="34" fill="#17352e" font-weight="700" text-anchor="start">业务流程｜从输入证据到可复核结果</text><text x="40" y="116" font-size="19" fill="#596e68" font-weight="400" text-anchor="start">四条路径分别阅读；箭头表示工作顺序与记录关联，关键节点保留人员确认。</text><rect x="40" y="155" width="1200" height="198" rx="16" fill="#fff" stroke="#dce7e0"/><rect x="58" y="172" width="38" height="32" rx="9" fill="#24775a" stroke="none"/><text x="77" y="194" font-size="17" fill="#fff" font-weight="700" text-anchor="middle">01</text><text x="111" y="196" font-size="24" fill="#24775a" font-weight="650" text-anchor="start">监测与核查</text><text x="1216" y="195" font-size="17" fill="#596e68" font-weight="400" text-anchor="end">从测值异常到有依据的处置结果</text><g transform="translate(169.32673267326732 217) scale(1.4851485148514851)"><svg class="flow0" x="0" y="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 633.84 90.9" width="633.84" height="90.9" style="--bg:#fbfdfb;--fg:#17352e;--line:#a3b6ad;--accent:#24775a;--muted:#596e68;--surface:#fff;--border:#d5e2da;background:var(--bg)">
+<style>
+  svg.flow0 text { font-family: PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif; }
+  svg.flow0 {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="flow0-arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="flow0-arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="measurement" data-to="alarm" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="132.05,42.900000000000006 168.05,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow0-arrowhead)" />
+<polyline class="edge" data-from="alarm" data-to="check" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="269.28,42.900000000000006 305.28,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow0-arrowhead)" />
+<polyline class="edge" data-from="check" data-to="resolution" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="465.78999999999996,42.900000000000006 501.78999999999996,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow0-arrowhead)" />
+<g class="node" data-id="flow0-measurement" data-label="有效测值
+时间与质量" data-shape="stadium">
+  <rect x="16" y="16" width="116.05" height="53.800000000000004" rx="26.900000000000002" ry="26.900000000000002" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="74.025" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="74.025" dy="-3.9000000000000012">有效测值</tspan><tspan x="74.025" dy="16.900000000000002">时间与质量</tspan></text>
+</g>
+<g class="node" data-id="flow0-alarm" data-label="生成告警
+规则版本" data-shape="rectangle">
+  <rect x="168.05" y="16" width="101.22999999999999" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="218.66500000000002" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="218.66500000000002" dy="-3.9000000000000012">生成告警</tspan><tspan x="218.66500000000002" dy="16.900000000000002">规则版本</tspan></text>
+</g>
+<g class="node" data-id="flow0-check" data-label="人工核查
+认领、复测、处置" data-shape="rectangle">
+  <rect x="305.28" y="16" width="160.51" height="53.800000000000004" rx="0" ry="0" fill="#efeafa" stroke="#a995c1" stroke-width="0.75" />
+  <text x="385.53499999999997" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="#584277"><tspan x="385.53499999999997" dy="-3.9000000000000012">人工核查</tspan><tspan x="385.53499999999997" dy="16.900000000000002">认领、复测、处置</tspan></text>
+</g>
+<g class="node" data-id="flow0-resolution" data-label="核对恢复
+关闭或交班" data-shape="stadium">
+  <rect x="501.78999999999996" y="16" width="116.05" height="53.800000000000004" rx="26.900000000000002" ry="26.900000000000002" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="559.8149999999999" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="559.8149999999999" dy="-3.9000000000000012">核对恢复</tspan><tspan x="559.8149999999999" dy="16.900000000000002">关闭或交班</tspan></text>
+</g>
+</svg></g><rect x="40" y="373" width="1200" height="198" rx="16" fill="#fff" stroke="#dce7e0"/><rect x="58" y="390" width="38" height="32" rx="9" fill="#3568a6" stroke="none"/><text x="77" y="412" font-size="17" fill="#fff" font-weight="700" text-anchor="middle">02</text><text x="111" y="414" font-size="24" fill="#3568a6" font-weight="650" text-anchor="start">生产与交付</text><text x="1216" y="413" font-size="17" fill="#596e68" font-weight="400" text-anchor="end">计划、实际执行、质量放行与交付分别留痕</text><g transform="translate(77.5 435) scale(1.3310931528568215)"><svg class="flow1" x="0" y="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 845.1700000000001 90.9" width="845.1700000000001" height="90.9" style="--bg:#fbfdfb;--fg:#17352e;--line:#a3b6ad;--accent:#3568a6;--muted:#596e68;--surface:#fff;--border:#d5e2da;background:var(--bg)">
+<style>
+  svg.flow1 text { font-family: PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif; }
+  svg.flow1 {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="flow1-arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="flow1-arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="work" data-to="stock" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="146.87,42.900000000000006 182.87,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow1-arrowhead)" />
+<polyline class="edge" data-from="stock" data-to="quality" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="313.74,42.900000000000006 349.74,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow1-arrowhead)" />
+<polyline class="edge" data-from="quality" data-to="delivery" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="495.43,42.900000000000006 531.4300000000001,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow1-arrowhead)" />
+<polyline class="edge" data-from="delivery" data-to="customer" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="647.48,42.900000000000006 683.48,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow1-arrowhead)" />
+<g class="node" data-id="flow1-work" data-label="人工确认任务
+实际农事记录" data-shape="rectangle">
+  <rect x="16" y="16" width="130.87" height="53.800000000000004" rx="0" ry="0" fill="#efeafa" stroke="#a995c1" stroke-width="0.75" />
+  <text x="81.435" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="#584277"><tspan x="81.435" dy="-3.9000000000000012">人工确认任务</tspan><tspan x="81.435" dy="16.900000000000002">实际农事记录</tspan></text>
+</g>
+<g class="node" data-id="flow1-stock" data-label="投入品与加工
+库存分录" data-shape="rectangle">
+  <rect x="182.87" y="16" width="130.87" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="248.305" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="248.305" dy="-3.9000000000000012">投入品与加工</tspan><tspan x="248.305" dy="16.900000000000002">库存分录</tspan></text>
+</g>
+<g class="node" data-id="flow1-quality" data-label="独立质量审核
+检测凭证与放行" data-shape="rectangle">
+  <rect x="349.74" y="16" width="145.69" height="53.800000000000004" rx="0" ry="0" fill="#efeafa" stroke="#a995c1" stroke-width="0.75" />
+  <text x="422.58500000000004" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="#584277"><tspan x="422.58500000000004" dy="-3.9000000000000012">独立质量审核</tspan><tspan x="422.58500000000004" dy="16.900000000000002">检测凭证与放行</tspan></text>
+</g>
+<g class="node" data-id="flow1-delivery" data-label="包装与发货
+分次签收" data-shape="rectangle">
+  <rect x="531.4300000000001" y="16" width="116.05" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="589.455" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="589.455" dy="-3.9000000000000012">包装与发货</tspan><tspan x="589.455" dy="16.900000000000002">分次签收</tspan></text>
+</g>
+<g class="node" data-id="flow1-customer" data-label="审核客户摘要
+公开查询或撤回" data-shape="stadium">
+  <rect x="683.48" y="16" width="145.69" height="53.800000000000004" rx="26.900000000000002" ry="26.900000000000002" fill="#efeafa" stroke="#a995c1" stroke-width="0.75" />
+  <text x="756.325" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="#584277"><tspan x="756.325" dy="-3.9000000000000012">审核客户摘要</tspan><tspan x="756.325" dy="16.900000000000002">公开查询或撤回</tspan></text>
+</g>
+</svg></g><rect x="40" y="591" width="1200" height="198" rx="16" fill="#fff" stroke="#dce7e0"/><rect x="58" y="608" width="38" height="32" rx="9" fill="#7759a3" stroke="none"/><text x="77" y="630" font-size="17" fill="#fff" font-weight="700" text-anchor="middle">03</text><text x="111" y="632" font-size="24" fill="#7759a3" font-weight="650" text-anchor="start">资料与辅助分析</text><text x="1216" y="631" font-size="17" fill="#596e68" font-weight="400" text-anchor="end">模型给出候选与依据，人员审阅后形成任务草稿</text><g transform="translate(114.3019801980198 653) scale(1.4851485148514851)"><svg class="flow2" x="0" y="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 707.94 90.9" width="707.94" height="90.9" style="--bg:#fbfdfb;--fg:#17352e;--line:#a3b6ad;--accent:#7759a3;--muted:#596e68;--surface:#fff;--border:#d5e2da;background:var(--bg)">
+<style>
+  svg.flow2 text { font-family: PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif; }
+  svg.flow2 {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="flow2-arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="flow2-arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="materials" data-to="compute" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="176.51,42.900000000000006 212.51,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow2-arrowhead)" />
+<polyline class="edge" data-from="compute" data-to="draft" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="358.2,42.900000000000006 394.2,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow2-arrowhead)" />
+<polyline class="edge" data-from="draft" data-to="review" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="510.25,42.900000000000006 546.25,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow2-arrowhead)" />
+<g class="node" data-id="flow2-materials" data-label="航次、影像、地形
+审核知识" data-shape="rectangle">
+  <rect x="16" y="16" width="160.51" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="96.255" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="96.255" dy="-3.9000000000000012">航次、影像、地形</tspan><tspan x="96.255" dy="16.900000000000002">审核知识</tspan></text>
+</g>
+<g class="node" data-id="flow2-compute" data-label="程序计算与检索
+模型候选" data-shape="rectangle">
+  <rect x="212.51" y="16" width="145.69" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="285.355" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="285.355" dy="-3.9000000000000012">程序计算与检索</tspan><tspan x="285.355" dy="16.900000000000002">模型候选</tspan></text>
+</g>
+<g class="node" data-id="flow2-draft" data-label="简报草稿
+出处与限制" data-shape="rectangle">
+  <rect x="394.2" y="16" width="116.05" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="452.22499999999997" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="452.22499999999997" dy="-3.9000000000000012">简报草稿</tspan><tspan x="452.22499999999997" dy="16.900000000000002">出处与限制</tspan></text>
+</g>
+<g class="node" data-id="flow2-review" data-label="人员审阅与复核
+任务草稿" data-shape="stadium">
+  <rect x="546.25" y="16" width="145.69" height="53.800000000000004" rx="26.900000000000002" ry="26.900000000000002" fill="#efeafa" stroke="#a995c1" stroke-width="0.75" />
+  <text x="619.095" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="#584277"><tspan x="619.095" dy="-3.9000000000000012">人员审阅与复核</tspan><tspan x="619.095" dy="16.900000000000002">任务草稿</tspan></text>
+</g>
+</svg></g><rect x="40" y="809" width="1200" height="198" rx="16" fill="#fff" stroke="#dce7e0"/><rect x="58" y="826" width="38" height="32" rx="9" fill="#a16d25" stroke="none"/><text x="77" y="848" font-size="17" fill="#fff" font-weight="700" text-anchor="middle">04</text><text x="111" y="850" font-size="24" fill="#a16d25" font-weight="650" text-anchor="start">资源、服务与科研</text><text x="1216" y="849" font-size="17" fill="#596e68" font-weight="400" text-anchor="end">记录输入口径，保留核实、验收与报告快照</text><g transform="translate(92.29207920792089 871) scale(1.4851485148514851)"><svg class="flow3" x="0" y="0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 737.5799999999999 90.9" width="737.5799999999999" height="90.9" style="--bg:#fbfdfb;--fg:#17352e;--line:#a3b6ad;--accent:#a16d25;--muted:#596e68;--surface:#fff;--border:#d5e2da;background:var(--bg)">
+<style>
+  svg.flow3 text { font-family: PingFang SC, Microsoft YaHei, Noto Sans CJK SC, sans-serif; }
+  svg.flow3 {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="flow3-arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="flow3-arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<polyline class="edge" data-from="evidence" data-to="verify" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="176.51,42.900000000000006 212.51,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow3-arrowhead)" />
+<polyline class="edge" data-from="verify" data-to="snapshot" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="358.2,42.900000000000006 394.2,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow3-arrowhead)" />
+<polyline class="edge" data-from="snapshot" data-to="report" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="554.71,42.900000000000006 590.71,42.900000000000006" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#flow3-arrowhead)" />
+<g class="node" data-id="flow3-evidence" data-label="计量、称量、作业
+费用与试验观测" data-shape="rectangle">
+  <rect x="16" y="16" width="160.51" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="96.255" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="96.255" dy="-3.9000000000000012">计量、称量、作业</tspan><tspan x="96.255" dy="16.900000000000002">费用与试验观测</tspan></text>
+</g>
+<g class="node" data-id="flow3-verify" data-label="核实出处与单位
+版本与适用范围" data-shape="rectangle">
+  <rect x="212.51" y="16" width="145.69" height="53.800000000000004" rx="0" ry="0" fill="#efeafa" stroke="#a995c1" stroke-width="0.75" />
+  <text x="285.355" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="#584277"><tspan x="285.355" dy="-3.9000000000000012">核实出处与单位</tspan><tspan x="285.355" dy="16.900000000000002">版本与适用范围</tspan></text>
+</g>
+<g class="node" data-id="flow3-snapshot" data-label="差分、对账、验收
+结果快照" data-shape="rectangle">
+  <rect x="394.2" y="16" width="160.51" height="53.800000000000004" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="474.455" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="474.455" dy="-3.9000000000000012">差分、对账、验收</tspan><tspan x="474.455" dy="16.900000000000002">结果快照</tspan></text>
+</g>
+<g class="node" data-id="flow3-report" data-label="综合指标报告
+受控分享" data-shape="stadium">
+  <rect x="590.71" y="16" width="130.87" height="53.800000000000004" rx="26.900000000000002" ry="26.900000000000002" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="656.145" y="42.900000000000006" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="656.145" dy="-3.9000000000000012">综合指标报告</tspan><tspan x="656.145" dy="16.900000000000002">受控分享</tspan></text>
+</g>
+</svg></g><text x="40" y="1070" font-size="18" fill="#596e68" font-weight="400" text-anchor="start">紫色节点：需要人员核查、确认或审阅。任务草稿须经人工确认后派发；模型候选不触发自动控制。</text></g></svg>

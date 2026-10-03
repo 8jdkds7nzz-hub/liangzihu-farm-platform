@@ -1,0 +1,7 @@
+%% 资料与辅助分析：依据现有 README 中的业务步骤，不增加自动执行关系。
+flowchart LR
+ materials["航次、影像、地形<br/>审核知识"] --> compute["程序计算与检索<br/>模型候选"]
+ compute --> draft["简报草稿<br/>出处与限制"]
+ draft --> review(["人员审阅与复核<br/>任务草稿"])
+ class review human
+ classDef human fill:#efeafa,stroke:#a995c1,color:#584277
