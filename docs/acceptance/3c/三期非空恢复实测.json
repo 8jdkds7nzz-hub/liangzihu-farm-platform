@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-03T01:31:36.218Z",
+  "checkedAt": "2026-10-03T02:17:37.517Z",
   "environment": "agri_test随机schema；全部为合成记录和像素",
   "tablesVerified": 164,
   "newNonemptyTables": {
@@ -45,7 +45,7 @@
   },
   "all39NewTablesNonempty": true,
   "assetsVerified": 6,
-  "dumpSha": "73590d476990bffef38c84827109c0665433feff9d3b2491da717bbe2dd0657f",
+  "dumpSha": "9edee153be1036d9e6e9ae047590628b560891fb34e08ed60d8bfe2d1c893d34",
   "databaseAndRowHashesEqual": true,
   "identityMfaRecoveryAndPermissionsRestored": true,
   "stockBalancesAndPartialReceiptRestored": true,
@@ -56,7 +56,7 @@
   "spectralArtifactsReadBack": true,
   "controlStillNotDispatched": true,
   "interruptedCropJobResumedWithNewLease": true,
-  "elapsedMs": 1846,
+  "elapsedMs": 2281,
   "productionAcceptance": false,
   "productionDisasterRecoveryAccepted": false
 }

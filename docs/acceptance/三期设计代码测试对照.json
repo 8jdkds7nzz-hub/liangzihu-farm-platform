@@ -1,0 +1,417 @@
+{
+  "sourceCommit": "ef23fdaf13541668b2644d1e4da6d9a21931968e",
+  "fullPhase3Complete": false,
+  "localScopeVerified": true,
+  "verifiedRequirements": 21,
+  "gatedRequirements": 1,
+  "requirements": [
+    {
+      "id": "A31",
+      "phase": "3a",
+      "title": "批次身份、仓位与数量",
+      "status": "software_verified",
+      "code": "src/modules/inventory/catalog.ts",
+      "codeSha256": "21933190bb3cd6331c7225865f22661d9e1bf90b7794b65c8409d32af066d5d5",
+      "evidence": [
+        "tests/unit/phase3-quantity.test.ts",
+        "tests/integration/phase3-stock.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/unit/phase3-quantity.test.ts": "703b26e2e514b067e9e2c5f92dac68fa7e90c37ee59be87bfb7d52dcb7c06299",
+        "tests/integration/phase3-stock.test.ts": "56a89073edd1671a51197416860f92292edaf35fce926cb4d64f2bf03770582f"
+      },
+      "executionRecord": "docs/acceptance/3a/A31.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "A32",
+      "phase": "3a",
+      "title": "采购、领用与实际施用",
+      "status": "software_verified",
+      "code": "src/modules/inventory/inputs.ts",
+      "codeSha256": "62cb5e0e91cbd130a150f898327ff6047ccf9ea929d7921bd5d05234d1db1b88",
+      "evidence": [
+        "tests/integration/phase3-stock.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-stock.test.ts": "56a89073edd1671a51197416860f92292edaf35fce926cb4d64f2bf03770582f"
+      },
+      "executionRecord": "docs/acceptance/3a/A32.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "A33",
+      "phase": "3a",
+      "title": "库存分录、并发与更正",
+      "status": "software_verified",
+      "code": "src/modules/inventory/ledger.ts",
+      "codeSha256": "ed19ae32355c0fc0ecb31969e6044b5270056badfe1a35296d009c8f190c5966",
+      "evidence": [
+        "tests/integration/phase3-stock.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-stock.test.ts": "56a89073edd1671a51197416860f92292edaf35fce926cb4d64f2bf03770582f"
+      },
+      "executionRecord": "docs/acceptance/3a/A33.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "A34",
+      "phase": "3a",
+      "title": "采收加工与长期转换",
+      "status": "software_verified",
+      "code": "src/modules/inventory/transforms.ts",
+      "codeSha256": "5e87c249a46e510792998670f1b470f6a5d11569d2af75b34f47cf2fbded2f08",
+      "evidence": [
+        "tests/integration/phase3-stock.test.ts",
+        "tests/integration/phase3-trace.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-stock.test.ts": "56a89073edd1671a51197416860f92292edaf35fce926cb4d64f2bf03770582f",
+        "tests/integration/phase3-trace.test.ts": "4cf5b27ba72b24a945519425466d6d54ff86df800d9e3777bd45ac2d6f027d5c"
+      },
+      "executionRecord": "docs/acceptance/3a/A34.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "A35",
+      "phase": "3a",
+      "title": "包装与独立收发",
+      "status": "software_verified",
+      "code": "src/modules/inventory/handoffs.ts",
+      "codeSha256": "6f9821cc53cffadfcdab66481a2d4abb42df9087f1b96ffdc6757c8a173496c9",
+      "evidence": [
+        "tests/integration/phase3-stock.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-stock.test.ts": "56a89073edd1671a51197416860f92292edaf35fce926cb4d64f2bf03770582f",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3a/A35.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "A36",
+      "phase": "3a",
+      "title": "库存页面、权限、导出与恢复",
+      "status": "software_verified",
+      "code": "src/app/(platform)/inventory/panel.tsx",
+      "codeSha256": "f9375fc8a10f4280e58346a19176cc2152a29fe102be206e01267b2028a0ae99",
+      "evidence": [
+        "tests/acceptance/phase3-inventory-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/acceptance/phase3-inventory-browser.test.ts": "6c43a8d5fb1c8c7dd420af531175f63f97902b630b13d1904de6549fb6e82405",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3a/A36.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "B31",
+      "phase": "3b",
+      "title": "样品、检测与凭证",
+      "status": "software_verified",
+      "code": "src/modules/traceability/quality.ts",
+      "codeSha256": "40c61c15df2daf3c23cebc31bf7b25a05ece6cd196951867cfd2a57be7a53a07",
+      "evidence": [
+        "tests/integration/phase3-quality.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-quality.test.ts": "f9bf04d0c2760ab3156c6668f09d54394dbd06ee04ea699d0d3b02b91819133e",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3b/B31.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "B32",
+      "phase": "3b",
+      "title": "独立放行与当前质量",
+      "status": "software_verified",
+      "code": "src/modules/traceability/quality.ts",
+      "codeSha256": "40c61c15df2daf3c23cebc31bf7b25a05ece6cd196951867cfd2a57be7a53a07",
+      "evidence": [
+        "tests/integration/phase3-quality.test.ts",
+        "tests/integration/phase3-stock.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-quality.test.ts": "f9bf04d0c2760ab3156c6668f09d54394dbd06ee04ea699d0d3b02b91819133e",
+        "tests/integration/phase3-stock.test.ts": "56a89073edd1671a51197416860f92292edaf35fce926cb4d64f2bf03770582f"
+      },
+      "executionRecord": "docs/acceptance/3b/B32.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "B33",
+      "phase": "3b",
+      "title": "正反向追查与查询版本",
+      "status": "software_verified",
+      "code": "src/modules/traceability/trace.ts",
+      "codeSha256": "a37181b57f1e3032010149265080a0244ae8c6a8813d1782f5a74dc90388c307",
+      "evidence": [
+        "tests/integration/phase3-trace.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-trace.test.ts": "4cf5b27ba72b24a945519425466d6d54ff86df800d9e3777bd45ac2d6f027d5c",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3b/B33.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "B34",
+      "phase": "3b",
+      "title": "问题通知、追回、处置与结案",
+      "status": "software_verified",
+      "code": "src/modules/traceability/cases.ts",
+      "codeSha256": "3a066271603f1b8eb808f15693498f45a456c9382b724dc20e8323fdf67a4b07",
+      "evidence": [
+        "tests/integration/phase3-quality.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-quality.test.ts": "f9bf04d0c2760ab3156c6668f09d54394dbd06ee04ea699d0d3b02b91819133e",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3b/B34.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "B35",
+      "phase": "3b",
+      "title": "客户公开白名单与撤回",
+      "status": "software_verified",
+      "code": "src/modules/traceability/public.ts",
+      "codeSha256": "3fab28a1060d1b21110db44a6221392529a941fbb9f8804b612e364a2903c616",
+      "evidence": [
+        "tests/integration/phase3-trace.test.ts",
+        "tests/acceptance/phase3-trace-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-trace.test.ts": "4cf5b27ba72b24a945519425466d6d54ff86df800d9e3777bd45ac2d6f027d5c",
+        "tests/acceptance/phase3-trace-browser.test.ts": "1fb6d9d4d4c7a5dfbd40e9a0bd6a5f2dd5a521c8dbd730c421e728bbba9a0630"
+      },
+      "executionRecord": "docs/acceptance/3b/B35.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "B36",
+      "phase": "3b",
+      "title": "质量页面与交付",
+      "status": "software_verified",
+      "code": "src/app/(platform)/traceability/panel.tsx",
+      "codeSha256": "1acaf2c8a88c19e7fcadd1a53d2d5aa27bbad33b6a1da411aa205a2c90edb191",
+      "evidence": [
+        "tests/acceptance/phase3-trace-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/acceptance/phase3-trace-browser.test.ts": "1fb6d9d4d4c7a5dfbd40e9a0bd6a5f2dd5a521c8dbd730c421e728bbba9a0630",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3b/B36.md",
+      "limits": "真实库存、凭证、物流和作业真实性按G13核验。"
+    },
+    {
+      "id": "C31",
+      "phase": "3c",
+      "title": "植保计划与敏感范围",
+      "status": "software_verified",
+      "code": "src/modules/protection/plans.ts",
+      "codeSha256": "4a708d7d26b40e143a5ca83eb52a112525d0a36cd9000c6025ba6db492908ea6",
+      "evidence": [
+        "tests/integration/phase3-protection.test.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-protection.test.ts": "430b52bf72a74f696fd85ccbfd4e9b2dae29945d9ed9f08087ec69ae61650c1b",
+        "tests/acceptance/phase3-agronomy-browser.test.ts": "12c21a9a169bbe07099d79a0dfb41acb571181938cc52df07e86b298298284c8"
+      },
+      "executionRecord": "docs/acceptance/3c/C31.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C32",
+      "phase": "3c",
+      "title": "专业处方与三类事实",
+      "status": "software_verified",
+      "code": "src/modules/protection/prescriptions.ts",
+      "codeSha256": "19b804848c8739fc08c60dfdebf31ee41f40afef7971bd8620c08fa8e5295fcd",
+      "evidence": [
+        "tests/integration/phase3-protection.test.ts",
+        "tests/integration/phase3-boundaries.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-protection.test.ts": "430b52bf72a74f696fd85ccbfd4e9b2dae29945d9ed9f08087ec69ae61650c1b",
+        "tests/integration/phase3-boundaries.test.ts": "3f5c177b65c8057050dc334853cc3add0c8a32d312bcfc55a6ac61554085926f"
+      },
+      "executionRecord": "docs/acceptance/3c/C32.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C33",
+      "phase": "3c",
+      "title": "实际轨迹、疑似漏重作和离线导入",
+      "status": "software_verified",
+      "code": "src/modules/protection/executions.ts",
+      "codeSha256": "935dfd6d77d09ea224986c55d4b1faa090ffb3e66726ed940f1ff6dbc2a39009",
+      "evidence": [
+        "tests/unit/phase3-protection.test.ts",
+        "tests/integration/phase3-protection.test.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/unit/phase3-protection.test.ts": "420f341fc6f678c1c9de555abf92dcbb64a538e659f8b42b9d40e66f0528f818",
+        "tests/integration/phase3-protection.test.ts": "430b52bf72a74f696fd85ccbfd4e9b2dae29945d9ed9f08087ec69ae61650c1b",
+        "tests/acceptance/phase3-agronomy-browser.test.ts": "12c21a9a169bbe07099d79a0dfb41acb571181938cc52df07e86b298298284c8"
+      },
+      "executionRecord": "docs/acceptance/3c/C33.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C34",
+      "phase": "3c",
+      "title": "服务商交付与现场复查",
+      "status": "software_verified",
+      "code": "src/modules/protection/deliveries.ts",
+      "codeSha256": "88efb9ba60db6db5929c4a63f170e9ef96caeec84ae9993e92b155a431595947",
+      "evidence": [
+        "tests/support/phase3.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/support/phase3.ts": "26f3d77a246b86c75753ec791dec1365cc78ed74b54358fd46185de45e51bde7",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3c/C34.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C35",
+      "phase": "3c",
+      "title": "照片、本地模型与定时抓图",
+      "status": "software_verified",
+      "code": "src/modules/agronomy/crops.ts",
+      "codeSha256": "0c9e18f8ea1b42f3efc0185356f3e6d2a321168a28dd640115d53d95f9407d80",
+      "evidence": [
+        "tests/integration/phase3-agronomy.test.ts",
+        "tests/integration/phase3-control.test.ts",
+        "docs/acceptance/3c/本地作物模型工程实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-agronomy.test.ts": "b2cf13039161ef24fcd6d7e739c25ca39ea343dd8f2787b3d3c00b4d97d01e50",
+        "tests/integration/phase3-control.test.ts": "be880d9a16a39c3ed9f81a8aefdd7f783b2d494a76cdddfab5f05b1926a997fa",
+        "docs/acceptance/3c/本地作物模型工程实测.json": "3bc6e526ec764b326091480e0beabd40babfe41ee6ee55356657b8f81ec4a650"
+      },
+      "executionRecord": "docs/acceptance/3c/C35.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C36",
+      "phase": "3c",
+      "title": "多光谱反射率指数与分区",
+      "status": "software_verified",
+      "code": "src/modules/agronomy/spectral.ts",
+      "codeSha256": "e0fa6cbdd7d1f53e79448df04133a611f3e36a454f672e865f6f0a1634607169",
+      "evidence": [
+        "tests/unit/phase3-spectral.test.ts",
+        "tests/integration/phase3-agronomy.test.ts",
+        "tests/integration/phase3-boundaries.test.ts"
+      ],
+      "evidenceHashes": {
+        "tests/unit/phase3-spectral.test.ts": "b32ed4f89e87a9889dca1587dd705b59a181c6980827a68e77a31b3371d62341",
+        "tests/integration/phase3-agronomy.test.ts": "b2cf13039161ef24fcd6d7e739c25ca39ea343dd8f2787b3d3c00b4d97d01e50",
+        "tests/integration/phase3-boundaries.test.ts": "3f5c177b65c8057050dc334853cc3add0c8a32d312bcfc55a6ac61554085926f"
+      },
+      "executionRecord": "docs/acceptance/3c/C36.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C37",
+      "phase": "3c",
+      "title": "农业通知与病虫害预报",
+      "status": "software_verified",
+      "code": "src/modules/agronomy/notices.ts",
+      "codeSha256": "d3b15673c5f157ff8cb5cd5f6d9fb09fc86687b97a4d9776490c36844285de12",
+      "evidence": [
+        "tests/integration/phase3-agronomy.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-agronomy.test.ts": "b2cf13039161ef24fcd6d7e739c25ca39ea343dd8f2787b3d3c00b4d97d01e50",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3c/C37.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C38",
+      "phase": "3c",
+      "title": "流量来源与依据",
+      "status": "software_verified",
+      "code": "src/modules/agronomy/flows.ts",
+      "codeSha256": "f92a5cb2bbe6f4bc68454ba3e46e9401e4f1a7728a5c959c65d0d8146d88f0ef",
+      "evidence": [
+        "tests/integration/phase3-agronomy.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-agronomy.test.ts": "b2cf13039161ef24fcd6d7e739c25ca39ea343dd8f2787b3d3c00b4d97d01e50",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3c/C38.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    },
+    {
+      "id": "C39",
+      "phase": "3c",
+      "title": "控制准备、五层反馈与实控缺口",
+      "status": "gated_software_verified",
+      "code": "src/modules/control/records.ts",
+      "codeSha256": "1ccf1f23caee742192d5b124233a856d952107942989ad206838e0a9df8244bb",
+      "evidence": [
+        "tests/integration/phase3-control.test.ts",
+        "tests/acceptance/phase3-agronomy-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/integration/phase3-control.test.ts": "be880d9a16a39c3ed9f81a8aefdd7f783b2d494a76cdddfab5f05b1926a997fa",
+        "tests/acceptance/phase3-agronomy-browser.test.ts": "12c21a9a169bbe07099d79a0dfb41acb571181938cc52df07e86b298298284c8",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3c/C39.md",
+      "limits": "真实设备执行适配器尚未实现。现有资料仍缺寄存器/具体协议、反馈含义与平台授权，不能把准备台账当作已具备控制能力。"
+    },
+    {
+      "id": "C40",
+      "phase": "3c",
+      "title": "三期界面、回归、恢复与运行",
+      "status": "software_verified",
+      "code": "workers/agronomy.ts",
+      "codeSha256": "4b37fdc48eb623f5f8200fc57b167886f420455337a64636f7fb560d799ca34a",
+      "evidence": [
+        "tests/acceptance/phase3-agronomy-browser.test.ts",
+        "tests/acceptance/phase3-inventory-browser.test.ts",
+        "tests/acceptance/phase3-trace-browser.test.ts",
+        "docs/acceptance/3c/三期非空恢复实测.json"
+      ],
+      "evidenceHashes": {
+        "tests/acceptance/phase3-agronomy-browser.test.ts": "12c21a9a169bbe07099d79a0dfb41acb571181938cc52df07e86b298298284c8",
+        "tests/acceptance/phase3-inventory-browser.test.ts": "6c43a8d5fb1c8c7dd420af531175f63f97902b630b13d1904de6549fb6e82405",
+        "tests/acceptance/phase3-trace-browser.test.ts": "1fb6d9d4d4c7a5dfbd40e9a0bd6a5f2dd5a521c8dbd730c421e728bbba9a0630",
+        "docs/acceptance/3c/三期非空恢复实测.json": "82c2ee809e8f0b49de67b375beed975594f62f44589d32a03962101aaa8e52cc"
+      },
+      "executionRecord": "docs/acceptance/3c/C40.md",
+      "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
+    }
+  ],
+  "openCodeDependencies": [
+    "G15：真实设备执行适配器尚未实现，待具体厂家协议、寄存器、反馈语义及联合测试条件"
+  ],
+  "productionReady": false
+}
