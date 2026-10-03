@@ -11,7 +11,7 @@ test('3C处方专业审核、最多五层、作业覆盖与逐行离线幂等',(
  const map=await tx((c:any)=>createPrescription(c,a,b));await assert.rejects(()=>tx((c:any)=>reviewPrescription(c,a,{id:map.id,action:'approve',evidence:'测试',requestKey:key()})),{code:'PRESCRIPTION_REVIEW'});
  await tx((c:any)=>reviewPrescription(c,reviewer,{id:map.id,action:'approve',evidence:'独立软件审核',requestKey:key()}));
  const start=new Date(Date.now()+1000).toISOString(),end=new Date(Date.now()+11000).toISOString();
- const execution={planId:p.id,prescriptionId:map.id,operator:'合成操作者',startedAt:start,endedAt:end,unit:'L',materialQuantity:null,track:[{time:start,longitude:114.0002,latitude:30.0005,spraying:true,flow:1},{time:end,longitude:114.0008,latitude:30.0005,spraying:true,flow:1}],swathM:5,maxGapSeconds:30,evidence:'合成未来轨迹，仅测试',requestKey:key()};
+ const execution={planId:p.id,prescriptionId:map.id,operator:'合成操作者',startedAt:start,endedAt:end,unit:'L',materialQuantity:null,track:[{time:start,longitude:114.0002,latitude:30.0005,spraying:true,flow:1,flowUnit:'L/min'},{time:end,longitude:114.0008,latitude:30.0005,spraying:true,flow:1,flowUnit:'L/min'}],swathM:5,maxGapSeconds:30,evidence:'合成未来轨迹，仅测试',requestKey:key()};
  const e=await tx((c:any)=>recordExecution(c,a,execution));assert(e.coverage.coveredM2>0);assert(e.coverage.missedM2>0);assert.equal(e.material_quantity,null);
  await tx((c:any)=>prescriptionEvent(c,a,{prescriptionId:map.id,action:'applied',executionId:e.id,party:'合成确认',occurredAt:end,evidence:'测试',requestKey:key()}));
  const raw={objectId:o,sourceRef:'合成离线',rows:[{...execution,externalId:'OFF1'}, {...execution,externalId:'OFF2',unit:'kg'}],requestKey:key()};

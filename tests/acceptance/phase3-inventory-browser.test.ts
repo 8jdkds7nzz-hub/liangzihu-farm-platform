@@ -20,3 +20,13 @@ test('3A真实页面登记仓位批次入库，HTTP匿名/跨站拒绝，撤权�
  }catch(e){console.log((await page.locator('.form-error').allTextContents()).join(';'));await page.screenshot({path:'.local/3a-failure.png',fullPage:true});throw e;}finally{await browser.close();}
  });
 }));
+
+test('3A旧标签页切换账号后阻止误提交，并保留原输入',{timeout:120000},()=>withDb(async pool=>{
+ const first=await actorFixture(pool,'technician'),second=await actorFixture(pool,'technician'),objectId=await objectFixture(pool,first.id);for(const a of [first,second])await permit(pool,a.id,objectId,['read','record']);
+ await withApp(pool,async app=>{const browser=await chromium.launch(),context=await browser.newContext(),page=await context.newPage();try{
+ await context.addCookies([{name:'agri_session',value:await app.authenticate(first),url:app.origin}]);await page.goto(app.origin+'/inventory');await page.getByText('登记仓位',{exact:true}).click();const form=page.locator('form').filter({has:page.getByLabel('仓位编号',{exact:true})});
+ await form.getByLabel('仓位编号',{exact:true}).fill('OLD-DRAFT');await form.getByLabel('仓位名称',{exact:true}).fill('原账号待提交草稿');
+ await context.addCookies([{name:'agri_session',value:await app.authenticate(second),url:app.origin}]);await form.getByRole('button',{name:'保存',exact:true}).click();await form.getByRole('alert').filter({hasText:'当前账号已改变'}).waitFor();
+ assert.equal(await form.getByLabel('仓位编号',{exact:true}).inputValue(),'OLD-DRAFT');assert.equal((await pool.query('SELECT count(*) FROM stock_locations')).rows[0].count,'0');
+ }finally{await browser.close();}});
+}));

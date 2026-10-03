@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { resolveSession, SESSION_COOKIE } from '@/modules/identity/session';
 import { AppError } from '@/platform/error';
 import AppShell from '@/components/platform/app-shell';
+import ActorSnapshotProvider from '@/components/platform/actor-snapshot';
 export default async function PlatformLayout({ children }: {
     children: ReactNode;
 }) {
@@ -16,5 +17,5 @@ export default async function PlatformLayout({ children }: {
             redirect('/login');
         return <main><h1>暂时无法连接平台</h1><p>请稍后刷新；当前没有确认任何保存操作。</p></main>;
     }
-    return <AppShell role={actor.role}>{children}</AppShell>;
+    return <ActorSnapshotProvider actorId={actor.id}><AppShell role={actor.role}>{children}</AppShell></ActorSnapshotProvider>;
 }

@@ -1,5 +1,6 @@
 'use client';
-import { useRef, useState, type FormEvent, type ReactNode } from 'react';
+import { useContext, useRef, useState, type FormEvent, type ReactNode } from 'react';
+import {ActorSnapshot} from './actor-snapshot';
 export default function ActionForm({ path, children, method = 'POST', numbers = [], times = [], booleans = [], nullableBooleans = [], jsonFields = [], scales = {}, onSaved, stableKey = false, label = '保存' }: {
     path: string;
     children: ReactNode;
@@ -16,6 +17,7 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
 }) {
     const [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [error, setError] = useState('');
     const key = useRef<string | null>(null);
+    const actorId=useContext(ActorSnapshot),actorAtOpen=useRef(actorId);
     async function submit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setBusy(true);
@@ -24,6 +26,7 @@ export default function ActionForm({ path, children, method = 'POST', numbers = 
         const form = e.currentTarget;
         try {
             const data: Record<string, unknown> = Object.fromEntries(new FormData(form));
+            if(actorAtOpen.current&&/^\/api\/v1\/(inventory|traceability|protection|agronomy|control-records)\//.test(path))data.expectedActorId=actorAtOpen.current;
             for (const name of numbers) {
                 if (data[name] === '')
                     delete data[name];
