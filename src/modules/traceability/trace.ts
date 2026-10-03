@@ -29,4 +29,8 @@ export async function readTrace(c:PoolClient,a:Actor,id:string){
  for(const n of r.snapshot.nodes)await lot(c,a,n.id,'read');
  return r;
 }
-
+export async function exportTrace(c:PoolClient,a:Actor,b:Body){
+ uuid(b.queryId);const row=await readTrace(c,a,b.queryId);
+ for(const node of row.snapshot.nodes)await lot(c,a,node.id,'export');
+ return {schemaVersion:'phase3-trace-v1',...row};
+}

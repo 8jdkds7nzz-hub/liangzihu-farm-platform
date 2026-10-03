@@ -1,11 +1,20 @@
 'use client';
+import ResourceShare from '@/components/phase3/resource-share';
 import {useState} from 'react';
 import ActionForm from '@/components/platform/action-form';
 import {Field,Pick} from '@/components/platform/fields';
 import {useApi} from '@/components/platform/use-api';
 type Row=Record<string,any>;
 const choices=(items:string[])=>items.map(id=>({id,name:({input:'投入品',harvest:'采收',processed:'加工品',kg:'千克',L:'升',piece:'件',as_is:'原样',wet:'湿基',dry:'干基',receipt:'入库',issue:'领用',transfer:'调拨',return:'退货',downgrade:'降级',adjust:'盘点差异',reverse:'冲销',dispatch:'发货',in:'入/增加',out:'出/减少',add:'装入',remove:'拆出'} as Row)[id]??id}));
-export function StockTable({rows,columns}:{rows:Row[];columns:[string,string][]}){return rows.length?<div className="data-list"><div className="table-wrap"><table><thead><tr>{columns.map(([k,l])=><th key={k}>{l}</th>)}</tr></thead><tbody>{rows.map((r,i)=><tr key={r.id??i}>{columns.map(([k,l])=><td key={k} data-label={l}>{r[k]===null||r[k]===undefined?'未登记':typeof r[k]==='object'?JSON.stringify(r[k]):String(r[k])}</td>)}</tr>)}</tbody></table></div></div>:<p className="empty-state">当前没有记录。</p>;}
+export function StockTable({rows,columns}:{rows:Row[];columns:[string,string][]}){
+ const [query,setQuery]=useState(''),[sort,setSort]=useState('');
+ const labels:Record<string,string>={pending:'待检',available:'已审核可用',returned:'退回',recalled:'召回',blocked:'受限/依赖未就绪',draft:'草稿',approved:'已审核',withdrawn:'已撤回',revoked:'已撤回',queued:'排队',running:'处理中',complete:'已完成',failed:'未完成',unknown:'未知',open:'未结案',closed:'已结案',receipt:'收货/入库',dispatch:'发货',harvest:'采收',issue:'领用',transfer:'调拨',return:'退货',adjust:'盘点差异',reverse:'冲销',transformation:'加工转换',pass:'通过',fail:'未通过',inconclusive:'无法判断',measured:'实测',calibrated:'率定估算',model:'模型推算',canopy:'作物冠层',lodging:'倒伏候选',waterlogging:'积水候选',bare:'裸地',request:'申请',device_received:'设备收到',electrical:'电气动作',mechanical:'机械到位',effect:'实际效果',observed:'已观测',not_observed:'未观测到',platform_record:'平台登记',field_observation:'现场观测',vendor_receipt:'外部设备回执',allowed:'许可已核',denied:'禁止',remote:'远程',manual:'手动',active:'保护生效',clear:'已核未触发'};
+ function value(r:Row,k:string){const v=r[k];if(v===null||v===undefined)return '未登记';if(typeof v==='boolean')return v?'是':'否';if(typeof v==='object')return JSON.stringify(v);return labels[String(v)]??String(v);}
+ const shown=rows.filter(r=>columns.some(([k])=>value(r,k).toLowerCase().includes(query.toLowerCase())));
+ if(sort)shown.sort((a,b)=>value(a,sort).localeCompare(value(b,sort),'zh-CN',{numeric:true}));
+ return rows.length?<div className="data-list"><div className="list-toolbar"><label>筛选当前记录<input type="search" value={query} onChange={e=>setQuery(e.target.value)}/></label><label>排序字段<select value={sort} onChange={e=>setSort(e.target.value)}><option value="">原始顺序</option>{columns.map(([k,l])=><option key={k} value={k}>{l}</option>)}</select></label><span>{shown.length}/{rows.length}条</span></div><div className="table-wrap"><table><thead><tr>{columns.map(([k,l])=><th key={k}>{l}</th>)}</tr></thead><tbody>{shown.map((r,i)=><tr key={r.id??i}>{columns.map(([k,l])=><td key={k} data-label={l}>{value(r,k)}</td>)}</tr>)}</tbody></table></div></div>:<p className="empty-state">当前没有记录。</p>;
+}
+
 export default function InventoryPanel(){
  const refs=useApi<{items:Row[]}>('/api/v1/references?kind=object'),[selected,setSelected]=useState('');
  const objectId=selected||refs.data?.items[0]?.id||'';
@@ -30,6 +39,6 @@ function ObjectStock({objectId}:{objectId:string}){
  <details><summary>装箱与拆分</summary><ActionForm path="/api/v1/inventory/packages" {...common} times={['occurredAt']}>{hidden}<Field name="code" label="物流包装码"/><Pick name="lotId" label="包装批次" options={lots}/><Pick name="action" label="包装动作" options={choices(['add','remove'])}/><Field name="quantity" label="本次装拆数量"/>{at}{evidence}</ActionForm><StockTable rows={data.packageEvents} columns={[[ 'package_id','包装记录'],['action','动作'],['quantity','数量'],['evidence','依据']]}/></details>
  <details><summary>发货与收货确认</summary><h3>记录发货</h3><ActionForm path="/api/v1/inventory/handoffs" {...common} times={['occurredAt']}><input type="hidden" name="direction" value="dispatch"/><Pick name="lotId" label="发货批次" options={lots}/><Pick name="locationId" label="发货仓位" options={locations}/><Field name="party" label="发货主体"/><Field name="quantity" label="发货数量"/>{at}{evidence}</ActionForm><h3>记录实际签收</h3><ActionForm path="/api/v1/inventory/handoffs" {...common} times={['occurredAt']}><input type="hidden" name="direction" value="receipt"/><Pick name="dispatchId" label="原发货记录" options={data.handoffs.filter((r:Row)=>r.direction==='dispatch').map((r:Row)=>({id:r.id,name:r.party+' / '+r.quantity+' / '+r.occurred_at}))}/><Field name="party" label="收货主体"/><Field name="quantity" label="本次实收量"/>{at}{evidence}</ActionForm><StockTable rows={data.handoffs} columns={[[ 'direction','方向'],['party','主体'],['quantity','数量'],['occurred_at','实际时间'],['evidence','依据']]}/></details>
  <details open><summary>批次与单据</summary><StockTable rows={data.lots} columns={[[ 'code','批号'],['product','品名'],['state','审核状态'],['current_eligibility','当前可用性'],['unit','单位'],['basis','口径'],['id','导入用批次ID']]}/><StockTable rows={data.locations} columns={[[ 'name','仓位'],['id','导入用仓位ID']]}/><StockTable rows={data.documents} columns={[[ 'kind','动作'],['occurred_at','发生时间'],['evidence','依据'],['metadata','差异与数量说明']]}/></details>
- <button onClick={()=>void download()}>导出当前对象库存与关系</button>{exportError&&<p role="alert">{exportError}</p>}</div>;
+ <ResourceShare objectId={objectId} resources={data.lots.map((r:Row)=>({id:r.id,type:'stock_lot',name:r.product+' / '+r.code,url:'/inventory/lots/'+r.id}))}/><button onClick={()=>void download()}>导出当前对象库存与关系</button>{exportError&&<p role="alert">{exportError}</p>}</div>;
 }
 

@@ -1,0 +1,5 @@
+import {readApi,writeApi} from '@/platform/api';import {AppError} from '@/platform/error';import {saveControlProfile,saveControlRule,reviewControlRule,requestControl,recordControlFeedback,recordTakeover} from '@/modules/control/records';import {controlOverview} from '@/modules/control/queries';
+const handlers={profiles:saveControlProfile,rules:saveControlRule,'rule-review':reviewControlRule,requests:requestControl,feedback:recordControlFeedback,takeovers:recordTakeover};type Ctx={params:Promise<{section:string}>};
+export async function GET(r:Request,ctx:Ctx){const {section}=await ctx.params;return readApi(r,(c,a)=>{if(section==='overview')return controlOverview(c,a,new URL(r.url).searchParams.get('objectId')??'');throw new AppError(404,'CONTROL_ENDPOINT','查询入口不存在');});}
+export async function POST(r:Request,ctx:Ctx){const {section}=await ctx.params;return writeApi(r,(c,a,b)=>{const fn=Object.hasOwn(handlers,section)?handlers[section as keyof typeof handlers]:null;if(!fn)throw new AppError(404,'CONTROL_ENDPOINT','操作入口不存在');return fn(c,a,b);});}
+

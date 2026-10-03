@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-03T01:41:50.921Z",
+  "input": "32x32合成纯色，不是现场样本",
+  "model": {
+    "id": "onnx-community/siglip2-base-patch16-224-ONNX",
+    "revision": "ba1f3b0843f24bc5417d38e19c37b287d719b2f4",
+    "textTokens": 64,
+    "dtype": "q8",
+    "taxonomyVersion": "crop-taxonomy-v1"
+  },
+  "candidates": [
+    {
+      "label": "unknown",
+      "score": 0.0013130427105352283
+    },
+    {
+      "label": "bare",
+      "score": 0.000630582042504102
+    },
+    {
+      "label": "canopy",
+      "score": 0.00021069533249828964
+    },
+    {
+      "label": "lodging",
+      "score": 0.00003982515772804618
+    },
+    {
+      "label": "waterlogging",
+      "score": 0.000025298608306911774
+    }
+  ],
+  "elapsedMs": 1521,
+  "agronomicValidation": "not_validated",
+  "remoteInference": false
+}

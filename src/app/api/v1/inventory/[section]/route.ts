@@ -15,6 +15,6 @@ export async function GET(r:Request,ctx:Context){const {section}=await ctx.param
 });}
 export async function POST(r:Request,ctx:Context){const {section}=await ctx.params;return writeApi(r,(c,a,b)=>{
  if(section==='export')return exportStock(c,a,b.objectId);
- const fn=handlers[section as keyof typeof handlers];if(!fn)throw new AppError(404,'STOCK_ENDPOINT','库存操作入口不存在');return fn(c,a,b);
+ const fn=Object.hasOwn(handlers,section)?handlers[section as keyof typeof handlers]:null;if(!fn)throw new AppError(404,'STOCK_ENDPOINT','库存操作入口不存在');return fn(c,a,b);
 },200,262144);}
 

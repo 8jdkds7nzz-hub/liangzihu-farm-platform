@@ -1,0 +1,9 @@
+'use client';
+import {useState} from 'react';import ActionForm from '@/components/platform/action-form';import {Pick,Field} from '@/components/platform/fields';
+import {useApi} from '@/components/platform/use-api';
+export default function ResourceShare({objectId,resources}:{objectId:string;resources:{id:string;type:string;name:string;url:string}[]}){
+ const grants=useApi<{items:{id:string;resource_type:string;resource_id:string;recipient_name:string;revoked_at:string|null}[]}>('/api/v1/shares?objectId='+objectId);
+ const [selected,setSelected]=useState(''),current=resources.find(r=>r.type+':'+r.id===selected)??resources[0];if(!current)return null;
+ return <details><summary>向专家分享明确资料</summary><p>仅授权所选版本；相关原件如需查看，须单独授予媒体权限。专家还需拥有该对象的查看授权。</p><ActionForm path="/api/v1/shares" onSaved={()=>void grants.reload()} times={['expiresAt']}><input type="hidden" name="objectId" value={objectId}/><input type="hidden" name="resourceType" value={current.type}/><input type="hidden" name="resourceId" value={current.id}/><label>要分享的资料<select aria-label="要分享的资料" value={current.type+':'+current.id} onChange={e=>setSelected(e.target.value)}>{resources.map(r=><option key={r.type+':'+r.id} value={r.type+':'+r.id}>{r.name}</option>)}</select></label><Field name="recipientId" label="专家账号"/><Field name="expiresAt" label="授权截止（最多31天）" type="datetime-local"/></ActionForm><p><a href={current.url}>所选资料访问入口</a>。授权由当前资料范围决定，复制链接不会自动授权。</p>{grants.error?<p className="hint">当前没有查询分享记录的权限或服务暂不可用。</p>:<ActionForm path="/api/v1/shares" method="PATCH" onSaved={()=>void grants.reload()}><Pick name="id" label="撤回已有资料授权" options={(grants.data?.items??[]).filter(g=>!g.revoked_at&&resources.some(r=>r.type===g.resource_type&&r.id===g.resource_id)).map(g=>({id:g.id,name:g.recipient_name+' / '+g.resource_type}))}/></ActionForm>}</details>;
+}
+

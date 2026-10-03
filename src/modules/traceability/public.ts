@@ -10,6 +10,7 @@ export function publicContent(value:unknown){
  for(const key of keys){const val=text(input[key],key,['productionSummary','testSummary','limitations'].includes(key)?1000:120);
  if(/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}|https?:\/\/|\b\d{1,3}\.\d{3,}\s*[,，/]\s*\d{1,3}\.\d{3,}\b/i.test(val))throw new AppError(400,'PUBLIC_PRIVATE_DATA','公开内容不能含内部ID、原件链接或精确坐标');
  if(['province','city','county'].includes(key)&&(/[0-9]/.test(val)||val.length>30))throw new AppError(400,'PUBLIC_LOCATION','产区只填写省市县，不填写地址和坐标');
+ if(/(?:\+?86[- ]?)?1[3-9]\d{9}|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/.test(val))throw new AppError(400,'PUBLIC_PRIVATE_DATA','客户摘要不能包含个人电话或邮箱');
  result[key]=val;}
  if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(result.harvestMonth))throw new AppError(400,'PUBLIC_MONTH','采收月份须为YYYY-MM');
  return result;
@@ -19,6 +20,7 @@ export async function draftCard(c:PoolClient,a:Actor,b:Body){
  return request(c,a,b,'trace.card',l.object_id,async()=>{
  await lot(c,a,l.id,'record',true);const content=publicContent(b.content),until=time(b.validUntil),credentials=arrayIds(b.credentialIds??[]);
  if(Date.parse(until)<=Date.now()||Date.parse(until)>Date.now()+366*86400000)throw new AppError(400,'PUBLIC_EXPIRY','客户页有效期须在未来一年内');
+ if(content.batchLabel===l.code||Object.values(l.identities).includes(content.batchLabel))throw new AppError(400,'PUBLIC_PRIVATE_DATA','请填写与内部编号不同的公开批次标签');
  if(content.productName!==l.product)throw new AppError(422,'PUBLIC_PRODUCT','客户页产品名称须与批次一致');
  await credentialsCurrent(c,l,credentials);
  const version=Number((await c.query('SELECT COALESCE(max(version),0)+1 AS n FROM public_trace_cards WHERE lot_id=$1',[l.id])).rows[0].n);
