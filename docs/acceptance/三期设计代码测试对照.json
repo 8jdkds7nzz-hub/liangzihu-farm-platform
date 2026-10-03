@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "ef23fdaf13541668b2644d1e4da6d9a21931968e",
+  "sourceCommit": "1c3c5d0cab9d1e5351d811e91faa0c11302aeac8",
   "fullPhase3Complete": false,
   "localScopeVerified": true,
   "verifiedRequirements": 21,
@@ -248,7 +248,7 @@
       ],
       "evidenceHashes": {
         "tests/integration/phase3-protection.test.ts": "430b52bf72a74f696fd85ccbfd4e9b2dae29945d9ed9f08087ec69ae61650c1b",
-        "tests/integration/phase3-boundaries.test.ts": "3f5c177b65c8057050dc334853cc3add0c8a32d312bcfc55a6ac61554085926f"
+        "tests/integration/phase3-boundaries.test.ts": "9401f0c8ebd8884d50e119dfaec5e51bb19fa3ee0d7e24cae0398dbf02e388d3"
       },
       "executionRecord": "docs/acceptance/3c/C32.md",
       "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
@@ -297,7 +297,7 @@
       "title": "照片、本地模型与定时抓图",
       "status": "software_verified",
       "code": "src/modules/agronomy/crops.ts",
-      "codeSha256": "0c9e18f8ea1b42f3efc0185356f3e6d2a321168a28dd640115d53d95f9407d80",
+      "codeSha256": "e76a3313a9df7cc05b673fd439b656e5acf749c3eae11d8fe31596ae55e1e4bf",
       "evidence": [
         "tests/integration/phase3-agronomy.test.ts",
         "tests/integration/phase3-control.test.ts",
@@ -306,7 +306,7 @@
       "evidenceHashes": {
         "tests/integration/phase3-agronomy.test.ts": "b2cf13039161ef24fcd6d7e739c25ca39ea343dd8f2787b3d3c00b4d97d01e50",
         "tests/integration/phase3-control.test.ts": "be880d9a16a39c3ed9f81a8aefdd7f783b2d494a76cdddfab5f05b1926a997fa",
-        "docs/acceptance/3c/本地作物模型工程实测.json": "3bc6e526ec764b326091480e0beabd40babfe41ee6ee55356657b8f81ec4a650"
+        "docs/acceptance/3c/本地作物模型工程实测.json": "0dd19f5c81d8dcf418f2321c928238dd345582863a75cdb7c0dafefa48253a66"
       },
       "executionRecord": "docs/acceptance/3c/C35.md",
       "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"
@@ -317,7 +317,7 @@
       "title": "多光谱反射率指数与分区",
       "status": "software_verified",
       "code": "src/modules/agronomy/spectral.ts",
-      "codeSha256": "e0fa6cbdd7d1f53e79448df04133a611f3e36a454f672e865f6f0a1634607169",
+      "codeSha256": "b6216b142cf50bf32e5b4b4a1b83004654bc3b37f571701a9fc9501622deb081",
       "evidence": [
         "tests/unit/phase3-spectral.test.ts",
         "tests/integration/phase3-agronomy.test.ts",
@@ -326,7 +326,7 @@
       "evidenceHashes": {
         "tests/unit/phase3-spectral.test.ts": "b32ed4f89e87a9889dca1587dd705b59a181c6980827a68e77a31b3371d62341",
         "tests/integration/phase3-agronomy.test.ts": "b2cf13039161ef24fcd6d7e739c25ca39ea343dd8f2787b3d3c00b4d97d01e50",
-        "tests/integration/phase3-boundaries.test.ts": "3f5c177b65c8057050dc334853cc3add0c8a32d312bcfc55a6ac61554085926f"
+        "tests/integration/phase3-boundaries.test.ts": "9401f0c8ebd8884d50e119dfaec5e51bb19fa3ee0d7e24cae0398dbf02e388d3"
       },
       "executionRecord": "docs/acceptance/3c/C36.md",
       "limits": "真实植保、农情影像与设备条件分别按G14/G15核验。"

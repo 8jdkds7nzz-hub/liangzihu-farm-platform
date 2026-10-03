@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-10-03T02:00:52.956Z",
+  "checkedAt": "2026-10-03T02:34:46.095Z",
   "environment": "agri_test随机schema，厂家报文/权限/签名为工程合成",
-  "ackMs": 11,
+  "ackMs": 12,
   "checks": {
     "disabledInitially": true,
     "explicitConfirmationEnabled": true,

@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-10-03T02:21:52.101512+00:00",
-  "sourceCommit": "ef23fdaf13541668b2644d1e4da6d9a21931968e",
+  "checkedAt": "2026-10-03T02:41:11.126448+00:00",
+  "sourceCommit": "1c3c5d0cab9d1e5351d811e91faa0c11302aeac8",
   "startingCommit": "2ea8f0438d545ff80d42a97977d703f510c730a5",
   "fullPhase3Complete": false,
   "localScopeVerified": true,
@@ -23,16 +23,16 @@
       "logSha256": "d9ab57559cec1260713c37f057087dd6e8dfb6735e6d28408d5031168c7ab924"
     },
     "database": {
-      "tests": 137,
-      "pass": 137,
+      "tests": 138,
+      "pass": 138,
       "fail": 0,
-      "logSha256": "9a858f0635eee603f6ec12cde4b4f99db5f29fd72a8766d8be9c747e3e4dbf81"
+      "logSha256": "0e700290f515af4538822d09150c60c195a9a6a24e6f070adc4bda8764aa7759"
     },
     "httpBrowser": {
       "tests": 21,
       "pass": 21,
       "fail": 0,
-      "logSha256": "07ad95cd44f1956d28f27afd50dc9e6e0ce555d1cb4b46f9c94497dabee3e958"
+      "logSha256": "e679009cbd78470a2648840bb0b7ad83216a59cf13f22b1ceff942bd722d07fd"
     },
     "independentMonitor": {
       "tests": 1,
@@ -47,10 +47,10 @@
       "logSha256": "24cefc2bc38a1c71e18591075993695fc72546b32ff6b5baab3d98032ce96fb5"
     }
   },
-  "totalUniqueTests": 221,
+  "totalUniqueTests": 222,
   "buildPassed": true,
-  "buildLogSha256": "35ffe3137aa4c1942daefb854b4ef7dbdc6a32c43adc4964d2965be5c380fa53",
-  "worktreeBuildId": "LtKT_r_4WiDft34XaoprI",
+  "buildLogSha256": "5e153d6cc9773d84f0364db906642866e1c902d84f6bff455714d46cd89c2bf6",
+  "worktreeBuildId": "YheIRYGE8MT2S9Q5WQQQS",
   "frozenInstallPassed": true,
   "productionDependencyVulnerabilities": {
     "info": 0,
@@ -416,14 +416,14 @@
     "src/db/migrate.ts": "82696868544baa5f80dd177b8d4035f651ad5b8fcc7caa5aa3abbca08d688a84",
     "src/db/pool.ts": "dd9c5a6e67d2c64bc257366c9a4b3f9515a506fe85e7a4e9491e85ea8055a5dc",
     "src/modules/agronomy/common.ts": "6d9d97b3f4c5b02160927b8eaf63290523076539303009104b8dabf5d5b022ee",
-    "src/modules/agronomy/crops.ts": "0c9e18f8ea1b42f3efc0185356f3e6d2a321168a28dd640115d53d95f9407d80",
+    "src/modules/agronomy/crops.ts": "e76a3313a9df7cc05b673fd439b656e5acf749c3eae11d8fe31596ae55e1e4bf",
     "src/modules/agronomy/flows.ts": "f92a5cb2bbe6f4bc68454ba3e46e9401e4f1a7728a5c959c65d0d8146d88f0ef",
     "src/modules/agronomy/notices.ts": "d3b15673c5f157ff8cb5cd5f6d9fb09fc86687b97a4d9776490c36844285de12",
     "src/modules/agronomy/process.ts": "77fa1520a7025bd51259e51d3340741fc7ae76d52eb245945e418a61554e50a4",
     "src/modules/agronomy/queries.ts": "35f8bd19b5648ea05f1bde4fea0f73e18fc14607e1c6b1bcd54adea1f9fad905",
     "src/modules/agronomy/schedules.ts": "9c65a3a75668dd16a0cd435f937b2b3159a0301b3ee628e94400fa8b3019eb2b",
     "src/modules/agronomy/spectral-math.ts": "f5b060280d121e8538810fdabfeebf757ff8375dfde0511a9a57a1d6f6043985",
-    "src/modules/agronomy/spectral.ts": "e0fa6cbdd7d1f53e79448df04133a611f3e36a454f672e865f6f0a1634607169",
+    "src/modules/agronomy/spectral.ts": "b6216b142cf50bf32e5b4b4a1b83004654bc3b37f571701a9fc9501622deb081",
     "src/modules/alerts/claim-validity.ts": "5dccc68b6ba54b119043f5a4439ec827193da4fcccf2edcd1aebc06381825a87",
     "src/modules/alerts/claims.ts": "a415ec54aea861d53f9222ba5e5181e6ea73f337c4f0cb733e4b4991535e76bf",
     "src/modules/alerts/evaluate.ts": "fcb03973121f08822da303b18114b2095ea68d2800667fbc2c90f2529a0ea006",
@@ -567,5 +567,5 @@
     "workers/terrain.ts": "899cf225037148990c67ba88cdfe0ce86cfe470fb463c202903dab151f51c496",
     "workers/weather.ts": "605bbf1ac02b28977157157e2c103a3e607eb24f65783ec68aa73f23c214beef"
   },
-  "codeFingerprint": "9c0b9015a1221c2accf2900146a3984bbccd20c7bdce232a1c7475e187a65882"
+  "codeFingerprint": "902e49cc4e3fc3f380435c4e451d1652c1312a958f9121cf102809c804f773eb"
 }
