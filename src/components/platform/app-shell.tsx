@@ -3,6 +3,7 @@ import {useState,useEffect,type ReactNode} from 'react';import {usePathname} fro
 const groups=[
   {name:'日常工作',links:[['/workbench','工作台','◫'],['/alerts','告警与核查','!'],['/tasks','任务与日历','✓'],['/records','农事与照片','▤']]},
   {name:'生产业务',links:[['/inventory','库存与批次','▧'],['/traceability','质量与溯源','⌁'],['/protection','植保作业','◈'],['/agronomy','农情与影像','❋'],['/control-records','控制准备','⊡']]},
+  {name:'资源与经营',links:[['/energy','能源记录','⚡'],['/circular','循环物料','↻']]},
   {name:'空间与资料',links:[['/map','二维地图','⌖'],['/terrain','三维与地形','△'],['/imagery','监控与航次','▣'],['/devices','设备与测点','⊙'],['/objects','对象台账','▦']]},
   {name:'分析与协作',links:[['/analysis','分析复盘','↗'],['/briefings','简报审阅','≡'],['/knowledge','知识资料','▥'],['/assistant','权限内问答','◇'],['/maintenance','维护与复测','＋']]},
   {name:'管理',links:[['/rules','规则审核','§'],['/duty','值班安排','◷'],['/settings','配置管理','⚙'],['/operations','运行与费用','⋯']]},

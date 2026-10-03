@@ -1,0 +1,3 @@
+'use client';
+import {useState} from 'react';
+export default function ExportButton({path,name}:{path:string;name:string}){const [error,setError]=useState(''),[busy,setBusy]=useState(false);async function download(){setBusy(true);setError('');try{const r=await fetch(path,{cache:'no-store'}),data=await r.json();if(!r.ok)throw Error(data.message??'导出失败');const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name+'.json';a.click();URL.revokeObjectURL(url);}catch(e){setError(e instanceof Error?e.message:'导出未完成');}finally{setBusy(false);}}return <><button disabled={busy} onClick={()=>void download()}>{busy?'正在导出…':'导出当前对象与关系'}</button>{error&&<p role="alert">{error}</p>}</>;}
