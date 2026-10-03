@@ -19,7 +19,6 @@
     "release:prepare": "node --import tsx tools/prepare-release.ts",
     "release:manifest": "node --import tsx tools/release-manifest.ts",
     "check:stability": "node --env-file=.env.test.local --import tsx tools/check-stability.ts",
-    "check:linux": "node tools/check-linux.mjs",
     "dev": "next dev --hostname 127.0.0.1 --port 3100",
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 3100",
