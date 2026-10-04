@@ -812,6 +812,7 @@ core/delivery须先在仅有测试配置的独立副本准备测试环境，deli
 | 四期能源、经营与科研操作 | [4A操作卡](docs/help/四期4a操作卡.md)、[4B操作卡](docs/help/四期4b操作卡.md)、[4C操作卡](docs/help/四期4c操作卡.md) |
 | 本地启动、配置与排错 | [本地开发与运行](docs/help/本地开发与运行.md)、[环境配置示例](.env.example) |
 | GitHub 产品与 README 借鉴 | [一期产品借鉴](docs/baseline/开源项目产品经验与智慧农业一期实施借鉴.md)、[三期产品借鉴](docs/specs/2026-10-03-三期范围与开源产品借鉴.md)、[四期产品借鉴](docs/specs/2026-10-03-四期范围与开源产品借鉴.md)、[本次 README 参考说明](docs/specs/2026-10-03-README写作参考与结构说明.md) |
+| Mermaid 图示绘制 | [Pretty Mermaid 技能](skills/pretty-mermaid/SKILL.md)、[安装与使用说明](skills/pretty-mermaid/安装来源.md)、[现有图示源文件](docs/架构图/绘图说明.md) |
 
 维护与协作通过本仓库进行。有权限的协作者可以在 [Issues](https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform/issues) 记录问题，写明页面、复现步骤、预期结果与实际结果；现场用户也可从应用的“问题反馈”入口提交。提交前阅读 [AGENTS.md](AGENTS.md)，同步相关设计、测试和交付记录；每次调整须更新 [CHANGELOG.md](CHANGELOG.md)，涉及功能、使用方式或交付状态时同步更新本 README。截图与日志应隐去账号凭据、联系人和私有原件链接。
 

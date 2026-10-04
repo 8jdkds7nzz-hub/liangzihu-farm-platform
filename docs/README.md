@@ -2,6 +2,8 @@
 
 升级与维护记录：[项目 README](../README.md#最新升级)概括当前能力，[变更日志](../CHANGELOG.md)按日期记录每次调整、验证结果和影响。新增或修改代码、配置、依赖、数据库或文档时，同步登记日志；具体要求见[开发规则](../AGENTS.md)。
 
+Mermaid 绘图统一调用 [Pretty Mermaid 技能](../skills/pretty-mermaid/SKILL.md)。[安装与使用说明](../skills/pretty-mermaid/安装来源.md)包含固定上游版本、仓库内宿主入口和克隆后的依赖准备方式；[README 图示说明](架构图/绘图说明.md)记录现有三张图的源文件与绘制方式。
+
 当前工程交付：[检查器加固、Q02、诊断与覆盖、Q04/Q11工程验证](acceptance/产品化/工程完善交付核对.md)已完成，本机270个独立用例及GitHub Linux core/delivery均通过。当前入口为`pnpm check`、`pnpm check:core`、`pnpm check:delivery`，用法见[工程回归与发布操作卡](help/工程回归与发布操作卡.md)。[原Q01](acceptance/产品化/Q01.md)保留阶段历史；其他产品工作继续按[Q01—Q15计划](plans/2026-10-03-后续产品化与工程完善详细计划.md)推进，不因本轮工程验收自动完成。
 
 下一步：[试点接入与上线验收计划](plans/2026-10-03-试点接入与上线验收计划.md)。[资料入口与9份模板](试点/README.md)、[G01—G18依赖总表](试点/接入依赖与验收总表.md)、[准备进度](acceptance/试点/准备进度与交付物.md)已整理；填写后的真实资料留在私有副本，当前尚未启动现场接入或生产验收。
